@@ -11,6 +11,7 @@ import { AdminComponent } from './admin/admin.component';
 import { DriverComponent } from './driver/driver.component';
 import { PassengerComponent } from './passenger/passenger.component';
 import { ParentComponent } from './parent/parent.component';
+import { OwnerComponent } from './owner/owner.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ParentComponent } from './parent/parent.component';
     AdminComponent,
     DriverComponent,
     PassengerComponent,
-    ParentComponent
+    ParentComponent,
+    OwnerComponent
   ],
   imports: [
     BrowserModule,
