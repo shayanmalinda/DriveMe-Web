@@ -85,6 +85,9 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 
 export class OverviewDialog {
+  inputEmail = null;
+  inputPassword = null;
+  checked = false;
   waiting = false;
   loginerror = false;
   hide = true;
@@ -102,14 +105,19 @@ export class OverviewDialog {
       private afs: AngularFirestore,
       private router: Router,
       public snackbar: MatSnackBar
-  ) { }
+  ) { 
+    if(localStorage.getItem('email')!=null){
+      this.inputEmail = localStorage.getItem('email');
+      this.inputPassword = localStorage.getItem('password');
+      this.checked = true;
+    }
+  }
 
   onNoClick(): void { 
     this.dialogRef.close();
   }
 
   login():void {
-    
     this.loginerror = false;
     this.waiting = true;
     var email = this.myControl1.value;
@@ -121,6 +129,15 @@ export class OverviewDialog {
       this.passengers.forEach(x=>{
         x.forEach(y=>{
           if(email==y.email && password==y.password){
+            if(this.checked){
+              localStorage.setItem('email',email);
+              localStorage.setItem('password',password);
+            }
+            else{
+              localStorage.removeItem('email');
+              localStorage.removeItem('password');
+              this.checked = false;
+            }
             this.dialogRef.close();
             this.router.navigateByUrl('/passenger');
             flag = true;
@@ -166,6 +183,9 @@ export class OverviewDialog {
 
 export class OverviewDialog2 {
 
+  inputEmail = null;
+  inputPassword = null;
+  checked = false;
   waiting = false;
   loginerror = false;
   hide = true;
@@ -187,7 +207,13 @@ export class OverviewDialog2 {
       private afs: AngularFirestore,
       private router: Router,
       public snackbar: MatSnackBar
-  ) { }
+  ) { 
+    if(localStorage.getItem('email')!=null){
+      this.inputEmail = localStorage.getItem('email');
+      this.inputPassword = localStorage.getItem('password');
+      this.checked = true;
+    }
+  }
 
 
   onNoClick(): void {
@@ -208,6 +234,15 @@ export class OverviewDialog2 {
       this.drivers.forEach(x=>{
         x.forEach(y=>{
           if(email==y.email && password==y.password){
+            if(this.checked){
+              localStorage.setItem('email',email);
+              localStorage.setItem('password',password);
+            }
+            else{
+              localStorage.removeItem('email');
+              localStorage.removeItem('password');
+              this.checked = false;
+            }
             this.dialogRef.close();
             this.router.navigateByUrl('/driver');
             flag = true;
