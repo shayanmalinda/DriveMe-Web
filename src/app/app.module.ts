@@ -6,9 +6,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule} from '@angular/material/button';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './login/login.component';
 import { AdminComponent } from './admin/admin.component';
 import { DriverComponent } from './driver/driver.component';
@@ -16,6 +14,11 @@ import { PassengerComponent } from './passenger/passenger.component';
 import { ParentComponent } from './parent/parent.component';
 import { OwnerComponent } from './owner/owner.component';
 import { environment } from 'src/environments/environment';
+import { MatDialogModule} from '@angular/material/dialog';
+import { OverviewDialog,OverviewDialog2 } from './login/login.component'
+import { MatModule } from './material.theme'
+import { MatSnackBarModule } from '@angular/material';
+
 
 
 @NgModule({
@@ -26,17 +29,19 @@ import { environment } from 'src/environments/environment';
     DriverComponent,
     PassengerComponent,
     ParentComponent,
-    OwnerComponent
+    OwnerComponent,
+    OverviewDialog,
+    OverviewDialog2,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatButtonModule,
-    MatCheckboxModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-  ],
+    MatModule,
+  ], 
+  entryComponents: [LoginComponent, OverviewDialog, OverviewDialog2],
   providers: [],
   bootstrap: [AppComponent]
 })
