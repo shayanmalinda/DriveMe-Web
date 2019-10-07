@@ -263,6 +263,15 @@ export class OverviewDialog2 {
       this.drivers.forEach(x=>{
         x.forEach(y=>{
           if(email==y.email && password==y.password){
+            if(this.checked){
+              localStorage.setItem('email',email);
+              localStorage.setItem('password',password);
+            }
+            else{
+              localStorage.removeItem('email');
+              localStorage.removeItem('password');
+              this.checked = false;
+            }
             this.dialogRef.close();
             this.router.navigateByUrl('/admin');
             flag = true;
