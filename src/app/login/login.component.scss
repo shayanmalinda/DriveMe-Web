@@ -43,6 +43,11 @@
     text-align: center;
 }
 
+.character-button:focus{
+    outline: none;
+    border: 0;
+}
+
 .btn-div{
     padding-top: 60px;
     height: 400em;
