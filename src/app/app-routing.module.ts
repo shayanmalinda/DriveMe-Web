@@ -7,6 +7,7 @@ import { ParentComponent } from './parent/parent.component';
 import { PassengerComponent } from './passenger/passenger.component';
 import { OwnerComponent  } from './owner/owner.component';
 import { RegisterdriverComponent  } from './admin/driver/registerdriver/registerdriver.component';
+
 import { PaymentsComponent } from './driver/payments/payments.component';
 import { ProfileComponent } from './driver/profile/profile.component';
 import { RatePassengersComponent } from './driver/rate-passengers/rate-passengers.component';
@@ -25,7 +26,6 @@ const routes: Routes = [
   { path: 'parent', component: ParentComponent},
   { path: 'passenger', component: PassengerComponent},
   { path: 'owner', component: OwnerComponent},
-  
   { path: 'driver/payments', component: PaymentsComponent},
   { path: 'driver/profile', component: ProfileComponent},
   { path: 'driver/ratepassengers', component: RatePassengersComponent},
