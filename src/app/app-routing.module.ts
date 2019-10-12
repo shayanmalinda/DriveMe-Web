@@ -6,6 +6,8 @@ import { DriverComponent } from './driver/driver.component';
 import { ParentComponent } from './parent/parent.component';
 import { PassengerComponent } from './passenger/passenger.component';
 import { OwnerComponent  } from './owner/owner.component';
+import { RegisterdriverComponent  } from './admin/driver/registerdriver/registerdriver.component';
+
 import { PaymentsComponent } from './driver/payments/payments.component';
 import { ProfileComponent } from './driver/profile/profile.component';
 import { RatePassengersComponent } from './driver/rate-passengers/rate-passengers.component';
@@ -15,7 +17,11 @@ import { PassengerListComponent } from './driver/passenger-list/passenger-list.c
 
 const routes: Routes = [
   { path: '', component: LoginComponent},
-  { path: 'admin', component: AdminComponent},
+  { path: 'admin', component: AdminComponent,
+    children: [
+      { path: 'driverregister',outlet: 'navbar', component: RegisterdriverComponent},
+    ]
+  },
   { path: 'driver', component: DriverComponent},
   { path: 'parent', component: ParentComponent},
   { path: 'passenger', component: PassengerComponent},

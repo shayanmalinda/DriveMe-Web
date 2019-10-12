@@ -25,6 +25,7 @@ import { MatDialogModule} from '@angular/material/dialog';
 import { OverviewDialog,OverviewDialog2 } from './login/login.component'
 import { MatModule } from './material.theme'
 import { MatSnackBarModule } from '@angular/material';
+import { RegisterdriverComponent } from './admin/driver/registerdriver/registerdriver.component';
 
 
 
@@ -46,6 +47,7 @@ import { MatSnackBarModule } from '@angular/material';
  
     OverviewDialog,
     OverviewDialog2,
+    RegisterdriverComponent,
   ],
   imports: [
     BrowserModule,
