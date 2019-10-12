@@ -26,12 +26,13 @@ const routes: Routes = [
   { path: 'parent', component: ParentComponent},
   { path: 'passenger', component: PassengerComponent},
   { path: 'owner', component: OwnerComponent},
-  { path: 'driver/payments', component: PaymentsComponent},
-  { path: 'driver/profile', component: ProfileComponent},
-  { path: 'driver/ratepassengers', component: RatePassengersComponent},
-  { path: 'driver/sharelocation', component: ShareLocationComponent},
-  { path: 'driver/vehicleroute', component: VehicleRouteComponent},
-  { path: 'driver/passengerlist',component: PassengerListComponent}
+  
+  { path: 'driver-payments', component: PaymentsComponent},
+  { path: 'driver-profile', component: ProfileComponent},
+  { path: 'driver-ratepassengers', component: RatePassengersComponent},
+  { path: 'driver-sharelocation', component: ShareLocationComponent},
+  { path: 'driver-vehicleroute', component: VehicleRouteComponent},
+  { path: 'driver-passengerlist',component: PassengerListComponent}
 ];
 
 
