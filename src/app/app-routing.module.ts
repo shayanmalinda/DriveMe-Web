@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: '', component: LoginComponent},
   { path: 'admin', component: AdminComponent,
     children: [
-      { path: 'driverregister',outlet: 'navbar', component: RegisterdriverComponent},
+      { path: 'driverregister',outlet: 'adminnavbar', component: RegisterdriverComponent},
     ]
   },
   { path: 'driver', component: DriverComponent},
