@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: '', component: LoginComponent},
   { path: 'admin', component: AdminComponent,
     children: [
-      { path: 'driverregister',outlet: 'navbar', component: RegisterdriverComponent},
+      { path: 'driverregister',outlet: 'adminnavbar', component: RegisterdriverComponent},
     ]
   },
   { path: 'driver', component: DriverComponent},
@@ -27,7 +27,7 @@ const routes: Routes = [
   { path: 'owner', component: OwnerComponent},
   
   { path: 'driver/payments', component: PaymentsComponent},
-  { path: 'driver/profile', component: ProfileComponent},
+  { path: 'driver-profile', component: ProfileComponent},
   { path: 'driver/ratepassengers', component: RatePassengersComponent},
   { path: 'driver/sharelocation', component: ShareLocationComponent},
   { path: 'driver/vehicleroute', component: VehicleRouteComponent},
