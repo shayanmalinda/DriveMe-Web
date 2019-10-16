@@ -14,12 +14,14 @@ import { RatePassengersComponent } from './driver/rate-passengers/rate-passenger
 import { ShareLocationComponent } from './driver/share-location/share-location.component';
 import { VehicleRouteComponent } from './driver/vehicle-route/vehicle-route.component';
 import { PassengerListComponent } from './driver/passenger-list/passenger-list.component';
+import { ViewdriversComponent } from './admin/driver/viewdrivers/viewdrivers.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent},
   { path: 'admin', component: AdminComponent,
     children: [
-      { path: 'driverregister',outlet: 'navbar', component: RegisterdriverComponent},
+      { path: 'driverregister',outlet: 'adminnavbar', component: RegisterdriverComponent},
+      { path: 'viewdrivers',outlet: 'adminnavbar', component: ViewdriversComponent},
     ]
   },
   { path: 'driver', component: DriverComponent},
