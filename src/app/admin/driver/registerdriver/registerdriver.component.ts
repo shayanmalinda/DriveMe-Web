@@ -3,24 +3,25 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatCheckbox, MatSnackBar, MatStepperPrevious, MatStepper } from '@angular/material';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { MatSpinner } from '@angular/material';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 export interface Vehicle {
   value: string;
 }
 
 export interface Driver {
-  driverName: string;
-  driverEmail: string;
+  name: string;
+  email: string;
   driverTelephone: string;
   driverAddress: string;
   driverNIC: string;
   driverLicense: string;
-  pass1: string;
+  password: string;
   vehicleNumber: string;
   vehicleChassis: string;
   availableSeets: string;
   vehicleType: Selection;
-  airConditioned: Boolean;
+  isAC: Boolean;
 }
 
 
@@ -59,7 +60,8 @@ export class RegisterdriverComponent implements OnInit {
 
   constructor(private _formBuilder: FormBuilder,
     private afs: AngularFirestore,
-    private _snackBar: MatSnackBar) {}
+    private _snackBar: MatSnackBar,
+    private afStorage: AngularFireStorage) {}
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
@@ -89,26 +91,25 @@ export class RegisterdriverComponent implements OnInit {
   registerDriver(){
     this.waiting = true;
     this.driver={
-
-      driverName : this.driverName,
-      driverEmail : this.driverEmail,
+      name : this.driverName,
+      email : this.driverEmail,
       driverTelephone : this.driverTelephone,
       driverAddress : this.driverAddress,
       driverNIC : this.driverNIC,
       driverLicense : this.driverLicense,
-      airConditioned : this.airConditioned,
+      isAC : this.airConditioned,
       availableSeets : this.availableSeets,
       vehicleChassis : this.vehicleChassis,
       vehicleNumber : this.vehicleNumber,
       vehicleType : this.vehicleType,
-      pass1 : this.pass1
+      password : this.pass1
     }
 
-    this.afs.collection('users/user/driver').add(this.driver).then(_ => {
-        this.openSnackBar("Driver Registered","Done");
-        this.waiting = false;
-      }
-    );
+    // this.afs.collection('users/user/driver').add(this.driver).then(_ => {
+    //     this.openSnackBar("Driver Registered","Done");
+    //     this.waiting = false;
+    //   }
+    // );
     
   }
 

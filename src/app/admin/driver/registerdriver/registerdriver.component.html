@@ -1,4 +1,4 @@
-<div class="container navbar-margin">
+<div class="container navbar-margin">   
     <div class="container-fluid pl-5 pr-5 pt-3 pb-2 fill-form">
 
         <p style="margin:0px;font-size: 30px; font-weight: 400;font-family: Georgia, 'Times New Roman', Times, serif">Driver Registration</p>
@@ -47,8 +47,12 @@
                         <section *ngIf="pass1==pass2?true:false" style="font-size: 12px; color: rgb(6, 190, 6);">
                             <p style="font-weight: 550;">Password Matched</p>
                         </section>
-                    </div>
-                    <div class="pt-1">
+                    </div><br>
+                    <!-- <mat-form-field class="form-field-full-width pb-0"> -->
+                    <!-- <label for="file" class="mr-4">Image :</label>
+                    <input type="file" (change)="upload($event)" accept=".png,.jpg" required/> -->
+                    <!-- </mat-form-field>   -->
+                    <div class="pt-3">
                         <button mat-raised-button color="primary" (click)="stepperNext(stepper)">Next</button>
                     </div>
                 </form>

@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,7 +27,7 @@ import { OverviewDialog,OverviewDialog2 } from './login/login.component'
 import { MatModule } from './material.theme'
 import { MatSnackBarModule } from '@angular/material';
 import { RegisterdriverComponent } from './admin/driver/registerdriver/registerdriver.component';
-
+import { ViewdriversComponent } from './admin/driver/viewdrivers/viewdrivers.component';
 
 
 @NgModule({
@@ -48,6 +49,7 @@ import { RegisterdriverComponent } from './admin/driver/registerdriver/registerd
     OverviewDialog,
     OverviewDialog2,
     RegisterdriverComponent,
+    ViewdriversComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,6 +57,7 @@ import { RegisterdriverComponent } from './admin/driver/registerdriver/registerd
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
+    AngularFireStorageModule,
     MatModule,
   ], 
   entryComponents: [LoginComponent, OverviewDialog, OverviewDialog2],
