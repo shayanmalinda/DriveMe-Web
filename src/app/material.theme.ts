@@ -19,7 +19,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from "@angular/material";
 import { MatSnackBar } from '@angular/material/snack-bar';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
-
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatListModule} from '@angular/material/list';
 
 
 @NgModule({
@@ -45,7 +46,9 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     MatSelectModule,
     MatDialogModule,
     MatSnackBarModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatListModule
 
     
   ],
@@ -75,7 +78,9 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     MatSelectModule,
     MatDialogModule,
     MatSnackBarModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatListModule
   ]
 })
 
