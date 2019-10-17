@@ -14,7 +14,7 @@
             My Profile
           </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" [routerLink]="[{outlets: {'navbar': 'driverregister'}}]" routerLinkActive="active" style="color: #ddd">Register a Driver</a>
+                    <a class="dropdown-item" routerLink="/driver-profile" routerLinkActive="active" style="color: #ddd">My Profile</a>
 
                 </div>
             </li>
@@ -35,7 +35,7 @@
               Payments
             </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#" style="color: #ddd">Action</a>
+                    <a class="dropdown-item" routerLink="/driver-payments" style="color: #ddd">My Payments</a>
                     <a class="dropdown-item" href="#" style="color: #ddd">Another</a>
                     <a class="dropdown-item" href="#" style="color: #ddd">Something</a>
                 </div>
@@ -46,7 +46,7 @@
               Location Sharing
             </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#" style="color: #ddd">Action</a>
+                    <a class="dropdown-item" routerLink="/driver-sharelocation" style="color: #ddd">My Location</a>
                     <a class="dropdown-item" href="#" style="color: #ddd">Another</a>
                     <a class="dropdown-item" href="#" style="color: #ddd">Something</a>
                 </div>
@@ -57,7 +57,7 @@
                     Vehicle Route
             </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#" style="color: #ddd">Action</a>
+                    <a class="dropdown-item" routerLink="/driver-vehicleroute" style="color: #ddd">My Route</a>
                     <a class="dropdown-item" href="#" style="color: #ddd">Another</a>
                     <a class="dropdown-item" href="#" style="color: #ddd">Something</a>
                 </div>
@@ -68,7 +68,7 @@
                     Ratings
             </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#" style="color: #ddd">Action</a>
+                    <a class="dropdown-item" routerLink="/driver-ratepassengers" style="color: #ddd">My Ratings</a>
                     <a class="dropdown-item" href="#" style="color: #ddd">Another</a>
                     <a class="dropdown-item" href="#" style="color: #ddd">Something</a>
                 </div>
@@ -93,31 +93,3 @@
         Hello Driver!
     </h1>
 </div>
-
-
-<nav>
-    <button>
-            <a routerLink="/driver-profile" routerLinkActive="active">Your Profile</a>
-    </button>
-
-    <button>
-            <a routerLink="/driver-payments" routerLinkActive="active">Payments</a>
-    </button>
-
-    <button>
-            <a routerLink="/driver-passengerlist" routerLinkActive="active">Passengers</a>
-    </button>
-
-    <button>
-            <a routerLink="/driver-sharelocation" routerLinkActive="active">Share Location</a>
-    </button>
-
-    <button>
-            <a routerLink="/driver-vehicleroute" routerLinkActive="active">Vehicle Route</a>
-    </button>
-
-    <button>
-            <a routerLink="/driver-ratepassengers" routerLinkActive="active">Rate Passengers</a>
-    </button>
-
-</nav>
