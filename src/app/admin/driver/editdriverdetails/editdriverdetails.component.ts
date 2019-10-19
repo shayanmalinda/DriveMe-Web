@@ -89,7 +89,7 @@ export class EditdriverdetailsComponent implements OnInit {
         this.availableSeets = driverDetails['availableSeets'];
         this.vehicleType = driverDetails['vehicleType'];
         this.airConditioned = driverDetails['isAC'];
-        this.driverId = driverDetails['driverId'];
+        this.driverId = driverDetails['id'];
         this.cdRef.detectChanges();
     });
     }
@@ -150,11 +150,12 @@ export class EditdriverdetailsComponent implements OnInit {
       password : this.pass1
     }
 
-    // this.afs.collection('users/user/driver').add(this.driver).then(_ => {
-    //     this.openSnackBar("Driver Registered","Done");
-    //     this.waiting = false;
-    //   }
-    // );
+
+    this.afs.doc('users/user/driver/'+this.driverId).update(this.driver).then(_ => {
+        this.openSnackBar("Driver Details Updated","Done");
+        this.waiting = false;
+      }
+    );
     
   }
 
