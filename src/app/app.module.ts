@@ -30,6 +30,9 @@ import { RegisterdriverComponent } from './admin/driver/registerdriver/registerd
 import { ViewdriversComponent } from './admin/driver/viewdrivers/viewdrivers.component';
 import { EditdriverdetailsComponent } from './admin/driver/editdriverdetails/editdriverdetails.component';
 
+import { NgxSpinnerModule } from "ngx-spinner";
+import { NgxspinnerComponent } from './shared/ngxspinner/ngxspinner.component';
+
 
 @NgModule({
   declarations: [
@@ -52,6 +55,7 @@ import { EditdriverdetailsComponent } from './admin/driver/editdriverdetails/edi
     RegisterdriverComponent,
     ViewdriversComponent,
     EditdriverdetailsComponent,
+    NgxspinnerComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,6 +65,7 @@ import { EditdriverdetailsComponent } from './admin/driver/editdriverdetails/edi
     AngularFirestoreModule,
     AngularFireStorageModule,
     MatModule,
+    NgxSpinnerModule
   ], 
   entryComponents: [LoginComponent, OverviewDialog, OverviewDialog2],
   providers: [],

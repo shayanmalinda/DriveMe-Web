@@ -3,6 +3,7 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 export interface Driver{
   name: string;
@@ -30,15 +31,19 @@ export class ViewdriversComponent implements OnInit {
   private driverDoc: AngularFirestoreCollection<Driver>;
   drivers: Observable<Driver[]>;
   constructor(
-    private afs: AngularFirestore,private router : Router) { 
+    private afs: AngularFirestore,private router : Router,private spinner: NgxSpinnerService) { 
+      // this.spinner.show();
       this.driverDoc = this.afs.collection<Driver>('users/user/driver');
       this.drivers = this.driverDoc.snapshotChanges().pipe(
         map(actions => actions.map(a=>{
           const data = a.payload.doc.data() as Driver;
           const id = a.payload.doc.id;
+          // spinner.hide();
           return {id,...data};
         }))
       )
+    
+      
       // this.drivers.forEach(a=>{
       //   a.forEach(b=>{
       //     console.log(b.name);
@@ -57,7 +62,9 @@ export class ViewdriversComponent implements OnInit {
   }
 
   changedriverDetails(driverId: string , driver:Driver){
-    this.router.navigate(['/admin', {outlets: {'adminnavbar': ['editdriverdetails']}}],{queryParams: {driver: JSON.stringify(driver)}})
+    this.router.navigate(['/admin', {outlets: {'adminnavbar': ['editdriverdetails']}}],{queryParams: {driverId: driverId}})
+
+    // this.router.navigate(['/admin', {outlets: {'adminnavbar': ['editdriverdetails']}}],{queryParams: {driver: JSON.stringify(driver)}})
     // this.router.navigateByUrl('/admin/(adminnavbar:editdriverdetails)',{queryParams:driver});
     // console.log("passing value==="+driver.driverNIC);
   }

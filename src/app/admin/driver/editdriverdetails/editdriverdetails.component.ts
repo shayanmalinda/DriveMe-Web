@@ -1,9 +1,11 @@
 import { Component, OnInit , ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { MatSnackBar, MatStepper } from '@angular/material';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 export interface Vehicle {
   value: string;
@@ -37,7 +39,6 @@ export class EditdriverdetailsComponent implements OnInit {
   isLinear = true;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
-  driver:Driver;
 
   driverName: string;
   driverEmail: string;
@@ -54,6 +55,7 @@ export class EditdriverdetailsComponent implements OnInit {
   airConditioned: Boolean;
   driverId: string;
 
+  driver: Driver;
   routeSub: any;
   
   vehicle: Vehicle[] = [
@@ -61,37 +63,52 @@ export class EditdriverdetailsComponent implements OnInit {
     {value: 'Van'}
   ];
 
+  
+  private driverDoc: AngularFirestoreDocument<Driver>;
+  drivers: Observable<Driver>;
+
   constructor(private _formBuilder: FormBuilder,
     private afs: AngularFirestore,
     private _snackBar: MatSnackBar,
     private afStorage: AngularFireStorage,
     private route: ActivatedRoute,
-    private cdRef: ChangeDetectorRef) {
+    private cdRef: ChangeDetectorRef,
+    private spinner: NgxSpinnerService
+    ) {
       
-    
+      
       
     }
   
     ngAfterViewInit(){
+      this.spinner.show();
       this.route.queryParams.subscribe(params => {
-        var driverDetails;
-        driverDetails = JSON.parse(params['driver']);
-        this.driverName = driverDetails['name'];
-        this.driverEmail = driverDetails['email'];
-        this.driverTelephone = driverDetails['driverTelephone'];
-        this.driverAddress = driverDetails['driverAddress'];
-        this.driverNIC = driverDetails['driverNIC'];
-        this.driverLicense = driverDetails['driverLicense'];
-        this.pass1 = driverDetails['password'];
-        this.pass2 = driverDetails['password'];
-        this.vehicleNumber = driverDetails['vehicleNumber'];
-        this.vehicleChassis = driverDetails['vehicleChassis'];
-        this.availableSeets = driverDetails['availableSeets'];
-        this.vehicleType = driverDetails['vehicleType'];
-        this.airConditioned = driverDetails['isAC'];
-        this.driverId = driverDetails['id'];
-        this.cdRef.detectChanges();
-    });
+        this.driverId = params['driverId'];
+        // var driverDetails;
+        // driverDetails = JSON.parse(params['driver']);
+      });
+
+      this.driverDoc = this.afs.doc<Driver>('users/user/driver/'+this.driverId);
+      this.drivers = this.driverDoc.valueChanges();
+      
+      this.drivers.forEach(a=>{
+        
+          this.driverName = a.name;
+          this.driverEmail = a.email;
+          this.driverTelephone = a.driverTelephone;
+          this.driverAddress = a.driverAddress;
+          this.driverNIC = a.driverNIC;
+          this.driverLicense = a.driverLicense;
+          this.pass1 = a.password;
+          this.pass2 = a.password;
+          this.vehicleNumber = a.vehicleNumber;
+          this.vehicleChassis = a.vehicleChassis;
+          this.availableSeets = a.availableSeets;
+          this.vehicleType = a.vehicleType;
+          this.airConditioned = a.isAC;
+          this.spinner.hide();
+      });
+      
     }
     
   ngOnInit() {
@@ -133,7 +150,7 @@ export class EditdriverdetailsComponent implements OnInit {
     }
   }
 
-  registerDriver(){
+  registerDriver(){   
     this.waiting = true;
     this.driver={
       name : this.driverName,
