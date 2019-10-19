@@ -15,6 +15,7 @@ import { ShareLocationComponent } from './driver/share-location/share-location.c
 import { VehicleRouteComponent } from './driver/vehicle-route/vehicle-route.component';
 import { PassengerListComponent } from './driver/passenger-list/passenger-list.component';
 import { ViewdriversComponent } from './admin/driver/viewdrivers/viewdrivers.component';
+import { EditdriverdetailsComponent } from './admin/driver/editdriverdetails/editdriverdetails.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent},
@@ -22,6 +23,7 @@ const routes: Routes = [
     children: [
       { path: 'driverregister',outlet: 'adminnavbar', component: RegisterdriverComponent},
       { path: 'viewdrivers',outlet: 'adminnavbar', component: ViewdriversComponent},
+      { path: 'editdriverdetails',outlet: 'adminnavbar', component: EditdriverdetailsComponent},
     ]
   },
   { path: 'driver', component: DriverComponent},
@@ -39,6 +41,7 @@ const routes: Routes = [
 
 
 @NgModule({
+  // imports: [RouterModule.forRoot(routes,{ enableTracing: true })],
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })

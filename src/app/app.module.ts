@@ -28,6 +28,7 @@ import { MatModule } from './material.theme'
 import { MatSnackBarModule } from '@angular/material';
 import { RegisterdriverComponent } from './admin/driver/registerdriver/registerdriver.component';
 import { ViewdriversComponent } from './admin/driver/viewdrivers/viewdrivers.component';
+import { EditdriverdetailsComponent } from './admin/driver/editdriverdetails/editdriverdetails.component';
 
 
 @NgModule({
@@ -50,6 +51,7 @@ import { ViewdriversComponent } from './admin/driver/viewdrivers/viewdrivers.com
     OverviewDialog2,
     RegisterdriverComponent,
     ViewdriversComponent,
+    EditdriverdetailsComponent,
   ],
   imports: [
     BrowserModule,

@@ -25,13 +25,14 @@
             </div>
             <div class="col-md-4">                
                 <button mat-raised-button color="primary" style="
-                height: 45px;
-                width: 80%;
-                position: absolute;
-                top: 50%;
-                -ms-transform: translateY(-50%);
-                transform: translateY(-50%);">Change Details</button>
-            </div>
+                    height: 45px;
+                    width: 80%;
+                    position: absolute;
+                    top: 50%;
+                    -ms-transform: translateY(-50%);
+                    transform: translateY(-50%);" (click)="changedriverDetails(driver.id,driver)" routerLinkActive="active" >Change Details</button>
+        <!-- [routerLink]="['/admin', {outlets: {'adminnavbar': ['editdriverdetails',id]}}]"     -->
+        </div>
         </div>
     </mat-list>
 </div>
