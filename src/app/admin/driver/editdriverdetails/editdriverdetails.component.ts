@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { MatSnackBar, MatStepper } from '@angular/material';
@@ -65,23 +65,55 @@ export class EditdriverdetailsComponent implements OnInit {
     private afs: AngularFirestore,
     private _snackBar: MatSnackBar,
     private afStorage: AngularFireStorage,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private cdRef: ChangeDetectorRef) {
       
     
+      
+    }
+  
+    ngAfterViewInit(){
       this.route.queryParams.subscribe(params => {
         var driverDetails;
         driverDetails = JSON.parse(params['driver']);
-        console.log("object==",driverDetails);
-        console.log("value==",driverDetails['id']);
+        this.driverName = driverDetails['name'];
+        this.driverEmail = driverDetails['email'];
+        this.driverTelephone = driverDetails['driverTelephone'];
+        this.driverAddress = driverDetails['driverAddress'];
+        this.driverNIC = driverDetails['driverNIC'];
+        this.driverLicense = driverDetails['driverLicense'];
+        this.pass1 = driverDetails['password'];
+        this.pass2 = driverDetails['password'];
+        this.vehicleNumber = driverDetails['vehicleNumber'];
+        this.vehicleChassis = driverDetails['vehicleChassis'];
+        this.availableSeets = driverDetails['availableSeets'];
+        this.vehicleType = driverDetails['vehicleType'];
+        this.airConditioned = driverDetails['isAC'];
+        this.driverId = driverDetails['driverId'];
+        this.cdRef.detectChanges();
     });
     }
-
+    
   ngOnInit() {
+
+    
+
     this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
+      ctrl1: ['', Validators.required],
+      ctrl2: ['', Validators.required],
+      ctrl3: ['', Validators.required],
+      ctrl4: ['', Validators.required],
+      ctrl5: ['', Validators.required],
+      ctrl6: ['', Validators.required],
+      ctrl7: ['', Validators.required],
+      ctrl8: ['', Validators.required],
     });
     this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
+      ctrl9: ['', Validators.required],
+      ctrl10: ['', Validators.required],
+      ctrl11: ['', Validators.required],
+      ctrl12: ['', Validators.required],
+      ctrl13: ['', Validators.required],  
     });
   }
 

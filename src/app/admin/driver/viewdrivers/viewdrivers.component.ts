@@ -59,7 +59,7 @@ export class ViewdriversComponent implements OnInit {
   changedriverDetails(driverId: string , driver:Driver){
     this.router.navigate(['/admin', {outlets: {'adminnavbar': ['editdriverdetails']}}],{queryParams: {driver: JSON.stringify(driver)}})
     // this.router.navigateByUrl('/admin/(adminnavbar:editdriverdetails)',{queryParams:driver});
-    console.log("passing value==="+driver.driverNIC);
+    // console.log("passing value==="+driver.driverNIC);
   }
 
 }
