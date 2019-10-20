@@ -11,8 +11,8 @@
             Drivers
           </a>
           <div class="dropdown-menu"  aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" [routerLink]="[{outlets: {'adminnavbar': 'driverregister'}}]" routerLinkActive="active" style="color: #ddd">Register a Driver</a>
             <a class="dropdown-item" [routerLink]="[{outlets: {'adminnavbar': 'viewdrivers'}}]" routerLinkActive="active" style="color: #ddd">View Drivers</a>
+            <a class="dropdown-item" [routerLink]="[{outlets: {'adminnavbar': 'driverregister'}}]" routerLinkActive="active" style="color: #ddd">Register a Driver</a>
           </div>
         </li>
 
@@ -21,9 +21,8 @@
             Passengers
           </a>
           <div class="dropdown-menu"  aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#" style="color: #ddd">Action</a>
-            <a class="dropdown-item" href="#" style="color: #ddd">Another</a>
-            <a class="dropdown-item" href="#" style="color: #ddd">Something</a>
+            <a class="dropdown-item" [routerLink]="[{outlets: {'adminnavbar': 'viewpassengers'}}]" routerLinkActive="active" style="color: #ddd">View Passengers</a>
+
           </div>
         </li>
         
