@@ -29,7 +29,7 @@ export interface Driver{
   styleUrls: ['./viewdrivers.component.scss']
 })
 export class ViewdriversComponent implements OnInit {
-  x: boolean = true;
+  // x: boolean = true;
 
   private driverDoc: AngularFirestoreCollection<Driver>;
   drivers: Observable<Driver[]>;
@@ -78,6 +78,9 @@ export class ViewdriversComponent implements OnInit {
         this.openSnackBar("Driver Removed","Done");
       }
     );
+    // this.afs.doc('users/user/driver/'+driverId).delete().then(_=>{
+    //   this.openSnackBar("Driver Removed","Done");
+    // });
   }
   
   openSnackBar(message: string, action: string) {

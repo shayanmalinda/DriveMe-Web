@@ -1,9 +1,4 @@
-<ngx-spinner
-    bdColor="rgba(51,51,51,0.8)"
-    size="large"
-    color=white
-    type="ball-spin-clockwise">
-</ngx-spinner>   
+<app-ngxspinner></app-ngxspinner>
 <div class="container navbar-margin">   
     <div class="container-fluid pl-5 pr-5 pt-3 pb-2 fill-form">
 
@@ -46,14 +41,17 @@
                         <mat-icon color="accent">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                         </button>
                     </mat-form-field>
-                    <div *ngIf="passwordDiv">
-                        <section *ngIf="pass1!=pass2?true:false" style="font-size: 12px;color: red;">
-                            <p style="font-weight: 550;">Password Mismatched</p>
-                        </section>
-                        <section *ngIf="pass1==pass2?true:false" style="font-size: 12px; color: rgb(6, 190, 6);">
-                            <p style="font-weight: 550;">Password Matched</p>
-                        </section>
-                    </div><br>
+                    
+                    <div style="height: 20px;">
+                        <div *ngIf="passwordDiv">
+                            <section *ngIf="pass1!=pass2?true:false" style="font-size: 12px;color: red;">
+                                <p style="font-weight: 550;">Password Mismatched</p>
+                            </section>
+                            <section *ngIf="pass1==pass2?true:false" style="font-size: 12px; color: rgb(6, 190, 6);">
+                                <p style="font-weight: 550;">Password Matched</p>
+                            </section>
+                        </div><br>
+                    </div>
                     <!-- <mat-form-field class="form-field-full-width pb-0"> -->
                     <!-- <label for="file" class="mr-4">Image :</label>
                     <input type="file" (change)="upload($event)" accept=".png,.jpg" required/> -->

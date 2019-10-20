@@ -32,6 +32,8 @@ import { EditdriverdetailsComponent } from './admin/driver/editdriverdetails/edi
 
 import { NgxSpinnerModule } from "ngx-spinner";
 import { NgxspinnerComponent } from './shared/ngxspinner/ngxspinner.component';
+import { ViewpassengersComponent } from './admin/passenger/viewpassengers/viewpassengers.component';
+import { EditpassengerdetailsComponent } from './admin/passenger/editpassengerdetails/editpassengerdetails.component';
 
 
 @NgModule({
@@ -56,6 +58,8 @@ import { NgxspinnerComponent } from './shared/ngxspinner/ngxspinner.component';
     ViewdriversComponent,
     EditdriverdetailsComponent,
     NgxspinnerComponent,
+    ViewpassengersComponent,
+    EditpassengerdetailsComponent,
   ],
   imports: [
     BrowserModule,

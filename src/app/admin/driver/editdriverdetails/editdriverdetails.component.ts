@@ -76,12 +76,12 @@ export class EditdriverdetailsComponent implements OnInit {
     private spinner: NgxSpinnerService
     ) {
       
+      this.spinner.show();
       
       
     }
   
     ngAfterViewInit(){
-      this.spinner.show();
       this.route.queryParams.subscribe(params => {
         this.driverId = params['driverId'];
         // var driverDetails;
