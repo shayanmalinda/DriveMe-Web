@@ -61,7 +61,8 @@ export class RegisterdriverComponent implements OnInit {
   constructor(private _formBuilder: FormBuilder,
     private afs: AngularFirestore,
     private _snackBar: MatSnackBar,
-    private afStorage: AngularFireStorage) {}
+    private afStorage: AngularFireStorage) {
+    }
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
@@ -105,11 +106,11 @@ export class RegisterdriverComponent implements OnInit {
       password : this.pass1
     }
 
-    // this.afs.collection('users/user/driver').add(this.driver).then(_ => {
-    //     this.openSnackBar("Driver Registered","Done");
-    //     this.waiting = false;
-    //   }
-    // );
+    this.afs.collection('users/user/driver').add(this.driver).then(_ => {
+        this.openSnackBar("Driver Registered","Done");
+        this.waiting = false;
+      }
+    );
     
   }
 

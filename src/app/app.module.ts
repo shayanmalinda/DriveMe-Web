@@ -28,6 +28,12 @@ import { MatModule } from './material.theme'
 import { MatSnackBarModule } from '@angular/material';
 import { RegisterdriverComponent } from './admin/driver/registerdriver/registerdriver.component';
 import { ViewdriversComponent } from './admin/driver/viewdrivers/viewdrivers.component';
+import { EditdriverdetailsComponent } from './admin/driver/editdriverdetails/editdriverdetails.component';
+
+import { NgxSpinnerModule } from "ngx-spinner";
+import { NgxspinnerComponent } from './shared/ngxspinner/ngxspinner.component';
+import { ViewpassengersComponent } from './admin/passenger/viewpassengers/viewpassengers.component';
+import { EditpassengerdetailsComponent } from './admin/passenger/editpassengerdetails/editpassengerdetails.component';
 
 
 @NgModule({
@@ -50,6 +56,10 @@ import { ViewdriversComponent } from './admin/driver/viewdrivers/viewdrivers.com
     OverviewDialog2,
     RegisterdriverComponent,
     ViewdriversComponent,
+    EditdriverdetailsComponent,
+    NgxspinnerComponent,
+    ViewpassengersComponent,
+    EditpassengerdetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,6 +69,7 @@ import { ViewdriversComponent } from './admin/driver/viewdrivers/viewdrivers.com
     AngularFirestoreModule,
     AngularFireStorageModule,
     MatModule,
+    NgxSpinnerModule
   ], 
   entryComponents: [LoginComponent, OverviewDialog, OverviewDialog2],
   providers: [],
