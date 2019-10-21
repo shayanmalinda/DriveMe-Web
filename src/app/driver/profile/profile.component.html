@@ -1,7 +1,48 @@
-<mat-card class="sample-card">
-    <mat-card-header>
-        <mat-card-title>Your Profile</mat-card-title>
+<app-ngxspinner></app-ngxspinner>
+<div class="container navbar-margin">
+    <mat-list role="list" *ngFor="let driver of drivers | async; let last = last">
+        <div class="row pt-4 pb-3 mb-4" style="border: 1.5px solid #FF5722; border-radius: 20px;" *ngIf="!driver.isDeleted">
+            <div class="col-md-3" style="vertical-align: middle;text-align: center;">
+                <div class="row" style="vertical-align: middle;
+                display: flex;
+                justify-content: center;">
+                    <img src="../../../../assets/driveravatar2.png" alt="Driver Icon" style="width: 200px;
+                        position: absolute;
+                        top: 50%;
+                        -ms-transform: translateY(-50%);
+                        transform: translateY(-50%);">
+                </div>
+            </div>
+            <div class="col-md-5" style="padding-left: 30px;">
+                <p>Name : {{driver.name}}</p>
+                <p>Email : {{driver.email}}</p>
+                <p>Address : {{driver.driverAddress}}</p>
+                <p>Telephone : {{driver.telephone}}</p>
+                <p>NIC/Passport Number : {{driver.driverNIC}}</p>
+                <p>License Number: {{driver.driverLicense}}</p>
+                <p>Vehicle Number : {{driver.vehicleNumber}}</p>
+                <p>Vehicle Chassis : {{driver.vehicleChassis}}</p>
+                <p>Vehicle Type : {{driver.vehicleType}}</p>
+            </div>
+            <div class="col-md-4">
+                <button mat-raised-button color="primary" style="
+                    height: 45px;
+                    width: 80%;
+                    position: absolute;
+                    top: 35%;
+                    -ms-transform: translateY(-50%);
+                    transform: translateY(-50%);" (click)="changedriverDetails(driver.id,driver)" routerLinkActive="active"><mat-icon>edit</mat-icon>Change Details</button>
 
-    </mat-card-header>
-
-</mat-card>
+                <button mat-raised-button color="warn" style="
+                    height: 45px;
+                    width: 80%;
+                    position: absolute;
+                    top: 55%;
+                    -ms-transform: translateY(-50%);
+                    transform: translateY(-50%);" routerLinkActive="active" (click)="removeDriver(driver.id)">
+                    <mat-icon>delete</mat-icon>Remove Driver</button>
+                <!-- [routerLink]="['/admin', {outlets: {'adminnavbar': ['editdriverdetails',id]}}]"     -->
+            </div>
+        </div>
+    </mat-list>
+</div>
