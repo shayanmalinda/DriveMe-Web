@@ -31,9 +31,7 @@
               Parents
             </a>
             <div class="dropdown-menu"  aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#" style="color: #ddd">Action</a>
-              <a class="dropdown-item" href="#" style="color: #ddd">Another</a>
-              <a class="dropdown-item" href="#" style="color: #ddd">Something</a>
+              <a class="dropdown-item" [routerLink]="[{outlets: {'adminnavbar': 'viewparents'}}]" routerLinkActive="active" style="color: #ddd">View Parents</a>
             </div>
           </li>
           
@@ -53,9 +51,8 @@
               Admins
             </a>
             <div class="dropdown-menu"  aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#" style="color: #ddd">Action</a>
-              <a class="dropdown-item" href="#" style="color: #ddd">Another</a>
-              <a class="dropdown-item" href="#" style="color: #ddd">Something</a>
+              <a class="dropdown-item" [routerLink]="[{outlets: {'adminnavbar': 'viewadmins'}}]" routerLinkActive="active" style="color: #ddd">View Admins</a>
+              <a class="dropdown-item" [routerLink]="[{outlets: {'adminnavbar': 'adminregister'}}]" routerLinkActive="active" style="color: #ddd">Register a Admin</a>
             </div>
         </li>
         </ul>

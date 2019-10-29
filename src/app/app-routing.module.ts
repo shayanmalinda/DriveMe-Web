@@ -18,6 +18,8 @@ import { ViewdriversComponent } from './admin/driver/viewdrivers/viewdrivers.com
 import { EditdriverdetailsComponent } from './admin/driver/editdriverdetails/editdriverdetails.component';
 import { ViewpassengersComponent } from './admin/passenger/viewpassengers/viewpassengers.component';
 import { EditpassengerdetailsComponent } from './admin/passenger/editpassengerdetails/editpassengerdetails.component';
+import { ViewparentsComponent } from './admin/parent/viewparents/viewparents.component';
+import { EditparentdetailsComponent } from './admin/parent/editparentdetails/editparentdetails.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent},
@@ -28,6 +30,8 @@ const routes: Routes = [
       { path: 'editdriverdetails',outlet: 'adminnavbar', component: EditdriverdetailsComponent},
       { path: 'viewpassengers',outlet: 'adminnavbar', component: ViewpassengersComponent},
       { path: 'editpassengerdetails',outlet: 'adminnavbar', component: EditpassengerdetailsComponent},
+      { path: 'viewparents',outlet: 'adminnavbar', component: ViewparentsComponent},
+      { path: 'editparentdetails',outlet: 'adminnavbar', component: EditparentdetailsComponent},
     ]
   },
   { path: 'driver', component: DriverComponent},

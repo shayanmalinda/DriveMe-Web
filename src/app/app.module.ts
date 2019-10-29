@@ -34,6 +34,8 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import { NgxspinnerComponent } from './shared/ngxspinner/ngxspinner.component';
 import { ViewpassengersComponent } from './admin/passenger/viewpassengers/viewpassengers.component';
 import { EditpassengerdetailsComponent } from './admin/passenger/editpassengerdetails/editpassengerdetails.component';
+import { ViewparentsComponent } from './admin/parent/viewparents/viewparents.component';
+import { EditparentdetailsComponent } from './admin/parent/editparentdetails/editparentdetails.component';
 
 
 @NgModule({
@@ -60,6 +62,8 @@ import { EditpassengerdetailsComponent } from './admin/passenger/editpassengerde
     NgxspinnerComponent,
     ViewpassengersComponent,
     EditpassengerdetailsComponent,
+    ViewparentsComponent,
+    EditparentdetailsComponent,
   ],
   imports: [
     BrowserModule,
