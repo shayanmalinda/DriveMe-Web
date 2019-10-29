@@ -36,6 +36,9 @@ import { ViewpassengersComponent } from './admin/passenger/viewpassengers/viewpa
 import { EditpassengerdetailsComponent } from './admin/passenger/editpassengerdetails/editpassengerdetails.component';
 import { ViewparentsComponent } from './admin/parent/viewparents/viewparents.component';
 import { EditparentdetailsComponent } from './admin/parent/editparentdetails/editparentdetails.component';
+import { ViewadminsComponent } from './admin/admin/viewadmins/viewadmins.component';
+import { RegisteradminComponent } from './admin/admin/registeradmin/registeradmin.component';
+import { EditadmindetailsComponent } from './admin/admin/editadmindetails/editadmindetails.component';
 
 
 @NgModule({
@@ -64,6 +67,9 @@ import { EditparentdetailsComponent } from './admin/parent/editparentdetails/edi
     EditpassengerdetailsComponent,
     ViewparentsComponent,
     EditparentdetailsComponent,
+    ViewadminsComponent,
+    RegisteradminComponent,
+    EditadmindetailsComponent,
   ],
   imports: [
     BrowserModule,

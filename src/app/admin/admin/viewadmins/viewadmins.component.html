@@ -1,0 +1,46 @@
+<app-ngxspinner></app-ngxspinner>
+<div class="container navbar-margin">
+    <mat-list role="list"  *ngFor="let admin of admins | async; let last = last">
+        <div class="row pt-4 pb-3 mb-4" style="border: 1.5px solid #FF5722; border-radius: 20px;" *ngIf="!admin.isDeleted">
+            <div class="col-md-3" style="vertical-align: middle;text-align: center;"> 
+                <div class="row" style="vertical-align: middle;
+                display: flex;
+                justify-content: center;">
+                        <img src="../../../../assets/adminavatar.png" alt="Driver Icon" style="width: 180px;
+                        position: absolute;
+                        top: 45%;
+                        -ms-transform: translateY(-50%);
+                        transform: translateY(-50%);">
+                </div>
+            </div>
+            <div class="col-md-5" style="padding-left: 30px;">
+                <p>Name : {{admin.name}}</p>
+                <p>Email : {{admin.email}}</p>
+                <p>Address : {{admin.address}}</p>
+                <p>Telephone : {{admin.telephone}}</p>
+                <p>NIC/Passport Number : {{admin.nic}}</p>
+            </div>
+            <div class="col-md-4">                
+                <button mat-raised-button color="primary" style="
+                    height: 45px;
+                    width: 80%;
+                    position: absolute;
+                    top: 35%;
+                    -ms-transform: translateY(-50%);
+                    transform: translateY(-50%);" (click)="changeadmindetails(admin.id,admin)" 
+                    routerLinkActive="active" ><mat-icon>edit</mat-icon>Change Details</button>
+                         
+                <button mat-raised-button color="warn" style="
+                    height: 45px;
+                    width: 80%;
+                    position: absolute;
+                    top: 65%;
+                    -ms-transform: translateY(-50%);
+                    transform: translateY(-50%);"  
+                    routerLinkActive="active" (click)="removeAdmin(admin.id)">
+                    <mat-icon>delete</mat-icon>Remove Admin</button>        
+        <!-- [routerLink]="['/admin', {outlets: {'adminnavbar': ['editdriverdetails',id]}}]"     -->
+        </div>
+        </div>
+    </mat-list>
+</div>
