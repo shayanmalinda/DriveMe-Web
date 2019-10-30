@@ -6,6 +6,7 @@ import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection 
 import { Observable } from 'rxjs';
 import { Md5 } from "md5-typescript";
 import { Router } from '@angular/router'
+import { map } from 'rxjs/operators';
 
 export interface DialogData {
   characterName: string;
@@ -15,6 +16,10 @@ export interface Passenger {
   password: string;
 }  
 export interface Driver { 
+  email: string;
+  password: string;
+}  
+export interface Admin { 
   email: string;
   password: string;
 }  
@@ -94,18 +99,21 @@ export class OverviewDialog {
   myControl1 = new FormControl();
   myControl2 = new FormControl();
     
+
   private passengerDoc: AngularFirestoreCollection<Passenger>;
-  passengers: Observable<Passenger[]>;
+  passengers: Observable<Passenger[]>
 
   private parentDoc: AngularFirestoreCollection<Parent>;
   parents: Observable<Parent[]>;
+
   constructor(
       public dialogRef: MatDialogRef<OverviewDialog>,
       @Inject(MAT_DIALOG_DATA) public data: DialogData,
       private afs: AngularFirestore,
       private router: Router,
-      public snackbar: MatSnackBar
+      public snackbar: MatSnackBar,
   ) { 
+
     if(localStorage.getItem('email')!=null){
       this.inputEmail = localStorage.getItem('email');
       this.inputPassword = localStorage.getItem('password');
@@ -122,9 +130,21 @@ export class OverviewDialog {
     this.waiting = true;
     var email = this.myControl1.value;
     var password = this.myControl2.value;
-    if(this.data.characterName=="passenger"){
+    if(this.data.characterName=="passenger"){     
+
       this.passengerDoc = this.afs.collection('users/user/passenger');
       this.passengers = this.passengerDoc.valueChanges();
+      this.passengerDoc.snapshotChanges().pipe(
+        map(actions => actions.map(y=>{
+          const id = y.payload.doc.id;
+          if(email==y.payload.doc.data().email && password==y.payload.doc.data().password){
+            console.log(id)
+            localStorage.setItem('currentUserId',id);
+          }
+        }
+        ))
+      ).subscribe();
+      
       var flag: boolean = false;
       this.passengers.forEach(x=>{
         x.forEach(y=>{
@@ -151,7 +171,23 @@ export class OverviewDialog {
       
     }
 
+  
+
     if(this.data.characterName=="parent"){
+
+      
+      this.parentDoc = this.afs.collection('users/user/parent');
+      this.parentDoc.snapshotChanges().pipe(
+        map(actions => actions.map(y=>{
+          const id = y.payload.doc.id;
+          if(email==y.payload.doc.data().parentemail && password==y.payload.doc.data().parentpass){
+            console.log(id)
+            localStorage.setItem('currentUserId',id);
+          }
+        }
+        ))
+      ).subscribe();
+
       this.waiting = true;  
       this.parentDoc = this.afs.collection('users/user/parent');
       this.parents = this.parentDoc.valueChanges();
@@ -159,6 +195,15 @@ export class OverviewDialog {
       this.parents.forEach(x=>{
         x.forEach(y=>{
           if(email==y.parentemail && password==y.parentpass){
+            if(this.checked){
+              localStorage.setItem('email',email);
+              localStorage.setItem('password',password);
+            }
+            else{
+              localStorage.removeItem('email');
+              localStorage.removeItem('password');
+              this.checked = false;
+            }
             this.dialogRef.close();
             this.router.navigateByUrl('/parent');
             flag = true;
@@ -201,6 +246,10 @@ export class OverviewDialog2 {
     
   private driverDoc: AngularFirestoreCollection<Driver>;
   drivers: Observable<Driver[]>;
+
+  private adminDoc: AngularFirestoreCollection<Admin>;
+  admins: Observable<Admin[]>;
+
   constructor(
       public dialogRef: MatDialogRef<OverviewDialog>,
       @Inject(MAT_DIALOG_DATA) public data: DialogData,
@@ -228,9 +277,23 @@ export class OverviewDialog2 {
     var password = this.myControl2.value;
     
     if(this.data.characterName=="driver"){
+
+
       this.driverDoc = this.afs.collection('users/user/driver');
       this.drivers = this.driverDoc.valueChanges();
       var flag: boolean = false;
+
+      this.driverDoc.snapshotChanges().pipe(
+        map(actions => actions.map(y=>{
+          const id = y.payload.doc.id;
+          if(email==y.payload.doc.data().email && password==y.payload.doc.data().password){
+            console.log(id)
+            localStorage.setItem('currentUserId',id);
+          }
+        }
+        ))
+      ).subscribe();
+
       this.drivers.forEach(x=>{
         x.forEach(y=>{
           if(email==y.email && password==y.password){
@@ -257,10 +320,24 @@ export class OverviewDialog2 {
     }
 
     if(this.data.characterName=="admin"){
-      this.driverDoc = this.afs.collection('users/user/admin');
-      this.drivers = this.driverDoc.valueChanges();
+      this.adminDoc = this.afs.collection('users/user/admin');
+      this.admins = this.adminDoc.valueChanges();
       var flag: boolean = false;
-      this.drivers.forEach(x=>{
+
+      
+
+      this.adminDoc.snapshotChanges().pipe(
+        map(actions => actions.map(y=>{
+          const id = y.payload.doc.id;
+          if(email==y.payload.doc.data().email && password==y.payload.doc.data().password){
+            console.log(id)
+            localStorage.setItem('currentUserId',id);
+          }
+        }
+        ))
+      ).subscribe();
+
+      this.admins.forEach(x=>{
         x.forEach(y=>{
           if(email==y.email && password==y.password){
             if(this.checked){
@@ -283,10 +360,14 @@ export class OverviewDialog2 {
         }
       });
     }
+
+
     if(this.data.characterName=="owner"){
       this.dialogRef.close();
       this.router.navigateByUrl('/owner');
     }
+
+
   }
 
 }

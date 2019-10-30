@@ -36,7 +36,7 @@ export class ViewadminsComponent implements OnInit {
           spinner.hide();
           return {id,...data};
         }))
-      )
+      );
     
     }
 
