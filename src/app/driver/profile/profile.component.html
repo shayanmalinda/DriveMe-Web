@@ -1,4 +1,5 @@
 <app-ngxspinner></app-ngxspinner>
+
 <div class="container navbar-margin">
     <mat-list role="list" *ngFor="let driver of drivers | async; let last = last ">
         <div class="row pt-4 pb-3 mb-4" style="border: 1.5px solid #FF5722; border-radius: 20px;" *ngIf="!driver.isDeleted">
