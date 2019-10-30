@@ -34,6 +34,8 @@ export class ProfileComponent implements OnInit {
 
  private driverDoc: AngularFirestoreCollection<Driver>;
  drivers: Observable<Driver[]>;
+ driver: Observable<Driver>
+
  constructor(
    private afs: AngularFirestore,private router : Router,private spinner: NgxSpinnerService,
    private _snackBar: MatSnackBar,) { 

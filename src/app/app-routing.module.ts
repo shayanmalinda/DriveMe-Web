@@ -30,17 +30,27 @@ const routes: Routes = [
       { path: 'editpassengerdetails',outlet: 'adminnavbar', component: EditpassengerdetailsComponent},
     ]
   },
-  { path: 'driver', component: DriverComponent},
+  { path: 'driver', component: DriverComponent,
+    children:[
+      { path: 'driver-payments',outlet: 'drivernavbar', component: PaymentsComponent},
+      { path: 'driver-profile', outlet: 'drivernavbar', component: ProfileComponent},
+      { path: 'driver-ratepassengers', outlet: 'drivernavbar', component: RatePassengersComponent},
+      { path: 'driver-sharelocation', outlet: 'drivernavbar',component: ShareLocationComponent},
+      { path: 'driver-vehicleroute', outlet: 'drivernavbar',component: VehicleRouteComponent},
+      { path: 'driver-passengerlist', outlet: 'drivernavbar',component: PassengerListComponent},
+    ]
+  },
+
   { path: 'parent', component: ParentComponent},
   { path: 'passenger', component: PassengerComponent},
   { path: 'owner', component: OwnerComponent},
   
-  { path: 'driver-payments', component: PaymentsComponent},
+  /**{ path: 'driver-payments', component: PaymentsComponent},
   { path: 'driver-profile', component: ProfileComponent},
   { path: 'driver-ratepassengers', component: RatePassengersComponent},
   { path: 'driver-sharelocation', component: ShareLocationComponent},
   { path: 'driver-vehicleroute', component: VehicleRouteComponent},
-  { path: 'driver-passengerlist',component: PassengerListComponent}
+  { path: 'driver-passengerlist',component: PassengerListComponent}**/
 ];
 
 

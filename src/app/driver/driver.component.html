@@ -14,17 +14,17 @@
             My Profile
           </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" routerLink="/driver-profile" routerLinkActive="active" style="color: rgb(19, 187, 55)">My Profile</a>
+                    <a class="dropdown-item" [routerLink]="[{outlets: {'drivernavbar': 'driver-profile'}}]" routerLinkActive="active" style="color: rgb(19, 187, 55)">My Profile</a>
 
                 </div>
             </li>
-
+            <!--edit from here like above-->
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle navbarDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Passenger List
           </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" routerLink="/driver-passengerlist" style="color: #ddd">My Passenger List</a>
+                    <a class="dropdown-item" [routerLink]="[{outlets: {'drivernavbar': 'driver-passengerlist'}}]" routerLinkActive="active" style="color: #ddd">My Passenger List</a>
                     <!--
                          <a class="dropdown-item" href="#" style="color: #ddd">Another</a>
                         <a class="dropdown-item" href="#" style="color: #ddd">Something</a>
@@ -38,7 +38,7 @@
               Payments
             </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" routerLink="/driver-payments" style="color: #ddd">My Payments</a>
+                    <a class="dropdown-item" [routerLink]="[{outlets: {'drivernavbar': 'driver-payments'}}]" style="color: #ddd">My Payments</a>
                     <!--
                         <a class="dropdown-item" href="#" style="color: #ddd">Another</a>
                         <a class="dropdown-item" href="#" style="color: #ddd">Something</a>
@@ -52,7 +52,7 @@
               Location Sharing
             </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" routerLink="/driver-sharelocation" style="color: #ddd">My Location</a>
+                    <a class="dropdown-item" [routerLink]="[{outlets: {'drivernavbar': 'driver-sharelocation'}}]" style="color: #ddd">My Location</a>
                     <!--
                         <a class="dropdown-item" href="#" style="color: #ddd">Another</a>
                         <a class="dropdown-item" href="#" style="color: #ddd">Something</a>
@@ -65,7 +65,7 @@
                     Vehicle Route
             </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" routerLink="/driver-vehicleroute" style="color: #ddd">My Route</a>
+                    <a class="dropdown-item" [routerLink]="[{outlets: {'drivernavbar': 'driver-vehicleroute'}}]" style="color: #ddd">My Route</a>
                     <!--
                         <a class="dropdown-item" href="#" style="color: #ddd">Another</a>
                         <a class="dropdown-item" href="#" style="color: #ddd">Something</a>
@@ -79,7 +79,7 @@
                     Ratings
             </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" routerLink="/driver-ratepassengers" style="color: #ddd">My Ratings</a>
+                    <a class="dropdown-item" [routerLink]="[{outlets: {'drivernavbar': 'driver-ratepassengers'}}]" style="color: #ddd">My Ratings</a>
                     <!--
                         <a class="dropdown-item" href="#" style="color: #ddd">Another</a>
                        <a class="dropdown-item" href="#" style="color: #ddd">Something</a>
@@ -100,10 +100,12 @@
     </div>
 </nav>
 
-<router-outlet name="navbar"></router-outlet>
+
 
 <div style="text-align: center">
     <h1>
         Hello Driver!
     </h1>
 </div>
+
+<router-outlet name="drivernavbar"></router-outlet>
