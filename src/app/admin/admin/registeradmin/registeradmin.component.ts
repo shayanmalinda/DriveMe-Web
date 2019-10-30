@@ -29,7 +29,8 @@ export class RegisteradminComponent implements OnInit {
   
   waiting = false;
   passwordDiv=false;
-  hide = true;
+  hide1 = true;
+  hide2 = true;
   isLinear = true;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
@@ -68,7 +69,7 @@ export class RegisteradminComponent implements OnInit {
     }
   
     stepperNext(stepper : MatStepper){
-      if(this.pass1==this.pass2){
+      if(this.pass1==this.pass2 && !this.emailFormControl.hasError('email')){
         stepper.next();
         this.passwordDiv = false;
       }
@@ -76,6 +77,7 @@ export class RegisteradminComponent implements OnInit {
         this.passwordDiv = true;
       }
     }
+
     
     registerAdmin(){
       this.waiting = true;

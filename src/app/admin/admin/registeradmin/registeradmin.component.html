@@ -35,9 +35,9 @@
                         </button>
                     </mat-form-field>
                     <mat-form-field class="form-field-full-width pb-0">
-                        <input [(ngModel)]="pass2" matInput placeholder="Re-Enter Password" [type]="hide ? 'password' : 'text'" formControlName="ctrl6" required>
-                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" >
-                        <mat-icon color="accent">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        <input [(ngModel)]="pass2" matInput placeholder="Re-Enter Password" [type]="hide2 ? 'password' : 'text'" formControlName="ctrl6" required>
+                        <button mat-icon-button matSuffix (click)="hide2 = !hide2" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide2" >
+                        <mat-icon color="accent">{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
                         </button>
                     </mat-form-field>
                     
@@ -45,9 +45,6 @@
                         <div *ngIf="passwordDiv">
                             <section *ngIf="pass1!=pass2?true:false" style="font-size: 12px;color: red;">
                                 <p style="font-weight: 550;">Password Mismatched</p>
-                            </section>
-                            <section *ngIf="pass1==pass2?true:false" style="font-size: 12px; color: rgb(6, 190, 6);">
-                                <p style="font-weight: 550;">Password Matched</p>
                             </section>
                         </div><br>
                     </div>
