@@ -23,6 +23,8 @@ import { EditparentdetailsComponent } from './admin/parent/editparentdetails/edi
 import { RegisteradminComponent } from './admin/admin/registeradmin/registeradmin.component';
 import { ViewadminsComponent } from './admin/admin/viewadmins/viewadmins.component';
 import { EditadmindetailsComponent } from './admin/admin/editadmindetails/editadmindetails.component';
+import { AdminprofileComponent } from './admin/adminprofile/adminprofile.component';
+// import { AdminprofileComponent } from './admin/adminprofile/adminprofile.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent},
@@ -38,6 +40,7 @@ const routes: Routes = [
       { path: 'adminregister',outlet: 'adminnavbar', component: RegisteradminComponent},
       { path: 'viewadmins',outlet: 'adminnavbar', component: ViewadminsComponent},
       { path: 'editadmindetails',outlet: 'adminnavbar', component: EditadmindetailsComponent},
+      { path: 'adminprofile',outlet: 'adminnavbar', component: AdminprofileComponent},
     ]
   },
   { path: 'driver', component: DriverComponent,
@@ -65,7 +68,7 @@ const routes: Routes = [
 
 
 @NgModule({
-  // imports: [RouterModule.forRoot(routes,{ enableTracing: true })],/
+  // imports: [RouterModule.forRoot(routes,{ enableTracing: true })],
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })

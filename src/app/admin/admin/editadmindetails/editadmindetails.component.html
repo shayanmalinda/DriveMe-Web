@@ -27,16 +27,16 @@
                         <input [(ngModel)]="adminNIC" matInput placeholder="NIC/Passport Number" formControlName="ctrl5" required>
                     </mat-form-field><br>
                     <mat-form-field class="form-field-full-width">
-                        <input [(ngModel)]="pass1" matInput placeholder="Login Password" [type]="hide ? 'password' : 'text'" formControlName="ctrl6" required>
-                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                        <mat-icon color="accent">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                        </button>
+                        <input [(ngModel)]="pass1" matInput placeholder="Login Password" [type]="'password'" formControlName="ctrl6" required>
+                        <!-- <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide"> -->
+                        <!-- <mat-icon color="accent">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon> -->
+                        <!-- </button> -->
                     </mat-form-field>
                     <mat-form-field class="form-field-full-width pb-0">
-                        <input [(ngModel)]="pass2" matInput placeholder="Re-Enter Password" [type]="hide ? 'password' : 'text'" formControlName="ctrl7" required>
-                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" >
-                        <mat-icon color="accent">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                        </button>
+                        <input [(ngModel)]="pass2" matInput placeholder="Re-Enter Password" [type]="'password'"   formControlName="ctrl7" required>
+                        <!-- <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" > -->
+                        <!-- <mat-icon color="accent">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon> -->
+                        <!-- </button> -->
                     </mat-form-field>
                     
                     <div style="height: 20px;">

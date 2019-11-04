@@ -52,6 +52,7 @@ export class RegisteradminComponent implements OnInit {
     }
 
     ngOnInit() {
+      
       this.firstFormGroup = this._formBuilder.group({
         ctrl1: ['', Validators.required],
         ctrl2: ['', Validators.required],

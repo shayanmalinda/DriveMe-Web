@@ -53,7 +53,6 @@ export class LoginComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
     });
   }
 
@@ -69,7 +68,6 @@ export class LoginComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
     });
   }
   ngOnInit() {
@@ -138,7 +136,6 @@ export class OverviewDialog {
         map(actions => actions.map(y=>{
           const id = y.payload.doc.id;
           if(email==y.payload.doc.data().email && password==y.payload.doc.data().password){
-            console.log(id)
             localStorage.setItem('currentUserId',id);
           }
         }
@@ -181,7 +178,6 @@ export class OverviewDialog {
         map(actions => actions.map(y=>{
           const id = y.payload.doc.id;
           if(email==y.payload.doc.data().parentemail && password==y.payload.doc.data().parentpass){
-            console.log(id)
             localStorage.setItem('currentUserId',id);
           }
         }
@@ -287,7 +283,6 @@ export class OverviewDialog2 {
         map(actions => actions.map(y=>{
           const id = y.payload.doc.id;
           if(email==y.payload.doc.data().email && password==y.payload.doc.data().password){
-            console.log(id)
             localStorage.setItem('currentUserId',id);
           }
         }
@@ -330,7 +325,6 @@ export class OverviewDialog2 {
         map(actions => actions.map(y=>{
           const id = y.payload.doc.id;
           if(email==y.payload.doc.data().email && password==y.payload.doc.data().password){
-            console.log(id)
             localStorage.setItem('currentUserId',id);
           }
         }
