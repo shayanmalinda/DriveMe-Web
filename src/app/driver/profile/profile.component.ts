@@ -29,8 +29,20 @@ export interface Driver{
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
+  name: string;
+  email: string;
+  driverTelephone: string;
+  driverAddress: string;
+  driverNIC: string;
+  driverLicense: string;
+  password: string;
+  vehicleNumber: string;
+  vehicleChassis: string;
+  availableSeets: string;
+  vehicleType: Selection;
+  isAC: Boolean;
+  isDeleted: Boolean;
 
- // x: boolean = true;
 
  private driverDoc: AngularFirestoreCollection<Driver>;
  drivers: Observable<Driver[]>;
@@ -39,23 +51,18 @@ export class ProfileComponent implements OnInit {
  constructor(
    private afs: AngularFirestore,private router : Router,private spinner: NgxSpinnerService,
    private _snackBar: MatSnackBar,) { 
+     let userID: string;
      this.spinner.show();
-     this.driverDoc = this.afs.collection<Driver>('users/user/driver');
-     this.drivers = this.driverDoc.snapshotChanges().pipe(
-       map(actions => actions.map(a=>{
-         const data = a.payload.doc.data() as Driver;
-         const id = a.payload.doc.id;
+     userID = localStorage.getItem('currentUserId');
+     this.driverNIC = userID;
+     this.afs.doc<Driver>('users/user/driver/'+userID).valueChanges().subscribe(
+       dri_obj=>{
+         this.name = dri_obj.name;
+         this.email = dri_obj.email;
+         this.driverTelephone= dri_obj.driverTelephone;
          spinner.hide();
-         return {id,...data};
-       }))
-     )
-   
-     
-     // this.drivers.forEach(a=>{
-     //   a.forEach(b=>{
-     //     console.log(b.name);
-     //   })
-     // })
+       }
+     );  
    }
 
  ngOnInit() {
