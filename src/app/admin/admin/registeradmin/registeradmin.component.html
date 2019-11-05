@@ -11,30 +11,33 @@
                 <form [formGroup]="firstFormGroup">
                     <ng-template matStepLabel>Admin Details</ng-template>
                     <mat-form-field class="form-field-full-width">
-                        <input [(ngModel)]="adminName" matInput placeholder="Name" formControlName="firstCtrl" required>
+                        <input [(ngModel)]="adminName" matInput placeholder="Name" formControlName="ctrl1" required>
                     </mat-form-field><br>
                     <mat-form-field class="form-field-full-width">
-                        <input [(ngModel)]="adminEmail" matInput placeholder="Email" formControlName="firstCtrl" required>
+                        <input [(ngModel)]="adminEmail" matInput placeholder="Email" [formControl]="emailFormControl" required>
+                        <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                          Please enter a valid email address
+                        </mat-error>
                     </mat-form-field><br>
                     <mat-form-field class="form-field-full-width">
-                        <input [(ngModel)]="adminTelephone" matInput placeholder="Telephone" formControlName="firstCtrl" required>
+                        <input [(ngModel)]="adminTelephone" matInput placeholder="Telephone" formControlName="ctrl2" required>
                     </mat-form-field><br>
                     <mat-form-field class="form-field-full-width">
-                        <input [(ngModel)]="adminAddress" matInput placeholder="Address" formControlName="firstCtrl" required>
+                        <input [(ngModel)]="adminAddress" matInput placeholder="Address" formControlName="ctrl3" required>
                     </mat-form-field><br>
                     <mat-form-field class="form-field-full-width">
-                        <input [(ngModel)]="adminNIC" matInput placeholder="NIC/Passport Number" formControlName="firstCtrl" required>
+                        <input [(ngModel)]="adminNIC" matInput placeholder="NIC/Passport Number" formControlName="ctrl4" required>
                     </mat-form-field><br>
                     <mat-form-field class="form-field-full-width">
-                        <input [(ngModel)]="pass1" matInput placeholder="Login Password" [type]="hide ? 'password' : 'text'" formControlName="firstCtrl" required>
+                        <input [(ngModel)]="pass1" matInput placeholder="Login Password" [type]="hide ? 'password' : 'text'" formControlName="ctrl5" required>
                         <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                         <mat-icon color="accent">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                         </button>
                     </mat-form-field>
                     <mat-form-field class="form-field-full-width pb-0">
-                        <input [(ngModel)]="pass2" matInput placeholder="Re-Enter Password" [type]="hide ? 'password' : 'text'" formControlName="firstCtrl" required>
-                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" >
-                        <mat-icon color="accent">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        <input [(ngModel)]="pass2" matInput placeholder="Re-Enter Password" [type]="hide2 ? 'password' : 'text'" formControlName="ctrl6" required>
+                        <button mat-icon-button matSuffix (click)="hide2 = !hide2" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide2" >
+                        <mat-icon color="accent">{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
                         </button>
                     </mat-form-field>
                     
@@ -42,9 +45,6 @@
                         <div *ngIf="passwordDiv">
                             <section *ngIf="pass1!=pass2?true:false" style="font-size: 12px;color: red;">
                                 <p style="font-weight: 550;">Password Mismatched</p>
-                            </section>
-                            <section *ngIf="pass1==pass2?true:false" style="font-size: 12px; color: rgb(6, 190, 6);">
-                                <p style="font-weight: 550;">Password Matched</p>
                             </section>
                         </div><br>
                     </div>

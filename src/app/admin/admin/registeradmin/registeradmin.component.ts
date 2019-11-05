@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MatCheckbox, MatSnackBar, MatStepperPrevious, MatStepper } from '@angular/material';
+import { FormGroup, FormBuilder, Validators, FormControl, FormGroupDirective, NgForm } from '@angular/forms';
+import { MatCheckbox, MatSnackBar, MatStepperPrevious, MatStepper, } from '@angular/material';
+import {ErrorStateMatcher} from '@angular/material/core';
+
 import { AngularFirestore } from '@angular/fire/firestore';
 import { MatSpinner } from '@angular/material';
 import { AngularFireStorage } from '@angular/fire/storage';
@@ -20,9 +22,15 @@ export interface Admin{
   styleUrls: ['./registeradmin.component.scss']
 })
 export class RegisteradminComponent implements OnInit {
+  emailFormControl = new FormControl('', [
+    Validators.required,
+    Validators.email,
+  ]);
+  
   waiting = false;
   passwordDiv=false;
-  hide = true;
+  hide1 = true;
+  hide2 = true;
   isLinear = true;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
@@ -44,8 +52,14 @@ export class RegisteradminComponent implements OnInit {
     }
 
     ngOnInit() {
+      
       this.firstFormGroup = this._formBuilder.group({
-        firstCtrl: ['', Validators.required]
+        ctrl1: ['', Validators.required],
+        ctrl2: ['', Validators.required],
+        ctrl3: ['', Validators.required],
+        ctrl4: ['', Validators.required],
+        ctrl5: ['', Validators.required],
+        ctrl6: ['', Validators.required],
       });
     }
 
@@ -56,7 +70,7 @@ export class RegisteradminComponent implements OnInit {
     }
   
     stepperNext(stepper : MatStepper){
-      if(this.pass1==this.pass2){
+      if(this.pass1==this.pass2 && !this.emailFormControl.hasError('email')){
         stepper.next();
         this.passwordDiv = false;
       }
@@ -64,6 +78,7 @@ export class RegisteradminComponent implements OnInit {
         this.passwordDiv = true;
       }
     }
+
     
     registerAdmin(){
       this.waiting = true;
@@ -84,4 +99,11 @@ export class RegisteradminComponent implements OnInit {
       
     }
 
+}
+
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  }
 }

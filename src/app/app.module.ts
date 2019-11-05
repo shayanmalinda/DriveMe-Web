@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
@@ -39,6 +40,7 @@ import { EditparentdetailsComponent } from './admin/parent/editparentdetails/edi
 import { ViewadminsComponent } from './admin/admin/viewadmins/viewadmins.component';
 import { RegisteradminComponent } from './admin/admin/registeradmin/registeradmin.component';
 import { EditadmindetailsComponent } from './admin/admin/editadmindetails/editadmindetails.component';
+import { AdminprofileComponent } from './admin/adminprofile/adminprofile.component';
 
 
 @NgModule({
@@ -70,7 +72,8 @@ import { EditadmindetailsComponent } from './admin/admin/editadmindetails/editad
     ViewadminsComponent,
     RegisteradminComponent,
     EditadmindetailsComponent,
-  ],
+    AdminprofileComponent,
+  ],  
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -79,7 +82,8 @@ import { EditadmindetailsComponent } from './admin/admin/editadmindetails/editad
     AngularFirestoreModule,
     AngularFireStorageModule,
     MatModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    HttpClientModule
   ], 
   entryComponents: [LoginComponent, OverviewDialog, OverviewDialog2],
   providers: [],

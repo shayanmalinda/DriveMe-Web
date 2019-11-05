@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl, FormGroupDirective, NgForm } from '@angular/forms';
 import { MatCheckbox, MatSnackBar, MatStepperPrevious, MatStepper } from '@angular/material';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { MatSpinner } from '@angular/material';
 import { AngularFireStorage } from '@angular/fire/storage';
+
+import {ErrorStateMatcher} from '@angular/material/core';
 
 export interface Vehicle {
   value: string;
@@ -30,10 +32,23 @@ export interface Driver {
   templateUrl: './registerdriver.component.html',
   styleUrls: ['./registerdriver.component.scss']
 })
+
+
+
+
 export class RegisterdriverComponent implements OnInit {
+
+  emailFormControl = new FormControl('', [
+    Validators.required,
+    Validators.email,
+  ]);
+  
+  matcher = new MyErrorStateMatcher();
+
   waiting = false;
   passwordDiv=false;
   hide = true;
+  hide2 = true;
   isLinear = true;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
@@ -51,7 +66,7 @@ export class RegisterdriverComponent implements OnInit {
   vehicleChassis: string;
   availableSeets: string;
   vehicleType: Selection;
-  airConditioned: Boolean;
+  airConditioned: Boolean = false;
   
   vehicle: Vehicle[] = [
     {value: 'Bus'},
@@ -64,12 +79,24 @@ export class RegisterdriverComponent implements OnInit {
     private afStorage: AngularFireStorage) {
     }
 
-  ngOnInit() {
+  ngOnInit() {   
+  
+    
     this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
+      ctrl1: ['', Validators.required],
+      ctrl2: ['', Validators.required],
+      ctrl3: ['', Validators.required],
+      ctrl4: ['', Validators.required],
+      ctrl5: ['', Validators.required],
+      ctrl6: ['', Validators.required],
+      ctrl7: ['', Validators.required],
     });
     this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
+      ctrl8: ['', Validators.required],
+      ctrl9: ['', Validators.required],
+      ctrl10: ['', Validators.required],
+      ctrl11: ['', Validators.required],
+      ctrl12: ['', !Validators.required],
     });
   }
 
@@ -80,13 +107,17 @@ export class RegisterdriverComponent implements OnInit {
   }
 
   stepperNext(stepper : MatStepper){
-    if(this.pass1==this.pass2){
+    if(this.pass1==this.pass2 && !this.emailFormControl.hasError('email')){
       stepper.next();
       this.passwordDiv = false;
     }
     else{
       this.passwordDiv = true;
     }
+  }
+
+  stepperNext2(stepper: MatStepper){
+    stepper.next()
   }
 
   registerDriver(){
@@ -114,4 +145,11 @@ export class RegisterdriverComponent implements OnInit {
     
   }
 
+}
+
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  }
 }

@@ -11,33 +11,36 @@
                 <form [formGroup]="firstFormGroup">
                     <ng-template matStepLabel>Driver Details</ng-template>
                     <mat-form-field class="form-field-full-width">
-                        <input [(ngModel)]="driverName" matInput placeholder="Name" formControlName="firstCtrl" required>
+                        <input [(ngModel)]="driverName" matInput placeholder="Name" formControlName="ctrl1" required>
                     </mat-form-field><br>
                     <mat-form-field class="form-field-full-width">
-                        <input [(ngModel)]="driverEmail" matInput placeholder="Email" formControlName="firstCtrl" required>
+                        <input [(ngModel)]="driverEmail" matInput placeholder="Email" [formControl]="emailFormControl" required>
+                        <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                          Please enter a valid email address
+                        </mat-error>
                     </mat-form-field><br>
                     <mat-form-field class="form-field-full-width">
-                        <input [(ngModel)]="driverTelephone" matInput placeholder="Telephone" formControlName="firstCtrl" required>
+                        <input [(ngModel)]="driverTelephone" matInput placeholder="Telephone" formControlName="ctrl2" required>
                     </mat-form-field><br>
                     <mat-form-field class="form-field-full-width">
-                        <input [(ngModel)]="driverAddress" matInput placeholder="Address" formControlName="firstCtrl" required>
+                        <input [(ngModel)]="driverAddress" matInput placeholder="Address" formControlName="ctrl3" required>
                     </mat-form-field><br>
                     <mat-form-field class="form-field-full-width">
-                        <input [(ngModel)]="driverNIC" matInput placeholder="NIC/Passport Number" formControlName="firstCtrl" required>
+                        <input [(ngModel)]="driverNIC" matInput placeholder="NIC/Passport Number" formControlName="ctrl4" required>
                     </mat-form-field><br>
                     <mat-form-field class="form-field-full-width">
-                        <input [(ngModel)]="driverLicense" matInput placeholder="Driver License Card Number" formControlName="firstCtrl" required>
+                        <input [(ngModel)]="driverLicense" matInput placeholder="Driver License Card Number" formControlName="ctrl5" required>
                     </mat-form-field><br>
                     <mat-form-field class="form-field-full-width">
-                        <input [(ngModel)]="pass1" matInput placeholder="Login Password" [type]="hide ? 'password' : 'text'" formControlName="firstCtrl" required>
+                        <input [(ngModel)]="pass1" matInput placeholder="Login Password" [type]="hide ? 'password' : 'text'" formControlName="ctrl6" required>
                         <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                         <mat-icon color="accent">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                         </button>
                     </mat-form-field>
                     <mat-form-field class="form-field-full-width pb-0">
-                        <input [(ngModel)]="pass2" matInput placeholder="Re-Enter Password" [type]="hide ? 'password' : 'text'" formControlName="firstCtrl" required>
-                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" >
-                        <mat-icon color="accent">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        <input [(ngModel)]="pass2" matInput placeholder="Re-Enter Password" [type]="hide2 ? 'password' : 'text'" formControlName="ctrl7" required>
+                        <button mat-icon-button matSuffix (click)="hide2 = !hide2" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide2" >
+                        <mat-icon color="accent">{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
                         </button>
                     </mat-form-field>
                     
@@ -45,9 +48,6 @@
                         <div *ngIf="passwordDiv">
                             <section *ngIf="pass1!=pass2?true:false" style="font-size: 12px;color: red;">
                                 <p style="font-weight: 550;">Password Mismatched</p>
-                            </section>
-                            <section *ngIf="pass1==pass2?true:false" style="font-size: 12px; color: rgb(6, 190, 6);">
-                                <p style="font-weight: 550;">Password Matched</p>
                             </section>
                         </div><br>
                     </div>
@@ -64,26 +64,26 @@
                 <form [formGroup]="secondFormGroup">
                 <ng-template matStepLabel>Vehicle Details</ng-template>
                 <mat-form-field class="form-field-full-width">
-                    <input [(ngModel)]="vehicleNumber" matInput placeholder="Vehicle Registration Number" formControlName="secondCtrl" required>
+                    <input [(ngModel)]="vehicleNumber" matInput placeholder="Vehicle Registration Number" formControlName="ctrl8" required>
                 </mat-form-field><br>
                 <mat-form-field class="form-field-full-width">
-                    <input [(ngModel)]="vehicleChassis" matInput placeholder="Chassis Number" formControlName="secondCtrl" required>
+                    <input [(ngModel)]="vehicleChassis" matInput placeholder="Chassis Number" formControlName="ctrl9" required>
                 </mat-form-field><br>
                 <mat-form-field class="form-field-full-width">
                   <mat-label>Vehicle Type</mat-label>
-                  <mat-select [(ngModel)]="vehicleType" name="vehicle" name="Vehicle Type"  formControlName="secondCtrl" required>
+                  <mat-select [(ngModel)]="vehicleType" name="vehicle" name="Vehicle Type"  formControlName="ctrl10" required>
                     <mat-option *ngFor="let vehicle of vehicle" [value]="vehicle.value">
                       {{vehicle.value}}
                     </mat-option>
                   </mat-select>
                 </mat-form-field>
                 <mat-form-field class="form-field-full-width">
-                    <input [(ngModel)]="availableSeets"  matInput placeholder="Number of Available Seets" formControlName="secondCtrl" required>
+                    <input [(ngModel)]="availableSeets"  matInput placeholder="Number of Available Seets" formControlName="ctrl11" required>
                 </mat-form-field><br>
-                <mat-checkbox  [(ngModel)]="airConditioned"  formControlName="secondCtrl" style="color: #888;">Air-Conditioned</mat-checkbox>
+                <mat-checkbox  [(ngModel)]="airConditioned"  formControlName="ctrl12" style="color: #888;">Air-Conditioned</mat-checkbox>
                 <div class="pt-3">
                     <button mat-raised-button color="accent" matStepperPrevious class="mr-4">Back</button>
-                    <button mat-raised-button color="primary" matStepperNext>Next</button>
+                    <button mat-raised-button color="primary" (click)="stepperNext(stepper)">Next</button>
                 </div>
                 </form>
             </mat-step>
