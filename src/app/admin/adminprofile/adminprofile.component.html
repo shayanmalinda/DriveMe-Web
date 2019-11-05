@@ -1,0 +1,36 @@
+<app-ngxspinner></app-ngxspinner>
+<div class="container-fluid navbar-margin">
+
+    <div class="row" style="padding-top: 60px;">
+            <div class="col-md-1 col-sm-1 col-xs-0"></div>
+            <div class="col-md-3 col-sm-3 col-xs-12 mb-5">
+                
+                    <div class="row" style="vertical-align: middle;
+                                justify-content: center;">
+                            <img src="../../../../assets/adminavatar.png" alt="Driver Icon" style="width: 80%; ">
+                    </div>
+            </div>
+        
+            <div class="col-md-1 col-sm-0 col-xs-0"></div>
+            <div class="col-md-5 col-sm-6 pl-5 pb-3 col-xs-12" style="border: 1.5px solid #FF5722; border-radius: 20px; padding-top:30px">
+                <p style="font-size: 17px;"><span class="mr-3" style="font-weight: bold;"> Name  :</span> {{name}}</p><br>
+                <p style="font-size: 17px;"><span class="mr-3" style="font-weight: bold;"> Email  :</span>{{email}}</p><br>
+                <p style="font-size: 17px;"><span class="mr-3" style="font-weight: bold;"> Address  :</span>{{address}}</p><br>
+                <p style="font-size: 17px;"><span class="mr-3" style="font-weight: bold;"> Telephone  :</span>{{telephone}}</p><br>
+                <p style="font-size: 17px;"><span class="mr-3" style="font-weight: bold;"> NIC / Passport  :</span> {{nic}}</p>
+            </div>
+            <div class="col-md-2 col-sm-1 col-xs-0"></div>
+            
+    </div>
+
+    <div class="row" style="text-align: center; padding-top:100px">
+        <div class="col-md-12" style="text-align: center">
+            <button mat-raised-button color="primary" style="
+                height: 45px;
+                width: 30%;"
+                (click)="changeAdminDetails()" 
+                routerLinkActive="active" ><mat-icon>edit</mat-icon>Edit Profile
+            </button>
+        </div>
+    </div>
+</div>
