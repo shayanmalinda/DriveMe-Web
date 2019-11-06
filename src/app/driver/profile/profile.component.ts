@@ -60,6 +60,9 @@ export class ProfileComponent implements OnInit {
          this.name = dri_obj.name;
          this.email = dri_obj.email;
          this.driverTelephone= dri_obj.driverTelephone;
+         this.driverLicense=dri_obj.driverLicense;
+         this.vehicleNumber=dri_obj.vehicleNumber;
+         this.vehicleType=dri_obj.vehicleType;
          spinner.hide();
        }
      );  
@@ -71,27 +74,17 @@ export class ProfileComponent implements OnInit {
    //       y.payload.id;
    //     });
    // });
-
-   
  }
 
- changedriverDetails(driverId: string , driver:Driver){
-   this.router.navigate(['/admin', {outlets: {'adminnavbar': ['editdriverdetails']}}],{queryParams: {driverId: driverId}})
 
-   // this.router.navigate(['/admin', {outlets: {'adminnavbar': ['editdriverdetails']}}],{queryParams: {driver: JSON.stringify(driver)}})
-   // this.router.navigateByUrl('/admin/(adminnavbar:editdriverdetails)',{queryParams:driver});
-   // console.log("passing value==="+driver.driverNIC);
- }
+ /*
+ changedriverpassword(){
+  this.router.navigate(['/admin', {outlets: {'adminnavbar': ['editadmindetails']}}],{queryParams: {userID: this.driverNIC}})
 
- removeDriver(driverId: string){
-   this.afs.doc('users/user/driver/'+driverId).update({isDeleted:true}).then(_ => {
-       this.openSnackBar("Driver Removed","Done");
-     }
-   );
-   // this.afs.doc('users/user/driver/'+driverId).delete().then(_=>{
-   //   this.openSnackBar("Driver Removed","Done");
-   // });
- }
+}
+*/ 
+//change driver password fuction here...
+ 
  
  openSnackBar(message: string, action: string) {
    this._snackBar.open(message, action, {
