@@ -29,8 +29,20 @@ export interface Driver{
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
+  name: string;
+  email: string;
+  driverTelephone: string;
+  driverAddress: string;
+  driverNIC: string;
+  driverLicense: string;
+  password: string;
+  vehicleNumber: string;
+  vehicleChassis: string;
+  availableSeets: string;
+  vehicleType: Selection;
+  isAC: Boolean;
+  isDeleted: Boolean;
 
- // x: boolean = true;
 
  private driverDoc: AngularFirestoreCollection<Driver>;
  drivers: Observable<Driver[]>;
@@ -39,23 +51,21 @@ export class ProfileComponent implements OnInit {
  constructor(
    private afs: AngularFirestore,private router : Router,private spinner: NgxSpinnerService,
    private _snackBar: MatSnackBar,) { 
+     let userID: string;
      this.spinner.show();
-     this.driverDoc = this.afs.collection<Driver>('users/user/driver');
-     this.drivers = this.driverDoc.snapshotChanges().pipe(
-       map(actions => actions.map(a=>{
-         const data = a.payload.doc.data() as Driver;
-         const id = a.payload.doc.id;
+     userID = localStorage.getItem('currentUserId');
+     this.driverNIC = userID;
+     this.afs.doc<Driver>('users/user/driver/'+userID).valueChanges().subscribe(
+       dri_obj=>{
+         this.name = dri_obj.name;
+         this.email = dri_obj.email;
+         this.driverTelephone= dri_obj.driverTelephone;
+         this.driverLicense=dri_obj.driverLicense;
+         this.vehicleNumber=dri_obj.vehicleNumber;
+         this.vehicleType=dri_obj.vehicleType;
          spinner.hide();
-         return {id,...data};
-       }))
-     )
-   
-     
-     // this.drivers.forEach(a=>{
-     //   a.forEach(b=>{
-     //     console.log(b.name);
-     //   })
-     // })
+       }
+     );  
    }
 
  ngOnInit() {
@@ -64,27 +74,17 @@ export class ProfileComponent implements OnInit {
    //       y.payload.id;
    //     });
    // });
-
-   
  }
 
- changedriverDetails(driverId: string , driver:Driver){
-   this.router.navigate(['/admin', {outlets: {'adminnavbar': ['editdriverdetails']}}],{queryParams: {driverId: driverId}})
 
-   // this.router.navigate(['/admin', {outlets: {'adminnavbar': ['editdriverdetails']}}],{queryParams: {driver: JSON.stringify(driver)}})
-   // this.router.navigateByUrl('/admin/(adminnavbar:editdriverdetails)',{queryParams:driver});
-   // console.log("passing value==="+driver.driverNIC);
- }
+ /*
+ changedriverpassword(){
+  this.router.navigate(['/admin', {outlets: {'adminnavbar': ['editadmindetails']}}],{queryParams: {userID: this.driverNIC}})
 
- removeDriver(driverId: string){
-   this.afs.doc('users/user/driver/'+driverId).update({isDeleted:true}).then(_ => {
-       this.openSnackBar("Driver Removed","Done");
-     }
-   );
-   // this.afs.doc('users/user/driver/'+driverId).delete().then(_=>{
-   //   this.openSnackBar("Driver Removed","Done");
-   // });
- }
+}
+*/ 
+//change driver password fuction here...
+ 
  
  openSnackBar(message: string, action: string) {
    this._snackBar.open(message, action, {
