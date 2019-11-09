@@ -62,10 +62,10 @@
                 <div class="dropdown-menu"  aria-labelledby="navbarDropdown" style="background-color: #333">
                   <a class="dropdown-item" [routerLink]="[{outlets: {'adminnavbar': 'adminprofile'}}]" routerLinkActive="active" style="color: #ddd">My Profile</a>
                   <div style="border-color:#666;" class="dropdown-divider" *ngIf="multipleCharacter"></div>
-                  <a class="dropdown-item" *ngIf="driverAvailable" (click)="switchToDriver()" routerLinkActive="active" style="color: #ddd">Switch to Driver</a>                  
-                  <a class="dropdown-item" *ngIf="passengerAvailable" (click)="switchToPassenger()" routerLinkActive="active" style="color: #ddd">Switch to Passenger</a>
-                  <a class="dropdown-item" *ngIf="parentAvailable" (click)="switchToParent()" routerLinkActive="active" style="color: #ddd">Switch to Parent</a>
-                  <a class="dropdown-item" *ngIf="ownerAvailable" (click)="switchToOwner()" routerLinkActive="active" style="color: #ddd">Switch to Owner</a>
+                  <a class="dropdown-item" *ngIf="driverAvailable" [routerLink]="" (click)="switchToDriver()" routerLinkActive="active" style="color: #ddd">Switch to Driver</a>                  
+                  <a class="dropdown-item" *ngIf="passengerAvailable" [routerLink]="" (click)="switchToPassenger()" routerLinkActive="active" style="color: #ddd">Switch to Passenger</a>
+                  <a class="dropdown-item" *ngIf="parentAvailable" [routerLink]="" (click)="switchToParent()" routerLinkActive="active" style="color: #ddd">Switch to Parent</a>
+                  <a class="dropdown-item" *ngIf="ownerAvailable" [routerLink]="" (click)="switchToOwner()" routerLinkActive="active" style="color: #ddd">Switch to Owner</a>
 
                 </div>
             </li>
