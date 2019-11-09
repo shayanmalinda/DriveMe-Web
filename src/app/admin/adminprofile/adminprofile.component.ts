@@ -35,15 +35,17 @@ export class AdminprofileComponent implements OnInit {
     private _snackBar: MatSnackBar,) { 
       let userID: string;
       this.spinner.show();
-      userID = localStorage.getItem('currentUserId');
+      userID = localStorage.getItem('adminId');
       this.adminId = userID;
-      this.afs.doc<Admin>('users/user/admin/'+userID).valueChanges().subscribe(
+      console.log("adminId",this.adminId)
+      this.afs.doc<Admin>('users/user/admin/'+this.adminId).valueChanges().subscribe(
         res=>{
           this.name = res.name;
           this.email = res.email;
           this.address = res.address;
           this.nic = res.nic;
           this.telephone = res.telephone;
+          // console.log(res)
           spinner.hide();
         }
       );

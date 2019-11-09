@@ -1,0 +1,35 @@
+.dropdown-menu  {
+    background-color: #444;
+}
+
+.dropdown{
+    padding-left: 50px;
+}
+
+.dropdown-item{
+    color: #ccc;
+}
+
+
+
+.dropdown-item:hover{
+    background-color: #333 !important;
+    color: white !important;
+}
+
+.dropdown-menu a{
+    background-color: transparent !important;
+}
+
+.dropdown-menu a:hover{
+    background-color: #333 !important;
+    color: white !important;
+}
+
+.navbarDropdown{
+    color: #ddd !important;
+}
+
+.navbarDropdown:hover{
+    color: white !important;
+}

@@ -53,7 +53,7 @@ export class ProfileComponent implements OnInit {
    private _snackBar: MatSnackBar,) { 
      let userID: string;
      this.spinner.show();
-     userID = localStorage.getItem('currentUserId');
+     userID = localStorage.getItem('driverId');
      this.driverNIC = userID;
      this.afs.doc<Driver>('users/user/driver/'+userID).valueChanges().subscribe(
        dri_obj=>{
