@@ -4,13 +4,20 @@ import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/fo
 import { ErrorStateMatcher, MatSnackBar, MatSnackBarModule } from '@angular/material';
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-import { Md5 } from "md5-typescript";
 import { Router } from '@angular/router'
 import { map } from 'rxjs/operators';
+import { User } from 'firebase';
+
 
 export interface DialogData {
   characterName: string;
 }
+
+export interface user{
+  email: string;
+  password: string;
+}
+
 export interface userCredentials { 
   email: string;
   password: string;
@@ -20,6 +27,7 @@ export interface userCredentials {
   passengerId: string;
   parentId: string;
 } 
+
 export interface Passenger { 
   email: string;
   password: string;
@@ -57,7 +65,7 @@ export class LoginComponent implements OnInit {
   constructor(public dialog: MatDialog,db: AngularFirestore) {
   }
 
-  loginpopup(character): void {
+  signuppopup(character): void {
 
     this.name = character;
 
@@ -72,7 +80,7 @@ export class LoginComponent implements OnInit {
   }
 
 
-  loginpopup2(character): void {
+  loginpopup(character): void {
 
     this.name = character;
 
@@ -90,48 +98,29 @@ export class LoginComponent implements OnInit {
 
 }
 
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-  }
-}
 
 @Component({
-  selector: 'login-popup',
-  templateUrl: './login-popup.html',
+  selector: 'signup-popup',
+  templateUrl: './signup-popup.html',
 })
 
 export class OverviewDialog {
   inputEmail = null;
   inputPassword = null;
-  checked = false;
+  inputPassword2 = null;
   waiting = false;
-  waitingadmin = true;
-  waitingpassenger = true;
-  waitingparent = true;
-  waitingdriver = true;
-  waitingowner = true;
   loginerror = false;
   hide = true;
-  myControl1 = new FormControl();
+  hide2 = true;
+  passwordDiv = false;
   myControl2 = new FormControl();
+  myControl3 = new FormControl();
+  user:user;
     
-
-  private passengerDoc: AngularFirestoreCollection<Passenger>;
-  passengers: Observable<Passenger[]>
-
-  private parentDoc: AngularFirestoreCollection<Parent>;
-  parents: Observable<Parent[]>;  
-    
-  private driverDoc: AngularFirestoreCollection<Driver>;
-  drivers: Observable<Driver[]>;
-
-  private adminDoc: AngularFirestoreCollection<Admin>;
-  admins: Observable<Admin[]>;
-  
-  private ownerDoc: AngularFirestoreCollection<Owner>;
-  owners: Observable<Owner[]>;
+  myControl1 = new FormControl('', [
+    Validators.required,
+    Validators.email,
+  ]);
 
   constructor(
       public dialogRef: MatDialogRef<OverviewDialog>,
@@ -139,234 +128,51 @@ export class OverviewDialog {
       private afs: AngularFirestore,
       private router: Router,
       public snackbar: MatSnackBar,
+      private _snackBar: MatSnackBar,
   ) { 
 
-    localStorage.clear();
-
-    if(localStorage.getItem('email')!=null){
-      this.inputEmail = localStorage.getItem('email');
-      this.inputPassword = localStorage.getItem('password');
-      this.checked = true;
-    }
   }
 
-  onNoClick(): void { 
+  onNoClick(): void {  
     this.dialogRef.close();
   }
 
-  passengerLogin(){
-    var email = this.myControl1.value;
-    var password = this.myControl2.value;
-    this.passengerDoc = this.afs.collection('users/user/passenger');
-    this.passengers = this.passengerDoc.valueChanges();
-    this.passengerDoc.snapshotChanges().pipe(
-      map(actions => actions.map(y=>{
-        const id = y.payload.doc.id;
-        if(email==y.payload.doc.data().email && password==y.payload.doc.data().password){
-          localStorage.setItem('passengerId',id);
+  signup(){
+    // this.myControl3
+    this.passwordDiv = true;
+    if(this.inputEmail && this.inputPassword && this.inputPassword2){
+      if(this.inputPassword==this.inputPassword2 && !this.myControl1.hasError('email')){
+        this.waiting = true;
+        this.user={
+          email: this.inputEmail,
+          password: this.inputPassword,
         }
-      }
-      ))
-    ).subscribe();
     
-    var flag: boolean = false;
-    this.passengers.forEach(x=>{
-      x.forEach(y=>{
-        if(email==y.email && password==y.password){
-          if(this.checked){
-            localStorage.setItem('email',email);
-            localStorage.setItem('password',password);
+        this.afs.collection('userCredentials').add(this.user).then(_ => {
+            this.openSnackBar("Registration Success","Done");
+            this.waiting = false;
           }
-          else{
-            localStorage.removeItem('email');
-            localStorage.removeItem('password');
-            this.checked = false;
-          }
-          this.dialogRef.close();
-          // this.router.navigateByUrl('/passenger');
-          flag = true;
-        }
-      })
-      if(!flag){
-        this.waitingpassenger = false;
-        this.loginerror = true;
+        );
       }
-    });
-  }
+      else{
 
-  parentLogin(){
-    var email = this.myControl1.value;
-    var password = this.myControl2.value;
-    this.parentDoc = this.afs.collection('users/user/parent');
-    this.parentDoc.snapshotChanges().pipe(
-      map(actions => actions.map(y=>{
-        const id = y.payload.doc.id;
-        if(email==y.payload.doc.data().parentemail && password==y.payload.doc.data().parentpass){
-          localStorage.setItem('parentId',id);
-        }
       }
-      ))
-    ).subscribe();
-
-  
-    this.parentDoc = this.afs.collection('users/user/parent');
-    this.parents = this.parentDoc.valueChanges();
-    var flag: boolean = false;
-    this.parents.forEach(x=>{
-      x.forEach(y=>{
-        if(email==y.parentemail && password==y.parentpass){
-          if(this.checked){
-            localStorage.setItem('email',email);
-            localStorage.setItem('password',password);
-          }
-          else{
-            localStorage.removeItem('email');
-            localStorage.removeItem('password');
-            this.checked = false;
-          }
-          this.dialogRef.close();
-          // this.router.navigateByUrl('/parent');
-          flag = true;
-        }
-      })
-      if(!flag){
-        this.waitingparent = false;
-        this.loginerror = true;
-      }
-    });
-  }
-
-  adminLogin(){
-    var email = this.myControl1.value;
-    var password = this.myControl2.value;this.adminDoc = this.afs.collection('users/user/admin');
-    this.admins = this.adminDoc.valueChanges();
-    var flag: boolean = false;
-
+    }
     
-
-    this.adminDoc.snapshotChanges().pipe(
-      map(actions => actions.map(y=>{
-        const id = y.payload.doc.id;
-        if(email==y.payload.doc.data().email && password==y.payload.doc.data().password){
-          localStorage.setItem('adminId',id);
-        }
-      }
-      ))
-    ).subscribe();
-
-    this.admins.forEach(x=>{
-      x.forEach(y=>{
-        if(email==y.email && password==y.password){
-          if(this.checked){
-            localStorage.setItem('email',email);
-            localStorage.setItem('password',password);
-          }
-          else{
-            localStorage.removeItem('email');
-            localStorage.removeItem('password');
-            this.checked = false;
-          }
-          this.dialogRef.close();
-          // this.router.navigateByUrl('/admin');
-          flag = true;
-        }
-      })
-      if(!flag){
-        this.waitingadmin = false;
-        this.loginerror = true;
-      }
-    });
-
   }
-
-  ownerLogin(){
-    
-    var email = this.myControl1.value;
-    var password = this.myControl2.value;
-    this.ownerDoc = this.afs.collection('users/user/owner');
-    this.owners = this.driverDoc.valueChanges();
-    var flag: boolean = false;
-
-    this.driverDoc.snapshotChanges().pipe(
-      map(actions => actions.map(y=>{
-        const id = y.payload.doc.id;
-        if(email==y.payload.doc.data().email && password==y.payload.doc.data().password){
-          localStorage.setItem('ownerId',id);
-        }
-      }
-      ))
-    ).subscribe();
-
-    this.drivers.forEach(x=>{
-      x.forEach(y=>{
-        if(email==y.email && password==y.password){
-          if(this.checked){
-            localStorage.setItem('email',email);
-            localStorage.setItem('password',password);
-          }
-          else{
-            localStorage.removeItem('email');
-            localStorage.removeItem('password');
-            this.checked = false;
-          }
-          this.dialogRef.close();
-          // this.router.navigateByUrl('/owner');
-          flag = true;
-        }
-      })
-      if(!flag){
-        this.waitingowner = false;
-        this.loginerror = true;
-      }
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
     });
   }
 
-  driverLogin(){
-    var email = this.myControl1.value;
-    var password = this.myControl2.value;
-    this.driverDoc = this.afs.collection('users/user/driver');
-    this.drivers = this.driverDoc.valueChanges();
-    var flag: boolean = false;
+}
 
-    this.driverDoc.snapshotChanges().pipe(
-      map(actions => actions.map(y=>{
-        const id = y.payload.doc.id;
-        if(email==y.payload.doc.data().email && password==y.payload.doc.data().password){
-          localStorage.setItem('driverId',id);
-        }
-      }
-      ))
-    ).subscribe();
-
-    this.drivers.forEach(x=>{
-      x.forEach(y=>{
-        if(email==y.email && password==y.password){
-          if(this.checked){
-            localStorage.setItem('email',email);
-            localStorage.setItem('password',password);
-          }
-          else{
-            localStorage.removeItem('email');
-            localStorage.removeItem('password');
-            this.checked = false;
-          }
-          this.dialogRef.close();
-          this.router.navigateByUrl('/driver');
-          flag = true;
-        }
-      })
-      if(!flag){
-        this.waitingdriver = false;
-        this.loginerror = true;
-      }
-    });
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
   }
-
-  login():void {
-
-
-  }
-
 }
 
 
@@ -397,10 +203,9 @@ export class OverviewDialog {
 
 
 
-
 @Component({
-  selector: 'login-popup2',
-  templateUrl: './login-popup2.html',
+  selector: 'login-popup',
+  templateUrl: './login-popup.html',
 })  
 
 export class OverviewDialog2 {
@@ -409,11 +214,6 @@ export class OverviewDialog2 {
   inputPassword = null;
   checked = false;
   waiting = false;
-  // waitingadmin = true;
-  // waitingpassenger = true;
-  // waitingparent = true;
-  // waitingdriver = true;
-  // waitingowner = true;
   loginerror = false;
   hide = true;
   myControl1 = new FormControl();
@@ -423,20 +223,7 @@ export class OverviewDialog2 {
     Validators.required,
     Validators.email,
   ]);
-  // private passengerDoc: AngularFirestoreCollection<Passenger>;
-  // passengers: Observable<Passenger[]>
 
-  // private parentDoc: AngularFirestoreCollection<Parent>;
-  // parents: Observable<Parent[]>;  
-    
-  // private driverDoc: AngularFirestoreCollection<Driver>;
-  // drivers: Observable<Driver[]>;
-
-  // private adminDoc: AngularFirestoreCollection<Admin>;
-  // admins: Observable<Admin[]>;
-  
-  // private ownerDoc: AngularFirestoreCollection<Owner>;
-  // owners: Observable<Owner[]>;
 
   private loginDoc: AngularFirestoreCollection<userCredentials>;
   users : Observable<userCredentials[]>;
@@ -545,270 +332,10 @@ export class OverviewDialog2 {
       }
     });
 
-    // this.adminLogin();
-    // this.passengerLogin();
-    // this.parentLogin();
-    // this.driverLogin();
-    // this.ownerLogin();
-
-    // this.navigateURL();
-
-    // if(!this.waitingadmin && !this.waitingdriver && !this.waitingpassenger && !this.waitingowner && !this.waitingparent){
-    //   this.waiting = false;
-    //   console.log("changing waiting")
-    // }
-
-    // console.log(this.waiting)
-    // if(!this.waiting){
-
-    //   if(localStorage.getItem('adminId')){      
-    //     this.router.navigateByUrl('/admin');
-    //   }
-
-    //   if(localStorage.getItem('driverId')){      
-    //       this.router.navigateByUrl('/driver');
-    //   }
-
-    //   if(localStorage.getItem('passengerId')){      
-    //       this.router.navigateByUrl('/passenger');
-    //   }
-
-    //   if(localStorage.getItem('parentId')){      
-    //       this.router.navigateByUrl('/parent');
-    //   }
-
-    //   if(localStorage.getItem('ownerId')){      
-    //       this.router.navigateByUrl('/owner');
-    //   }
-    
-    // }
-
   }
 
 
 
-  // passengerLogin(){
-  //   var email = this.myControl1.value;
-  //   var password = this.myControl2.value;
-  //   this.passengerDoc = this.afs.collection('users/user/passenger');
-  //   this.passengers = this.passengerDoc.valueChanges();
-  //   this.passengerDoc.snapshotChanges().pipe(
-  //     map(actions => actions.map(y=>{
-  //       const id = y.payload.doc.id;
-  //       if(email==y.payload.doc.data().email && password==y.payload.doc.data().password){
-  //         localStorage.setItem('passengerId',id);
-  //       }
-  //     }
-  //     ))
-  //   ).subscribe();
-    
-  //   var flag: boolean = false;
-  //   this.passengers.forEach(x=>{
-  //     console.log("2 searching passneger")
-  //     x.forEach(y=>{
-  //       if(email==y.email && password==y.password){
-  //         if(this.checked){
-  //           localStorage.setItem('email',email);
-  //           localStorage.setItem('password',password);
-  //         }
-  //         else{
-  //           localStorage.removeItem('email');
-  //           localStorage.removeItem('password');
-  //           this.checked = false;
-  //         }
-  //         this.dialogRef.close();
-  //         // this.router.navigateByUrl('/passenger');
-  //         console.log("passenger login")
-  //         flag = true;
-  //       }
-  //     })
-  //     if(!flag){
-  //       this.waitingpassenger = false;
-  //       this.loginerror = true;
-  //     }
-  //   });
-  // }
-
-  // parentLogin(){
-  //   var email = this.myControl1.value;
-  //   var password = this.myControl2.value;
-  //   this.parentDoc = this.afs.collection('users/user/parent');
-  //   this.parentDoc.snapshotChanges().pipe(
-  //     map(actions => actions.map(y=>{
-  //       const id = y.payload.doc.id;
-  //       if(email==y.payload.doc.data().parentemail && password==y.payload.doc.data().parentpass){
-  //         localStorage.setItem('parentId',id);
-  //       }
-  //     }
-  //     ))
-  //   ).subscribe();
-
-  //   this.waiting = true;  
-  //   this.parentDoc = this.afs.collection('users/user/parent');
-  //   this.parents = this.parentDoc.valueChanges();
-  //   var flag: boolean = false;
-  //   this.parents.forEach(x=>{
-  //     console.log("3 searching parent")
-  //     x.forEach(y=>{
-  //       if(email==y.parentemail && password==y.parentpass){
-  //         if(this.checked){
-  //           localStorage.setItem('email',email);
-  //           localStorage.setItem('password',password);
-  //         }
-  //         else{
-  //           localStorage.removeItem('email');
-  //           localStorage.removeItem('password');
-  //           this.checked = false;
-  //         }
-  //         this.dialogRef.close();
-  //         // this.router.navigateByUrl('/parent');          
-  //         console.log("parent login")
-  //         flag = true;
-  //       }
-  //     })
-  //     if(!flag){
-  //       this.waitingparent = false;
-  //       this.loginerror = true;
-  //     }
-  //   });
-  // }
-
-  // adminLogin(){
-  //   var email = this.myControl1.value;
-  //   var password = this.myControl2.value;this.adminDoc = this.afs.collection('users/user/admin');
-  //   this.admins = this.adminDoc.valueChanges();
-  //   var flag: boolean = false;
-
-    
-
-  //   this.adminDoc.snapshotChanges().pipe(
-  //     map(actions => actions.map(y=>{
-  //       const id = y.payload.doc.id;
-  //       if(email==y.payload.doc.data().email && password==y.payload.doc.data().password){
-  //         localStorage.setItem('adminId',id);
-  //       }
-  //     }
-  //     ))
-  //   ).subscribe();
-
-  //   this.admins.forEach(x=>{
-  //     console.log("1 searching admin")
-  //     x.forEach(y=>{
-  //       if(email==y.email && password==y.password){
-  //         if(this.checked){
-  //           localStorage.setItem('email',email);
-  //           localStorage.setItem('password',password);
-  //         }
-  //         else{
-  //           localStorage.removeItem('email');
-  //           localStorage.removeItem('password');
-  //           this.checked = false;
-  //         }
-  //         this.dialogRef.close();
-  //         // this.router.navigateByUrl('/admin');
-  //         console.log("admin login")
-  //         flag = true;
-  //       }
-  //     })
-  //     if(!flag){
-  //       this.waitingadmin = false;
-  //       this.loginerror = true;
-  //     }
-  //   });
-
-  // }
-
-  // ownerLogin(){
-    
-  //   var email = this.myControl1.value;
-  //   var password = this.myControl2.value;
-  //   this.ownerDoc = this.afs.collection('users/user/owner');
-  //   this.owners = this.ownerDoc.valueChanges();
-  //   var flag: boolean = false;
-
-  //   this.ownerDoc.snapshotChanges().pipe(
-  //     map(actions => actions.map(y=>{
-  //       const id = y.payload.doc.id;
-  //       if(email==y.payload.doc.data().email && password==y.payload.doc.data().password){
-  //         localStorage.setItem('ownerId',id);
-  //       }
-  //     }
-  //     ))
-  //   ).subscribe();
-
-  //   this.owners.forEach(x=>{
-  //     console.log("5 searching owner")
-  //     x.forEach(y=>{
-  //       if(email==y.email && password==y.password){
-  //         if(this.checked){
-  //           localStorage.setItem('email',email);
-  //           localStorage.setItem('password',password);
-  //         }
-  //         else{
-  //           localStorage.removeItem('email');
-  //           localStorage.removeItem('password');
-  //           this.checked = false;
-  //         }
-  //         this.dialogRef.close();
-  //         // this.router.navigateByUrl('/owner');
-  //         console.log("owner login")
-  //         flag = true;
-  //       }
-  //     })
-  //     if(!flag){
-  //       this.waitingowner = false;
-  //       this.loginerror = true;
-  //     }
-  //   });
-  // }
-
-  // driverLogin(){
-  //   var email = this.myControl1.value;
-  //   var password = this.myControl2.value;
-  //   this.driverDoc = this.afs.collection('users/user/driver');
-  //   this.drivers = this.driverDoc.valueChanges();
-  //   var flag: boolean = false;
-
-  //   this.driverDoc.snapshotChanges().pipe(
-  //     map(actions => actions.map(y=>{
-  //       const id = y.payload.doc.id;
-  //       if(email==y.payload.doc.data().email && password==y.payload.doc.data().password){
-  //         localStorage.setItem('driverId',id);
-  //       }
-  //     }
-  //     ))
-  //   ).subscribe();
-
-  //   this.drivers.forEach(x=>{
-  //     x.forEach(y=>{
-  //       console.log("4 searching driversss")
-  //       if(email==y.email && password==y.password){
-  //         if(this.checked){
-  //           localStorage.setItem('email',email);
-  //           localStorage.setItem('password',password);
-  //         }
-  //         else{
-  //           localStorage.removeItem('email');
-  //           localStorage.removeItem('password');
-  //           this.checked = false;
-  //         }
-  //         this.dialogRef.close();
-  //         // this.router.navigateByUrl('/driver');
-  //         console.log("driver login")
-  //         flag = true;
-  //       }
-  //     })
-  //     if(!flag){
-  //       this.waitingdriver = false;
-  //       this.loginerror = true;
-  //     }
-  //   });
-  // }
-
-  // navigateURL(){
-  //   console.log("finished searching")
-  // }
-  
   
   
 }
