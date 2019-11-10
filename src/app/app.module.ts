@@ -42,6 +42,7 @@ import { RegisteradminComponent } from './admin/admin/registeradmin/registeradmi
 import { EditadmindetailsComponent } from './admin/admin/editadmindetails/editadmindetails.component';
 import { AdminprofileComponent } from './admin/adminprofile/adminprofile.component';
 import { DriverchangepasswordComponent } from './driver/driverchangepassword/driverchangepassword.component';
+import { RegisterComponent } from './register/register.component';
 
 
 @NgModule({
@@ -75,6 +76,7 @@ import { DriverchangepasswordComponent } from './driver/driverchangepassword/dri
     EditadmindetailsComponent,
     AdminprofileComponent,
     DriverchangepasswordComponent,
+    RegisterComponent,
   ],  
   imports: [
     BrowserModule,

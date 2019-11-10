@@ -15,22 +15,30 @@ export class AdminComponent implements OnInit {
 
   constructor(
     private router: Router,) {
-    if(localStorage.getItem("driverId")){
-      this.multipleCharacter=true;
-      this.driverAvailable = true;
-    }
-    
-    if(localStorage.getItem("passengerId")){
-      this.multipleCharacter=true;
-      this.passengerAvailable = true;
-    }
-    if(localStorage.getItem("parentId")){
-      this.multipleCharacter=true;
-      this.parentAvailable = true;
-    }
-    if(localStorage.getItem("ownerId")){
-      this.multipleCharacter=true;
-      this.ownerAvailable = true;
+
+    if(localStorage.getItem("adminId")){
+
+      if(localStorage.getItem("driverId")){
+        this.multipleCharacter=true;
+        this.driverAvailable = true;
+      }
+      
+      if(localStorage.getItem("passengerId")){
+        this.multipleCharacter=true;
+        this.passengerAvailable = true;
+      }
+      if(localStorage.getItem("parentId")){
+        this.multipleCharacter=true;
+        this.parentAvailable = true;
+      }
+      if(localStorage.getItem("ownerId")){
+        this.multipleCharacter=true;
+        this.ownerAvailable = true;
+      }
+    }  
+
+    else{
+      router.navigateByUrl('/')
     }
   }
 

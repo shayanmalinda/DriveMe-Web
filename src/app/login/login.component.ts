@@ -323,6 +323,10 @@ export class OverviewDialog2 {
             console.log("owner exist")     
             this.router.navigateByUrl('/owner')
           }
+          else{
+            console.log("Not Registered to any user")
+            this.router.navigateByUrl('/register')
+          }
           flag = true;
         }
       })

@@ -24,6 +24,7 @@ import { RegisteradminComponent } from './admin/admin/registeradmin/registeradmi
 import { ViewadminsComponent } from './admin/admin/viewadmins/viewadmins.component';
 import { EditadmindetailsComponent } from './admin/admin/editadmindetails/editadmindetails.component';
 import { AdminprofileComponent } from './admin/adminprofile/adminprofile.component';
+import { RegisterComponent } from './register/register.component';
 // import { AdminprofileComponent } from './admin/adminprofile/adminprofile.component';
 
 const routes: Routes = [
@@ -57,6 +58,7 @@ const routes: Routes = [
   { path: 'parent', component: ParentComponent},
   { path: 'passenger', component: PassengerComponent},
   { path: 'owner', component: OwnerComponent},
+  { path: 'register', component: RegisterComponent},
   
   /**{ path: 'driver-payments', component: PaymentsComponent},
   { path: 'driver-profile', component: ProfileComponent},
