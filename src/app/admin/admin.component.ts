@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-admin',
@@ -14,7 +15,8 @@ export class AdminComponent implements OnInit {
   ownerAvailable: boolean=false;
 
   constructor(
-    private router: Router,) {
+    private router: Router,
+    private spinner: NgxSpinnerService,) {
 
     if(localStorage.getItem("adminId")){
 
@@ -62,8 +64,12 @@ export class AdminComponent implements OnInit {
   }
 
   logout(){
-    
+    // this.spinner.show()
+    // setTimeout(function(){
+    //   this.spinner.hide()
+    // },2000)
     localStorage.clear();
     this.router.navigate([''], { replaceUrl: true });
+    setTimeout
   }
 }
