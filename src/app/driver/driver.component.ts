@@ -17,7 +17,6 @@ export class DriverComponent implements OnInit {
 
   constructor(
     private router: Router,) {
-      console.log("adminId", localStorage.getItem("adminId"))
     if(localStorage.getItem("adminId")){
       this.multipleCharacter=true;
       this.adminAvailable = true;
