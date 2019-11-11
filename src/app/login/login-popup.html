@@ -23,8 +23,11 @@
         <mat-progress-bar  color="primary" mode="indeterminate" value="50" bufferValue="75">
     </mat-progress-bar>
     </section>
-    <section *ngIf="loginerror" style="display: flex; align-content: center; align-items: center; margin-left: 20px; font-size: 15sp">
-        <mat-error color="accent">Invalid Credentials</mat-error>
+    <section *ngIf="loginerror" style="display: flex; align-content: center; align-items: center; margin-left: 20px; font-size: 15sp; margin-top: 8px;">
+        <mat-error color="accent" style="font-size: smaller;">Invalid Credentials</mat-error>
+    </section>
+    <section *ngIf="emptyinputs" style="display: flex; align-content: center; align-items: center; margin-left: 20px; font-size: 15sp; margin-top: 8px;">
+        <mat-error color="accent" style="font-size: smaller;">Inputs are Empty</mat-error>
     </section>
     <div mat-dialog-actions >
         <div class="col-md-12" style="margin-bottom: 20px;">

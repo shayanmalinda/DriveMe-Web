@@ -10,10 +10,13 @@ import { NgxSpinnerService } from 'ngx-spinner';
 
 export interface Admin {
   name: string;
-  email: string;
   telephone: string;
   address: string;
   nic: string;
+}
+
+export interface userCredentials{
+  email: string;
   password: string;
 }
 
@@ -40,24 +43,25 @@ export class EditadmindetailsComponent implements OnInit {
   pass2: string;
 
   admin: Admin;
+  user: userCredentials;
   adminId: string;
 
   adminDoc: AngularFirestoreDocument<Admin>;
   admins: Observable<Admin>;
+  
+  userCredentialDoc: AngularFirestoreDocument<userCredentials>;
+  userCredentials: Observable<userCredentials>;
 
   constructor(private _formBuilder: FormBuilder,
-    private afs: AngularFirestore,
-    private _snackBar: MatSnackBar,
-    private afStorage: AngularFireStorage,
-    private route: ActivatedRoute,
-    private cdRef: ChangeDetectorRef,
-    private spinner: NgxSpinnerService
-    ) {
-      
-      this.spinner.show();
-      
-      
-    }
+              private afs: AngularFirestore,
+              private _snackBar: MatSnackBar,
+              private afStorage: AngularFireStorage,
+              private route: ActivatedRoute,
+              private cdRef: ChangeDetectorRef,
+              private spinner: NgxSpinnerService
+  ) {
+    this.spinner.show();
+  }
   
     ngAfterViewInit(){
       this.route.queryParams.subscribe(params => {
@@ -66,18 +70,27 @@ export class EditadmindetailsComponent implements OnInit {
 
       this.adminDoc = this.afs.doc<Admin>('users/user/admin/'+this.adminId);
       this.admins = this.adminDoc.valueChanges();
+
       
+      this.userCredentialDoc = this.afs.doc<userCredentials>('userCredentials/'+localStorage.getItem('userCredentialId'));
+      this.userCredentials = this.userCredentialDoc.valueChanges();
+
       this.admins.forEach(a=>{
         
           this.adminName = a.name;
-          this.adminEmail = a.email;
           this.adminTelephone = a.telephone;
           this.adminAddress = a.address;
           this.adminNIC = a.nic;
-          this.pass1 = a.password;
-          this.pass2 = a.password;
-          this.spinner.hide();
+          
+          this.userCredentials.forEach(b=>{
+            this.adminEmail = b.email
+            this.pass1 = b.password
+            this.pass2 = b.password
+            
+            this.spinner.hide();
+          });
       });
+
       
     }
     
@@ -87,7 +100,7 @@ export class EditadmindetailsComponent implements OnInit {
 
     this.firstFormGroup = this._formBuilder.group({
       ctrl1: ['', Validators.required],
-      ctrl2: ['', Validators.required],
+      // ctrl2: ['', Validators.required],
       ctrl3: ['', Validators.required],
       ctrl4: ['', Validators.required],
       ctrl5: ['', Validators.required],
@@ -116,19 +129,23 @@ export class EditadmindetailsComponent implements OnInit {
     this.waiting = true;
     this.admin={
       name : this.adminName,
-      email : this.adminEmail,
       telephone : this.adminTelephone,
       address : this.adminAddress,
       nic : this.adminNIC,
-      password : this.pass1,
     }
 
+    this.user={
+      email: this.adminEmail,
+      password: this.pass1
+    }
 
     this.afs.doc('users/user/admin/'+this.adminId).update(this.admin).then(_ => {
+        
+      this.afs.doc('userCredentials/'+localStorage.getItem("userCredentialId")).update(this.user).then(_ => {
         this.openSnackBar("Admin Details Updated","Done");
         this.waiting = false;
-      }
-    );
+      });
+    });
     
   }
 

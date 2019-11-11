@@ -15,6 +15,12 @@ export interface Admin{
   isDeleted: Boolean;
 }
 
+export interface userCredentials { 
+  email: string;
+  adminId: string;
+  isDeleted: boolean;
+} 
+
 @Component({
   selector: 'app-viewadmins',
   templateUrl: './viewadmins.component.html',
@@ -24,18 +30,28 @@ export class ViewadminsComponent implements OnInit {
 
   private adminDoc: AngularFirestoreCollection<Admin>;
   admins: Observable<Admin[]>;
+  private usersDoc: AngularFirestoreCollection<userCredentials>;  
   constructor(
     private afs: AngularFirestore,private router : Router,private spinner: NgxSpinnerService,
     private _snackBar: MatSnackBar,) { 
       this.spinner.show();
       this.adminDoc = this.afs.collection<Admin>('users/user/admin');
-      this.admins = this.adminDoc.snapshotChanges().pipe(
-        map(actions => actions.map(a=>{
-          const data = a.payload.doc.data() as Admin;
-          const id = a.payload.doc.id;
-          spinner.hide();
-          return {id,...data};
-        }))
+
+      
+      this.afs.doc<userCredentials>('userCredentials/'+localStorage.getItem("userCredentialId")).valueChanges().subscribe(
+        res=>{
+          let email = res.email;
+        
+          this.admins = this.adminDoc.snapshotChanges().pipe(
+            map(actions => actions.map(a=>{
+              const data = a.payload.doc.data() as Admin;
+              data.email = email;
+              const id = a.payload.doc.id;
+              spinner.hide();
+              return {id,...data};
+            }))
+          );
+        }
       );
     
     }
@@ -51,9 +67,26 @@ export class ViewadminsComponent implements OnInit {
 
   removeAdmin(adminId: string){
     this.afs.doc('users/user/admin/'+adminId).update({isDeleted:true}).then(_ => {
-        this.openSnackBar("Admin Removed","Done");
+        
+        this.usersDoc = this.afs.collection('userCredentials');
+        this.usersDoc.snapshotChanges().pipe(
+          map(actions => actions.map(y=>{
+            const id = y.payload.doc.id;
+            let userCredentialAdminId = y.payload.doc.data().adminId
+            if(userCredentialAdminId==adminId){
+              this.afs.doc('userCredentials/'+id).update({isDeleted:true}).then(_ => {
+                this.openSnackBar("Admin Removed","Done");
+              }
+            );
+            }
+            
+          }
+          ))
+        ).subscribe();
       }
     );
+
+    
   }
   
   openSnackBar(message: string, action: string) {
