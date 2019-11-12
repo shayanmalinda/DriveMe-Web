@@ -11,16 +11,16 @@
             <mat-step [stepControl]="firstFormGroup" >
                 <form [formGroup]="firstFormGroup">
                     <ng-template matStepLabel>Passenger Details</ng-template>
-                    <mat-form-field class="form-field-full-width">
+                    <!-- <mat-form-field class="form-field-full-width">
                         <input [(ngModel)]="parentEmail" matInput placeholder="Email" formControlName="ctrl1" required>
-                    </mat-form-field><br>
+                    </mat-form-field><br> -->
                     <mat-form-field class="form-field-full-width">
                         <input [(ngModel)]="parentAddress" matInput placeholder="Address" formControlName="ctrl2" required>
                     </mat-form-field><br>
                     <mat-form-field class="form-field-full-width">
                         <input [(ngModel)]="parentPhone" matInput placeholder="Telephone" formControlName="ctrl3" required>
                     </mat-form-field><br>
-                    <mat-form-field class="form-field-full-width">
+                    <!-- <mat-form-field class="form-field-full-width">
                         <input [(ngModel)]="pass1" matInput placeholder="Login Password" [type]="hide ? 'password' : 'text'" formControlName="ctrl4" required>
                         <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                         <mat-icon color="accent">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
@@ -31,7 +31,7 @@
                         <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" >
                         <mat-icon color="accent">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                         </button>
-                    </mat-form-field><br>                    
+                    </mat-form-field><br>                     -->
                     <mat-form-field class="form-field-full-width">
                         <input [(ngModel)]="childName" matInput placeholder="Name"  formControlName="ctrl6" required>
                     </mat-form-field><br>

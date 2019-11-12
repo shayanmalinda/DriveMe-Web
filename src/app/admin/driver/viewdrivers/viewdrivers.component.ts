@@ -22,6 +22,12 @@ export interface Driver{
   isDeleted: Boolean;
 }
 
+export interface userCredential{
+  email: string;
+  password: string;
+  driverId: string;
+  isDeleted: boolean;
+}
 
 @Component({
   selector: 'app-viewdrivers',
@@ -33,6 +39,7 @@ export class ViewdriversComponent implements OnInit {
 
   private driverDoc: AngularFirestoreCollection<Driver>;
   drivers: Observable<Driver[]>;
+  usersDoc: AngularFirestoreCollection<userCredential>; 
   constructor(
     private afs: AngularFirestore,private router : Router,private spinner: NgxSpinnerService,
     private _snackBar: MatSnackBar,) { 
@@ -74,13 +81,27 @@ export class ViewdriversComponent implements OnInit {
   }
 
   removeDriver(driverId: string){
+    this.spinner.show();
+    
     this.afs.doc('users/user/driver/'+driverId).update({isDeleted:true}).then(_ => {
-        this.openSnackBar("Driver Removed","Done");
-      }
-    );
-    // this.afs.doc('users/user/driver/'+driverId).delete().then(_=>{
-    //   this.openSnackBar("Driver Removed","Done");
-    // });
+        
+      this.usersDoc = this.afs.collection('userCredentials');
+      this.usersDoc.snapshotChanges().pipe(
+        map(actions => actions.map(y=>{
+          const id = y.payload.doc.id;
+          let userCredentialDriverId = y.payload.doc.data().driverId
+          if(userCredentialDriverId==driverId){
+            this.afs.doc('userCredentials/'+id).update({isDeleted:true}).then(_ => {
+              this.openSnackBar("Driver Removed","Done");
+              this.spinner.hide()
+            }
+          );
+          }
+          
+        }
+        ))
+      ).subscribe();
+    });
   }
   
   openSnackBar(message: string, action: string) {

@@ -117,13 +117,13 @@ export class EditdriverdetailsComponent implements OnInit {
 
     this.firstFormGroup = this._formBuilder.group({
       ctrl1: ['', Validators.required],
-      ctrl2: ['', Validators.required],
+      // ctrl2: ['', Validators.required],
       ctrl3: ['', Validators.required],
       ctrl4: ['', Validators.required],
       ctrl5: ['', Validators.required],
       ctrl6: ['', Validators.required],
-      ctrl7: ['', Validators.required],
-      ctrl8: ['', Validators.required],
+      // ctrl7: ['', Validators.required],
+      // ctrl8: ['', Validators.required],
     });
     this.secondFormGroup = this._formBuilder.group({
       ctrl9: ['', Validators.required],
