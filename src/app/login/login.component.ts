@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { Router } from '@angular/router'
 import { map } from 'rxjs/operators';
 import { User } from 'firebase';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 
 export interface DialogData {
@@ -214,6 +215,7 @@ export class OverviewDialog2 {
   inputPassword = null;
   checked = false;
   waiting = false;
+  waiting2 = false;
   loginerror = false;
   hide = true;
   myControl1 = new FormControl();
@@ -227,21 +229,32 @@ export class OverviewDialog2 {
 
   private loginDoc: AngularFirestoreCollection<userCredentials>;
   users : Observable<userCredentials[]>;
-
+  userId : string;
 
   constructor(
       public dialogRef: MatDialogRef<OverviewDialog>,
       @Inject(MAT_DIALOG_DATA) public data: DialogData,
       private afs: AngularFirestore,
       private router: Router,
-      public snackbar: MatSnackBar
+      public snackbar: MatSnackBar,
   ) { 
-    if(localStorage.getItem('email')!=null){
-      this.inputEmail = localStorage.getItem('email');
-      this.inputPassword = localStorage.getItem('password');
+    if(localStorage.getItem('rememberme')!=null){
+      this.waiting2 = true;
+      this.userId = localStorage.getItem("rememberme");
+      let userDoc: AngularFirestoreCollection<userCredentials>
+      userDoc = this.afs.collection('userCredentials');
+      userDoc.snapshotChanges().pipe(
+        map(actions => actions.map(y=>{
+          if(y.payload.doc.id==this.userId){
+            this.inputEmail = y.payload.doc.data().email;
+            this.inputPassword = y.payload.doc.data().password;
+            this.waiting2 = false;
+          }
+          this.waiting2 = false;
+        }
+        ))
+      ).subscribe();
       this.checked = true;
-
-      localStorage.clear();
     }
   }
 
@@ -254,6 +267,7 @@ export class OverviewDialog2 {
     this.loginerror = false;
     this.waiting = true;
 
+
     var email = this.myControl1.value;
     var password = this.myControl2.value;
     this.loginDoc = this.afs.collection('userCredentials');
@@ -264,6 +278,7 @@ export class OverviewDialog2 {
       map(actions => actions.map(y=>{
         const id = y.payload.doc.id;
         if(email==y.payload.doc.data().email && password==y.payload.doc.data().password){
+          this.userId = id;
           localStorage.setItem('userCredentialId',id);
         }
       }
@@ -274,12 +289,10 @@ export class OverviewDialog2 {
       x.forEach(y=>{
         if(email==y.email && password==y.password){
           if(this.checked){
-            localStorage.setItem('email',email);
-            localStorage.setItem('password',password);
+            localStorage.setItem('rememberme',this.userId);
           }
           else{
-            localStorage.removeItem('email');
-            localStorage.removeItem('password');
+            localStorage.removeItem('rememberme');
             this.checked = false;
           }
 
@@ -322,6 +335,10 @@ export class OverviewDialog2 {
           else if(y.ownerId){       
             console.log("owner exist")     
             this.router.navigateByUrl('/owner')
+          }
+          else{
+            console.log("Not Registered to any user")
+            this.router.navigateByUrl('/register')
           }
           flag = true;
         }

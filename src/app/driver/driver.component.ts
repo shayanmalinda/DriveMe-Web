@@ -17,23 +17,31 @@ export class DriverComponent implements OnInit {
 
   constructor(
     private router: Router,) {
-    if(localStorage.getItem("adminId")){
-      this.multipleCharacter=true;
-      this.adminAvailable = true;
-    }
     
-    if(localStorage.getItem("passengerId")){
-      this.multipleCharacter=true;
-      this.passengerAvailable = true;
+    if(localStorage.getItem("driverId")){
+        
+      if(localStorage.getItem("adminId")){
+        this.multipleCharacter=true;
+        this.adminAvailable = true;
+      }
+      
+      if(localStorage.getItem("passengerId")){
+        this.multipleCharacter=true;
+        this.passengerAvailable = true;
+      }
+      if(localStorage.getItem("parentId")){
+        this.multipleCharacter=true;
+        this.parentAvailable = true;
+      }
+      if(localStorage.getItem("ownerId")){
+        this.multipleCharacter=true;
+        this.ownerAvailable = true;
+      }
+    } 
+    else{
+      router.navigateByUrl('/')
     }
-    if(localStorage.getItem("parentId")){
-      this.multipleCharacter=true;
-      this.parentAvailable = true;
-    }
-    if(localStorage.getItem("ownerId")){
-      this.multipleCharacter=true;
-      this.ownerAvailable = true;
-    }
+
   }
 
   ngOnInit() {

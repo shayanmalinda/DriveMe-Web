@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-admin',
@@ -14,23 +15,32 @@ export class AdminComponent implements OnInit {
   ownerAvailable: boolean=false;
 
   constructor(
-    private router: Router,) {
-    if(localStorage.getItem("driverId")){
-      this.multipleCharacter=true;
-      this.driverAvailable = true;
-    }
-    
-    if(localStorage.getItem("passengerId")){
-      this.multipleCharacter=true;
-      this.passengerAvailable = true;
-    }
-    if(localStorage.getItem("parentId")){
-      this.multipleCharacter=true;
-      this.parentAvailable = true;
-    }
-    if(localStorage.getItem("ownerId")){
-      this.multipleCharacter=true;
-      this.ownerAvailable = true;
+    private router: Router,
+    private spinner: NgxSpinnerService,) {
+
+    if(localStorage.getItem("adminId")){
+
+      if(localStorage.getItem("driverId")){
+        this.multipleCharacter=true;
+        this.driverAvailable = true;
+      }
+      
+      if(localStorage.getItem("passengerId")){
+        this.multipleCharacter=true;
+        this.passengerAvailable = true;
+      }
+      if(localStorage.getItem("parentId")){
+        this.multipleCharacter=true;
+        this.parentAvailable = true;
+      }
+      if(localStorage.getItem("ownerId")){
+        this.multipleCharacter=true;
+        this.ownerAvailable = true;
+      }
+    }  
+
+    else{
+      router.navigateByUrl('/')
     }
   }
 
@@ -54,8 +64,12 @@ export class AdminComponent implements OnInit {
   }
 
   logout(){
-    
+    // this.spinner.show()
+    // setTimeout(function(){
+    //   this.spinner.hide()
+    // },2000)
     localStorage.clear();
     this.router.navigate([''], { replaceUrl: true });
+    setTimeout
   }
 }
