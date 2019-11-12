@@ -26,6 +26,11 @@ export interface Driver {
   isAC: Boolean;
 }
 
+export interface UserCredentials{
+  email: string;
+  password: string;
+  driverId: string;
+}
 
 @Component({
   selector: 'app-registerdriver',
@@ -53,6 +58,7 @@ export class RegisterdriverComponent implements OnInit {
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   driver:Driver;
+  userCredentials: UserCredentials;
 
   driverName: string;
   driverEmail: string;
@@ -137,12 +143,23 @@ export class RegisterdriverComponent implements OnInit {
       password : this.pass1
     }
 
+    let id = this.afs.createId();
 
-    this.afs.collection('users/user/driver').add(this.driver).then(_ => {
+    this.userCredentials={
+      email: this.driverEmail,
+      password: this.pass1,
+      driverId: id
+    }
+
+
+    
+    this.afs.collection('users/user/driver').doc(id).set(this.driver).then(_ => {
+      this.afs.collection('userCredentials').add(this.userCredentials).then(_ => {
         this.openSnackBar("Driver Registered","Done");
         this.waiting = false;
-      }
-    );
+      });
+    }
+  );
     
   }
 

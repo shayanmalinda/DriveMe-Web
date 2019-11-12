@@ -82,11 +82,11 @@ export class EditpassengerdetailsComponent implements OnInit {
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
       ctrl1: ['', Validators.required],
-      ctrl2: ['', Validators.required],
+      // ctrl2: ['', Validators.required],
       ctrl3: ['', Validators.required],
       ctrl4: ['', Validators.required],
-      ctrl5: ['', Validators.required],
-      ctrl6: ['', Validators.required],
+      // ctrl5: ['', Validators.required],
+      // ctrl6: ['', Validators.required],
     });
   }
 

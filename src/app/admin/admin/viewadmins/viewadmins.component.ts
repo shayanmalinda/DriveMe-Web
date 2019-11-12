@@ -37,21 +37,13 @@ export class ViewadminsComponent implements OnInit {
       this.spinner.show();
       this.adminDoc = this.afs.collection<Admin>('users/user/admin');
 
-      
-      this.afs.doc<userCredentials>('userCredentials/'+localStorage.getItem("userCredentialId")).valueChanges().subscribe(
-        res=>{
-          let email = res.email;
-        
-          this.admins = this.adminDoc.snapshotChanges().pipe(
-            map(actions => actions.map(a=>{
-              const data = a.payload.doc.data() as Admin;
-              data.email = email;
-              const id = a.payload.doc.id;
-              spinner.hide();
-              return {id,...data};
-            }))
-          );
-        }
+      this.admins = this.adminDoc.snapshotChanges().pipe(
+        map(actions => actions.map(a=>{
+          const data = a.payload.doc.data() as Admin;
+          const id = a.payload.doc.id;
+          spinner.hide();
+          return {id,...data};
+        }))
       );
     
     }

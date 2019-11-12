@@ -11,12 +11,18 @@ export interface Parent{
   parentemail: string;
   parentaddress: string;
   parentphone: string;
-  parentpass: string;
   childname: string;
   childage: string;
   childschool: string;
   childschoolphone: string;
 }
+
+export interface userCredentials{
+  email: string;
+  password: string;
+  parentId: string;
+}
+
 @Component({
   selector: 'app-editparentdetails',
   templateUrl: './editparentdetails.component.html',
@@ -43,6 +49,7 @@ export class EditparentdetailsComponent implements OnInit {
   firstFormGroup: FormGroup;
 
   parent: Parent;
+  user: userCredentials;
 
   private parentDoc: AngularFirestoreDocument<Parent>;
   parents: Observable<Parent>;
@@ -74,8 +81,6 @@ export class EditparentdetailsComponent implements OnInit {
         this.parentEmail = a.parentemail;
         this.parentAddress = a.parentaddress;
         this.parentPhone = a.parentphone;
-        this.pass1 = a.parentpass;
-        this.pass2 = a.parentpass;
         this.childName = a.childname;
         this.childAge = a.childage;
         this.childSchool = a.childschool;
@@ -90,11 +95,11 @@ export class EditparentdetailsComponent implements OnInit {
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
-      ctrl1: ['', Validators.required],
+      // ctrl1: ['', Validators.required],
       ctrl2: ['', Validators.required],
       ctrl3: ['', Validators.required],
-      ctrl4: ['', Validators.required],
-      ctrl5: ['', Validators.required],
+      // ctrl4: ['', Validators.required],
+      // ctrl5: ['', Validators.required],
       ctrl6: ['', Validators.required],
       ctrl7: ['', Validators.required],
       ctrl8: ['', Validators.required],
@@ -126,7 +131,6 @@ export class EditparentdetailsComponent implements OnInit {
       parentemail : this.parentEmail,
       parentaddress: this.parentAddress,
       parentphone: this.parentPhone,
-      parentpass: this.pass1,
       childname: this.childName,
       childage: this.childAge,
       childschool: this.childSchool,

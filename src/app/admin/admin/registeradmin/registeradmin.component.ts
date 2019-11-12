@@ -9,6 +9,7 @@ import { AngularFireStorage } from '@angular/fire/storage';
 
 export interface Admin{
   name: string;
+  email: string;
   telephone: string;
   address: string;
   nic: string;
@@ -88,6 +89,7 @@ export class RegisteradminComponent implements OnInit {
     registerAdmin(){
       this.waiting = true;
       this.admin={
+        email: this.adminEmail,
         name : this.adminName,
         telephone : this.adminTelephone,
         address : this.adminAddress,
