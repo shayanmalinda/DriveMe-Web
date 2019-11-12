@@ -70,6 +70,6 @@ export class AdminComponent implements OnInit {
     // },2000)
     localStorage.clear();
     this.router.navigate([''], { replaceUrl: true });
-    setTimeout
+    // setTimeout
   }
 }
