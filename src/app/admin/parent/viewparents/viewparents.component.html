@@ -27,16 +27,26 @@
                     height: 45px;
                     width: 70%;
                     position: absolute;
-                    top: 28%;
+                    top: 25%;
                     -ms-transform: translateY(-50%);
                     transform: translateY(-50%);" (click)="changeParentDetails(parent.id,parent)" 
                     routerLinkActive="active" ><mat-icon>edit</mat-icon>Change Details</button>
+                         
+                <button mat-raised-button color="primary" style="
+                    height: 45px;
+                    width: 70%;
+                    position: absolute;
+                    top: 50%;
+                    -ms-transform: translateY(-50%);
+                    transform: translateY(-50%);"  
+                    routerLinkActive="active" (click)="changePassword(parent.id)">
+                    <mat-icon>lock_open</mat-icon>Change Password</button>  
                          
                 <button mat-raised-button color="warn" style="
                     height: 45px;
                     width: 70%;
                     position: absolute;
-                    top: 68%;
+                    top: 75%;
                     -ms-transform: translateY(-50%);
                     transform: translateY(-50%);"  
                     routerLinkActive="active" (click)="removeParent(parent.id)">

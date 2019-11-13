@@ -137,7 +137,7 @@ export class ChangeUserPasswordComponent implements OnInit {
             });
           } 
         }
-        console.log("driverId: ",this.userId)
+        
         if(this.userType=="driver" && data.driverId==this.userId){ //changing password for driver
           console.log(data.password+" "+this.prevPass)  
           if(data.password==this.prevPass){ //if previous password is correct                        
