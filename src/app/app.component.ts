@@ -8,4 +8,13 @@ import { LoginComponent } from './login/login.component'
 })
 export class AppComponent {
   title = 'DriveMe';
+
+  constructor(){
+    // localStorage.removeItem("driverId")
+    // localStorage.removeItem("adminId")
+    // localStorage.removeItem("ownerId")
+    // localStorage.removeItem("parentId")
+    // localStorage.removeItem("passengerId")
+
+  }
 }

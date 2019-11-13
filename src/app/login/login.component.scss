@@ -4,7 +4,6 @@
 .heading{
     padding-top: 80px;
     align-content: center;
-    padding-bottom: 20px;
     font-size: 65px;
     font-family: Georgia, 'Times New Roman', Times, serif;
     color: white;
@@ -41,6 +40,11 @@
     font-size: 20px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     text-align: center;
+}
+
+.character-button:focus{
+    outline: none;
+    border: 0;
 }
 
 .btn-div{

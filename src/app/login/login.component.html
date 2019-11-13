@@ -1,29 +1,51 @@
+
 <div class="fluid-container login-page" >
+    <div class="row" class="heading-row">
+        <h1 class="heading">DriveMe</h1>
+    </div>
+    <div class="row" class="btn-row">
+        <div class="col-md-9" class="btn-div">
+            <div class="row btn1" style="margin-top: 50px;">
+                <div class="col-md-12 single-button"><button mat-raised-button color="primary" class="character-button" (click)="loginpopup()">Login</button></div>
+            </div>
+            <div class="row btn1" >
+                <div class="col-md-12"><h5 style="color: white;font-weight: 400;">-------------  Not yet Registered? -------------</h5></div>
+            </div>
+            <div class="row btn1">
+                <div class="col-md-12 single-button"><button mat-raised-button color="accent" class="character-button"  (click)="signuppopup()">Signup NOW!</button></div>
+            </div>
+        </div>  
+    </div>
+</div>
+
+
+
+
+
+
+<!-- <div class="fluid-container login-page" >
     <div class="row" class="heading-row">
         <h1 class="heading">DriveMe</h1>
     </div>
     <div class="row">
     </div>
     <div class="row" class="btn-row">
-        <div class="col-md-3 title">
-            <h3 class="row">I am a</h3>
-        </div>
         <div class="col-md-9" class="btn-div">
             <div class="row btn1">
-                <div class="col-md-12 single-button"><button mat-raised-button color="accent" class="character-button" routerLink="/admin">Admin</button></div>
+                <div class="col-md-12 single-button"><button mat-raised-button color="accent" class="character-button" (click)="loginpopup2('admin')">Admin</button></div>
             </div>
             <div class="row btn1">
-                <div class="col-md-12 single-button"><button mat-raised-button color="accent" class="character-button" routerLink="/owner">Owner</button></div>
+                <div class="col-md-12 single-button"><button mat-raised-button color="accent" class="character-button" (click)="loginpopup2('owner')">Owner</button></div>
             </div>
             <div class="row btn1">
-                <div class="col-md-12 single-button"><button mat-raised-button color="accent" class="character-button" routerLink="/driver">Driver</button></div>
-            </div>
+                <div class="col-md-12 single-button"><button mat-raised-button color="accent" class="character-button" (click)="loginpopup2('driver')">Driver</button></div>
+            </div>  
             <div class="row btn1">
-                <div class="col-md-12 single-button"><button mat-raised-button color="accent" class="character-button" routerLink="/passenger">Passenger</button></div>
+                <div class="col-md-12 single-button"><button mat-raised-button color="accent" class="character-button" (click)="loginpopup('passenger')">Passenger</button></div>
             </div>
             <div class="row btn1"> 
-                <div class="col-md-12 single-button"><button mat-raised-button color="accent" class="character-button" routerLink="/parent">Parent</button></div>
+                <div class="col-md-12 single-button"><button mat-raised-button color="accent" class="character-button" (click)="loginpopup('parent')">Parent</button></div>
             </div>
         </div>  
     </div>
-</div>
+</div> -->

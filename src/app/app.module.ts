@@ -1,14 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule} from '@angular/material/button';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './login/login.component';
 import { AdminComponent } from './admin/admin.component';
 import { DriverComponent } from './driver/driver.component';
@@ -16,6 +16,36 @@ import { PassengerComponent } from './passenger/passenger.component';
 import { ParentComponent } from './parent/parent.component';
 import { OwnerComponent } from './owner/owner.component';
 import { environment } from 'src/environments/environment';
+import { ProfileComponent } from './driver/profile/profile.component';
+import { VehicleRouteComponent } from './driver/vehicle-route/vehicle-route.component';
+import { ShareLocationComponent } from './driver/share-location/share-location.component';
+import { RatePassengersComponent } from './driver/rate-passengers/rate-passengers.component';
+import { PaymentsComponent } from './driver/payments/payments.component';
+import { PassengerListComponent } from './driver/passenger-list/passenger-list.component';
+
+import { MatDialogModule} from '@angular/material/dialog';
+import { OverviewDialog,OverviewDialog2 } from './login/login.component'
+import { MatModule } from './material.theme'
+import { MatSnackBarModule } from '@angular/material';
+import { RegisterdriverComponent } from './admin/driver/registerdriver/registerdriver.component';
+import { ViewdriversComponent } from './admin/driver/viewdrivers/viewdrivers.component';
+import { EditdriverdetailsComponent } from './admin/driver/editdriverdetails/editdriverdetails.component';
+
+import { NgxSpinnerModule } from "ngx-spinner";
+import { NgxspinnerComponent } from './shared/ngxspinner/ngxspinner.component';
+import { ViewpassengersComponent } from './admin/passenger/viewpassengers/viewpassengers.component';
+import { EditpassengerdetailsComponent } from './admin/passenger/editpassengerdetails/editpassengerdetails.component';
+import { ViewparentsComponent } from './admin/parent/viewparents/viewparents.component';
+import { EditparentdetailsComponent } from './admin/parent/editparentdetails/editparentdetails.component';
+import { ViewadminsComponent } from './admin/admin/viewadmins/viewadmins.component';
+import { RegisteradminComponent } from './admin/admin/registeradmin/registeradmin.component';
+import { EditadmindetailsComponent } from './admin/admin/editadmindetails/editadmindetails.component';
+import { AdminprofileComponent } from './admin/adminprofile/adminprofile.component';
+
+import { RegisterpassengerComponent } from './passenger/registerpassenger/registerpassenger.component';
+
+import { DriverchangepasswordComponent } from './driver/driverchangepassword/driverchangepassword.component';
+import { RegisterComponent } from './register/register.component';
 
 
 @NgModule({
@@ -26,17 +56,47 @@ import { environment } from 'src/environments/environment';
     DriverComponent,
     PassengerComponent,
     ParentComponent,
-    OwnerComponent
-  ],
+    OwnerComponent,
+    ProfileComponent,
+    VehicleRouteComponent,
+    ShareLocationComponent,
+    RatePassengersComponent,
+    PaymentsComponent,
+    PassengerListComponent,
+ 
+    OverviewDialog,
+    OverviewDialog2,
+    RegisterdriverComponent,
+    ViewdriversComponent,
+    EditdriverdetailsComponent,
+    NgxspinnerComponent,
+    ViewpassengersComponent,
+    EditpassengerdetailsComponent,
+    ViewparentsComponent,
+    EditparentdetailsComponent,
+    ViewadminsComponent,
+    RegisteradminComponent,
+    EditadmindetailsComponent,
+    AdminprofileComponent,
+
+    RegisterpassengerComponent,
+
+    DriverchangepasswordComponent,
+    RegisterComponent,
+
+  ],  
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatButtonModule,
-    MatCheckboxModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-  ],
+    AngularFireStorageModule,
+    MatModule,
+    NgxSpinnerModule,
+    HttpClientModule
+  ], 
+  entryComponents: [LoginComponent, OverviewDialog, OverviewDialog2],
   providers: [],
   bootstrap: [AppComponent]
 })
