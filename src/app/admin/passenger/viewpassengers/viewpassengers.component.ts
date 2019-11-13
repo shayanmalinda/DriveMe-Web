@@ -13,6 +13,12 @@ export interface Passenger{
   phone: string;
   isDeleted: boolean;
 }
+export interface userCredential{
+  email: string;
+  password: string;
+  passengerId: string;
+  isDeleted: boolean;
+}
 
 @Component({
   selector: 'app-viewpassengers',
@@ -23,6 +29,7 @@ export class ViewpassengersComponent implements OnInit {
 
   private passengerDoc: AngularFirestoreCollection<Passenger>;
   passengers: Observable<Passenger[]>;
+  usersDoc: AngularFirestoreCollection<userCredential>;  
   constructor(
     private afs: AngularFirestore,private router : Router,private spinner: NgxSpinnerService,
     private _snackBar: MatSnackBar,) { 
@@ -52,9 +59,27 @@ export class ViewpassengersComponent implements OnInit {
   }
 
   removePassenger(passengerId: string){
+    
+    this.spinner.show();
+    
     this.afs.doc('users/user/passenger/'+passengerId).update({isDeleted:true}).then(_ => {
-        this.openSnackBar("Passenger Removed","Done");
-      }
-    );
+        
+      this.usersDoc = this.afs.collection('userCredentials');
+      this.usersDoc.snapshotChanges().pipe(
+        map(actions => actions.map(y=>{
+          const id = y.payload.doc.id;
+          let userCredentialPassengerId = y.payload.doc.data().passengerId
+          if(userCredentialPassengerId==passengerId){
+            this.afs.doc('userCredentials/'+id).update({isDeleted:true}).then(_ => {
+              this.openSnackBar("Passenger Removed","Done");
+              this.spinner.hide()
+            }
+          );
+          }
+          
+        }
+        ))
+      ).subscribe();
+    });
   }
 }

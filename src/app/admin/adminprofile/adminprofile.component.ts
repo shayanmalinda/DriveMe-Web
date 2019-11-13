@@ -8,11 +8,15 @@ import { MatSnackBar } from '@angular/material';
 
 export interface Admin{
   name: string;
-  email: string;
+  // email: string;
   address: string;
   telephone: string;
   nic: string;
   isDeleted: Boolean;
+}
+
+export interface userCredential{
+  email: string;
 }
 
 @Component({
@@ -30,21 +34,32 @@ export class AdminprofileComponent implements OnInit {
 
   private adminDoc: AngularFirestoreCollection<Admin>;
   admins: Observable<Admin[]>;
+  
+  private userDoc: AngularFirestoreCollection<userCredential>;
+  users: Observable<userCredential[]>;
+
   constructor(
     private afs: AngularFirestore,private router : Router,private spinner: NgxSpinnerService,
     private _snackBar: MatSnackBar,) { 
       let userID: string;
       this.spinner.show();
-      userID = localStorage.getItem('currentUserId');
+      userID = localStorage.getItem('adminId');
       this.adminId = userID;
-      this.afs.doc<Admin>('users/user/admin/'+userID).valueChanges().subscribe(
+      console.log("adminId",this.adminId)
+      this.afs.doc<Admin>('users/user/admin/'+this.adminId).valueChanges().subscribe(
         res=>{
           this.name = res.name;
-          this.email = res.email;
+          // this.email = res.email;
           this.address = res.address;
           this.nic = res.nic;
           this.telephone = res.telephone;
-          spinner.hide();
+          this.afs.doc<userCredential>('userCredentials/'+localStorage.getItem("userCredentialId")).valueChanges().subscribe(
+            res=>{
+              this.email = res.email;
+              // console.log(res)
+              spinner.hide();
+            }
+          );
         }
       );
     

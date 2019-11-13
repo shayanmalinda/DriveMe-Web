@@ -14,9 +14,9 @@
                     <mat-form-field class="form-field-full-width">
                         <input [(ngModel)]="driverName" matInput placeholder="Name"  formControlName="ctrl1" required>
                     </mat-form-field><br>
-                    <mat-form-field class="form-field-full-width">
+                    <!-- <mat-form-field class="form-field-full-width">
                         <input [(ngModel)]="driverEmail" matInput placeholder="Email" formControlName="ctrl2" required>
-                    </mat-form-field><br>
+                    </mat-form-field><br> -->
                     <mat-form-field class="form-field-full-width">
                         <input [(ngModel)]="driverTelephone" matInput placeholder="Telephone" formControlName="ctrl3" required>
                     </mat-form-field><br>
@@ -29,7 +29,7 @@
                     <mat-form-field class="form-field-full-width">
                         <input [(ngModel)]="driverLicense" matInput placeholder="Driver License Card Number" formControlName="ctrl6" required>
                     </mat-form-field><br>
-                    <mat-form-field class="form-field-full-width">
+                    <!-- <mat-form-field class="form-field-full-width">
                         <input [(ngModel)]="pass1" matInput placeholder="Login Password" [type]="hide ? 'password' : 'text'" formControlName="ctrl7" required>
                         <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                         <mat-icon color="accent">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
@@ -40,7 +40,7 @@
                         <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" >
                         <mat-icon color="accent">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                         </button>
-                    </mat-form-field>
+                    </mat-form-field> -->
                     
                     <div style="height: 20px;">
                         <div *ngIf="passwordDiv">

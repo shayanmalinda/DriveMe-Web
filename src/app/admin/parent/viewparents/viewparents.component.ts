@@ -7,14 +7,21 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { MatSnackBar } from '@angular/material';
 
 export interface Parent{
-  parentemail: string;
+  // parentemail: string;
   parentaddress: string;
   parentphone: string;
-  parentpass: string;
+  // parentpass: string;
   childname: string;
   childschool: string;
   childschoolphone: string;
   childage: string;
+}
+
+export interface userCredential{
+  email: string;
+  password: string;
+  parentId: string;
+  isDeleted: boolean;
 }
 
 @Component({
@@ -26,11 +33,16 @@ export class ViewparentsComponent implements OnInit {
 
   private parentDoc: AngularFirestoreCollection<Parent>;
   parents: Observable<Parent[]>;
+  usersDoc: AngularFirestoreCollection<userCredential>;  
+
   constructor(
     private afs: AngularFirestore,private router : Router,private spinner: NgxSpinnerService,
     private _snackBar: MatSnackBar,) { 
       this.spinner.show();
       this.parentDoc = this.afs.collection<Parent>('users/user/parent');
+
+      
+
       this.parents = this.parentDoc.snapshotChanges().pipe(
         map(actions => actions.map(a=>{
           const data = a.payload.doc.data() as Parent;
@@ -56,13 +68,26 @@ export class ViewparentsComponent implements OnInit {
   removeParent(parentId: string){
     
     this.spinner.show();
-
+    
     this.afs.doc('users/user/parent/'+parentId).update({isDeleted:true}).then(_ => {
-        this.openSnackBar("Parent Removed","Done");
-        this.spinner.hide();
-      }
-    );
-
+        
+      this.usersDoc = this.afs.collection('userCredentials');
+      this.usersDoc.snapshotChanges().pipe(
+        map(actions => actions.map(y=>{
+          const id = y.payload.doc.id;
+          let userCredentialParentId = y.payload.doc.data().parentId
+          if(userCredentialParentId==parentId){
+            this.afs.doc('userCredentials/'+id).update({isDeleted:true}).then(_ => {
+              this.openSnackBar("Parent Removed","Done");
+              this.spinner.hide()
+            }
+          );
+          }
+          
+        }
+        ))
+      ).subscribe();
+    });
   }
 
   ngOnInit() {

@@ -4,13 +4,32 @@ import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/fo
 import { ErrorStateMatcher, MatSnackBar, MatSnackBarModule } from '@angular/material';
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-import { Md5 } from "md5-typescript";
 import { Router } from '@angular/router'
 import { map } from 'rxjs/operators';
+import { User } from 'firebase';
+import { NgxSpinnerService } from 'ngx-spinner';
+
 
 export interface DialogData {
   characterName: string;
 }
+
+export interface user{
+  email: string;
+  password: string;
+}
+
+export interface userCredentials { 
+  email: string;
+  password: string;
+  driverId: string;
+  ownerId: string;
+  adminId: string;
+  passengerId: string;
+  parentId: string;
+  isDeleted: boolean;
+} 
+
 export interface Passenger { 
   email: string;
   password: string;
@@ -28,6 +47,10 @@ export interface Parent {
   parentpass: string;
 } 
 
+export interface Owner {
+  email : string;
+  password: string;
+}
 
 
 @Component({
@@ -40,9 +63,16 @@ export class LoginComponent implements OnInit {
 
   public name: string
 
-  constructor(public dialog: MatDialog,db: AngularFirestore) {}
+  constructor(public dialog: MatDialog,db: AngularFirestore) {
+    localStorage.removeItem("driverId")
+    localStorage.removeItem("ownerId")
+    localStorage.removeItem("adminId")
+    localStorage.removeItem("passengerId")
+    localStorage.removeItem("parentId")
 
-  loginpopup(character): void {
+  }
+
+  signuppopup(character): void {
 
     this.name = character;
 
@@ -57,7 +87,7 @@ export class LoginComponent implements OnInit {
   }
 
 
-  loginpopup2(character): void {
+  loginpopup(character): void {
 
     this.name = character;
 
@@ -75,34 +105,32 @@ export class LoginComponent implements OnInit {
 
 }
 
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-  }
-}
 
 @Component({
-  selector: 'login-popup',
-  templateUrl: './login-popup.html',
+  selector: 'signup-popup',
+  templateUrl: './signup-popup.html',
 })
 
 export class OverviewDialog {
   inputEmail = null;
   inputPassword = null;
-  checked = false;
+  inputPassword2 = null;
   waiting = false;
   loginerror = false;
   hide = true;
-  myControl1 = new FormControl();
+  hide2 = true;
+  passwordDiv = false;
   myControl2 = new FormControl();
-    
+  myControl3 = new FormControl();
+  user:user;
+  users = new Array()
+  private usersDoc: AngularFirestoreCollection<userCredentials>;
+  // users : Observable<userCredentials[]>;
 
-  private passengerDoc: AngularFirestoreCollection<Passenger>;
-  passengers: Observable<Passenger[]>
-
-  private parentDoc: AngularFirestoreCollection<Parent>;
-  parents: Observable<Parent[]>;
+  myControl1 = new FormControl('', [
+    Validators.required,
+    Validators.email,
+  ]);
 
   constructor(
       public dialogRef: MatDialogRef<OverviewDialog>,
@@ -110,116 +138,112 @@ export class OverviewDialog {
       private afs: AngularFirestore,
       private router: Router,
       public snackbar: MatSnackBar,
+      private _snackBar: MatSnackBar,
   ) { 
-
-    if(localStorage.getItem('email')!=null){
-      this.inputEmail = localStorage.getItem('email');
-      this.inputPassword = localStorage.getItem('password');
-      this.checked = true;
-    }
+        
+    this.usersDoc = this.afs.collection('userCredentials');
+    var flag: boolean = false;
+    
+    this.usersDoc.snapshotChanges().pipe(
+      map(actions => actions.map(y=>{
+        const id = y.payload.doc.id;
+        this.users.push(y.payload.doc.data().email)
+        
+      }))
+    ).subscribe();
   }
 
-  onNoClick(): void { 
+  onNoClick(): void {  
     this.dialogRef.close();
   }
 
-  login():void {
-    this.loginerror = false;
-    this.waiting = true;
-    var email = this.myControl1.value;
-    var password = this.myControl2.value;
-    if(this.data.characterName=="passenger"){     
+  signup(){
+    this.passwordDiv = true;
 
-      this.passengerDoc = this.afs.collection('users/user/passenger');
-      this.passengers = this.passengerDoc.valueChanges();
-      this.passengerDoc.snapshotChanges().pipe(
-        map(actions => actions.map(y=>{
-          const id = y.payload.doc.id;
-          if(email==y.payload.doc.data().email && password==y.payload.doc.data().password){
-            localStorage.setItem('currentUserId',id);
+    if(this.inputEmail && this.inputPassword && this.inputPassword2){
+
+      if(this.inputPassword==this.inputPassword2 && !this.myControl1.hasError('email')){
+        this.waiting = true;
+        this.user={
+          email: this.inputEmail,
+          password: this.inputPassword,
+        }
+
+        let userFlag:boolean = false;
+
+        for(let u of this.users){  //Check for user has already registered
+
+          if(this.inputEmail==u){
+            this.openSnackBar("Email has been already registered","Ok");
+            this.waiting = false;
+            userFlag = true;
           }
         }
-        ))
-      ).subscribe();
-      
-      var flag: boolean = false;
-      this.passengers.forEach(x=>{
-        x.forEach(y=>{
-          if(email==y.email && password==y.password){
-            if(this.checked){
-              localStorage.setItem('email',email);
-              localStorage.setItem('password',password);
-            }
-            else{
-              localStorage.removeItem('email');
-              localStorage.removeItem('password');
-              this.checked = false;
-            }
-            this.dialogRef.close();
-            this.router.navigateByUrl('/passenger');
-            flag = true;
-          }
-        })
-        if(!flag){
-          this.waiting = false;
-          this.loginerror = true;
+
+        if(!userFlag){
+          this.afs.collection('userCredentials').add(this.user).then(_ => {
+            this.openSnackBar("Registration Success","Done");
+            this.waiting = false;
+          });
         }
-      });
-      
+
+       
+      }
+      else{
+        //Invalid Inputs
+      }
     }
-
-  
-
-    if(this.data.characterName=="parent"){
-
-      
-      this.parentDoc = this.afs.collection('users/user/parent');
-      this.parentDoc.snapshotChanges().pipe(
-        map(actions => actions.map(y=>{
-          const id = y.payload.doc.id;
-          if(email==y.payload.doc.data().parentemail && password==y.payload.doc.data().parentpass){
-            localStorage.setItem('currentUserId',id);
-          }
-        }
-        ))
-      ).subscribe();
-
-      this.waiting = true;  
-      this.parentDoc = this.afs.collection('users/user/parent');
-      this.parents = this.parentDoc.valueChanges();
-      var flag: boolean = false;
-      this.parents.forEach(x=>{
-        x.forEach(y=>{
-          if(email==y.parentemail && password==y.parentpass){
-            if(this.checked){
-              localStorage.setItem('email',email);
-              localStorage.setItem('password',password);
-            }
-            else{
-              localStorage.removeItem('email');
-              localStorage.removeItem('password');
-              this.checked = false;
-            }
-            this.dialogRef.close();
-            this.router.navigateByUrl('/parent');
-            flag = true;
-          }
-        })
-        if(!flag){
-          this.waiting = false;
-          this.loginerror = true;
-        }
-      });
-      
+    else{
+      //Empty Inputs
     }
+    
+  }
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 
 }
 
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @Component({
-  selector: 'login-popup2',
-  templateUrl: './login-popup2.html',
+  selector: 'login-popup',
+  templateUrl: './login-popup.html',
 })  
 
 export class OverviewDialog2 {
@@ -228,7 +252,9 @@ export class OverviewDialog2 {
   inputPassword = null;
   checked = false;
   waiting = false;
+  waiting2 = false;
   loginerror = false;
+  emptyinputs = false;
   hide = true;
   myControl1 = new FormControl();
   myControl2 = new FormControl();
@@ -239,23 +265,33 @@ export class OverviewDialog2 {
   ]);
 
 
-    
-  private driverDoc: AngularFirestoreCollection<Driver>;
-  drivers: Observable<Driver[]>;
-
-  private adminDoc: AngularFirestoreCollection<Admin>;
-  admins: Observable<Admin[]>;
+  private loginDoc: AngularFirestoreCollection<userCredentials>;
+  users : Observable<userCredentials[]>;
+  userId : string;
 
   constructor(
       public dialogRef: MatDialogRef<OverviewDialog>,
       @Inject(MAT_DIALOG_DATA) public data: DialogData,
       private afs: AngularFirestore,
       private router: Router,
-      public snackbar: MatSnackBar
+      public snackbar: MatSnackBar,
   ) { 
-    if(localStorage.getItem('email')!=null){
-      this.inputEmail = localStorage.getItem('email');
-      this.inputPassword = localStorage.getItem('password');
+    if(localStorage.getItem('rememberme')!=null){
+      this.waiting2 = true;
+      this.userId = localStorage.getItem("rememberme");
+      let userDoc: AngularFirestoreCollection<userCredentials>
+      userDoc = this.afs.collection('userCredentials');
+      userDoc.snapshotChanges().pipe(
+        map(actions => actions.map(y=>{
+          if(y.payload.doc.id==this.userId){
+            this.inputEmail = y.payload.doc.data().email;
+            this.inputPassword = y.payload.doc.data().password;
+            this.waiting2 = false;
+          }
+          this.waiting2 = false;
+        }
+        ))
+      ).subscribe();
       this.checked = true;
     }
   }
@@ -264,104 +300,109 @@ export class OverviewDialog2 {
   onNoClick(): void {
     this.dialogRef.close();
   }
-
-  
   login():void {
+    console.log("login nowww")
     this.loginerror = false;
-    this.waiting = true;
     var email = this.myControl1.value;
     var password = this.myControl2.value;
+
     
-    if(this.data.characterName=="driver"){
+    if(email && password){
+      this.emptyinputs = false;
+      this.waiting = true;
 
-
-      this.driverDoc = this.afs.collection('users/user/driver');
-      this.drivers = this.driverDoc.valueChanges();
+      this.loginDoc = this.afs.collection('userCredentials');
+      this.users = this.loginDoc.valueChanges();
       var flag: boolean = false;
-
-      this.driverDoc.snapshotChanges().pipe(
+  
+      this.loginDoc.snapshotChanges().pipe(
         map(actions => actions.map(y=>{
           const id = y.payload.doc.id;
           if(email==y.payload.doc.data().email && password==y.payload.doc.data().password){
-            localStorage.setItem('currentUserId',id);
+            this.userId = id;
+            localStorage.setItem('userCredentialId',id);
           }
         }
         ))
       ).subscribe();
-
-      this.drivers.forEach(x=>{
+  
+      this.users.forEach(x=>{
         x.forEach(y=>{
-          if(email==y.email && password==y.password){
+          if(email==y.email && password==y.password && !y.isDeleted){
             if(this.checked){
-              localStorage.setItem('email',email);
-              localStorage.setItem('password',password);
+              localStorage.setItem('rememberme',this.userId);
             }
             else{
-              localStorage.removeItem('email');
-              localStorage.removeItem('password');
+              localStorage.removeItem('rememberme');
               this.checked = false;
             }
+  
             this.dialogRef.close();
-            this.router.navigateByUrl('/driver');
-            flag = true;
-          }
-        })
-        if(!flag){
-          this.waiting = false;
-          this.loginerror = true;
-        }
-      });
-      
-    }
-
-    if(this.data.characterName=="admin"){
-      this.adminDoc = this.afs.collection('users/user/admin');
-      this.admins = this.adminDoc.valueChanges();
-      var flag: boolean = false;
-
-      
-
-      this.adminDoc.snapshotChanges().pipe(
-        map(actions => actions.map(y=>{
-          const id = y.payload.doc.id;
-          if(email==y.payload.doc.data().email && password==y.payload.doc.data().password){
-            localStorage.setItem('currentUserId',id);
-          }
-        }
-        ))
-      ).subscribe();
-
-      this.admins.forEach(x=>{
-        x.forEach(y=>{
-          if(email==y.email && password==y.password){
-            if(this.checked){
-              localStorage.setItem('email',email);
-              localStorage.setItem('password',password);
+  
+            // set user Id's
+            if(y.adminId){
+              localStorage.setItem('adminId',y.adminId)
+            }
+            if(y.driverId){
+              localStorage.setItem('driverId',y.driverId)
+            }
+            if(y.passengerId){
+              localStorage.setItem('passengerId',y.passengerId)
+            }
+            if(y.parentId){
+              localStorage.setItem('parentId',y.parentId)
+            }
+            if(y.ownerId){       
+              localStorage.setItem('ownerId',y.ownerId)
+            }
+  
+            //navigate to correspoding Component  
+            if(y.adminId){
+              console.log("admin exist") 
+              this.router.navigateByUrl('/admin')
+            }
+            else if(y.driverId){
+              console.log("driver exist")
+              this.router.navigateByUrl('/driver')
+            }
+            else if(y.passengerId){
+              console.log("passenger exist")
+              this.router.navigateByUrl('/passenger')
+            }
+            else if(y.parentId){
+              console.log("parent exist")
+              this.router.navigateByUrl('/parent')
+            }
+            else if(y.ownerId){       
+              console.log("owner exist")     
+              this.router.navigateByUrl('/owner')
             }
             else{
-              localStorage.removeItem('email');
-              localStorage.removeItem('password');
-              this.checked = false;
+              console.log("Not Registered to any user")
+              this.router.navigateByUrl('/register')
             }
-            this.dialogRef.close();
-            this.router.navigateByUrl('/admin');
             flag = true;
           }
-        })
-        if(!flag){
-          this.waiting = false;
-          this.loginerror = true;
-        }
+        })    
+        setTimeout(()=>{
+          console.log(flag)
+          if(!flag){
+            console.log("inside")
+            this.waiting = false;
+            this.loginerror = true;
+          }
+        },3000);
       });
     }
-
-
-    if(this.data.characterName=="owner"){
-      this.dialogRef.close();
-      this.router.navigateByUrl('/owner');
+    else{
+      this.emptyinputs = true;
     }
 
 
   }
 
+
+
+  
+  
 }

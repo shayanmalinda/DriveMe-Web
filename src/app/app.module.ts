@@ -41,7 +41,11 @@ import { ViewadminsComponent } from './admin/admin/viewadmins/viewadmins.compone
 import { RegisteradminComponent } from './admin/admin/registeradmin/registeradmin.component';
 import { EditadmindetailsComponent } from './admin/admin/editadmindetails/editadmindetails.component';
 import { AdminprofileComponent } from './admin/adminprofile/adminprofile.component';
+
 import { RegisterpassengerComponent } from './passenger/registerpassenger/registerpassenger.component';
+
+import { DriverchangepasswordComponent } from './driver/driverchangepassword/driverchangepassword.component';
+import { RegisterComponent } from './register/register.component';
 
 
 @NgModule({
@@ -74,7 +78,12 @@ import { RegisterpassengerComponent } from './passenger/registerpassenger/regist
     RegisteradminComponent,
     EditadmindetailsComponent,
     AdminprofileComponent,
+
     RegisterpassengerComponent,
+
+    DriverchangepasswordComponent,
+    RegisterComponent,
+
   ],  
   imports: [
     BrowserModule,

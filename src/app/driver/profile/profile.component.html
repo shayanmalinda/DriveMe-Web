@@ -1,49 +1,35 @@
 <app-ngxspinner></app-ngxspinner>
+<div class="container-fluid navbar-margin">
 
-<div class="container navbar-margin">
-    <mat-list role="list" *ngFor="let driver of drivers | async; let last = last ">
-        <div class="row pt-4 pb-3 mb-4" style="border: 1.5px solid #FF5722; border-radius: 20px;" *ngIf="!driver.isDeleted">
-            <div class="col-md-3" style="vertical-align: middle;text-align: center;">
-                <div class="row" style="vertical-align: middle;
-                display: flex;
-                justify-content: center;">
-                    <img src="../../../../assets/driveravatar2.png" alt="Driver Icon" style="width: 200px;
-                        position: absolute;
-                        top: 50%;
-                        -ms-transform: translateY(-50%);
-                        transform: translateY(-50%);">
-                </div>
-            </div>
-            <div class="col-md-5" style="padding-left: 30px;">
-                <p>Name : {{driver.name}}</p>
-                <p>Email : {{driver.email}}</p>
-                <p>Address : {{driver.driverAddress}}</p>
-                <p>Telephone : {{driver.telephone}}</p>
-                <p>NIC/Passport Number : {{driver.driverNIC}}</p>
-                <p>License Number: {{driver.driverLicense}}</p>
-                <p>Vehicle Number : {{driver.vehicleNumber}}</p>
-                <p>Vehicle Chassis : {{driver.vehicleChassis}}</p>
-                <p>Vehicle Type : {{driver.vehicleType}}</p>
-            </div>
-            <div class="col-md-4">
-                <button mat-raised-button color="primary" style="
-                    height: 45px;
-                    width: 80%;
-                    position: absolute;
-                    top: 35%;
-                    -ms-transform: translateY(-50%);
-                    transform: translateY(-50%);" (click)="changedriverDetails(driver.id,driver)" routerLinkActive="active"><mat-icon>edit</mat-icon>Change Details</button>
+    <div class="row">
+        <div class="col-md-1 col-sm-1 col-xs-0"></div>
+        <div class="col-md-3 col-sm-3 col-xs-12 mb-5">
 
-                <button mat-raised-button color="warn" style="
-                    height: 45px;
-                    width: 80%;
-                    position: absolute;
-                    top: 55%;
-                    -ms-transform: translateY(-50%);
-                    transform: translateY(-50%);" routerLinkActive="active" (click)="removeDriver(driver.id)">
-                    <mat-icon>delete</mat-icon>Remove Driver</button>
-                <!-- [routerLink]="['/admin', {outlets: {'adminnavbar': ['editdriverdetails',id]}}]"     -->
+            <div class="row" style="vertical-align: middle;
+                                justify-content: center;">
+                <img src="../../../../assets/driveravatar2.png" alt="Driver Icon" style="width: 70%; ">
             </div>
         </div>
-    </mat-list>
+
+        <div class="col-md-1 col-sm-0 col-xs-0"></div>
+        <div class="col-md-5 col-sm-6 pl-5 pb-3 col-xs-12" style="border: 1.5px solid #FF5722; border-radius: 10px; padding-top:5px">
+            <p style="font-size: 17px;"><span class="mr-3" style="font-weight: bold;"> Name  :</span> {{name}}</p><br>
+            <p style="font-size: 17px;"><span class="mr-3" style="font-weight: bold;"> Email  :</span>{{email}}</p><br>
+            <p style="font-size: 17px;"><span class="mr-3" style="font-weight: bold;"> Telephone  :</span>{{driverTelephone}}</p><br>
+            <p style="font-size: 17px;"><span class="mr-3" style="font-weight: bold;"> License No  :</span>{{driverLicense}}</p><br>
+            <p style="font-size: 17px;"><span class="mr-3" style="font-weight: bold;"> Vehicle No  :</span>{{vehicleNumber}}</p><br>
+            <p style="font-size: 17px;"><span class="mr-3" style="font-weight: bold;"> Vehicle Type :</span>{{vehicleType}}</p><br>
+        </div>
+        <div class="col-md-2 col-sm-1 col-xs-0"></div>
+
+    </div>
+
+    <div class="row" style="text-align: left; padding-top:30px">
+        <div class="col-md-12" style="text-align: center">
+            <button mat-raised-button color="primary" style="
+                height: 45px;
+                width: 30%;" (click)="changeAdminDetails()" routerLinkActive="active"><mat-icon>edit</mat-icon>Change Password
+            </button>
+        </div>
+    </div>
 </div>

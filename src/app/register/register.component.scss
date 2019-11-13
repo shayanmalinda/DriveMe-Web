@@ -1,6 +1,10 @@
 .heading-row{
     text-align: center
 }
+.heading-row1{
+    margin-top: 20px;;
+    text-align: center
+}
 .heading{
     padding-top: 80px;
     align-content: center;
@@ -9,13 +13,20 @@
     color: white;
     padding-right: 160px    
 }
+.content{
+    align-content: center;
+    padding-right: 160px  ;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: #ccc;
+    text-align: center; 
+}
 .title{
     color: white;
     padding-left: 160px;
     padding-top: 55px;
     position: absolute;
 }
-.login-page{
+.register-page{
     background: url('../../assets/bg10.jpg') no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -48,7 +59,7 @@
 }
 
 .btn-div{
-    padding-top: 60px;
+    padding-top: 40px;
     height: 400em;
     text-align: center;
 }

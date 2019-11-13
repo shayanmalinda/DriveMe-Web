@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-driver',
@@ -7,9 +8,65 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DriverComponent implements OnInit {
 
-  constructor() { }
+  
+  multipleCharacter: boolean=false;
+  adminAvailable: boolean=false;
+  passengerAvailable: boolean=false;
+  parentAvailable: boolean=false;
+  ownerAvailable: boolean=false;
+
+  constructor(
+    private router: Router,) {
+    
+    if(localStorage.getItem("driverId")){
+        
+      if(localStorage.getItem("adminId")){
+        this.multipleCharacter=true;
+        this.adminAvailable = true;
+      }
+      
+      if(localStorage.getItem("passengerId")){
+        this.multipleCharacter=true;
+        this.passengerAvailable = true;
+      }
+      if(localStorage.getItem("parentId")){
+        this.multipleCharacter=true;
+        this.parentAvailable = true;
+      }
+      if(localStorage.getItem("ownerId")){
+        this.multipleCharacter=true;
+        this.ownerAvailable = true;
+      }
+    } 
+    else{
+      router.navigateByUrl('/')
+    }
+
+  }
 
   ngOnInit() {
+  }
+
+  switchToAdmin(){
+    this.router.navigateByUrl('/admin')
+  }
+
+  switchToParent(){
+    this.router.navigateByUrl('/parent')
+  }
+
+  switchToPassenger(){
+    this.router.navigateByUrl('/passenger')
+  }
+
+  switchToOwner(){
+    this.router.navigateByUrl('/owner')
+  }
+
+  logout(){
+    
+    localStorage.clear();
+    this.router.navigate([''], { replaceUrl: true });
   }
 
 }
