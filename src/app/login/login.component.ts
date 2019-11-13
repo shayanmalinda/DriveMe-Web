@@ -387,7 +387,6 @@ export class OverviewDialog2 {
         setTimeout(()=>{
           console.log(flag)
           if(!flag){
-            console.log("inside")
             this.waiting = false;
             this.loginerror = true;
           }

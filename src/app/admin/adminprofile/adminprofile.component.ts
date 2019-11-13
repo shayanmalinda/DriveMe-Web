@@ -74,6 +74,11 @@ export class AdminprofileComponent implements OnInit {
 
   }
 
+  changePassword(){
+    this.router.navigate(['/admin', {outlets: {'adminnavbar': ['changeuserpassword']}}],{queryParams: {userId: this.adminId,userType:"admin"}})
+    
+  }
+
   // removeAdmin(adminId: string){
   //   this.afs.doc('users/user/admin/'+adminId).update({isDeleted:true}).then(_ => {
   //       this.openSnackBar("Admin Removed","Done");

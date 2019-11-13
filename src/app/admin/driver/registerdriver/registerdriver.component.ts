@@ -18,7 +18,6 @@ export interface Driver {
   driverAddress: string;
   driverNIC: string;
   driverLicense: string;
-  password: string;
   vehicleNumber: string;
   vehicleChassis: string;
   availableSeets: string;
@@ -140,7 +139,6 @@ export class RegisterdriverComponent implements OnInit {
       vehicleChassis : this.vehicleChassis,
       vehicleNumber : this.vehicleNumber,
       vehicleType : this.vehicleType,
-      password : this.pass1
     }
 
     let id = this.afs.createId();

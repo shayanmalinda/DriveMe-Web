@@ -24,13 +24,24 @@
     </div>
 
     <div class="row" style="text-align: center; padding-top:100px">
-        <div class="col-md-12" style="text-align: center">
+        <div class="col-md-2"></div>
+        <div class="col-md-4" style="text-align: center">
             <button mat-raised-button color="primary" style="
                 height: 45px;
-                width: 30%;"
+                width: 80%;"
                 (click)="changeAdminDetails()" 
                 routerLinkActive="active" ><mat-icon>edit</mat-icon>Edit Profile
             </button>
         </div>
+        <div class="col-md-4" style="text-align: center">
+            <button mat-raised-button color="warn" style="
+                height: 45px;
+                width: 80%;"
+                (click)="changePassword()" 
+                routerLinkActive="active" ><mat-icon>edit</mat-icon>Change Password
+            </button>
+        </div>
+        <div class="col-md-2"></div>
+
     </div>
 </div>
