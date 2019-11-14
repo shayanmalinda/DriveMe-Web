@@ -44,7 +44,6 @@ import { AdminprofileComponent } from './admin/adminprofile/adminprofile.compone
 
 import { RegisterpassengerComponent } from './passenger/registerpassenger/registerpassenger.component';
 
-import { DriverchangepasswordComponent } from './driver/driverchangepassword/driverchangepassword.component';
 import { RegisterComponent } from './register/register.component';
 import { ChangeUserPasswordComponent } from './shared/change-user-password/change-user-password.component';
 
@@ -82,7 +81,6 @@ import { ChangeUserPasswordComponent } from './shared/change-user-password/chang
 
     RegisterpassengerComponent,
 
-    DriverchangepasswordComponent,
     RegisterComponent,
     ChangeUserPasswordComponent,
 

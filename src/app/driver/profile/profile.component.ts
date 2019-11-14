@@ -46,14 +46,16 @@ export class ProfileComponent implements OnInit {
 
  private driverDoc: AngularFirestoreCollection<Driver>;
  drivers: Observable<Driver[]>;
- driver: Observable<Driver>
+ driver: Observable<Driver>;
+ driverId: string;
 
  constructor(
    private afs: AngularFirestore,private router : Router,private spinner: NgxSpinnerService,
-   private _snackBar: MatSnackBar,) { 
+   private _snackBar: MatSnackBar) { 
      let userID: string;
      this.spinner.show();
      userID = localStorage.getItem('driverId');
+     this.driverId = userID;
      this.driverNIC = userID;
      this.afs.doc<Driver>('users/user/driver/'+userID).valueChanges().subscribe(
        dri_obj=>{
@@ -78,10 +80,13 @@ export class ProfileComponent implements OnInit {
 
 
 
- changedriverpassword(){
-  this.router.navigate(['/driver', {outlets: {'drivernavbar': ['driver-changepassword']}}],{queryParams: {userID: this.driverNIC}})
+ changeDriverPassword(){
+  this.router.navigate(['/driver', {outlets: {'drivernavbar': ['changeuserpassword']}}],
+  {queryParams: {userId:this.driverId, userType:"driver"}})
 
 }
+
+
 
 //change driver password fuction 
  
