@@ -28,10 +28,13 @@ import { AdminprofileComponent } from './admin/adminprofile/adminprofile.compone
 import { RegisterpassengerComponent } from './passenger/registerpassenger/registerpassenger.component';
 
 import { RegisterComponent } from './register/register.component';
-
 import { ChangeUserPasswordComponent } from './shared/change-user-password/change-user-password.component';
 import { DriverchangepasswordComponent} from'./driver/driverchangepassword/driverchangepassword.component';
 import { from } from 'rxjs';
+
+
+
+
 // import { AdminprofileComponent } from './admin/adminprofile/adminprofile.component';
 
 const routes: Routes = [
@@ -79,8 +82,8 @@ const routes: Routes = [
 
 
 @NgModule({
-  //imports: [RouterModule.forRoot(routes,{ enableTracing: true })],
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,{ enableTracing: true })],
+  //imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
