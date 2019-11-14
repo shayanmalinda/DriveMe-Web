@@ -29,9 +29,9 @@
                         <input [(ngModel)]="adminNIC" matInput placeholder="NIC/Passport Number" formControlName="ctrl4" required>
                     </mat-form-field><br>
                     <mat-form-field class="form-field-full-width">
-                        <input [(ngModel)]="pass1" matInput placeholder="Login Password" [type]="hide ? 'password' : 'text'" formControlName="ctrl5" required>
-                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                        <mat-icon color="accent">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        <input [(ngModel)]="pass1" matInput placeholder="Login Password" [type]="hide1 ? 'password' : 'text'" formControlName="ctrl5" required>
+                        <button mat-icon-button matSuffix (click)="hide1 = !hide1" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide1">
+                        <mat-icon color="accent">{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
                         </button>
                     </mat-form-field>
                     <mat-form-field class="form-field-full-width pb-0">

@@ -25,6 +25,7 @@ import { ViewadminsComponent } from './admin/admin/viewadmins/viewadmins.compone
 import { EditadmindetailsComponent } from './admin/admin/editadmindetails/editadmindetails.component';
 import { AdminprofileComponent } from './admin/adminprofile/adminprofile.component';
 import { RegisterComponent } from './register/register.component';
+import { ChangeUserPasswordComponent } from './shared/change-user-password/change-user-password.component';
 // import { AdminprofileComponent } from './admin/adminprofile/adminprofile.component';
 
 const routes: Routes = [
@@ -42,6 +43,7 @@ const routes: Routes = [
       { path: 'viewadmins',outlet: 'adminnavbar', component: ViewadminsComponent},
       { path: 'editadmindetails',outlet: 'adminnavbar', component: EditadmindetailsComponent},
       { path: 'adminprofile',outlet: 'adminnavbar', component: AdminprofileComponent},
+      { path: 'changeuserpassword',outlet: 'adminnavbar', component: ChangeUserPasswordComponent},
     ]
   },
   { path: 'driver', component: DriverComponent,

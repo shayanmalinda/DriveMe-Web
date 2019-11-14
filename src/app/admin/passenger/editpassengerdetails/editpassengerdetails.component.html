@@ -2,7 +2,7 @@
 <div class="container navbar-margin">   
     <div class="container-fluid pl-5 pr-5 pt-3 pb-2 fill-form"> 
 
-        <p style="margin:0px;font-size: 30px; font-weight: 400;font-family: Georgia, 'Times New Roman', Times, serif">Edit Driver Details</p>
+        <p style="margin:0px;font-size: 30px; font-weight: 400;font-family: Georgia, 'Times New Roman', Times, serif">Edit Passenger Details</p>
         <section *ngIf="waiting" style="display: flex; align-content: center; align-items: center;margin-top: 30px; margin-left: 20px; margin-right: 20px;">
             <mat-progress-bar  color="warn" mode="indeterminate" value="50" bufferValue="75">
         </mat-progress-bar>
@@ -14,16 +14,16 @@
                     <mat-form-field class="form-field-full-width">
                         <input [(ngModel)]="passengerName" matInput placeholder="Name"  formControlName="ctrl1" required>
                     </mat-form-field><br>
-                    <mat-form-field class="form-field-full-width">
+                    <!-- <mat-form-field class="form-field-full-width">
                         <input [(ngModel)]="passengerEmail" matInput placeholder="Email" formControlName="ctrl2" required>
-                    </mat-form-field><br>
+                    </mat-form-field><br> -->
                     <mat-form-field class="form-field-full-width">
                         <input [(ngModel)]="passengerAddress" matInput placeholder="Address" formControlName="ctrl3" required>
                     </mat-form-field><br>
                     <mat-form-field class="form-field-full-width">
                         <input [(ngModel)]="passengerPhone" matInput placeholder="Telephone" formControlName="ctrl4" required>
                     </mat-form-field><br>
-                    <mat-form-field class="form-field-full-width">
+                    <!-- <mat-form-field class="form-field-full-width">
                         <input [(ngModel)]="pass1" matInput placeholder="Login Password" [type]="hide ? 'password' : 'text'" formControlName="ctrl5" required>
                         <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                         <mat-icon color="accent">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
@@ -34,7 +34,7 @@
                         <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" >
                         <mat-icon color="accent">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                         </button>
-                    </mat-form-field>
+                    </mat-form-field> -->
                     <div style="height: 20px;">
                         <div *ngIf="passwordDiv">
                             <section *ngIf="pass1!=pass2?true:false" style="font-size: 12px;color: red;">

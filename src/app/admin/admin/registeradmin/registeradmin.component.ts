@@ -13,7 +13,12 @@ export interface Admin{
   telephone: string;
   address: string;
   nic: string;
+}
+
+export interface UserCredentials{
+  email: string;
   password: string;
+  adminId: string;
 }
 
 @Component({
@@ -35,6 +40,7 @@ export class RegisteradminComponent implements OnInit {
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   admin:Admin;
+  userCredentials: UserCredentials;
 
   adminName: string;
   adminEmail: string;
@@ -83,20 +89,31 @@ export class RegisteradminComponent implements OnInit {
     registerAdmin(){
       this.waiting = true;
       this.admin={
+        email: this.adminEmail,
         name : this.adminName,
-        email : this.adminEmail,
         telephone : this.adminTelephone,
         address : this.adminAddress,
-        password : this.pass1,
         nic : this.adminNIC,
       }
 
-      this.afs.collection('users/user/admin').add(this.admin).then(_ => {
-          this.openSnackBar("Admin Registered","Done");
-          this.waiting = false;
+
+
+      let id = this.afs.createId();
+
+      this.userCredentials={
+        email: this.adminEmail,
+        password: this.pass1,
+        adminId: id
+      }
+
+      this.afs.collection('users/user/admin').doc(id).set(this.admin).then(_ => {
+          this.afs.collection('userCredentials').add(this.userCredentials).then(_ => {
+            this.openSnackBar("Admin Registered","Done");
+            this.waiting = false;
+          });
         }
       );
-      
+          
     }
 
 }
