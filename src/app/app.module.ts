@@ -46,7 +46,11 @@ import { RegisterpassengerComponent } from './passenger/registerpassenger/regist
 
 import { DriverchangepasswordComponent } from './driver/driverchangepassword/driverchangepassword.component';
 import { RegisterComponent } from './register/register.component';
+<<<<<<< HEAD
 import { OwnerprofileComponent } from './ownerprofile/ownerprofile.component';
+=======
+import { ChangeUserPasswordComponent } from './shared/change-user-password/change-user-password.component';
+>>>>>>> ec79c16713e11294ccd3880fbc0b06a00a9e2f7f
 
 
 @NgModule({
@@ -84,7 +88,12 @@ import { OwnerprofileComponent } from './ownerprofile/ownerprofile.component';
 
     DriverchangepasswordComponent,
     RegisterComponent,
+<<<<<<< HEAD
     OwnerprofileComponent,
+=======
+    ChangeUserPasswordComponent,
+
+>>>>>>> ec79c16713e11294ccd3880fbc0b06a00a9e2f7f
 
   ],  
   imports: [

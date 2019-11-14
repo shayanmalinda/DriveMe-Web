@@ -77,14 +77,13 @@ export class ProfileComponent implements OnInit {
  }
 
 
- /*
+
  changedriverpassword(){
-  this.router.navigate(['/admin', {outlets: {'adminnavbar': ['editadmindetails']}}],{queryParams: {userID: this.driverNIC}})
+  this.router.navigate(['/driver', {outlets: {'drivernavbar': ['driver-changepassword']}}],{queryParams: {userID: this.driverNIC}})
 
 }
-*/ 
-//change driver password fuction here...
- 
+
+//change driver password fuction 
  
  openSnackBar(message: string, action: string) {
    this._snackBar.open(message, action, {
