@@ -46,6 +46,7 @@ import { RegisterpassengerComponent } from './passenger/registerpassenger/regist
 
 import { DriverchangepasswordComponent } from './driver/driverchangepassword/driverchangepassword.component';
 import { RegisterComponent } from './register/register.component';
+import { OwnerprofileComponent } from './ownerprofile/ownerprofile.component';
 
 
 @NgModule({
@@ -83,6 +84,7 @@ import { RegisterComponent } from './register/register.component';
 
     DriverchangepasswordComponent,
     RegisterComponent,
+    OwnerprofileComponent,
 
   ],  
   imports: [
