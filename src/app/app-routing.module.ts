@@ -29,6 +29,10 @@ import { RegisterpassengerComponent } from './passenger/registerpassenger/regist
 
 import { RegisterComponent } from './register/register.component';
 
+import { ChangeUserPasswordComponent } from './shared/change-user-password/change-user-password.component';
+
+
+
 // import { AdminprofileComponent } from './admin/adminprofile/adminprofile.component';
 
 const routes: Routes = [
@@ -46,6 +50,7 @@ const routes: Routes = [
       { path: 'viewadmins',outlet: 'adminnavbar', component: ViewadminsComponent},
       { path: 'editadmindetails',outlet: 'adminnavbar', component: EditadmindetailsComponent},
       { path: 'adminprofile',outlet: 'adminnavbar', component: AdminprofileComponent},
+      { path: 'changeuserpassword',outlet: 'adminnavbar', component: ChangeUserPasswordComponent},
     ]
   },
   { path: 'driver', component: DriverComponent,
@@ -79,8 +84,8 @@ const routes: Routes = [
 
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes,{ enableTracing: true })],
-  // imports: [RouterModule.forRoot(routes)],
+  //imports: [RouterModule.forRoot(routes,{ enableTracing: true })],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
