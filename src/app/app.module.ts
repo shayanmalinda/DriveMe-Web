@@ -86,6 +86,7 @@ import { ChangeUserPasswordComponent } from './shared/change-user-password/chang
     RegisterComponent,
     ChangeUserPasswordComponent,
 
+
   ],  
   imports: [
     BrowserModule,

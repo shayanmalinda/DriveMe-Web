@@ -32,6 +32,9 @@ import { ChangeUserPasswordComponent } from './shared/change-user-password/chang
 import { DriverchangepasswordComponent} from'./driver/driverchangepassword/driverchangepassword.component';
 import { from } from 'rxjs';
 
+
+
+
 // import { AdminprofileComponent } from './admin/adminprofile/adminprofile.component';
 
 const routes: Routes = [
@@ -80,7 +83,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes,{ enableTracing: true })],
-  // imports: [RouterModule.forRoot(routes)],
+  //imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

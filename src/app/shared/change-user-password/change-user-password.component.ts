@@ -109,6 +109,7 @@ export class ChangeUserPasswordComponent implements OnInit {
     this.userDoc.snapshotChanges().pipe(
       map(actions => actions.map(y=>{
         const id = y.payload.doc.id;
+        console.log(id)
         const data = y.payload.doc.data();
         if(this.userType=="admin" && data.adminId==this.userId){ //changing password for admin
           console.log(data.password+" "+this.prevPass)  
@@ -137,7 +138,7 @@ export class ChangeUserPasswordComponent implements OnInit {
             });
           } 
         }
-        console.log("driverId: ",this.userId)
+
         if(this.userType=="driver" && data.driverId==this.userId){ //changing password for driver
           console.log(data.password+" "+this.prevPass)  
           if(data.password==this.prevPass){ //if previous password is correct                        

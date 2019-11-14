@@ -58,6 +58,10 @@ export class ViewpassengersComponent implements OnInit {
 
   }
 
+  changePassword(passengerId: string){
+    this.router.navigate(['/admin', {outlets: {'adminnavbar': ['changeuserpassword']}}],{queryParams: {userId: passengerId,userType:"passenger"}})
+    
+  }
   removePassenger(passengerId: string){
     
     this.spinner.show();
