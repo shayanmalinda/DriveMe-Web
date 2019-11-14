@@ -26,6 +26,8 @@ import { EditadmindetailsComponent } from './admin/admin/editadmindetails/editad
 import { AdminprofileComponent } from './admin/adminprofile/adminprofile.component';
 import { RegisterComponent } from './register/register.component';
 import { ChangeUserPasswordComponent } from './shared/change-user-password/change-user-password.component';
+import { DriverchangepasswordComponent} from'./driver/driverchangepassword/driverchangepassword.component';
+import { from } from 'rxjs';
 // import { AdminprofileComponent } from './admin/adminprofile/adminprofile.component';
 
 const routes: Routes = [
@@ -54,6 +56,7 @@ const routes: Routes = [
       { path: 'driver-sharelocation', outlet: 'drivernavbar',component: ShareLocationComponent},
       { path: 'driver-vehicleroute', outlet: 'drivernavbar',component: VehicleRouteComponent},
       { path: 'driver-passengerlist', outlet: 'drivernavbar',component: PassengerListComponent},
+      { path: 'driver-changepassword', outlet: 'drivernavbar',component: DriverchangepasswordComponent},
     ]
   },
 
@@ -62,12 +65,7 @@ const routes: Routes = [
   { path: 'owner', component: OwnerComponent},
   { path: 'register', component: RegisterComponent},
   
-  /**{ path: 'driver-payments', component: PaymentsComponent},
-  { path: 'driver-profile', component: ProfileComponent},
-  { path: 'driver-ratepassengers', component: RatePassengersComponent},
-  { path: 'driver-sharelocation', component: ShareLocationComponent},
-  { path: 'driver-vehicleroute', component: VehicleRouteComponent},
-  { path: 'driver-passengerlist',component: PassengerListComponent}**/
+ 
 ];
 
 
