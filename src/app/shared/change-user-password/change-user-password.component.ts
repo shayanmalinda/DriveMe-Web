@@ -109,10 +109,10 @@ export class ChangeUserPasswordComponent implements OnInit {
     this.userDoc.snapshotChanges().pipe(
       map(actions => actions.map(y=>{
         const id = y.payload.doc.id;
-        console.log(id)
+        // console.log(id)
         const data = y.payload.doc.data();
         if(this.userType=="admin" && data.adminId==this.userId){ //changing password for admin
-          console.log(data.password+" "+this.prevPass)  
+          // console.log(data.password+" "+this.prevPass)  
           if(data.password==this.prevPass){ //if previous password is correct                        
             this.afs.doc('userCredentials/'+id).update(this.password).then(_ => {
               flag= true;
@@ -121,7 +121,7 @@ export class ChangeUserPasswordComponent implements OnInit {
         }
         
         if(this.userType=="parent" && data.parentId==this.userId){ //changing password for parent
-          console.log(data.password+" "+this.prevPass)  
+          // console.log(data.password+" "+this.prevPass)  
           if(data.password==this.prevPass){ //if previous password is correct                        
             this.afs.doc('userCredentials/'+id).update(this.password).then(_ => {
               flag= true;
@@ -131,7 +131,7 @@ export class ChangeUserPasswordComponent implements OnInit {
 
         
         if(this.userType=="passenger" && data.passengerId==this.userId){ //changing password for passenger
-          console.log(data.password+" "+this.prevPass)  
+          // console.log(data.password+" "+this.prevPass)  
           if(data.password==this.prevPass){ //if previous password is correct                        
             this.afs.doc('userCredentials/'+id).update(this.password).then(_ => {
               flag= true;
@@ -140,7 +140,7 @@ export class ChangeUserPasswordComponent implements OnInit {
         }
 
         if(this.userType=="driver" && data.driverId==this.userId){ //changing password for driver
-          console.log(data.password+" "+this.prevPass)  
+          // console.log(data.driverId+" "+data.password+" "+this.prevPass)  
           if(data.password==this.prevPass){ //if previous password is correct                        
             this.afs.doc('userCredentials/'+id).update(this.password).then(_ => {
               flag= true;
@@ -149,7 +149,7 @@ export class ChangeUserPasswordComponent implements OnInit {
         }
         
         if(this.userType=="owner" && data.ownerId==this.userId){ //changing password for owner
-          console.log(data.password+" "+this.prevPass)  
+          // console.log(data.password+" "+this.prevPass)  
           if(data.password==this.prevPass){ //if previous password is correct                        
             this.afs.doc('userCredentials/'+id).update(this.password).then(_ => {
               flag= true;

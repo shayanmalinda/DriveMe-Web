@@ -29,7 +29,6 @@ import { RegisterpassengerComponent } from './passenger/registerpassenger/regist
 
 import { RegisterComponent } from './register/register.component';
 import { ChangeUserPasswordComponent } from './shared/change-user-password/change-user-password.component';
-import { DriverchangepasswordComponent} from'./driver/driverchangepassword/driverchangepassword.component';
 import { from } from 'rxjs';
 
 
@@ -63,7 +62,7 @@ const routes: Routes = [
       { path: 'driver-sharelocation', outlet: 'drivernavbar',component: ShareLocationComponent},
       { path: 'driver-vehicleroute', outlet: 'drivernavbar',component: VehicleRouteComponent},
       { path: 'driver-passengerlist', outlet: 'drivernavbar',component: PassengerListComponent},
-      { path: 'driver-changepassword', outlet: 'drivernavbar',component: DriverchangepasswordComponent},
+      { path: 'changeuserpassword',outlet: 'drivernavbar', component: ChangeUserPasswordComponent},
     ]
   },
 
@@ -82,8 +81,8 @@ const routes: Routes = [
 
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes,{ enableTracing: true })],
-  //imports: [RouterModule.forRoot(routes)],
+  // imports: [RouterModule.forRoot(routes,{ enableTracing: true })],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
