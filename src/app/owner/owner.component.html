@@ -1,5 +1,7 @@
 <base href='/'>
 
+// change routerLink of buttons as [routerLink]="[{outlets: {'ownernavbar': 'routing-path'}}]
+
 
 <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #222">
     <a class="navbar-brand" style="color: white" href="#">DriveMe</a>
@@ -21,15 +23,39 @@
             <!--edit from here like above-->
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle navbarDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Passenger List
+            Passenger Details
           </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" [routerLink]="[{outlets: {'drivernavbar': 'driver-passengerlist'}}]" routerLinkActive="active" style="color: #ddd">My Passenger List</a>
+                    <a class="dropdown-item" [routerLink]="[{outlets: {'drivernavbar': 'driver-passengerlist'}}]" routerLinkActive="active" style="color: #ddd">My Passenger Details</a>
                     <!--
                          <a class="dropdown-item" href="#" style="color: #ddd">Another</a>
                         <a class="dropdown-item" href="#" style="color: #ddd">Something</a>
                    -->
 
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle navbarDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Driver Details
+            </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" [routerLink]="[{outlets: {'drivernavbar': 'driver-sharelocation'}}]" style="color: #ddd">My Drivers</a>
+                    <!--
+                        <a class="dropdown-item" href="#" style="color: #ddd">Another</a>
+                        <a class="dropdown-item" href="#" style="color: #ddd">Something</a>
+                    -->
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle navbarDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Own Vehicles
+            </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" [routerLink]="[{outlets: {'drivernavbar': 'driver-sharelocation'}}]" style="color: #ddd">My vehicles</a>
+                    <!--
+                        <a class="dropdown-item" href="#" style="color: #ddd">Another</a>
+                        <a class="dropdown-item" href="#" style="color: #ddd">Something</a>
+                    -->
                 </div>
             </li>
 
@@ -38,7 +64,8 @@
               Payments
             </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" [routerLink]="[{outlets: {'drivernavbar': 'driver-payments'}}]" style="color: #ddd">My Payments</a>
+                    <a class="dropdown-item" [routerLink]="[{outlets: {'drivernavbar': 'driver-payments'}}]" style="color: #ddd">Driver Payments</a>
+                    <a class="dropdown-item" [routerLink]="[{outlets: {'drivernavbar': 'driver-payments'}}]" style="color: #ddd">Passenger Payments</a>
                     <!--
                         <a class="dropdown-item" href="#" style="color: #ddd">Another</a>
                         <a class="dropdown-item" href="#" style="color: #ddd">Something</a>
@@ -46,34 +73,7 @@
 
                 </div>
             </li>
-
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle navbarDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Location Sharing
-            </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" [routerLink]="[{outlets: {'drivernavbar': 'driver-sharelocation'}}]" style="color: #ddd">My Location</a>
-                    <!--
-                        <a class="dropdown-item" href="#" style="color: #ddd">Another</a>
-                        <a class="dropdown-item" href="#" style="color: #ddd">Something</a>
-                    -->
-                </div>
-            </li>
-
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle navbarDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Vehicle Route
-            </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" [routerLink]="[{outlets: {'drivernavbar': 'driver-vehicleroute'}}]" style="color: #ddd">My Route</a>
-                    <!--
-                        <a class="dropdown-item" href="#" style="color: #ddd">Another</a>
-                        <a class="dropdown-item" href="#" style="color: #ddd">Something</a>
-                   -->
-
-                </div>
-            </li>
-
+            
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle navbarDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Ratings
@@ -92,7 +92,7 @@
             <li class="nav-item dropdown" style="padding-right: 30px" >
                 <a class="nav-link navbarDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: #222"><img src="../../assets/icons/user-solid.svg " style="color: #ddd;height:20px; padding: 0px"></a>
                 <div class="dropdown-menu"  aria-labelledby="navbarDropdown" style="background-color: #333">
-                  <a class="dropdown-item" [routerLink]="[{outlets: {'drivernavbar': 'driver-profile'}}]" routerLinkActive="active" style="color: #ddd">My Profile</a>
+                  <a class="dropdown-item" [routerLink]="[{outlets: {'ownernavbar': 'ownerprofile'}}]" routerLinkActive="active" style="color: #ddd">My Profile</a>
                   <div style="border-color:#666;" class="dropdown-divider" *ngIf="multipleCharacter"></div>
                   <a class="dropdown-item" *ngIf="adminAvailable" [routerLink]="" (click)="switchToAdmin()" routerLinkActive="active" style="color: #ddd">Switch to Admin</a>                  
                   <a class="dropdown-item" *ngIf="passengerAvailable" [routerLink]="" (click)="switchToPassenger()" routerLinkActive="active" style="color: #ddd">Switch to Passenger</a>
@@ -119,11 +119,7 @@
     </div>
 </nav>
 
-
-
-
-
-<router-outlet name="drivernavbar"></router-outlet>
+<router-outlet name="ownernavbar"></router-outlet>
 
 <!--<div style="text-align: center">
     <h1>

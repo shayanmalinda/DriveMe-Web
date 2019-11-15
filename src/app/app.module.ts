@@ -45,15 +45,12 @@ import { AdminprofileComponent } from './admin/adminprofile/adminprofile.compone
 import { RegisterpassengerComponent } from './passenger/registerpassenger/registerpassenger.component';
 
 import { RegisterComponent } from './register/register.component';
-<<<<<<< HEAD
-import { OwnerprofileComponent } from './ownerprofile/ownerprofile.component';
 import { OwnvehiclesComponent } from './owner/ownvehicles/ownvehicles.component';
+import { OwnerprofileComponent } from './owner/ownerprofile/ownerprofile.component';
 import { DriverdetailsComponent } from './owner/driverdetails/driverdetails.component';
 import { PassengerdetailsComponent } from './owner/passengerdetails/passengerdetails.component';
 import { RatingsComponent } from './owner/ratings/ratings.component';
-=======
 import { ChangeUserPasswordComponent } from './shared/change-user-password/change-user-password.component';
->>>>>>> ec79c16713e11294ccd3880fbc0b06a00a9e2f7f
 
 
 @NgModule({
@@ -90,16 +87,13 @@ import { ChangeUserPasswordComponent } from './shared/change-user-password/chang
     RegisterpassengerComponent,
 
     RegisterComponent,
-<<<<<<< HEAD
-    OwnerprofileComponent,
-OwnvehiclesComponent,
-DriverdetailsComponent,
-PassengerdetailsComponent,
-RatingsComponent,
-=======
+    OwnvehiclesComponent,
+    DriverdetailsComponent,
+    PassengerdetailsComponent,
+    RatingsComponent,
     ChangeUserPasswordComponent,
+    OwnerprofileComponent
 
->>>>>>> ec79c16713e11294ccd3880fbc0b06a00a9e2f7f
 
   ],  
   imports: [

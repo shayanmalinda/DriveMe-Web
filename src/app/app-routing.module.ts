@@ -30,6 +30,7 @@ import { RegisterpassengerComponent } from './passenger/registerpassenger/regist
 import { RegisterComponent } from './register/register.component';
 import { ChangeUserPasswordComponent } from './shared/change-user-password/change-user-password.component';
 import { from } from 'rxjs';
+import { OwnerprofileComponent } from './owner/ownerprofile/ownerprofile.component';
 
 
 
@@ -73,7 +74,14 @@ const routes: Routes = [
     ]
 
   },
-  { path: 'owner', component: OwnerComponent},
+  { path: 'owner', component: OwnerComponent,
+    children:[
+      { path: 'ownerprofile',outlet: 'ownernavbar', component: OwnerprofileComponent},
+      // Define Route Here ....................
+      
+
+    ]
+  },
   { path: 'register', component: RegisterComponent},
   
  
