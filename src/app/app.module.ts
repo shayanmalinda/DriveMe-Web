@@ -51,6 +51,8 @@ import { DriverdetailsComponent } from './owner/driverdetails/driverdetails.comp
 import { PassengerdetailsComponent } from './owner/passengerdetails/passengerdetails.component';
 import { RatingsComponent } from './owner/ratings/ratings.component';
 import { ChangeUserPasswordComponent } from './shared/change-user-password/change-user-password.component';
+import { DriverpaymentsComponent } from './owner/payments/driverpayments/driverpayments.component';
+import { PassengerpaymentsComponent } from './owner/payments/passengerpayments/passengerpayments.component';
 
 
 @NgModule({
@@ -92,7 +94,9 @@ import { ChangeUserPasswordComponent } from './shared/change-user-password/chang
     PassengerdetailsComponent,
     RatingsComponent,
     ChangeUserPasswordComponent,
-    OwnerprofileComponent
+    OwnerprofileComponent,
+    DriverpaymentsComponent,
+    PassengerpaymentsComponent
 
 
   ],  

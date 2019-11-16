@@ -31,6 +31,12 @@ import { RegisterComponent } from './register/register.component';
 import { ChangeUserPasswordComponent } from './shared/change-user-password/change-user-password.component';
 import { from } from 'rxjs';
 import { OwnerprofileComponent } from './owner/ownerprofile/ownerprofile.component';
+import { DriverdetailsComponent } from './owner/driverdetails/driverdetails.component';
+import { PassengerdetailsComponent } from './owner/passengerdetails/passengerdetails.component';
+import { OwnvehiclesComponent } from './owner/ownvehicles/ownvehicles.component';
+import { DriverpaymentsComponent } from './owner/payments/driverpayments/driverpayments.component';
+import { PassengerpaymentsComponent } from './owner/payments/passengerpayments/passengerpayments.component';
+import { RatingsComponent } from './owner/ratings/ratings.component';
 
 
 
@@ -77,7 +83,13 @@ const routes: Routes = [
   { path: 'owner', component: OwnerComponent,
     children:[
       { path: 'ownerprofile',outlet: 'ownernavbar', component: OwnerprofileComponent},
-      // Define Route Here ....................
+      { path: 'owner-driverdetails',outlet: 'ownernavbar', component: DriverdetailsComponent},
+      { path: 'owner-passengerdetails', outlet: 'ownernavbar', component: PassengerdetailsComponent},
+      { path: 'owner-ownvehicles',outlet: 'ownernavbar', component: OwnvehiclesComponent },
+      { path: 'owner-driverpayments',outlet: 'ownernavbar', component: DriverpaymentsComponent},
+      { path: 'owner-passengerdetails',outlet: 'ownernavbar', component: PassengerpaymentsComponent},
+      { path: 'owner-ratings',outlet: 'ownernavbar', component: RatingsComponent},
+      // Define Route Here .................... 
       
 
     ]
