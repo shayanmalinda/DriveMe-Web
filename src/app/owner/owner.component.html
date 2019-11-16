@@ -1,7 +1,7 @@
-<base href='/'>
+<!-- <base href='/'> -->
 
-// change routerLink of buttons as [routerLink]="[{outlets: {'ownernavbar': 'routing-path'}}]
-
+<!-- change routerLink of buttons as [routerLink]="[{outlets: {'ownernavbar': 'routing-path'}}] -->
+<!-- Navigation -->
 
 <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #222">
     <a class="navbar-brand" style="color: white" href="#">DriveMe</a>
@@ -23,24 +23,21 @@
             <!--edit from here like above-->
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle navbarDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Passenger Details
-          </a>
+                    Passenger Details
+                </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" [routerLink]="[{outlets: {'ownernavbar': 'owner-passengerdetails'}}]" routerLinkActive="active" style="color: #ddd">My Passenger Details</a>
-                    <!--
-                         <a class="dropdown-item" href="#" style="color: #ddd">Another</a>
-                        <a class="dropdown-item" href="#" style="color: #ddd">Something</a>
-                   -->
+                    
 
                 </div>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle navbarDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Driver Details
-            </a>
-            // change routerLink of buttons as [routerLink]="[{outlets: {'ownernavbar': 'routing-path'}}]
+                Driver Details
+                </a>
+            
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" [routerLink]="[{outlets: {'ownernavbar': 'owner-driverdetails'}}]" style="color: #ddd">My Drivers</a>
+                    <a class="dropdown-item" [routerLink]="[{outlets: {'ownernavbar': 'owner-driverdetails'}}]" routerLinkActive="active" style="color: #ddd">My Drivers</a>
                     <!--
                         <a class="dropdown-item" href="#" style="color: #ddd">Another</a>
                         <a class="dropdown-item" href="#" style="color: #ddd">Something</a>
@@ -49,10 +46,11 @@
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle navbarDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Own Vehicles
-            </a>
+                Own Vehicles
+                </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" [routerLink]="[{outlets: {'ownernavbar': 'owner-ownvehicles'}}]" style="color: #ddd">My vehicles</a>
+                    <a class="dropdown-item" [routerLink]="[{outlets: {'ownernavbar': 'owner-myvehicles'}}]" routerLinkActive="active" style="color: #ddd">My vehicles</a>
+                    <a class="dropdown-item" [routerLink]="[{outlets: {'ownernavbar': 'owner-registervehicles'}}]" routerLinkActive="active" style="color: #ddd">Register vehicles</a>
                     <!--
                         <a class="dropdown-item" href="#" style="color: #ddd">Another</a>
                         <a class="dropdown-item" href="#" style="color: #ddd">Something</a>
@@ -62,11 +60,11 @@
 
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle navbarDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Payments
-            </a>
+                Payments
+                </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" [routerLink]="[{outlets: {''ownernavbar': 'owner-driverpayments'}}]" style="color: #ddd">Driver Payments</a>
-                    <a class="dropdown-item" [routerLink]="[{outlets: {'ownernavbar': 'owner-passengerpayments'}}]" style="color: #ddd">Passenger Payments</a>
+                    <a class="dropdown-item" [routerLink]="[{outlets: {'ownernavbar': 'owner-driverpayments'}}]" routerLinkActive="active" style="color: #ddd">Driver Payments</a>
+                    <a class="dropdown-item" [routerLink]="[{outlets: {'ownernavbar': 'owner-passengerpayments'}}]" routerLinkActive="active" style="color: #ddd">Passenger Payments</a>
                     <!--
                         <a class="dropdown-item" href="#" style="color: #ddd">Another</a>
                         <a class="dropdown-item" href="#" style="color: #ddd">Something</a>
@@ -78,9 +76,9 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle navbarDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Ratings
-            </a>
+                </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" [routerLink]="[{outlets: {'ownernavbar': 'owner-ratings'}}]" style="color: #ddd">My Ratings</a>
+                    <a class="dropdown-item" [routerLink]="[{outlets: {'ownernavbar': 'owner-ratings'}}]" routerLinkActive="active" style="color: #ddd">My Ratings</a>
                     <!--
                         <a class="dropdown-item" href="#" style="color: #ddd">Another</a>
                        <a class="dropdown-item" href="#" style="color: #ddd">Something</a>
@@ -122,9 +120,3 @@
 
 <router-outlet name="ownernavbar"></router-outlet>
 
-<!--<div style="text-align: center">
-    <h1>
-        Hello Driver!
-    </h1>
-</div>
--->

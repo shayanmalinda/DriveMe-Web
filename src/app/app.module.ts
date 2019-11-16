@@ -53,6 +53,8 @@ import { RatingsComponent } from './owner/ratings/ratings.component';
 import { ChangeUserPasswordComponent } from './shared/change-user-password/change-user-password.component';
 import { DriverpaymentsComponent } from './owner/payments/driverpayments/driverpayments.component';
 import { PassengerpaymentsComponent } from './owner/payments/passengerpayments/passengerpayments.component';
+import { MyvehiclesComponent } from './owner/ownvehicles/myvehicles/myvehicles.component';
+import { RegisterVehicleComponent } from './owner/ownvehicles/register-vehicle/register-vehicle.component';
 
 
 @NgModule({
@@ -96,7 +98,9 @@ import { PassengerpaymentsComponent } from './owner/payments/passengerpayments/p
     ChangeUserPasswordComponent,
     OwnerprofileComponent,
     DriverpaymentsComponent,
-    PassengerpaymentsComponent
+    PassengerpaymentsComponent,
+    MyvehiclesComponent,
+    RegisterVehicleComponent
 
 
   ],  
