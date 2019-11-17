@@ -77,7 +77,7 @@ export class OwnerprofileComponent implements OnInit {
   }
 
   changePassword(){
-    this.router.navigate(['/owner', {outlets: {'ownernavbar': ['changeuserpassword']}}],{queryParams: {userId: this.adminId,userType:"owner"}})
+    this.router.navigate(['/owner', {outlets: {'ownernavbar': ['changeuserpassword']}}],{queryParams: {userId: this.ownerId,userType:"owner"}})
     
   }
 
