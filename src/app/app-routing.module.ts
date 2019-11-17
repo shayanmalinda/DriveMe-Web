@@ -30,6 +30,15 @@ import { RegisterpassengerComponent } from './passenger/registerpassenger/regist
 import { RegisterComponent } from './register/register.component';
 import { ChangeUserPasswordComponent } from './shared/change-user-password/change-user-password.component';
 import { from } from 'rxjs';
+import { OwnerprofileComponent } from './owner/ownerprofile/ownerprofile.component';
+import { DriverdetailsComponent } from './owner/driverdetails/driverdetails.component';
+import { PassengerdetailsComponent } from './owner/passengerdetails/passengerdetails.component';
+import { OwnvehiclesComponent } from './owner/ownvehicles/ownvehicles.component';
+import { DriverpaymentsComponent } from './owner/payments/driverpayments/driverpayments.component';
+import { PassengerpaymentsComponent } from './owner/payments/passengerpayments/passengerpayments.component';
+import { RatingsComponent } from './owner/ratings/ratings.component';
+import { MyvehiclesComponent } from './owner/ownvehicles/myvehicles/myvehicles.component';
+import { RegisterVehicleComponent } from './owner/ownvehicles/register-vehicle/register-vehicle.component';
 
 
 
@@ -73,7 +82,23 @@ const routes: Routes = [
     ]
 
   },
-  { path: 'owner', component: OwnerComponent},
+  { path: 'owner', component: OwnerComponent,
+    children:[
+      { path: 'ownerprofile',outlet: 'ownernavbar', component: OwnerprofileComponent},
+      { path: 'owner-driverdetails',outlet: 'ownernavbar', component: DriverdetailsComponent},
+      { path: 'owner-passengerdetails', outlet: 'ownernavbar', component: PassengerdetailsComponent},
+      { path: 'owner-ownvehicles',outlet: 'ownernavbar', component: OwnvehiclesComponent },
+      { path: 'owner-driverpayments',outlet: 'ownernavbar', component: DriverpaymentsComponent},
+      { path: 'owner-passengerpayments',outlet: 'ownernavbar', component: PassengerpaymentsComponent},
+      { path: 'owner-ratings',outlet: 'ownernavbar', component: RatingsComponent},
+      { path: 'owner-myvehicles',outlet: 'ownernavbar', component: MyvehiclesComponent},
+      { path: 'owner-registervehicles',outlet: 'ownernavbar', component: RegisterVehicleComponent},
+      { path: 'owner-payments',outlet: 'ownernavbar', component: PaymentsComponent},
+      // Define Route Here .................... 
+      
+
+    ]
+  },
   { path: 'register', component: RegisterComponent},
   
  
