@@ -32,10 +32,10 @@ export class OwnerprofileComponent implements OnInit {
   address: string;
   telephone: string;
   nic: string;
-  adminId: string;
+  ownerId: string;
 
-  private adminDoc: AngularFirestoreCollection<Owner>;
-  admins: Observable<Owner[]>;
+  private ownerDoc: AngularFirestoreCollection<Owner>;
+  owners: Observable<Owner[]>;
   
   private userDoc: AngularFirestoreCollection<userCredential>;
   users: Observable<userCredential[]>;
@@ -47,7 +47,7 @@ export class OwnerprofileComponent implements OnInit {
       this.spinner.show();
       userID = localStorage.getItem('ownerId');
       this.ownerId = userID;
-      console.log("adminId",this.adminId)
+      console.log("ownerId",this.ownerId)
       this.afs.doc<Owner>('users/user/owner/'+this.ownerId).valueChanges().subscribe(
         res=>{
           this.name = res.name;
