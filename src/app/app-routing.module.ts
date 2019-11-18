@@ -39,6 +39,7 @@ import { PassengerpaymentsComponent } from './owner/payments/passengerpayments/p
 import { RatingsComponent } from './owner/ratings/ratings.component';
 import { MyvehiclesComponent } from './owner/ownvehicles/myvehicles/myvehicles.component';
 import { RegisterVehicleComponent } from './owner/ownvehicles/register-vehicle/register-vehicle.component';
+import { AdminhomeComponent } from './admin/adminhome/adminhome.component';
 
 
 
@@ -61,6 +62,7 @@ const routes: Routes = [
       { path: 'editadmindetails',outlet: 'adminnavbar', component: EditadmindetailsComponent},
       { path: 'adminprofile',outlet: 'adminnavbar', component: AdminprofileComponent},
       { path: 'changeuserpassword',outlet: 'adminnavbar', component: ChangeUserPasswordComponent},
+      { path: 'adminhome',outlet: 'adminnavbar', component: AdminhomeComponent},
     ]
   },
   { path: 'driver', component: DriverComponent,
