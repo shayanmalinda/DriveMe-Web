@@ -55,6 +55,7 @@ import { DriverpaymentsComponent } from './owner/payments/driverpayments/driverp
 import { PassengerpaymentsComponent } from './owner/payments/passengerpayments/passengerpayments.component';
 import { MyvehiclesComponent } from './owner/ownvehicles/myvehicles/myvehicles.component';
 import { RegisterVehicleComponent } from './owner/ownvehicles/register-vehicle/register-vehicle.component';
+import { AdminhomeComponent } from './admin/adminhome/adminhome.component';
 
 
 @NgModule({
@@ -100,7 +101,8 @@ import { RegisterVehicleComponent } from './owner/ownvehicles/register-vehicle/r
     DriverpaymentsComponent,
     PassengerpaymentsComponent,
     MyvehiclesComponent,
-    RegisterVehicleComponent
+    RegisterVehicleComponent,
+    AdminhomeComponent,
 
 
   ],  
