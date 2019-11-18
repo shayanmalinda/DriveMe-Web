@@ -31,6 +31,26 @@ export class RegisteradminComponent implements OnInit {
     Validators.required,
     Validators.email,
   ]);
+
+   ctrl2 = new FormControl('', [
+    Validators.required,  
+    Validators.maxLength(10),
+    Validators.minLength(10),
+    Validators.pattern("^[0-9]*$"),
+  ]);
+
+  
+  ctrl4 = new FormControl('', [
+    Validators.required,  
+    Validators.maxLength(12),
+    Validators.minLength(10),
+  ]);
+
+  ctrl5 = new FormControl('', [
+    Validators.required,  
+    Validators.minLength(6),
+  ]);
+  
   
   waiting = false;
   passwordDiv=false;
@@ -61,10 +81,7 @@ export class RegisteradminComponent implements OnInit {
       
       this.firstFormGroup = this._formBuilder.group({
         ctrl1: ['', Validators.required],
-        ctrl2: ['', Validators.required],
         ctrl3: ['', Validators.required],
-        ctrl4: ['', Validators.required],
-        ctrl5: ['', Validators.required],
         ctrl6: ['', Validators.required],
       });
     }
@@ -76,7 +93,7 @@ export class RegisteradminComponent implements OnInit {
     }
   
     stepperNext(stepper : MatStepper){
-      if(this.pass1==this.pass2 && !this.emailFormControl.hasError('email')){
+      if(this.pass1==this.pass2 && !this.emailFormControl.hasError('email') && !this.ctrl2.invalid && !this.ctrl4.invalid && !this.ctrl5.invalid){
         stepper.next();
         this.passwordDiv = false;
       }
@@ -114,6 +131,12 @@ export class RegisteradminComponent implements OnInit {
         }
       );
           
+    }
+
+    getTelephoneError() {
+      return 
+        this.emailFormControl.hasError('maxLength(10)') ? 'Invalid Telphone Number' :
+        this.emailFormControl.hasError('minLength(10)') ? 'Invalid Telphone Number' : '';
     }
 
 }

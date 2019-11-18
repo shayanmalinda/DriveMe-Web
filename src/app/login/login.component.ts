@@ -257,13 +257,15 @@ export class OverviewDialog2 {
   emptyinputs = false;
   hide = true;
   myControl1 = new FormControl();
-  myControl2 = new FormControl();
 
   emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,
   ]);
 
+  myControl2 = new FormControl('', [
+    Validators.required,
+  ]);
 
   private loginDoc: AngularFirestoreCollection<userCredentials>;
   users : Observable<userCredentials[]>;
@@ -303,11 +305,11 @@ export class OverviewDialog2 {
   login():void {
     console.log("login nowww")
     this.loginerror = false;
-    var email = this.myControl1.value;
+    var email = this.emailFormControl.value;
     var password = this.myControl2.value;
 
     
-    if(email && password){
+    if(email && password && !this.emailFormControl.invalid){
       this.emptyinputs = false;
       this.waiting = true;
 
@@ -394,7 +396,7 @@ export class OverviewDialog2 {
       });
     }
     else{
-      this.emptyinputs = true;
+      // this.emptyinputs = true;
     }
 
 

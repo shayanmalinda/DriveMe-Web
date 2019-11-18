@@ -46,6 +46,24 @@ export class RegisterdriverComponent implements OnInit {
     Validators.required,
     Validators.email,
   ]);
+  ctrl2 = new FormControl('', [
+   Validators.required,  
+   Validators.maxLength(10),
+   Validators.minLength(10),
+   Validators.pattern("^[0-9]*$"),
+ ]);
+
+ 
+ ctrl4 = new FormControl('', [
+   Validators.required,  
+   Validators.maxLength(12),
+   Validators.minLength(10),
+ ]);
+
+ ctrl6 = new FormControl('', [
+   Validators.required,  
+   Validators.minLength(6),
+ ]);
   
   matcher = new MyErrorStateMatcher();
 
@@ -89,11 +107,8 @@ export class RegisterdriverComponent implements OnInit {
     
     this.firstFormGroup = this._formBuilder.group({
       ctrl1: ['', Validators.required],
-      ctrl2: ['', Validators.required],
       ctrl3: ['', Validators.required],
-      ctrl4: ['', Validators.required],
       ctrl5: ['', Validators.required],
-      ctrl6: ['', Validators.required],
       ctrl7: ['', Validators.required],
     });
     this.secondFormGroup = this._formBuilder.group({
@@ -112,7 +127,7 @@ export class RegisterdriverComponent implements OnInit {
   }
 
   stepperNext(stepper : MatStepper){
-    if(this.pass1==this.pass2 && !this.emailFormControl.hasError('email')){
+    if(this.pass1==this.pass2 && !this.emailFormControl.hasError('email') && !this.ctrl2.invalid && !this.ctrl4.invalid && !this.ctrl6.invalid){
       stepper.next();
       this.passwordDiv = false;
     }

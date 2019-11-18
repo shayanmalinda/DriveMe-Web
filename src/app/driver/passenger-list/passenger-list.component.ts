@@ -7,21 +7,6 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { MatSnackBar } from '@angular/material';
 import { Passenger } from 'src/app/login/login.component';
 
-export interface Driver{
-  name: string;
-  email: string;
-  driverTelephone: string;
-  driverAddress: string;
-  driverNIC: string;
-  driverLicense: string;
-  password: string;
-  vehicleNumber: string;
-  vehicleChassis: string;
-  availableSeets: string;
-  vehicleType: Selection;
-  isAC: Boolean;
-  isDeleted: Boolean;
-}
 
 export interface Passenger{ //interface for Passenger
   name: string;
@@ -64,8 +49,9 @@ export class PassengerListComponent implements OnInit {
       );
      }
 
-  ngOnInit() {
-      //functions for the passenger-list here
+  ngOnInit() 
+  {
+      
   }
 
 }
