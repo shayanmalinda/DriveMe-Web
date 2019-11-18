@@ -8,13 +8,13 @@ import { MatSnackBar } from '@angular/material';
 
 export interface Parent{
   // parentemail: string;
-  parentaddress: string;
-  parentphone: string;
+  parentAddress: string;
+  parentPhone: string;
   // parentpass: string;
-  childname: string;
-  childschool: string;
-  childschoolphone: string;
-  childage: string;
+  childName: string;
+  childSchool: string;
+  childSchoolPhone: string;
+  childAge: string;
 }
 
 export interface userCredential{
