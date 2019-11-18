@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { MatSnackBar } from '@angular/material';
-import { Owner } from 'DriveMe-Web/src/app/login/login.component';
+// import { Owner } from 'DriveMe-Web/src/app/login/login.component';
 
 export interface Owner{
   name: string;
