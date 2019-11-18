@@ -49,8 +49,9 @@ export class PassengerListComponent implements OnInit {
       );
      }
 
-  ngOnInit() {
-      //functions for the passenger-list here
+  ngOnInit() 
+  {
+      
   }
 
 }
