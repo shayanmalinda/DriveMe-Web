@@ -6,9 +6,9 @@ import { Router } from '@angular/router';
   templateUrl: './driver.component.html',
   styleUrls: ['./driver.component.scss']
 })
-export class DriverComponent implements OnInit {
+export class DriverComponent implements OnInit 
+  {
 
-  
   multipleCharacter: boolean=false;
   adminAvailable: boolean=false;
   passengerAvailable: boolean=false;
