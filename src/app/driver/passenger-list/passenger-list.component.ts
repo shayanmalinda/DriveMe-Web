@@ -8,7 +8,7 @@ import { MatSnackBar } from '@angular/material';
 import { Passenger } from 'src/app/login/login.component';
 
 
-export interface Passenger{ //interface for Passenger
+export interface Passenger{ //Interface for Passenger
   name: string;
   email: string;
   address: string;
