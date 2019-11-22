@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators, FormControl, FormGroupDirective, Ng
 import { MatCheckbox, MatSnackBar, MatStepperPrevious, MatStepper, } from '@angular/material';
 import {ErrorStateMatcher} from '@angular/material/core';
 
+import * as firebase from 'firebase';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { MatSpinner } from '@angular/material';
 import { AngularFireStorage } from '@angular/fire/storage';
@@ -69,6 +70,7 @@ export class RegisteradminComponent implements OnInit {
   adminNIC: string;
   pass1: string;
   pass2: string;
+  file: File;
 
 
   constructor(private _formBuilder: FormBuilder,
@@ -102,6 +104,9 @@ export class RegisteradminComponent implements OnInit {
       }
     }
 
+    photoUpload(event: any){
+      this.file = event.target.files[0];
+    }
     
     registerAdmin(){
       this.waiting = true;
@@ -122,6 +127,11 @@ export class RegisteradminComponent implements OnInit {
         password: this.pass1,
         adminId: id
       }
+
+
+      const metaData = {'contentType':this.file.type};
+      const storageRef: firebase.storage.Reference = firebase.storage().ref("adminImages/"+id);
+      storageRef.put(this.file,metaData);
 
       this.afs.collection('users/user/admin').doc(id).set(this.admin).then(_ => {
           this.afs.collection('userCredentials').add(this.userCredentials).then(_ => {

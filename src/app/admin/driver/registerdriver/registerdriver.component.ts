@@ -4,7 +4,7 @@ import { MatCheckbox, MatSnackBar, MatStepperPrevious, MatStepper } from '@angul
 import { AngularFirestore } from '@angular/fire/firestore';
 import { MatSpinner } from '@angular/material';
 import { AngularFireStorage } from '@angular/fire/storage';
-
+import * as firebase from 'firebase';
 import {ErrorStateMatcher} from '@angular/material/core';
 
 export interface Vehicle {
@@ -69,7 +69,7 @@ export class RegisterdriverComponent implements OnInit {
 
   waiting = false;
   passwordDiv=false;
-  hide = true;
+  hide1 = true;
   hide2 = true;
   isLinear = true;
   firstFormGroup: FormGroup;
@@ -90,6 +90,7 @@ export class RegisterdriverComponent implements OnInit {
   availableSeets: string;
   vehicleType: Selection;
   airConditioned: Boolean = false;
+  file: File;
   
   vehicle: Vehicle[] = [
     {value: 'Bus'},
@@ -139,6 +140,10 @@ export class RegisterdriverComponent implements OnInit {
   stepperNext2(stepper: MatStepper){
     stepper.next()
   }
+  photoUpload(event: any){
+    this.file = event.target.files;
+  }
+
 
   registerDriver(){
     this.waiting = true;
@@ -165,6 +170,9 @@ export class RegisterdriverComponent implements OnInit {
     }
 
 
+    // const metaData = {'contentType':this.file.type};
+    // const storageRef: firebase.storage.Reference = firebase.storage().ref("driverImages/"+id);
+    // storageRef.put(this.file,metaData);
     
     this.afs.collection('users/user/driver').doc(id).set(this.driver).then(_ => {
       this.afs.collection('userCredentials').add(this.userCredentials).then(_ => {

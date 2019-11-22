@@ -62,6 +62,9 @@
                             </section>
                         </div><br>
                     </div>
+                    <label for="files" class="btn btn-primary btn-block btn-primary" style="width: 30%;">Upload Driver's Image</label><br>
+                    <input id="files" type="file" accept="image/*" (change)="photoUpload($event)" style="margin-top: 5px;margin-bottom: 5px;" style="display: none">
+                    
                     <!-- <mat-form-field class="form-field-full-width pb-0"> -->
                     <!-- <label for="file" class="mr-4">Image :</label>
                     <input type="file" (change)="upload($event)" accept=".png,.jpg" required/> -->

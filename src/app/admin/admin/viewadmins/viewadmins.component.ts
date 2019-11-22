@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { MatSnackBar } from '@angular/material';
 
+import * as firebase from 'firebase';
+
 export interface Admin{
   name: string;
   email: string;
@@ -13,6 +15,7 @@ export interface Admin{
   telephone: string;
   nic: string;
   isDeleted: Boolean;
+  imageURL: string;
 }
 
 export interface userCredentials { 
@@ -31,17 +34,31 @@ export class ViewadminsComponent implements OnInit {
   private adminDoc: AngularFirestoreCollection<Admin>;
   admins: Observable<Admin[]>;
   private usersDoc: AngularFirestoreCollection<userCredentials>;  
+  testImage: string;
+ 
   constructor(
     private afs: AngularFirestore,private router : Router,private spinner: NgxSpinnerService,
-    private _snackBar: MatSnackBar,) { 
+    private _snackBar: MatSnackBar) { 
       this.spinner.show();
       this.adminDoc = this.afs.collection<Admin>('users/user/admin');
-
+      
+      
       this.admins = this.adminDoc.snapshotChanges().pipe(
         map(actions => actions.map(a=>{
-          const data = a.payload.doc.data() as Admin;
-          const id = a.payload.doc.id;
+          var data = a.payload.doc.data() as Admin;
+          const id = a.payload.doc.id;      
+          const userStorageRef = firebase.storage().ref('adminImages').child(id);
+          userStorageRef.getDownloadURL().then(function onSuccess(url) {
+           
+            data.imageURL = url
+            console.log("URLL===",data.imageURL)
+          })
+          .catch(function onError(err) {
+            console.log("Image Not Found");
+          })
           spinner.hide();
+          console.log(data)
+          console.log(data.imageURL)
           return {id,...data};
         }))
       );
@@ -56,6 +73,8 @@ export class ViewadminsComponent implements OnInit {
     this.router.navigate(['/admin', {outlets: {'adminnavbar': ['editadmindetails']}}],{queryParams: {adminId: adminId}})
 
   }
+
+
 
   removeAdmin(adminId: string){
     this.afs.doc('users/user/admin/'+adminId).update({isDeleted:true}).then(_ => {
