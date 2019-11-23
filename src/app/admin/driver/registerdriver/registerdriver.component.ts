@@ -141,7 +141,7 @@ export class RegisterdriverComponent implements OnInit {
     stepper.next()
   }
   photoUpload(event: any){
-    this.file = event.target.files;
+    this.file = event.target.files[0];
   }
 
 
@@ -170,9 +170,9 @@ export class RegisterdriverComponent implements OnInit {
     }
 
 
-    // const metaData = {'contentType':this.file.type};
-    // const storageRef: firebase.storage.Reference = firebase.storage().ref("driverImages/"+id);
-    // storageRef.put(this.file,metaData);
+    const metaData = {'contentType':this.file.type};
+    const storageRef: firebase.storage.Reference = firebase.storage().ref("driverImages/"+id);
+    storageRef.put(this.file,metaData);
     
     this.afs.collection('users/user/driver').doc(id).set(this.driver).then(_ => {
       this.afs.collection('userCredentials').add(this.userCredentials).then(_ => {
