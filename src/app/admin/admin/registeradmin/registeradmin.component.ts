@@ -127,7 +127,7 @@ export class RegisteradminComponent implements OnInit {
       }
     }
     else{
-      this.openSnackBar("Please Select Profile Image","Done");
+      this.openSnackBar("Please Upload a  Profile Image","Done");
     }
   }
 

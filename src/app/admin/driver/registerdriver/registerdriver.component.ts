@@ -3,9 +3,11 @@ import { FormGroup, FormBuilder, Validators, FormControl, FormGroupDirective, Ng
 import { MatCheckbox, MatSnackBar, MatStepperPrevious, MatStepper } from '@angular/material';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { MatSpinner } from '@angular/material';
-import { AngularFireStorage } from '@angular/fire/storage';
+import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from '@angular/fire/storage';
 import * as firebase from 'firebase';
 import {ErrorStateMatcher} from '@angular/material/core';
+import { Observable } from 'rxjs';
+import { finalize } from 'rxjs/operators';
 
 export interface Vehicle {
   value: string;
@@ -23,6 +25,7 @@ export interface Driver {
   availableSeets: string;
   vehicleType: Selection;
   isAC: Boolean;
+  imgURL: string;
 }
 
 export interface UserCredentials{
@@ -92,6 +95,12 @@ export class RegisterdriverComponent implements OnInit {
   airConditioned: Boolean = false;
   file: File;
   
+  
+  ref: AngularFireStorageReference;
+  task: AngularFireUploadTask;
+  uploadProgress: Observable<number>;
+  downloadURL: Observable<string>;
+
   vehicle: Vehicle[] = [
     {value: 'Bus'},
     {value: 'Van'}
@@ -128,18 +137,25 @@ export class RegisterdriverComponent implements OnInit {
   }
 
   stepperNext(stepper : MatStepper){
-    if(this.pass1==this.pass2 && !this.emailFormControl.hasError('email') && !this.ctrl2.invalid && !this.ctrl4.invalid && !this.ctrl6.invalid){
-      stepper.next();
-      this.passwordDiv = false;
+    
+    if(this.file){
+      if(this.pass1==this.pass2 && !this.emailFormControl.hasError('email') && !this.ctrl2.invalid && !this.ctrl4.invalid && !this.ctrl6.invalid){
+        stepper.next();
+        this.passwordDiv = false;
+      }
+      else{
+        this.passwordDiv = true;
+      }
     }
     else{
-      this.passwordDiv = true;
+      this.openSnackBar("Please Upload Profile Image","Done");
     }
   }
 
   stepperNext2(stepper: MatStepper){
     stepper.next()
   }
+
   photoUpload(event: any){
     this.file = event.target.files[0];
   }
@@ -147,19 +163,6 @@ export class RegisterdriverComponent implements OnInit {
 
   registerDriver(){
     this.waiting = true;
-    this.driver={
-      name : this.driverName,
-      email : this.driverEmail,
-      driverTelephone : this.driverTelephone,
-      driverAddress : this.driverAddress,
-      driverNIC : this.driverNIC,
-      driverLicense : this.driverLicense,
-      isAC : this.airConditioned,
-      availableSeets : this.availableSeets,
-      vehicleChassis : this.vehicleChassis,
-      vehicleNumber : this.vehicleNumber,
-      vehicleType : this.vehicleType,
-    }
 
     let id = this.afs.createId();
 
@@ -169,20 +172,41 @@ export class RegisterdriverComponent implements OnInit {
       driverId: id
     }
 
+    this.ref = this.afStorage.ref("driverImages/"+id);
+    this.task = this.ref.put(this.file);
+    this.uploadProgress = this.task.percentageChanges();
+    this.task.snapshotChanges().pipe(
+      finalize(() => {
+        this.downloadURL = this.ref.getDownloadURL()
+        this.downloadURL.subscribe(url => (      
 
-    const metaData = {'contentType':this.file.type};
-    const storageRef: firebase.storage.Reference = firebase.storage().ref("driverImages/"+id);
-    storageRef.put(this.file,metaData);
+          this.driver={
+            name : this.driverName,
+            email : this.driverEmail,
+            driverTelephone : this.driverTelephone,
+            driverAddress : this.driverAddress,
+            driverNIC : this.driverNIC,
+            driverLicense : this.driverLicense,
+            isAC : this.airConditioned,
+            availableSeets : this.availableSeets,
+            vehicleChassis : this.vehicleChassis,
+            vehicleNumber : this.vehicleNumber,
+            vehicleType : this.vehicleType,
+            imgURL: url,
+          },
     
-    this.afs.collection('users/user/driver').doc(id).set(this.driver).then(_ => {
-      this.afs.collection('userCredentials').add(this.userCredentials).then(_ => {
-        this.openSnackBar("Driver Registered","Done");
-        this.waiting = false;
-      });
+          this.afs.doc('users/user/driver/'+id).set(this.driver).then(_ => {
+            this.afs.collection('userCredentials').add(this.userCredentials).then(_ => {
+              this.openSnackBar("Driver Registered","Done");
+              this.waiting = false;
+            });
+            }
+          )      
+        ));
+      })
+    )
+    .subscribe();
     }
-  );
-    
-  }
 
 }
 

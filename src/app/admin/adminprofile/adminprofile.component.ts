@@ -14,6 +14,7 @@ export interface Admin{
   telephone: string;
   nic: string;
   isDeleted: Boolean;
+  imgURL: string;
 }
 
 export interface userCredential{
@@ -32,7 +33,7 @@ export class AdminprofileComponent implements OnInit {
   telephone: string;
   nic: string;
   adminId: string;
-  imageURL : string ;
+  imgURL : string ;
 
   private adminDoc: AngularFirestoreCollection<Admin>;
   admins: Observable<Admin[]>;
@@ -47,7 +48,6 @@ export class AdminprofileComponent implements OnInit {
       this.spinner.show();
       userID = localStorage.getItem('adminId');
       this.adminId = userID;
-      let imgurl: string;
 
       //Get admin profile details
       this.afs.doc<Admin>('users/user/admin/'+this.adminId).valueChanges().subscribe(
@@ -57,6 +57,7 @@ export class AdminprofileComponent implements OnInit {
           this.address = res.address;
           this.nic = res.nic;
           this.telephone = res.telephone;
+          this.imgURL = res.imgURL
           this.afs.doc<userCredential>('userCredentials/'+localStorage.getItem("userCredentialId")).valueChanges().subscribe(
             res=>{
               this.email = res.email;
@@ -73,20 +74,6 @@ export class AdminprofileComponent implements OnInit {
     
   }
 
-  getImage(){
-    // return "../../../../assets/adminavatar.png"
-    //Get admin profile image
-    let userID = localStorage.getItem('adminId');
-    this.adminId = userID;
-    const userStorageRef = firebase.storage().ref('adminImages').child(userID);
-    userStorageRef.getDownloadURL().then(function onSuccess(url) {
-      console.log(url)
-      return url
-    })  
-    .catch(function onError(err) {
-      return "../../../../assets/adminavatar.png"
-    })
-  }
 
   changeAdminDetails(){
     this.router.navigate(['/admin', {outlets: {'adminnavbar': ['editadmindetails']}}],{queryParams: {adminId: this.adminId}})
