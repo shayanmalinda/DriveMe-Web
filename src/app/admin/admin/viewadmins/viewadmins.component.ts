@@ -15,7 +15,7 @@ export interface Admin{
   telephone: string;
   nic: string;
   isDeleted: Boolean;
-  imageURL: string;
+  imgURL: string;
 }
 
 export interface userCredentials { 
@@ -37,8 +37,10 @@ export class ViewadminsComponent implements OnInit {
   testImage: string;
  
   constructor(
-    private afs: AngularFirestore,private router : Router,private spinner: NgxSpinnerService,
-    private _snackBar: MatSnackBar) { 
+    private afs: AngularFirestore,
+    private router : Router,
+    private spinner: NgxSpinnerService,
+    private _snackBar: MatSnackBar,) { 
       this.spinner.show();
       this.adminDoc = this.afs.collection<Admin>('users/user/admin');
       
@@ -46,19 +48,9 @@ export class ViewadminsComponent implements OnInit {
       this.admins = this.adminDoc.snapshotChanges().pipe(
         map(actions => actions.map(a=>{
           var data = a.payload.doc.data() as Admin;
-          const id = a.payload.doc.id;      
-          const userStorageRef = firebase.storage().ref('adminImages').child(id);
-          userStorageRef.getDownloadURL().then(function onSuccess(url) {
-           
-            data.imageURL = url
-            console.log("URLL===",data.imageURL)
-          })
-          .catch(function onError(err) {
-            console.log("Image Not Found");
-          })
+          const id = a.payload.doc.id;     
           spinner.hide();
-          console.log(data)
-          console.log(data.imageURL)
+          
           return {id,...data};
         }))
       );
@@ -74,6 +66,18 @@ export class ViewadminsComponent implements OnInit {
 
   }
 
+  getImage(id: string){
+    let retURL: string = "../../../../assets/adminavatar.png"
+    // const userStorageRef = firebase.storage().ref('adminImages').child(id);
+    // userStorageRef.getDownloadURL().then(function onSuccess(url) {
+    //   retURL = url
+    // })  
+    // .catch(function onError(err) {
+    //   retURL = "../../../../assets/adminavatar.png"
+    //   console.log("Image Not Found-",err);
+    // })
+    return retURL
+  }
 
 
   removeAdmin(adminId: string){

@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { MatSnackBar } from '@angular/material';
+import * as firebase from 'firebase';
 
 export interface Admin{
   name: string;
@@ -31,6 +32,7 @@ export class AdminprofileComponent implements OnInit {
   telephone: string;
   nic: string;
   adminId: string;
+  imageURL : string ;
 
   private adminDoc: AngularFirestoreCollection<Admin>;
   admins: Observable<Admin[]>;
@@ -45,7 +47,9 @@ export class AdminprofileComponent implements OnInit {
       this.spinner.show();
       userID = localStorage.getItem('adminId');
       this.adminId = userID;
-      console.log("adminId",this.adminId)
+      let imgurl: string;
+
+      //Get admin profile details
       this.afs.doc<Admin>('users/user/admin/'+this.adminId).valueChanges().subscribe(
         res=>{
           this.name = res.name;
@@ -67,6 +71,21 @@ export class AdminprofileComponent implements OnInit {
 
   ngOnInit() {
     
+  }
+
+  getImage(){
+    // return "../../../../assets/adminavatar.png"
+    //Get admin profile image
+    let userID = localStorage.getItem('adminId');
+    this.adminId = userID;
+    const userStorageRef = firebase.storage().ref('adminImages').child(userID);
+    userStorageRef.getDownloadURL().then(function onSuccess(url) {
+      console.log(url)
+      return url
+    })  
+    .catch(function onError(err) {
+      return "../../../../assets/adminavatar.png"
+    })
   }
 
   changeAdminDetails(){
