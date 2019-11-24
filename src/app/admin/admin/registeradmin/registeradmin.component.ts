@@ -3,9 +3,12 @@ import { FormGroup, FormBuilder, Validators, FormControl, FormGroupDirective, Ng
 import { MatCheckbox, MatSnackBar, MatStepperPrevious, MatStepper, } from '@angular/material';
 import {ErrorStateMatcher} from '@angular/material/core';
 
-import { AngularFirestore } from '@angular/fire/firestore';
+import { map, finalize } from 'rxjs/operators';
+import * as firebase from 'firebase';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { MatSpinner } from '@angular/material';
-import { AngularFireStorage } from '@angular/fire/storage';
+import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from '@angular/fire/storage';
+import { Observable } from 'rxjs';
 
 export interface Admin{
   name: string;
@@ -13,6 +16,7 @@ export interface Admin{
   telephone: string;
   address: string;
   nic: string;
+  imgURL: string;
 }
 
 export interface UserCredentials{
@@ -69,30 +73,51 @@ export class RegisteradminComponent implements OnInit {
   adminNIC: string;
   pass1: string;
   pass2: string;
+  file: File;
+  private admins: Observable<Admin[]>
+  private adminDoc: AngularFirestoreCollection<Admin>
 
+  ref: AngularFireStorageReference;
+  task: AngularFireUploadTask;
+  uploadProgress: Observable<number>;
+  downloadURL: Observable<string>;
 
+  
   constructor(private _formBuilder: FormBuilder,
     private afs: AngularFirestore,
     private _snackBar: MatSnackBar,
-    private afStorage: AngularFireStorage) {
-    }
-
-    ngOnInit() {
+    private afStorage: AngularFireStorage,
+    ) {
+      this.adminDoc = this.afs.collection<Admin>('users/user/admin');
       
-      this.firstFormGroup = this._formBuilder.group({
-        ctrl1: ['', Validators.required],
-        ctrl3: ['', Validators.required],
-        ctrl6: ['', Validators.required],
-      });
-    }
+      
+      this.admins = this.adminDoc.snapshotChanges().pipe(
+        map(actions => actions.map(a=>{
+          var data = a.payload.doc.data() as Admin;
+          const id = a.payload.doc.id;      
+          return {id,...data}
+        }))
+      );
+  }
 
-    openSnackBar(message: string, action: string) {
-      this._snackBar.open(message, action, {
-        duration: 2000,
-      });
-    }
-  
-    stepperNext(stepper : MatStepper){
+  ngOnInit() {
+    
+    this.firstFormGroup = this._formBuilder.group({
+      ctrl1: ['', Validators.required],
+      ctrl3: ['', Validators.required],
+      ctrl6: ['', Validators.required],
+    });
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
+
+  stepperNext(stepper : MatStepper){
+    if(this.file){
+
       if(this.pass1==this.pass2 && !this.emailFormControl.hasError('email') && !this.ctrl2.invalid && !this.ctrl4.invalid && !this.ctrl5.invalid){
         stepper.next();
         this.passwordDiv = false;
@@ -101,43 +126,72 @@ export class RegisteradminComponent implements OnInit {
         this.passwordDiv = true;
       }
     }
+    else{
+      this.openSnackBar("Please Upload a  Profile Image","Done");
+    }
+  }
 
+  photoUpload(event: any){
+    this.file = event.target.files[0];
+  }
+  
+  registerAdmin(){
+    this.waiting = true;
+ 
+    let id = this.afs.createId();
+
+    this.userCredentials={
+      email: this.adminEmail,
+      password: this.pass1,
+      adminId: id
+    }
+
+    let urlString: string;
+
+    // const metaData = {'contentType':this.file.type};
+    // const storageRef: firebase.storage.Reference = firebase.storage().ref("adminImages/"+id);
     
-    registerAdmin(){
-      this.waiting = true;
-      this.admin={
-        email: this.adminEmail,
-        name : this.adminName,
-        telephone : this.adminTelephone,
-        address : this.adminAddress,
-        nic : this.adminNIC,
-      }
+    this.ref = this.afStorage.ref("adminImages/"+id);
+    this.task = this.ref.put(this.file);
+    this.uploadProgress = this.task.percentageChanges();
+    this.task.snapshotChanges().pipe(
+      finalize(() => {
+        this.downloadURL = this.ref.getDownloadURL()
+        this.downloadURL.subscribe(url => (      
+
+          this.admin={
+            email: this.adminEmail,
+            name : this.adminName,
+            telephone : this.adminTelephone,
+            address : this.adminAddress,
+            nic : this.adminNIC,
+            imgURL: url
+          },
+
+          this.afs.doc('users/user/admin/'+id).set(this.admin).then(_ => {
+            // for(let admin of this.admins){
+
+            // }
+              this.afs.collection('userCredentials').add(this.userCredentials).then(_ => {
+                this.openSnackBar("Admin Registered","Done");
+                this.waiting = false;
+              });
+            }
+          )       
+        ));
+      })
+    )
+    .subscribe();
 
 
+        
+  }
 
-      let id = this.afs.createId();
-
-      this.userCredentials={
-        email: this.adminEmail,
-        password: this.pass1,
-        adminId: id
-      }
-
-      this.afs.collection('users/user/admin').doc(id).set(this.admin).then(_ => {
-          this.afs.collection('userCredentials').add(this.userCredentials).then(_ => {
-            this.openSnackBar("Admin Registered","Done");
-            this.waiting = false;
-          });
-        }
-      );
-          
-    }
-
-    getTelephoneError() {
-      return 
-        this.emailFormControl.hasError('maxLength(10)') ? 'Invalid Telphone Number' :
-        this.emailFormControl.hasError('minLength(10)') ? 'Invalid Telphone Number' : '';
-    }
+  getTelephoneError() {
+    return 
+      this.emailFormControl.hasError('maxLength(10)') ? 'Invalid Telphone Number' :
+      this.emailFormControl.hasError('minLength(10)') ? 'Invalid Telphone Number' : '';
+  }
 
 }
 

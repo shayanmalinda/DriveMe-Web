@@ -20,6 +20,7 @@ export interface Driver{
   vehicleType: Selection;
   isAC: Boolean;
   isDeleted: Boolean;
+  imgURL: string;
 }
 
 export interface userCredential{
