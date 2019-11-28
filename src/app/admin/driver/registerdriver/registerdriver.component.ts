@@ -3,9 +3,11 @@ import { FormGroup, FormBuilder, Validators, FormControl, FormGroupDirective, Ng
 import { MatCheckbox, MatSnackBar, MatStepperPrevious, MatStepper } from '@angular/material';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { MatSpinner } from '@angular/material';
-import { AngularFireStorage } from '@angular/fire/storage';
-
+import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from '@angular/fire/storage';
+import * as firebase from 'firebase';
 import {ErrorStateMatcher} from '@angular/material/core';
+import { Observable } from 'rxjs';
+import { finalize } from 'rxjs/operators';
 
 export interface Vehicle {
   value: string;
@@ -18,12 +20,12 @@ export interface Driver {
   driverAddress: string;
   driverNIC: string;
   driverLicense: string;
-  password: string;
   vehicleNumber: string;
   vehicleChassis: string;
   availableSeets: string;
   vehicleType: Selection;
   isAC: Boolean;
+  imgURL: string;
 }
 
 export interface UserCredentials{
@@ -47,12 +49,30 @@ export class RegisterdriverComponent implements OnInit {
     Validators.required,
     Validators.email,
   ]);
+  ctrl2 = new FormControl('', [
+   Validators.required,  
+   Validators.maxLength(10),
+   Validators.minLength(10),
+   Validators.pattern("^[0-9]*$"),
+ ]);
+
+ 
+ ctrl4 = new FormControl('', [
+   Validators.required,  
+   Validators.maxLength(12),
+   Validators.minLength(10),
+ ]);
+
+ ctrl6 = new FormControl('', [
+   Validators.required,  
+   Validators.minLength(6),
+ ]);
   
   matcher = new MyErrorStateMatcher();
 
   waiting = false;
   passwordDiv=false;
-  hide = true;
+  hide1 = true;
   hide2 = true;
   isLinear = true;
   firstFormGroup: FormGroup;
@@ -73,7 +93,14 @@ export class RegisterdriverComponent implements OnInit {
   availableSeets: string;
   vehicleType: Selection;
   airConditioned: Boolean = false;
+  file: File;
   
+  
+  ref: AngularFireStorageReference;
+  task: AngularFireUploadTask;
+  uploadProgress: Observable<number>;
+  downloadURL: Observable<string>;
+
   vehicle: Vehicle[] = [
     {value: 'Bus'},
     {value: 'Van'}
@@ -90,11 +117,8 @@ export class RegisterdriverComponent implements OnInit {
     
     this.firstFormGroup = this._formBuilder.group({
       ctrl1: ['', Validators.required],
-      ctrl2: ['', Validators.required],
       ctrl3: ['', Validators.required],
-      ctrl4: ['', Validators.required],
       ctrl5: ['', Validators.required],
-      ctrl6: ['', Validators.required],
       ctrl7: ['', Validators.required],
     });
     this.secondFormGroup = this._formBuilder.group({
@@ -113,12 +137,18 @@ export class RegisterdriverComponent implements OnInit {
   }
 
   stepperNext(stepper : MatStepper){
-    if(this.pass1==this.pass2 && !this.emailFormControl.hasError('email')){
-      stepper.next();
-      this.passwordDiv = false;
+    
+    if(this.file){
+      if(this.pass1==this.pass2 && !this.emailFormControl.hasError('email') && !this.ctrl2.invalid && !this.ctrl4.invalid && !this.ctrl6.invalid){
+        stepper.next();
+        this.passwordDiv = false;
+      }
+      else{
+        this.passwordDiv = true;
+      }
     }
     else{
-      this.passwordDiv = true;
+      this.openSnackBar("Please Upload Profile Image","Done");
     }
   }
 
@@ -126,22 +156,13 @@ export class RegisterdriverComponent implements OnInit {
     stepper.next()
   }
 
+  photoUpload(event: any){
+    this.file = event.target.files[0];
+  }
+
+
   registerDriver(){
     this.waiting = true;
-    this.driver={
-      name : this.driverName,
-      email : this.driverEmail,
-      driverTelephone : this.driverTelephone,
-      driverAddress : this.driverAddress,
-      driverNIC : this.driverNIC,
-      driverLicense : this.driverLicense,
-      isAC : this.airConditioned,
-      availableSeets : this.availableSeets,
-      vehicleChassis : this.vehicleChassis,
-      vehicleNumber : this.vehicleNumber,
-      vehicleType : this.vehicleType,
-      password : this.pass1
-    }
 
     let id = this.afs.createId();
 
@@ -151,17 +172,41 @@ export class RegisterdriverComponent implements OnInit {
       driverId: id
     }
 
+    this.ref = this.afStorage.ref("driverImages/"+id);
+    this.task = this.ref.put(this.file);
+    this.uploadProgress = this.task.percentageChanges();
+    this.task.snapshotChanges().pipe(
+      finalize(() => {
+        this.downloadURL = this.ref.getDownloadURL()
+        this.downloadURL.subscribe(url => (      
 
+          this.driver={
+            name : this.driverName,
+            email : this.driverEmail,
+            driverTelephone : this.driverTelephone,
+            driverAddress : this.driverAddress,
+            driverNIC : this.driverNIC,
+            driverLicense : this.driverLicense,
+            isAC : this.airConditioned,
+            availableSeets : this.availableSeets,
+            vehicleChassis : this.vehicleChassis,
+            vehicleNumber : this.vehicleNumber,
+            vehicleType : this.vehicleType,
+            imgURL: url,
+          },
     
-    this.afs.collection('users/user/driver').doc(id).set(this.driver).then(_ => {
-      this.afs.collection('userCredentials').add(this.userCredentials).then(_ => {
-        this.openSnackBar("Driver Registered","Done");
-        this.waiting = false;
-      });
+          this.afs.doc('users/user/driver/'+id).set(this.driver).then(_ => {
+            this.afs.collection('userCredentials').add(this.userCredentials).then(_ => {
+              this.openSnackBar("Driver Registered","Done");
+              this.waiting = false;
+            });
+            }
+          )      
+        ));
+      })
+    )
+    .subscribe();
     }
-  );
-    
-  }
 
 }
 

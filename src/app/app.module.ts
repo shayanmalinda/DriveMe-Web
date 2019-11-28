@@ -44,8 +44,18 @@ import { AdminprofileComponent } from './admin/adminprofile/adminprofile.compone
 
 import { RegisterpassengerComponent } from './passenger/registerpassenger/registerpassenger.component';
 
-import { DriverchangepasswordComponent } from './driver/driverchangepassword/driverchangepassword.component';
 import { RegisterComponent } from './register/register.component';
+import { OwnvehiclesComponent } from './owner/ownvehicles/ownvehicles.component';
+import { OwnerprofileComponent } from './owner/ownerprofile/ownerprofile.component';
+import { DriverdetailsComponent } from './owner/driverdetails/driverdetails.component';
+import { PassengerdetailsComponent } from './owner/passengerdetails/passengerdetails.component';
+import { RatingsComponent } from './owner/ratings/ratings.component';
+import { ChangeUserPasswordComponent } from './shared/change-user-password/change-user-password.component';
+import { DriverpaymentsComponent } from './owner/payments/driverpayments/driverpayments.component';
+import { PassengerpaymentsComponent } from './owner/payments/passengerpayments/passengerpayments.component';
+import { MyvehiclesComponent } from './owner/ownvehicles/myvehicles/myvehicles.component';
+import { RegisterVehicleComponent } from './owner/ownvehicles/register-vehicle/register-vehicle.component';
+import { AdminhomeComponent } from './admin/adminhome/adminhome.component';
 
 
 @NgModule({
@@ -81,8 +91,19 @@ import { RegisterComponent } from './register/register.component';
 
     RegisterpassengerComponent,
 
-    DriverchangepasswordComponent,
     RegisterComponent,
+    OwnvehiclesComponent,
+    DriverdetailsComponent,
+    PassengerdetailsComponent,
+    RatingsComponent,
+    ChangeUserPasswordComponent,
+    OwnerprofileComponent,
+    DriverpaymentsComponent,
+    PassengerpaymentsComponent,
+    MyvehiclesComponent,
+    RegisterVehicleComponent,
+    AdminhomeComponent,
+
 
   ],  
   imports: [

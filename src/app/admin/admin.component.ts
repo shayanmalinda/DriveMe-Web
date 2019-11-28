@@ -37,6 +37,7 @@ export class AdminComponent implements OnInit {
         this.multipleCharacter=true;
         this.ownerAvailable = true;
       }
+      // this.router.navigate(['/admin', {outlets: {'adminnavbar': ['adminhome']}}])
     }  
 
     else{

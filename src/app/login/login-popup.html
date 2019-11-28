@@ -6,14 +6,21 @@
     </section>
     <div mat-dialog-content class="login-form" style="border:1.2px solid #666; margin: 20px 50px 10px 20px; border-radius: 10px;padding: 15px 20px 5px 20px;width: 90%;">
         <mat-form-field style="font-size: 19sp; width: 100%">
-            <input [(ngModel)]="inputEmail" [formControl] = "myControl1" matInput placeholder="Email"> 
-            <!-- <input matInput placeholder="Email" [formControl]="emailFormControl" [errorStateMatcher]="matcher">  -->
-            <!-- <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-            Please enter a valid email address
-            </mat-error> -->
+            <input [(ngModel)]="inputEmail" [formControl] = "emailFormControl" required matInput placeholder="Email"> 
+            <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+              Please enter a valid email address
+            </mat-error>
         </mat-form-field><br>
+        
+        <!-- <mat-form-field style="font-size: 19sp; width: 100%">
+            <input [(ngModel)]="inputEmail" matInput placeholder="Email" [formControl]="emailFormControl" required>
+            <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+              Please enter a valid email address
+            </mat-error>
+        </mat-form-field><br> -->
+
         <mat-form-field style="font-size: 19sp; width: 100%;">
-            <input [(ngModel)]="inputPassword" [formControl] = "myControl2" matInput placeholder="Password" [type]="hide ? 'password' : 'text'">
+            <input [(ngModel)]="inputPassword" [formControl] = "myControl2" matInput placeholder="Password" [type]="hide ? 'password' : 'text'" required>
             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>

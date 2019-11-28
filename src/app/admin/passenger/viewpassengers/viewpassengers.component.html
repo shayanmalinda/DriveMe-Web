@@ -24,16 +24,26 @@
                     height: 45px;
                     width: 70%;
                     position: absolute;
-                    top: 28%;
+                    top: 12%;
                     -ms-transform: translateY(-50%);
                     transform: translateY(-50%);" (click)="changePassengerDetails(passenger.id,passenger)" 
                     routerLinkActive="active" ><mat-icon>edit</mat-icon>Change Details</button>
+
+                <button mat-raised-button color="primary" style="
+                    height: 45px;
+                    width: 70%;
+                    position: absolute;
+                    top: 47%;
+                    -ms-transform: translateY(-50%);
+                    transform: translateY(-50%);"  
+                    routerLinkActive="active" (click)="changePassword(passenger.id)">
+                    <mat-icon>lock_open</mat-icon>Change Password</button>  
                          
                 <button mat-raised-button color="warn" style="
                     height: 45px;
                     width: 70%;
                     position: absolute;
-                    top: 68%;
+                    top: 83%;
                     -ms-transform: translateY(-50%);
                     transform: translateY(-50%);"  
                     routerLinkActive="active" (click)="removePassenger(passenger.id)">

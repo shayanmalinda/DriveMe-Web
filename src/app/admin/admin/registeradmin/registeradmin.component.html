@@ -15,24 +15,33 @@
                     </mat-form-field><br>
                     <mat-form-field class="form-field-full-width">
                         <input [(ngModel)]="adminEmail" matInput placeholder="Email" [formControl]="emailFormControl" required>
-                        <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-                          Please enter a valid email address
+                        <mat-error *ngIf="emailFormControl.invalid">
+                          Please enter a valid Email Address
                         </mat-error>
                     </mat-form-field><br>
                     <mat-form-field class="form-field-full-width">
-                        <input [(ngModel)]="adminTelephone" matInput placeholder="Telephone" formControlName="ctrl2" required>
+                        <input [(ngModel)]="adminTelephone" matInput placeholder="Telephone" [formControl]="ctrl2" required>
+                        <mat-error *ngIf="ctrl2.invalid">
+                          Please enter a valid Telephone Number
+                        </mat-error>
                     </mat-form-field><br>
                     <mat-form-field class="form-field-full-width">
                         <input [(ngModel)]="adminAddress" matInput placeholder="Address" formControlName="ctrl3" required>
                     </mat-form-field><br>
                     <mat-form-field class="form-field-full-width">
-                        <input [(ngModel)]="adminNIC" matInput placeholder="NIC/Passport Number" formControlName="ctrl4" required>
+                        <input [(ngModel)]="adminNIC" matInput placeholder="NIC Number" [formControl]="ctrl4" required>
+                        <mat-error *ngIf="ctrl4.invalid">
+                          Please enter a valid NIC Number
+                        </mat-error>
                     </mat-form-field><br>
                     <mat-form-field class="form-field-full-width">
-                        <input [(ngModel)]="pass1" matInput placeholder="Login Password" [type]="hide1 ? 'password' : 'text'" formControlName="ctrl5" required>
+                        <input [(ngModel)]="pass1" matInput placeholder="Login Password" [type]="hide1 ? 'password' : 'text'" [formControl]="ctrl5" required>
                         <button mat-icon-button matSuffix (click)="hide1 = !hide1" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide1">
                         <mat-icon color="accent">{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
-                        </button>
+                        </button>                        
+                        <mat-error *ngIf="ctrl5.invalid">
+                            Password should have at least 6 Characters
+                        </mat-error>
                     </mat-form-field>
                     <mat-form-field class="form-field-full-width pb-0">
                         <input [(ngModel)]="pass2" matInput placeholder="Re-Enter Password" [type]="hide2 ? 'password' : 'text'" formControlName="ctrl6" required>
@@ -48,6 +57,9 @@
                             </section>
                         </div><br>
                     </div>
+                    <label for="files" class="btn btn-primary btn-block btn-primary" style="width: 30%;margin-top: 5px;margin-bottom: 5px;" >Upload Driver's Image</label><br>
+                    <input id="files" type="file" accept="image/*" (change)="photoUpload($event)"  style="display: none">
+                    
                     <!-- <mat-form-field class="form-field-full-width pb-0"> -->
                     <!-- <label for="file" class="mr-4">Image :</label>
                     <input type="file" (change)="upload($event)" accept=".png,.jpg" required/> -->
