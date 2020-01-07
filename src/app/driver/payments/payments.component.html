@@ -7,31 +7,17 @@
         <section *ngIf="waiting" style="display: flex; align-content: center; align-items: center;margin-top: 30px; margin-left: 20px; margin-right: 20px;">
         </section>
 
-
-        <mat-form-field class="form-field-full-width">
+        <!--<mat-form-field class="form-field-full-width">
             <input matInput placeholder=" Passenger ID ">
         </mat-form-field>
+         -->
 
         <mat-form-field class="form-field-full-width">
             <input matInput placeholder=" Passenger Name ">
         </mat-form-field>
 
         <mat-form-field class="form-field-full-width">
-            <mat-select placeholder="Month">
-                <!--Easy way???-->
-                <mat-option value="Month ">January</mat-option>
-                <mat-option value="Month ">February</mat-option>
-                <mat-option value="Month ">March</mat-option>
-                <mat-option value="Month ">April</mat-option>
-                <mat-option value="Month ">May</mat-option>
-                <mat-option value="Month ">June</mat-option>
-                <mat-option value="Month ">July</mat-option>
-                <mat-option value="Month ">August</mat-option>
-                <mat-option value="Month ">September</mat-option>
-                <mat-option value="Month ">October</mat-option>
-                <mat-option value="Month ">November</mat-option>
-                <mat-option value="Month ">December</mat-option>
-            </mat-select>
+            <input matInput placeholder="Date">
         </mat-form-field>
 
         <mat-form-field class="form-field-full-width">
@@ -39,9 +25,9 @@
         </mat-form-field>
 
         <p style="margin:0px;font-size: 15px; font-weight: 400;font-family: Georgia, 'Times New Roman', Times, serif">Confirm Payments?</p>
-        <div class="pt-2">
-            <button mat-raised-button color="accent">Cancel</button>
-            <button mat-raised-button color="primary">Confirm</button>
+        <div class="pt-4">
+            <button class="button" mat-raised-button color="accent">Cancel</button>
+            <button class="button" mat-raised-button color="primary">Confirm</button>
         </div>
     </div>
 </div>
