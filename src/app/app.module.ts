@@ -18,7 +18,7 @@ import { OwnerComponent } from './owner/owner.component';
 import { environment } from 'src/environments/environment';
 import { ProfileComponent } from './driver/profile/profile.component';
 import { VehicleRouteComponent } from './driver/vehicle-route/vehicle-route.component';
-import { ShareLocationComponent } from './driver/share-location/share-location.component';
+
 import { RatePassengersComponent } from './driver/rate-passengers/rate-passengers.component';
 import { PaymentsComponent } from './driver/payments/payments.component';
 import { PassengerListComponent } from './driver/passenger-list/passenger-list.component';
@@ -69,7 +69,7 @@ import { AdminhomeComponent } from './admin/adminhome/adminhome.component';
     OwnerComponent,
     ProfileComponent,
     VehicleRouteComponent,
-    ShareLocationComponent,
+   
     RatePassengersComponent,
     PaymentsComponent,
     PassengerListComponent,
