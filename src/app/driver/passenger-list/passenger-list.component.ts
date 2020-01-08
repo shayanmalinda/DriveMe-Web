@@ -5,7 +5,7 @@ import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { MatSnackBar } from '@angular/material';
-import { Passenger } from 'src/app/login/login.component';
+//import {  } from 'src/app/login/login.component';
 
 
 export interface Passenger{ //Interface for Passenger
@@ -16,7 +16,7 @@ export interface Passenger{ //Interface for Passenger
   pickupLocation: string;
 }
 
-export interface userCredentials { 
+export interface userCredentials { //Interface user Credentials
   email: string;
   adminId: string;
   isDeleted: boolean;
@@ -33,25 +33,34 @@ export class PassengerListComponent implements OnInit {
   passengers: Observable<Passenger[]>;
   private usersDoc: AngularFirestoreCollection<userCredentials>; 
   
-  constructor(private afs: AngularFirestore,private router : Router,private spinner: NgxSpinnerService,
+  constructor(
+    private afs: AngularFirestore,
+    private router: Router,
+    private spinner: NgxSpinnerService,
     private _snackBar: MatSnackBar,)
-     { 
-       this.spinner.show();
-       this.passengerDoc=this.afs.collection<Passenger>('users/user/passenger');
+    {  
+      this.spinner.show();
+      this.passengerDoc=this.afs.collection<Passenger>('users/user/passenger');
 
-       this.passengers = this.passengerDoc.snapshotChanges().pipe(
-        map(actions => actions.map(a=>{
-          const data = a.payload.doc.data() as Passenger;
-          const id = a.payload.doc.id;
+      this.passengers=this.passengerDoc.snapshotChanges().pipe(
+        map(actions=>actions.map(a=>{
+          var data=a.payload.doc.data() as Passenger;
+          const id=a.payload.doc.id;
           spinner.hide();
           return {id,...data};
         }))
-      );
-     }
+      )
+    }
 
   ngOnInit() 
   {
       
+  }
+
+  openSnackBar(message: string, action: string){
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 
 }
