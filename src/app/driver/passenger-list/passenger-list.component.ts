@@ -8,7 +8,7 @@ import { MatSnackBar } from '@angular/material';
 //import {} from 'src/app/login/login.component';
 
 
-export interface Passenger{ //Interface for Passenger
+export interface passenger{ //Interface for Passenger
   address: string;
   driverId: string;
   email: string;
@@ -17,11 +17,13 @@ export interface Passenger{ //Interface for Passenger
   pickupLocation: string;
   tempDriverId:string;
   passengerId: string;
+  isDeleted: boolean;
 }
 
 export interface userCredentials { //Interface user Credentials
   email: string;
-  adminId: string;
+  password: string;
+  passengerId: string;
   isDeleted: boolean;
 } 
 
@@ -32,22 +34,22 @@ export interface userCredentials { //Interface user Credentials
   styleUrls: ['./passenger-list.component.scss']
 })
 export class PassengerListComponent implements OnInit {
-  private passengerDoc: AngularFirestoreCollection<Passenger>; //
+ // private passengerDoc: AngularFirestoreCollection<passenger>; //Firestore collection of Passengers
 
-  passengersObservable: Observable<Passenger[]>; //creating an observable array of passengers
-  allPassengerList: Passenger[]; //full array of passengers
-  showingPassengerList: Passenger[] = [] as Passenger[] ; //display array
+  passengersObservable: Observable<passenger[]>; //creating an observable array of passengers
+  allPassengerList: passenger[]; //full array of passengers
+  showingPassengerList: passenger[] = [] as passenger[] ; //display array
 
   private usersDoc: AngularFirestoreCollection<userCredentials>; 
-
   private passengerDriverId: string;
+ 
 
   constructor(
     private afs: AngularFirestore,
     private router: Router,
     private spinner: NgxSpinnerService,
-    private _snackBar: MatSnackBar)
-    {   }
+    private _snackBar: MatSnackBar,)
+    { }
 
   ngOnInit() 
   {
@@ -58,7 +60,7 @@ export class PassengerListComponent implements OnInit {
         return {
           passengerId: item.payload.doc.id,
           ...item.payload.doc.data()
-        } as Passenger ;
+        } as passenger ;
       });
       
       this.allPassengerList.forEach(element =>{ //filtering passengers for logged in driver
@@ -66,16 +68,17 @@ export class PassengerListComponent implements OnInit {
           this.showingPassengerList.push(element);
         }
       })
+      
 
     });
 
   }
 
 
- /*openSnackBar(message: string, action: string){
-    this._snackBar.open(message, action, {
-      duration: 2000,
-    });
-  }*/
+  //openSnackBar(message: string, action: string) {
+    //this._snackBar.open(message, action, {
+      //duration: 2000,
+    //});
+  //}
 
 }
