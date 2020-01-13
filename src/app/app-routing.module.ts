@@ -40,7 +40,7 @@ import { RatingsComponent } from './owner/ratings/ratings.component';
 import { MyvehiclesComponent } from './owner/ownvehicles/myvehicles/myvehicles.component';
 import { RegisterVehicleComponent } from './owner/ownvehicles/register-vehicle/register-vehicle.component';
 import { AdminhomeComponent } from './admin/adminhome/adminhome.component';
-
+import { ViewpaymentsComponent} from './driver/viewpayments/viewpayments.component';
 
 
 
@@ -68,6 +68,7 @@ const routes: Routes = [
   { path: 'driver', component: DriverComponent,
     children:[
       { path: 'driver-payments',outlet: 'drivernavbar', component: PaymentsComponent},
+      { path: 'driver-viewpayments', outlet:'drivernavbar',component: ViewpaymentsComponent},
       { path: 'driver-profile', outlet: 'drivernavbar', component: ProfileComponent},
       { path: 'driver-ratepassengers', outlet: 'drivernavbar', component: RatePassengersComponent},
       //{ path: 'driver-sharelocation', outlet: 'drivernavbar',component: ShareLocationComponent},
