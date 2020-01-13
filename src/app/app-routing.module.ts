@@ -11,7 +11,7 @@ import { RegisterdriverComponent  } from './admin/driver/registerdriver/register
 import { PaymentsComponent } from './driver/payments/payments.component';
 import { ProfileComponent } from './driver/profile/profile.component';
 import { RatePassengersComponent } from './driver/rate-passengers/rate-passengers.component';
-import { ShareLocationComponent } from './driver/share-location/share-location.component';
+
 import { VehicleRouteComponent } from './driver/vehicle-route/vehicle-route.component';
 import { PassengerListComponent } from './driver/passenger-list/passenger-list.component';
 import { ViewdriversComponent } from './admin/driver/viewdrivers/viewdrivers.component';
@@ -70,7 +70,7 @@ const routes: Routes = [
       { path: 'driver-payments',outlet: 'drivernavbar', component: PaymentsComponent},
       { path: 'driver-profile', outlet: 'drivernavbar', component: ProfileComponent},
       { path: 'driver-ratepassengers', outlet: 'drivernavbar', component: RatePassengersComponent},
-      { path: 'driver-sharelocation', outlet: 'drivernavbar',component: ShareLocationComponent},
+      //{ path: 'driver-sharelocation', outlet: 'drivernavbar',component: ShareLocationComponent},
       { path: 'driver-vehicleroute', outlet: 'drivernavbar',component: VehicleRouteComponent},
       { path: 'driver-passengerlist', outlet: 'drivernavbar',component: PassengerListComponent},
       { path: 'changeuserpassword',outlet: 'drivernavbar', component: ChangeUserPasswordComponent},
