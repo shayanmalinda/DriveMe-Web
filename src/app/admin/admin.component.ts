@@ -73,4 +73,8 @@ export class AdminComponent implements OnInit {
     this.router.navigate([''], { replaceUrl: true });
     // setTimeout
   }
+
+  homepage(){
+    this.router.navigateByUrl('/admin');
+  }
 }
