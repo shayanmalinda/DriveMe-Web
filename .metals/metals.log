@@ -9,3 +9,18 @@ WARN  no build tool detected in workspace 'C:\Users\Cyber Park\Desktop\Drive-Me\
 INFO  shutting down Metals
 INFO  time: initialize in 1.36s
 WARN  no build tool detected in workspace 'C:\Users\Cyber Park\Desktop\Drive-Me\DriveMe-Web'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+INFO  shutting down Metals
+INFO  time: initialize in 1.36s
+WARN  no build tool detected in workspace 'C:\Users\Cyber Park\Desktop\Drive-Me\DriveMe-Web'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+INFO  shutting down Metals
+INFO  time: initialize in 0.78s
+WARN  no build tool detected in workspace 'C:\Users\Cyber Park\Desktop\Drive-Me\DriveMe-Web'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+INFO  shutting down Metals
+INFO  time: initialize in 2.15s
+WARN  no build tool detected in workspace 'C:\Users\Cyber Park\Desktop\Drive-Me\DriveMe-Web'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+INFO  shutting down Metals
+INFO  time: initialize in 0.83s
+WARN  no build tool detected in workspace 'C:\Users\Cyber Park\Desktop\Drive-Me\DriveMe-Web'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+INFO  shutting down Metals
+INFO  time: initialize in 1.73s
+WARN  no build tool detected in workspace 'C:\Users\Cyber Park\Desktop\Drive-Me\DriveMe-Web'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 

@@ -5,35 +5,25 @@ import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { MatSnackBar } from '@angular/material';
-import { Passenger } from 'src/app/login/login.component';
+//import {} from 'src/app/login/login.component';
 
-export interface Driver{
-  name: string;
-  email: string;
-  driverTelephone: string;
-  driverAddress: string;
-  driverNIC: string;
-  driverLicense: string;
-  password: string;
-  vehicleNumber: string;
-  vehicleChassis: string;
-  availableSeets: string;
-  vehicleType: Selection;
-  isAC: Boolean;
-  isDeleted: Boolean;
-}
 
-export interface Passenger{ //interface for Passenger
-  name: string;
-  email: string;
+export interface passenger{ //Interface for Passenger
   address: string;
+  driverId: string;
+  email: string;
+  name: string;
   phone: string;
   pickupLocation: string;
+  tempDriverId:string;
+  passengerId: string;
+  isDeleted: boolean;
 }
 
-export interface userCredentials { 
+export interface userCredentials { //Interface user Credentials
   email: string;
-  adminId: string;
+  password: string;
+  passengerId: string;
   isDeleted: boolean;
 } 
 
@@ -44,28 +34,51 @@ export interface userCredentials {
   styleUrls: ['./passenger-list.component.scss']
 })
 export class PassengerListComponent implements OnInit {
-  private passengerDoc: AngularFirestoreCollection<Passenger>;
-  passengers: Observable<Passenger[]>;
+ // private passengerDoc: AngularFirestoreCollection<passenger>; //Firestore collection of Passengers
+
+  passengersObservable: Observable<passenger[]>; //creating an observable array of passengers
+  allPassengerList: passenger[]; //full array of passengers
+  showingPassengerList: passenger[] = [] as passenger[] ; //display array
+
   private usersDoc: AngularFirestoreCollection<userCredentials>; 
-  
-  constructor(private afs: AngularFirestore,private router : Router,private spinner: NgxSpinnerService,
+  private passengerDriverId: string;
+ 
+
+  constructor(
+    private afs: AngularFirestore,
+    private router: Router,
+    private spinner: NgxSpinnerService,
     private _snackBar: MatSnackBar,)
-     { 
-       this.spinner.show();
-       this.passengerDoc=this.afs.collection<Passenger>('users/user/passenger');
+    { }
 
-       this.passengers = this.passengerDoc.snapshotChanges().pipe(
-        map(actions => actions.map(a=>{
-          const data = a.payload.doc.data() as Passenger;
-          const id = a.payload.doc.id;
-          spinner.hide();
-          return {id,...data};
-        }))
-      );
-     }
+  ngOnInit() 
+  {
+    this.afs.collection('users/user/passenger').snapshotChanges().subscribe( array =>
+      {
 
-  ngOnInit() {
-      //functions for the passenger-list here
+      this.allPassengerList = array.map( item =>{ //adding passenger's data and Id to one
+        return {
+          passengerId: item.payload.doc.id,
+          ...item.payload.doc.data()
+        } as passenger ;
+      });
+      
+      this.allPassengerList.forEach(element =>{ //filtering passengers for logged in driver
+        if(element.driverId == localStorage.getItem('driverId')){
+          this.showingPassengerList.push(element);
+        }
+      })
+      
+
+    });
+
   }
+
+
+  //openSnackBar(message: string, action: string) {
+    //this._snackBar.open(message, action, {
+      //duration: 2000,
+    //});
+  //}
 
 }
