@@ -56,6 +56,9 @@ import { PassengerpaymentsComponent } from './owner/payments/passengerpayments/p
 import { MyvehiclesComponent } from './owner/ownvehicles/myvehicles/myvehicles.component';
 import { RegisterVehicleComponent } from './owner/ownvehicles/register-vehicle/register-vehicle.component';
 import { AdminhomeComponent } from './admin/adminhome/adminhome.component';
+import { ViewownersComponent } from './admin/owner/viewowners/viewowners.component';
+import { RegisterownerComponent } from './admin/owner/registerowner/registerowner.component';
+import { EditownerdetailsComponent } from './admin/owner/editownerdetails/editownerdetails.component';
 
 
 @NgModule({
@@ -103,6 +106,9 @@ import { AdminhomeComponent } from './admin/adminhome/adminhome.component';
     MyvehiclesComponent,
     RegisterVehicleComponent,
     AdminhomeComponent,
+    ViewownersComponent,
+    RegisterownerComponent,
+    EditownerdetailsComponent,
 
 
   ],  
