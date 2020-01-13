@@ -109,8 +109,10 @@ import { AdminhomeComponent } from './admin/adminhome/adminhome.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
+    BrowserAnimationsModule,    
     AngularFireModule.initializeApp(environment.firebase),
+
+    // AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireStorageModule,
     MatModule,

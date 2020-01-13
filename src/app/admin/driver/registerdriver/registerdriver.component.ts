@@ -195,6 +195,8 @@ export class RegisterdriverComponent implements OnInit {
             imgURL: url,
           },
     
+          
+
           this.afs.doc('users/user/driver/'+id).set(this.driver).then(_ => {
             this.afs.collection('userCredentials').add(this.userCredentials).then(_ => {
               this.openSnackBar("Driver Registered","Done");
