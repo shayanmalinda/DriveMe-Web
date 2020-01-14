@@ -206,9 +206,6 @@ export class RegisterdriverComponent implements OnInit {
     this.task = this.ref.put(this.file);
     this.uploadProgress = this.task.percentageChanges();
     let OwnerID: string;
-    if(this.ownedOwner=="No Owner"){
-      
-    }
     this.task.snapshotChanges().pipe(
       finalize(() => {
         this.downloadURL = this.ref.getDownloadURL()
