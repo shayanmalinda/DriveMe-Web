@@ -19,7 +19,7 @@ import { EditdetailsComponent } from './owner/editdetails/editdetails.component'
 import { environment } from 'src/environments/environment';
 import { ProfileComponent } from './driver/profile/profile.component';
 import { VehicleRouteComponent } from './driver/vehicle-route/vehicle-route.component';
-import { ShareLocationComponent } from './driver/share-location/share-location.component';
+
 import { RatePassengersComponent } from './driver/rate-passengers/rate-passengers.component';
 import { PaymentsComponent } from './driver/payments/payments.component';
 import { PassengerListComponent } from './driver/passenger-list/passenger-list.component';
@@ -57,6 +57,9 @@ import { PassengerpaymentsComponent } from './owner/payments/passengerpayments/p
 import { MyvehiclesComponent } from './owner/ownvehicles/myvehicles/myvehicles.component';
 import { RegisterVehicleComponent } from './owner/ownvehicles/register-vehicle/register-vehicle.component';
 import { AdminhomeComponent } from './admin/adminhome/adminhome.component';
+import { ViewownersComponent } from './admin/owner/viewowners/viewowners.component';
+import { RegisterownerComponent } from './admin/owner/registerowner/registerowner.component';
+import { EditownerdetailsComponent } from './admin/owner/editownerdetails/editownerdetails.component';
 
 
 @NgModule({
@@ -70,7 +73,7 @@ import { AdminhomeComponent } from './admin/adminhome/adminhome.component';
     OwnerComponent,
     ProfileComponent,
     VehicleRouteComponent,
-    ShareLocationComponent,
+   
     RatePassengersComponent,
     PaymentsComponent,
     PassengerListComponent,
@@ -104,15 +107,23 @@ import { AdminhomeComponent } from './admin/adminhome/adminhome.component';
     MyvehiclesComponent,
     RegisterVehicleComponent,
     AdminhomeComponent,
+<<<<<<< HEAD
     EditdetailsComponent,
+=======
+    ViewownersComponent,
+    RegisterownerComponent,
+    EditownerdetailsComponent,
+>>>>>>> 57910c0e13ad72cbc1496c22a35dd85a85a4809e
 
 
   ],  
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
+    BrowserAnimationsModule,    
     AngularFireModule.initializeApp(environment.firebase),
+
+    // AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireStorageModule,
     MatModule,

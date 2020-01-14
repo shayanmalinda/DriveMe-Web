@@ -1,1 +1,37 @@
-<p>payments works!</p>
+<app-ngxspinner></app-ngxspinner>
+
+<div class="container navbar-margin">
+    <div class="container-fluid pl-5 pr-5 pt-3 pb-2 fill-form">
+
+        <p style="margin:0px;font-size: 30px; font-weight: 400;font-family: Georgia, 'Times New Roman', Times, serif">Payment Details</p>
+        <section *ngIf="waiting" style="display: flex; align-content: center; align-items: center;margin-top: 30px; margin-left: 20px; margin-right: 20px;">
+        </section>
+
+        <form [formGroup]="paymentForm">
+
+            <mat-form-field class="form-field-full-width">
+                <input matInput class="form-control" type="text" placeholder="Amount(Rs.)" formControlName="amount" required>
+            </mat-form-field>
+
+            <mat-form-field class="form-field-full-width">
+                <input matInput class="form-control" type="text" placeholder="Date" formControlName="date" required>
+            </mat-form-field>
+
+            <mat-form-field class="form-field-full-width">
+                <mat-label>Passenger</mat-label>
+                <mat-select formControlName="passengerId">
+                    <mat-option *ngFor="let item of showingPassengerList" value={{item.passengerId}}>
+                        {{item.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <p style="margin:0px;font-size: 15px; font-weight: 400;font-family: Georgia, 'Times New Roman', Times, serif">Confirm Payments?</p>
+            <div class="pt-4">
+                <button class="button" mat-raised-button color="accent">Cancel</button>
+                <button class="button" mat-raised-button color="primary" (click)="registerpayment(paymentForm.value)">Confirm</button>
+            </div>
+        </form>
+
+    </div>
+</div>
