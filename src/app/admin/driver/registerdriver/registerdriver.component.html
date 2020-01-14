@@ -40,6 +40,18 @@
                         <input [(ngModel)]="driverLicense" matInput placeholder="Driver License Card Number" formControlName="ctrl5" required>
                     </mat-form-field><br>
                     <mat-form-field class="form-field-full-width">
+                        <mat-label>Select Owner</mat-label>
+                        <mat-select formControlName="ctrl13" [(ngModel)]="ownedOwner" name="owner"> 
+                            <!-- <mat-option value="">No Owner</mat-option> -->
+                                <mat-option value="No Owner">No Owner</mat-option>
+                            <div  *ngFor="let owner of owners  | async">
+                                <mat-option [value]=owner.id *ngIf="!owner.isDeleted">
+                                    {{owner.name}}
+                                </mat-option>
+                            </div>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="form-field-full-width">
                         <input [(ngModel)]="pass1" matInput placeholder="Login Password" [type]="hide1 ? 'password' : 'text'" [formControl]="ctrl6" required>
                         <button mat-icon-button matSuffix (click)="hide1 = !hide1" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide1">
                         <mat-icon color="accent">{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
