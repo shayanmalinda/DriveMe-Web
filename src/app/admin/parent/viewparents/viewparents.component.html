@@ -1,7 +1,7 @@
 <app-ngxspinner></app-ngxspinner> 
 <div class="container navbar-margin">
     <mat-list role="list"  *ngFor="let parent of parents | async; let last = last">
-        <div class="row pt-4 pb-3 mb-4" style="border: 1.5px solid #FF5722; border-radius: 20px;" *ngIf="!parent.isDeleted">
+        <div class="row pt-4 pb-3 mb-4" style="border: 3px solid #FF5722; border-radius: 20px;" *ngIf="!parent.isDeleted">
             <div class="col-md-3" style="vertical-align: middle;text-align: center;"> 
                 <div class="row" style="vertical-align: middle;
                 display: flex;
@@ -14,29 +14,39 @@
                 </div>
             </div>
             <div class="col-md-5" style="padding-left: 30px;">
-                <p>Email : {{parent.parentemail}}</p>
-                <p>Address : {{parent.parentaddress}}</p>
-                <p>Phone : {{parent.parentphone}}</p>
-                <p>Child's name : {{parent.childname}}</p>
-                <p>Child's school : {{parent.childschool}}</p>
-                <p>School Telephone : {{parent.childschoolphone}}</p>
-                <p>Child's age : {{parent.childage}}</p>
+                <p>Email : {{parent.parentEmail}}</p>
+                <p>Address : {{parent.parentAddress}}</p>
+                <p>Phone : {{parent.parentPhone}}</p>
+                <p>Child's name : {{parent.childName}}</p>
+                <p>Child's school : {{parent.childSchool}}</p>
+                <p>School Telephone : {{parent.childSchoolPhone}}</p>
+                <p>Child's age : {{parent.childAge}}</p>
             </div>
             <div class="col-md-4">                
                 <button mat-raised-button color="primary" style="
                     height: 45px;
                     width: 70%;
                     position: absolute;
-                    top: 28%;
+                    top: 25%;
                     -ms-transform: translateY(-50%);
                     transform: translateY(-50%);" (click)="changeParentDetails(parent.id,parent)" 
                     routerLinkActive="active" ><mat-icon>edit</mat-icon>Change Details</button>
+                         
+                <button mat-raised-button color="primary" style="
+                    height: 45px;
+                    width: 70%;
+                    position: absolute;
+                    top: 50%;
+                    -ms-transform: translateY(-50%);
+                    transform: translateY(-50%);"  
+                    routerLinkActive="active" (click)="changePassword(parent.id)">
+                    <mat-icon>lock_open</mat-icon>Change Password</button>  
                          
                 <button mat-raised-button color="warn" style="
                     height: 45px;
                     width: 70%;
                     position: absolute;
-                    top: 68%;
+                    top: 75%;
                     -ms-transform: translateY(-50%);
                     transform: translateY(-50%);"  
                     routerLinkActive="active" (click)="removeParent(parent.id)">

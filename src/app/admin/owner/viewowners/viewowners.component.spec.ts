@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ShareLocationComponent } from './share-location.component';
+import { ViewownersComponent } from './viewowners.component';
 
-describe('ShareLocationComponent', () => {
-  let component: ShareLocationComponent;
-  let fixture: ComponentFixture<ShareLocationComponent>;
+describe('ViewownersComponent', () => {
+  let component: ViewownersComponent;
+  let fixture: ComponentFixture<ViewownersComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ShareLocationComponent ]
+      declarations: [ ViewownersComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ShareLocationComponent);
+    fixture = TestBed.createComponent(ViewownersComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

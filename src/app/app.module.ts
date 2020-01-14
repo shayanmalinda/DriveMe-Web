@@ -18,7 +18,7 @@ import { OwnerComponent } from './owner/owner.component';
 import { environment } from 'src/environments/environment';
 import { ProfileComponent } from './driver/profile/profile.component';
 import { VehicleRouteComponent } from './driver/vehicle-route/vehicle-route.component';
-import { ShareLocationComponent } from './driver/share-location/share-location.component';
+
 import { RatePassengersComponent } from './driver/rate-passengers/rate-passengers.component';
 import { PaymentsComponent } from './driver/payments/payments.component';
 import { PassengerListComponent } from './driver/passenger-list/passenger-list.component';
@@ -44,9 +44,22 @@ import { AdminprofileComponent } from './admin/adminprofile/adminprofile.compone
 
 import { RegisterpassengerComponent } from './passenger/registerpassenger/registerpassenger.component';
 
-import { DriverchangepasswordComponent } from './driver/driverchangepassword/driverchangepassword.component';
 import { RegisterComponent } from './register/register.component';
 import { PassengerprofileComponent } from './passenger/passengerprofile/passengerprofile.component';
+import { OwnvehiclesComponent } from './owner/ownvehicles/ownvehicles.component';
+import { OwnerprofileComponent } from './owner/ownerprofile/ownerprofile.component';
+import { DriverdetailsComponent } from './owner/driverdetails/driverdetails.component';
+import { PassengerdetailsComponent } from './owner/passengerdetails/passengerdetails.component';
+import { RatingsComponent } from './owner/ratings/ratings.component';
+import { ChangeUserPasswordComponent } from './shared/change-user-password/change-user-password.component';
+import { DriverpaymentsComponent } from './owner/payments/driverpayments/driverpayments.component';
+import { PassengerpaymentsComponent } from './owner/payments/passengerpayments/passengerpayments.component';
+import { MyvehiclesComponent } from './owner/ownvehicles/myvehicles/myvehicles.component';
+import { RegisterVehicleComponent } from './owner/ownvehicles/register-vehicle/register-vehicle.component';
+import { AdminhomeComponent } from './admin/adminhome/adminhome.component';
+import { ViewownersComponent } from './admin/owner/viewowners/viewowners.component';
+import { RegisterownerComponent } from './admin/owner/registerowner/registerowner.component';
+import { EditownerdetailsComponent } from './admin/owner/editownerdetails/editownerdetails.component';
 
 
 @NgModule({
@@ -60,7 +73,7 @@ import { PassengerprofileComponent } from './passenger/passengerprofile/passenge
     OwnerComponent,
     ProfileComponent,
     VehicleRouteComponent,
-    ShareLocationComponent,
+   
     RatePassengersComponent,
     PaymentsComponent,
     PassengerListComponent,
@@ -82,16 +95,32 @@ import { PassengerprofileComponent } from './passenger/passengerprofile/passenge
 
     RegisterpassengerComponent,
 
-    DriverchangepasswordComponent,
     RegisterComponent,
     PassengerprofileComponent,
+    OwnvehiclesComponent,
+    DriverdetailsComponent,
+    PassengerdetailsComponent,
+    RatingsComponent,
+    ChangeUserPasswordComponent,
+    OwnerprofileComponent,
+    DriverpaymentsComponent,
+    PassengerpaymentsComponent,
+    MyvehiclesComponent,
+    RegisterVehicleComponent,
+    AdminhomeComponent,
+    ViewownersComponent,
+    RegisterownerComponent,
+    EditownerdetailsComponent,
+
 
   ],  
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
+    BrowserAnimationsModule,    
     AngularFireModule.initializeApp(environment.firebase),
+
+    // AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireStorageModule,
     MatModule,

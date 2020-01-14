@@ -12,7 +12,7 @@ export interface Passenger{
   email: string;
   address: string;
   phone: string;
-  password: string;
+  // password: string;
 }
 
 @Component({
@@ -69,8 +69,8 @@ export class EditpassengerdetailsComponent implements OnInit {
         this.passengerEmail = a.email;
         this.passengerPhone = a.phone;
         this.passengerAddress = a.address;
-        this.pass1 = a.password;
-        this.pass2 = a.password;
+        // this.pass1 = a.password;
+        // this.pass2 = a.password;
         this.cdRef.detectChanges();
         
         this.spinner.hide();
@@ -114,7 +114,7 @@ export class EditpassengerdetailsComponent implements OnInit {
       email : this.passengerEmail,
       phone : this.passengerPhone,
       address : this.passengerAddress,
-      password : this.pass1
+      // password : this.pass1
     }
 
 
