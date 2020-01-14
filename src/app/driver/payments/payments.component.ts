@@ -2,10 +2,11 @@ import { Component, OnInit , ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { MatSnackBar, MatStepper } from '@angular/material';
-import { AngularFireStorage } from '@angular/fire/storage';
+//import { AngularFireStorage } from '@angular/fire/storage';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { NgxSpinnerService } from 'ngx-spinner';
+
 
 
 export interface payment{ //Interface for payments
@@ -45,16 +46,8 @@ export class PaymentsComponent implements OnInit {
   allPassengerList: passenger[]; //full array of passengers
   showingPassengerList: passenger[] = [] as passenger[] ; //display array
 
-  paymentDate: string;
-  paymentDriverId: string;
-  paymentDriverPaymentId: string;
-  paymentIsAccepted: boolean;
-  paymentValue: string;
-  paymentId: string;
-  paymentPassengerId: string;
   
   waiting = false;
-  firstFormGroup: FormGroup;
 
   payment: payment;
 
@@ -66,7 +59,7 @@ export class PaymentsComponent implements OnInit {
   passenger: Observable<passenger>;
   passengerList: passenger []; 
 
-  private paymentDoc: AngularFirestoreDocument<payment>;
+  //private paymentDoc: AngularFirestoreDocument<payment>;
   payments: Observable<payment>;
 
 
@@ -112,13 +105,12 @@ export class PaymentsComponent implements OnInit {
     
      this.tempid=this.afs.createId();//create a id for driverPaymentId
 
-    console.log('idinit',this.tempid);
 
     this.payment={
       date: formData.date,
       value: formData.amount,
       driverId: localStorage.getItem('driverId'),
-      driverPaymentId: this.tempid,//correct?
+      driverPaymentId: this.tempid,
       isAccepted: false
     }
 
