@@ -5,7 +5,7 @@ import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { MatSnackBar } from '@angular/material';
-import {MatTreeModule} from '@angular/material/tree';//tree in display
+
 
 export interface payments{ //Interface Payments
    date: string;
@@ -23,8 +23,8 @@ export interface passenger{ //Interface for Passenger
   phone: string;
   pickupLocation: string;
   tempDriverId:string;
-  passengerId: string;
   isDeleted: boolean;
+  passengerId: string;
 }
  
 
@@ -36,6 +36,8 @@ export interface passenger{ //Interface for Passenger
 })
 
 export class ViewpaymentsComponent implements OnInit {
+
+  passengerId : string;
 
   passengerObservable: Observable<passenger[]>; //an observable array of passengers
   allPassengerList: passenger[]; //full set is assigned to this
@@ -55,29 +57,29 @@ export class ViewpaymentsComponent implements OnInit {
       {
 
       this.allPassengerList = array.map( item =>{ //adding passenger's data and Id to one
-        return {
-          passengerId: item.payload.doc.id,
-          ...item.payload.doc.data()
-        } as passenger ;
+      const data = item.payload.doc.data() as passenger;
+      const id = item.payload.doc.id;
+        return {id,...data        }  ;
       });
-      
+      //console.log(this.passengerId);
+
       this.allPassengerList.forEach(element =>{ //filtering passengers for logged in driver
         if(element.driverId == localStorage.getItem('driverId')){
           this.filteredPassengerList.push(element);
         }
       })
-      
+      //console.log(this.passengerId);
 
     });
 
   }
 
-  viewpaymenthistory(passengerId: string , passenger:passenger){
+  viewpaymenthistory(passengerId: string , passenger:passenger) //function for passing values to viewpaymenthistory page
+  {
    this.router.navigate(['/driver', {outlets: {'drivernavbar': ['payment-history']}}],{queryParams: {passengerId: passengerId}})
-
-  //   // this.router.navigate(['/admin', {outlets: {'adminnavbar': ['editdriverdetails']}}],{queryParams: {driver: JSON.stringify(driver)}})
-  //   // this.router.navigateByUrl('/admin/(adminnavbar:editdriverdetails)',{queryParams:driver});
-  //   // console.log("passing value==="+driver.driverNIC);
+   
+  //  console.log("passsengerId: "+passengerId);
+  //  console.log("passenger: "+passenger.name);
   }
 
 
