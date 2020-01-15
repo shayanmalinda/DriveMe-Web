@@ -47,7 +47,7 @@ import { RegisterpassengerComponent } from './passenger/registerpassenger/regist
 import { DriverchangepasswordComponent } from './driver/driverchangepassword/driverchangepassword.component';
 import { RegisterComponent } from './register/register.component';
 import { PassengerprofileComponent } from './passenger/passengerprofile/passengerprofile.component';
-
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -96,7 +96,11 @@ import { PassengerprofileComponent } from './passenger/passengerprofile/passenge
     AngularFireStorageModule,
     MatModule,
     NgxSpinnerModule,
-    HttpClientModule
+    HttpClientModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAql9AnybLBLMIrE7AnBl2WN46WarnJG0',
+      libraries: ['places']
+    })
   ], 
   entryComponents: [LoginComponent, OverviewDialog, OverviewDialog2],
   providers: [],

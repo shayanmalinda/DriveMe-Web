@@ -9,8 +9,10 @@
 .dropdown-item{
     color: #ccc;
 }
-
-
+	
+agm-map {
+    height: 300px;
+}
 
 .dropdown-item:hover{
     background-color: #333 !important;
