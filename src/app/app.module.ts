@@ -98,7 +98,7 @@ import { AgmCoreModule } from '@agm/core';
     NgxSpinnerModule,
     HttpClientModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyAql9AnybLBLMIrE7AnBl2WN46WarnJG0',
+      apiKey: 'AIzaSyCEwsWLe6soyNWGG0JTqJVKk4KnGFx_Ax8',
       libraries: ['places']
     })
   ], 
