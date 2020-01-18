@@ -66,6 +66,7 @@ import { ViewownersComponent } from './admin/owner/viewowners/viewowners.compone
 import { RegisterownerComponent } from './admin/owner/registerowner/registerowner.component';
 import { EditownerdetailsComponent } from './admin/owner/editownerdetails/editownerdetails.component';
 import { ViewratingsComponent } from './driver/viewratings/viewratings.component';
+import { RecentRatingsComponent } from './driver/recent-ratings/recent-ratings.component';
 
 
 @NgModule({
@@ -121,6 +122,7 @@ import { ViewratingsComponent } from './driver/viewratings/viewratings.component
     RegisterownerComponent,
     EditownerdetailsComponent,
     ViewratingsComponent,
+    RecentRatingsComponent,
 
 
   ],  

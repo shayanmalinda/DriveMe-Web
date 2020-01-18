@@ -63,7 +63,7 @@ export class PaymentHistoryComponent implements OnInit {
       this.passengerId = params['passengerId'];    
     });
 
-    console.log('id',this.passengerId);
+    //console.log('id',this.passengerId);
 
     this.afs.collection('users/user/passenger/'+this.passengerId+'/payments').snapshotChanges().subscribe(array =>
       {
