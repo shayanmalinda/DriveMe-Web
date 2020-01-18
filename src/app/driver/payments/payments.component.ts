@@ -2,7 +2,7 @@ import { Component, OnInit , ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { MatSnackBar, MatStepper } from '@angular/material';
-//import { AngularFireStorage } from '@angular/fire/storage';
+import { AngularFireStorage } from '@angular/fire/storage';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -82,10 +82,9 @@ export class PaymentsComponent implements OnInit {
       {
 
       this.allPassengerList = array.map( item =>{ //adding passenger's data and Id to one
-        return {
-          passengerId: item.payload.doc.id,
-          ...item.payload.doc.data()
-        } as passenger ;
+      const data = item.payload.doc.data() as passenger;
+      const id= item.payload.doc.id;  
+      return {id,...data } ;
       });
       
       this.allPassengerList.forEach(element =>{ //filtering passengers for logged in driver
