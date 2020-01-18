@@ -1,7 +1,7 @@
 <div class="container navbar-margin">   
     <div class="container-fluid pl-5 pr-5 pt-3 pb-2 fill-form">
 
-        <p style="margin:0px;font-size: 30px; font-weight: 400;font-family: Georgia, 'Times New Roman', Times, serif">Admin Registration</p>
+        <p style="margin:0px;font-size: 30px; font-weight: 400;font-family: Georgia, 'Times New Roman', Times, serif">Owner Registration</p>
         <section *ngIf="waiting" style="display: flex; align-content: center; align-items: center;margin-top: 30px; margin-left: 20px; margin-right: 20px;">
             <mat-progress-bar  color="warn" mode="indeterminate" value="50" bufferValue="75">
         </mat-progress-bar>
@@ -9,27 +9,24 @@
         <mat-horizontal-stepper [linear]="isLinear" #stepper>
             <mat-step [stepControl]="firstFormGroup" >
                 <form [formGroup]="firstFormGroup">
-                    <ng-template matStepLabel>Admin Details</ng-template>
+                    <ng-template matStepLabel>Owner Details</ng-template>
                     <mat-form-field class="form-field-full-width">
-                        <input [(ngModel)]="adminName" matInput placeholder="Name" formControlName="ctrl1" required>
+                        <input [(ngModel)]="ownerName" matInput placeholder="Name" formControlName="ctrl1" required>
                     </mat-form-field><br>
                     <mat-form-field class="form-field-full-width">
-                        <input [(ngModel)]="adminEmail" matInput placeholder="Email" [formControl]="emailFormControl" required>
+                        <input [(ngModel)]="ownerEmail" matInput placeholder="Email" [formControl]="emailFormControl" required>
                         <mat-error *ngIf="emailFormControl.invalid">
                           Please enter a valid Email Address
                         </mat-error>
                     </mat-form-field><br>
                     <mat-form-field class="form-field-full-width">
-                        <input [(ngModel)]="adminTelephone" matInput placeholder="Telephone" [formControl]="ctrl2" required>
+                        <input [(ngModel)]="ownerTelephone" matInput placeholder="Telephone" [formControl]="ctrl2" required>
                         <mat-error *ngIf="ctrl2.invalid">
                           Please enter a valid Telephone Number
                         </mat-error>
                     </mat-form-field><br>
                     <mat-form-field class="form-field-full-width">
-                        <input [(ngModel)]="adminAddress" matInput placeholder="Address" formControlName="ctrl3" required>
-                    </mat-form-field><br>
-                    <mat-form-field class="form-field-full-width">
-                        <input [(ngModel)]="adminNIC" matInput placeholder="NIC Number" [formControl]="ctrl4" required>
+                        <input [(ngModel)]="ownerNIC" matInput placeholder="NIC Number" [formControl]="ctrl4" required>
                         <mat-error *ngIf="ctrl4.invalid">
                           Please enter a valid NIC Number
                         </mat-error>
@@ -57,7 +54,7 @@
                             </section>
                         </div><br>
                     </div>
-                    <label for="files" class="btn btn-primary btn-block btn-primary" style="width: 30%;margin-top: 5px;margin-bottom: 5px;" >Upload Admin's Image</label><br>
+                    <label for="files" class="btn btn-primary btn-block btn-primary" style="width: 30%;margin-top: 5px;margin-bottom: 5px;" >Upload Owner's Image</label><br>
                     <input id="files" type="file" accept="image/*" (change)="photoUpload($event)"  style="display: none">
                     
                     <!-- <mat-form-field class="form-field-full-width pb-0"> -->
@@ -75,7 +72,7 @@
                 Please Confirm the Details
                 <div class="pt-3">
                     <button mat-raised-button color="accent" matStepperPrevious  class="mr-4">Go Back</button>
-                    <button mat-raised-button color="primary" (click)="registerAdmin()">Confirm</button>
+                    <button mat-raised-button color="primary" (click)="registerOwner()">Confirm</button>
                 </div>
             </mat-step>
         </mat-horizontal-stepper>

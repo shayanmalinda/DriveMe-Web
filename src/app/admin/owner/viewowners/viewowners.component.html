@@ -1,54 +1,53 @@
-<app-ngxspinner></app-ngxspinner> 
+<app-ngxspinner></app-ngxspinner>
 <div class="container navbar-margin">
-    <mat-list role="list"  *ngFor="let passenger of passengers | async; let last = last">
-        <div class="row pt-4 pb-3 mb-4" style="border: 3px solid #FF5722; border-radius: 20px;" *ngIf="!passenger.isDeleted">
+    <mat-list role="list"  *ngFor="let owner of owners | async; let last = last">
+        <div class="row pt-4 pb-3 mb-4" style="border: 3px solid #FF5722; border-radius: 20px;" *ngIf="!owner.isDeleted">
             <div class="col-md-3" style="vertical-align: middle;text-align: center;"> 
                 <div class="row" style="vertical-align: middle;
                 display: flex;
                 justify-content: center;">
-                        <img src="../../../../assets/passengeravatar.png" alt="Passenger Icon" style="width: 150px;
+                        <img [src]=owner.imgURL alt="Owner Icon" style="width: 180px;
                         position: absolute;
-                        top: 50%;
+                        top: 45%;
                         -ms-transform: translateY(-50%);
                         transform: translateY(-50%);">
                 </div>
             </div>
             <div class="col-md-5" style="padding-left: 30px;">
-                <p>Name : {{passenger.name}}</p>
-                <p>Email : {{passenger.email}}</p>
-                <p>Address : {{passenger.address}}</p>
-                <p>Telephone : {{passenger.phone}}</p>
+                <p>Name : {{owner.name}}</p>
+                <p>Email : {{owner.email}}</p>
+                <p>Telephone : {{owner.telephone}}</p>
+                <p>NIC/Passport Number : {{owner.nic}}</p>
             </div>
             <div class="col-md-4">                
                 <button mat-raised-button color="primary" style="
                     height: 45px;
-                    width: 70%;
+                    width: 80%;
                     position: absolute;
-                    top: 12%;
+                    top: 10%;
                     -ms-transform: translateY(-50%);
-                    transform: translateY(-50%);" (click)="changePassengerDetails(passenger.id,passenger)" 
-                    routerLinkActive="active" ><mat-icon>edit</mat-icon>Change Details</button>
-
+                    transform: translateY(-50%);" (click)="changeOwnerDetails(owner.id,owner)" 
+                    routerLinkActive="active" ><mat-icon>edit</mat-icon>Change Details</button> 
+                         
                 <button mat-raised-button color="primary" style="
                     height: 45px;
-                    width: 70%;
+                    width: 80%;
                     position: absolute;
                     top: 47%;
                     -ms-transform: translateY(-50%);
                     transform: translateY(-50%);"  
-                    routerLinkActive="active" (click)="changePassword(passenger.id)">
+                    routerLinkActive="active" (click)="changePassword(owner.id)">
                     <mat-icon>lock_open</mat-icon>Change Password</button>  
                          
                 <button mat-raised-button color="warn" style="
                     height: 45px;
-                    width: 70%;
+                    width: 80%;
                     position: absolute;
-                    top: 83%;
+                    top: 85%;
                     -ms-transform: translateY(-50%);
                     transform: translateY(-50%);"  
-                    routerLinkActive="active" (click)="removePassenger(passenger.id)">
-                    <mat-icon>delete</mat-icon>Remove Passenger</button>        
-        <!-- [routerLink]="['/admin', {outlets: {'adminnavbar': ['editdriverdetails',id]}}]"     -->
+                    routerLinkActive="active" (click)="removeOwner(owner.id)">
+                    <mat-icon>delete</mat-icon>Remove Owner</button>          
         </div>
         </div>
     </mat-list>

@@ -45,6 +45,7 @@ import { AdminprofileComponent } from './admin/adminprofile/adminprofile.compone
 import { RegisterpassengerComponent } from './passenger/registerpassenger/registerpassenger.component';
 
 import { RegisterComponent } from './register/register.component';
+import { PassengerprofileComponent } from './passenger/passengerprofile/passengerprofile.component';
 import { OwnvehiclesComponent } from './owner/ownvehicles/ownvehicles.component';
 import { OwnerprofileComponent } from './owner/ownerprofile/ownerprofile.component';
 import { DriverdetailsComponent } from './owner/driverdetails/driverdetails.component';
@@ -61,6 +62,9 @@ import { PaymentHistoryComponent } from './driver/payment-history/payment-histor
 
 
 
+import { ViewownersComponent } from './admin/owner/viewowners/viewowners.component';
+import { RegisterownerComponent } from './admin/owner/registerowner/registerowner.component';
+import { EditownerdetailsComponent } from './admin/owner/editownerdetails/editownerdetails.component';
 
 
 @NgModule({
@@ -97,6 +101,7 @@ import { PaymentHistoryComponent } from './driver/payment-history/payment-histor
     RegisterpassengerComponent,
 
     RegisterComponent,
+    PassengerprofileComponent,
     OwnvehiclesComponent,
     DriverdetailsComponent,
     PassengerdetailsComponent,
@@ -111,14 +116,19 @@ import { PaymentHistoryComponent } from './driver/payment-history/payment-histor
     ViewpaymentsComponent,
     PaymentHistoryComponent,
     
+    ViewownersComponent,
+    RegisterownerComponent,
+    EditownerdetailsComponent,
 
 
   ],  
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
+    BrowserAnimationsModule,    
     AngularFireModule.initializeApp(environment.firebase),
+
+    // AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireStorageModule,
     MatModule,

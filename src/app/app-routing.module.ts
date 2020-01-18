@@ -28,6 +28,7 @@ import { AdminprofileComponent } from './admin/adminprofile/adminprofile.compone
 import { RegisterpassengerComponent } from './passenger/registerpassenger/registerpassenger.component';
 
 import { RegisterComponent } from './register/register.component';
+import { PassengerprofileComponent } from './passenger/passengerprofile/passengerprofile.component';
 import { ChangeUserPasswordComponent } from './shared/change-user-password/change-user-password.component';
 import { from } from 'rxjs';
 import { OwnerprofileComponent } from './owner/ownerprofile/ownerprofile.component';
@@ -42,6 +43,10 @@ import { RegisterVehicleComponent } from './owner/ownvehicles/register-vehicle/r
 import { AdminhomeComponent } from './admin/adminhome/adminhome.component';
 import { ViewpaymentsComponent} from './driver/viewpayments/viewpayments.component';
 import { PaymentHistoryComponent } from './driver/payment-history/payment-history.component';
+import { ViewownersComponent } from './admin/owner/viewowners/viewowners.component';
+import { RegisterownerComponent } from './admin/owner/registerowner/registerowner.component';
+import { EditownerdetailsComponent } from './admin/owner/editownerdetails/editownerdetails.component';
+
 
 
 
@@ -64,6 +69,10 @@ const routes: Routes = [
       { path: 'adminprofile',outlet: 'adminnavbar', component: AdminprofileComponent},
       { path: 'changeuserpassword',outlet: 'adminnavbar', component: ChangeUserPasswordComponent},
       { path: 'adminhome',outlet: 'adminnavbar', component: AdminhomeComponent},
+      { path: 'viewowners',outlet: 'adminnavbar', component: ViewownersComponent },
+      { path: 'ownerregister',outlet: 'adminnavbar', component: RegisterownerComponent },
+      { path: 'editownerdetails',outlet: 'adminnavbar', component: EditownerdetailsComponent },
+
     ]
   },
   { path: 'driver', component: DriverComponent,
@@ -80,10 +89,12 @@ const routes: Routes = [
     ]
   },
 
+
   { path: 'parent', component: ParentComponent},
   { path: 'passenger', component: PassengerComponent,  
     children: [
       { path: 'passengerregister',outlet: 'passengernavbar', component: RegisterpassengerComponent},
+      { path: 'passengerprofile',outlet: 'passengernavbar', component: PassengerprofileComponent},
     ]
 
   },
