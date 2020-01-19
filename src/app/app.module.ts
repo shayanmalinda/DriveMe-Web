@@ -46,6 +46,7 @@ import { AdminprofileComponent } from './admin/adminprofile/adminprofile.compone
 import { RegisterpassengerComponent } from './passenger/registerpassenger/registerpassenger.component';
 
 import { RegisterComponent } from './register/register.component';
+import { PassengerprofileComponent } from './passenger/passengerprofile/passengerprofile.component';
 import { OwnvehiclesComponent } from './owner/ownvehicles/ownvehicles.component';
 import { OwnerprofileComponent } from './owner/ownerprofile/ownerprofile.component';
 import { DriverdetailsComponent } from './owner/driverdetails/driverdetails.component';
@@ -96,6 +97,7 @@ import { EditownerdetailsComponent } from './admin/owner/editownerdetails/editow
     RegisterpassengerComponent,
 
     RegisterComponent,
+    PassengerprofileComponent,
     OwnvehiclesComponent,
     DriverdetailsComponent,
     PassengerdetailsComponent,

@@ -28,6 +28,7 @@ import { AdminprofileComponent } from './admin/adminprofile/adminprofile.compone
 import { RegisterpassengerComponent } from './passenger/registerpassenger/registerpassenger.component';
 
 import { RegisterComponent } from './register/register.component';
+import { PassengerprofileComponent } from './passenger/passengerprofile/passengerprofile.component';
 import { ChangeUserPasswordComponent } from './shared/change-user-password/change-user-password.component';
 import { from } from 'rxjs';
 import { OwnerprofileComponent } from './owner/ownerprofile/ownerprofile.component';
@@ -85,10 +86,12 @@ const routes: Routes = [
     ]
   },
 
+
   { path: 'parent', component: ParentComponent},
   { path: 'passenger', component: PassengerComponent,  
     children: [
       { path: 'passengerregister',outlet: 'passengernavbar', component: RegisterpassengerComponent},
+      { path: 'passengerprofile',outlet: 'passengernavbar', component: PassengerprofileComponent},
     ]
 
   },
