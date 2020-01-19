@@ -107,13 +107,11 @@ import { EditownerdetailsComponent } from './admin/owner/editownerdetails/editow
     MyvehiclesComponent,
     RegisterVehicleComponent,
     AdminhomeComponent,
-<<<<<<< HEAD
     EditdetailsComponent,
-=======
+
     ViewownersComponent,
     RegisterownerComponent,
     EditownerdetailsComponent,
->>>>>>> 57910c0e13ad72cbc1496c22a35dd85a85a4809e
 
 
   ],  
