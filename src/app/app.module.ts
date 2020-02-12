@@ -57,9 +57,16 @@ import { PassengerpaymentsComponent } from './owner/payments/passengerpayments/p
 import { MyvehiclesComponent } from './owner/ownvehicles/myvehicles/myvehicles.component';
 import { RegisterVehicleComponent } from './owner/ownvehicles/register-vehicle/register-vehicle.component';
 import { AdminhomeComponent } from './admin/adminhome/adminhome.component';
+import { ViewpaymentsComponent } from './driver/viewpayments/viewpayments.component';
+import { PaymentHistoryComponent } from './driver/payment-history/payment-history.component';
+
+
+
 import { ViewownersComponent } from './admin/owner/viewowners/viewowners.component';
 import { RegisterownerComponent } from './admin/owner/registerowner/registerowner.component';
 import { EditownerdetailsComponent } from './admin/owner/editownerdetails/editownerdetails.component';
+import { ViewratingsComponent } from './driver/viewratings/viewratings.component';
+import { RecentRatingsComponent } from './driver/recent-ratings/recent-ratings.component';
 
 
 @NgModule({
@@ -108,9 +115,14 @@ import { EditownerdetailsComponent } from './admin/owner/editownerdetails/editow
     MyvehiclesComponent,
     RegisterVehicleComponent,
     AdminhomeComponent,
+    ViewpaymentsComponent,
+    PaymentHistoryComponent,
+    
     ViewownersComponent,
     RegisterownerComponent,
     EditownerdetailsComponent,
+    ViewratingsComponent,
+    RecentRatingsComponent,
 
 
   ],  
