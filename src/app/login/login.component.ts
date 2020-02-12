@@ -361,7 +361,8 @@ export class OverviewDialog2 {
             //navigate to correspoding Component  
             if(y.adminId){
               console.log("admin exist") 
-              this.router.navigateByUrl('/admin')
+              this.router.navigate(['/admin', {outlets: {'adminnavbar': ['adminhome']}}])
+
             }
             else if(y.driverId){
               console.log("driver exist")
