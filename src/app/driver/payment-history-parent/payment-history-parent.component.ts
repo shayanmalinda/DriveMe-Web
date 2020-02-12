@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { MatSnackBar } from '@angular/material';
 
+
 export interface payments{ //Interface Payments
   date: string;
   driverId: string;
@@ -16,36 +17,32 @@ export interface payments{ //Interface Payments
   paymentId: string;
 }
 
-export interface passenger{ //Interface for Passenger
-  address: string;
+export interface parent{ //Interface for Parent
+  childAge: string;
+  childName: string;
+  childSchool: string;
+  childSchoolPhone: string;
   driverId: string;
-  email: string;
-  name: string;
-  phone: string;
+  parentAddress: string;
+  parentEmail: string;
+  parentPhone: string;
   pickupLocation: string;
-  tempDriverId:string;
- // passengerId: string;
-  isDeleted: boolean;
+  tempDriverId: string;
 }
 
-
 @Component({
-  selector: 'app-payment-history',
-  templateUrl: './payment-history.component.html',
-  styleUrls: ['./payment-history.component.scss']
+  selector: 'app-payment-history-parent',
+  templateUrl: './payment-history-parent.component.html',
+  styleUrls: ['./payment-history-parent.component.scss']
 })
+export class PaymentHistoryParentComponent implements OnInit {
 
-export class PaymentHistoryComponent implements OnInit {
-
-  //passenger
-  passengerObservable: Observable<passenger[]>;
-  allPassengerList: passenger[]; //full array of passengers
-  passengerId : string;
-
-  //payments for  Normal Passengers
-  paymentsObservable: Observable<payments[]>; //observable payments array
-  allPaymentListPassenger: payments[]; //full set
-  
+  //parent
+  parentObservable: Observable<parent[]>;
+  allParentList: parent[]; //array of full
+  paymentsObservable: Observable<payments[]>;
+  allPaymentsParent: payments[];
+  parentId: string;
 
   constructor(//constructor
     private afs: AngularFirestore,
@@ -55,18 +52,18 @@ export class PaymentHistoryComponent implements OnInit {
   )
    { }
 
+
   ngOnInit() 
   {
-    
     this.route.queryParams.subscribe(params => {
-      this.passengerId = params['passengerId'];  
+      this.parentId = params['passengerId'];  
     });
 
     //console.log('id',this.passengerId);
 
-    this.afs.collection('users/user/passenger/'+this.passengerId+'/payments').snapshotChanges().subscribe(array =>
+    this.afs.collection('users/user/parent/'+this.parentId+'/payments').snapshotChanges().subscribe(array =>
       {
-        this.allPaymentListPassenger = array.map( item=>{
+        this.allPaymentsParent = array.map( item=>{
           const data=item.payload.doc.data() as payments;
           const id = item.payload.doc.id;
           return {id,...data};
@@ -74,11 +71,7 @@ export class PaymentHistoryComponent implements OnInit {
        // console.log(this.allPaymentList);
         
       } );
-
-      
   }
-
-  
 
 
 }

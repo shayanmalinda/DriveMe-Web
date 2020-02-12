@@ -75,8 +75,13 @@ export class ViewpaymentsComponent implements OnInit {
   {
    this.router.navigate(['/driver', {outlets: {'drivernavbar': ['payment-history']}}],{queryParams: {passengerId: passengerId}})
    
-  //  console.log("passsengerId: "+passengerId);
-  //  console.log("passenger: "+passenger.name);
   }
+
+  addpayment(passengerId: string , passenger:passenger) //function for passing values to addpayments page
+  {
+   this.router.navigate(['/driver', {outlets: {'drivernavbar': ['driver-payments']}}],{queryParams: {passengerId: passengerId}})
+   
+  }
+
 
 }

@@ -69,6 +69,7 @@ import { EditownerdetailsComponent } from './admin/owner/editownerdetails/editow
 import { ViewratingsComponent } from './driver/viewratings/viewratings.component';
 import { RecentRatingsComponent } from './driver/recent-ratings/recent-ratings.component';
 import { ViewpaymentsParentComponent } from './driver/viewpayments-parent/viewpayments-parent.component';
+import { PaymentHistoryParentComponent } from './driver/payment-history-parent/payment-history-parent.component';
 
 
 @NgModule({
@@ -130,6 +131,7 @@ import { ViewpaymentsParentComponent } from './driver/viewpayments-parent/viewpa
     ViewratingsComponent,
     RecentRatingsComponent,
     ViewpaymentsParentComponent,
+    PaymentHistoryParentComponent,
 
 
   ],  
