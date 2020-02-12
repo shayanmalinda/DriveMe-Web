@@ -188,6 +188,7 @@ export class RegisterdriverComponent implements OnInit {
 
   photoUpload(event: any){
     this.file = event.target.files[0];
+    
   }
 
 
@@ -209,11 +210,7 @@ export class RegisterdriverComponent implements OnInit {
     this.task.snapshotChanges().pipe(
       finalize(() => {
         this.downloadURL = this.ref.getDownloadURL()
-        this.downloadURL.subscribe(url => (      
-
-          
-
-
+        this.downloadURL.subscribe(url => (           
           this.driver={
             name : this.driverName,
             email : this.driverEmail,
@@ -228,10 +225,8 @@ export class RegisterdriverComponent implements OnInit {
             vehicleType : this.vehicleType,
             imgURL: url,
             ownerId: this.ownedOwner,
-          },
-    
+          }, 
           
-
           this.afs.doc('users/user/driver/'+id).set(this.driver).then(_ => {
             this.afs.collection('userCredentials').add(this.userCredentials).then(_ => {
               this.openSnackBar("Driver Registered","Done");

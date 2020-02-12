@@ -5,6 +5,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AgmCoreModule } from '@agm/core';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -142,7 +145,12 @@ import { RecentRatingsComponent } from './driver/recent-ratings/recent-ratings.c
     AngularFireStorageModule,
     MatModule,
     NgxSpinnerModule,
-    HttpClientModule
+    HttpClientModule,
+    AgmCoreModule.forRoot({
+      apiKey : 'AIzaSyCEwsWLe6soyNWGG0JTqJVKk4KnGFx_Ax8'
+    }),
+    AngularFireDatabaseModule
+
   ], 
   entryComponents: [LoginComponent, OverviewDialog, OverviewDialog2],
   providers: [],
