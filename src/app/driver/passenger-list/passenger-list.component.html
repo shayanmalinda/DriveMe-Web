@@ -1,16 +1,16 @@
 <app-ngxspinner></app-ngxspinner>
-<div class="container navbar-margin"></div>
-<div *ngFor="let item of showingPassengerList" class="container navbar-margin">
+<div class="container top-margin"></div>
+<div *ngFor="let item of showingPassengerList" class="container">
     <mat-list role="list">
         <div class=" row pt-4 pb-3 mb-4 " style="border: 1.5px solid #FF5722; border-radius: 20px;" *ngIf="!item.isDeleted">
             <div class="col-md-3 " style="vertical-align: middle;text-align: center; ">
                 <div class="row " style="vertical-align: middle; display: flex; justify-content: center; ">
-                    <img src="../../../../assets/passengeravatar.png " alt="passenger Icon " style="width: 180px; position: absolute; top: 45%; -ms-transform: translateY(-50%); transform: translateY(-50%); ">
+                    <img src="../../../../assets/passengeravatar.png " alt="passenger Icon " style="width: 120px; position: absolute; top: 45%; -ms-transform: translateY(-50%); transform: translateY(-50%); ">
                 </div>
             </div>
             <div class="col-md-5 " style="padding-left: 30px; ">
                 <p>Name : {{item.name}}</p>
-                <p>Email : {{item.email}}</p>
+                <p>Pickup Location : {{item.pickupLocation}}</p>
                 <p>Address : {{item.address}}</p>
                 <p>Telephone : {{item.phone}}</p>
             </div>
