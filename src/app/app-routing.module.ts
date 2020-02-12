@@ -32,6 +32,7 @@ import { PassengerprofileComponent } from './passenger/passengerprofile/passenge
 import { ChangeUserPasswordComponent } from './shared/change-user-password/change-user-password.component';
 import { from } from 'rxjs';
 import { OwnerprofileComponent } from './owner/ownerprofile/ownerprofile.component';
+import { EditdetailsComponent } from './owner/editdetails/editdetails.component';
 import { DriverdetailsComponent } from './owner/driverdetails/driverdetails.component';
 import { PassengerdetailsComponent } from './owner/passengerdetails/passengerdetails.component';
 import { OwnvehiclesComponent } from './owner/ownvehicles/ownvehicles.component';
@@ -114,6 +115,7 @@ const routes: Routes = [
       { path: 'owner-myvehicles',outlet: 'ownernavbar', component: MyvehiclesComponent},
       { path: 'owner-registervehicles',outlet: 'ownernavbar', component: RegisterVehicleComponent},
       { path: 'owner-payments',outlet: 'ownernavbar', component: PaymentsComponent},
+      { path: 'owner-editdetails',outlet:'ownernavbar',component:EditdetailsComponent},
       // Define Route Here .................... 
       
 
