@@ -9,14 +9,6 @@
 
         <form [formGroup]="paymentForm">
 
-            <mat-form-field class="form-field-full-width">
-                <mat-label>Passenger</mat-label>
-                <mat-select formControlName="passengerId">
-                    <mat-option *ngFor="let item of showingPassengerList" value={{item.passengerId}}>
-                        {{item.name}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
 
             <mat-form-field class="form-field-full-width">
                 <input matInput class="form-control" type="text" placeholder="Amount(Rs.)" formControlName="amount" required>
