@@ -67,6 +67,7 @@ import { RegisterownerComponent } from './admin/owner/registerowner/registerowne
 import { EditownerdetailsComponent } from './admin/owner/editownerdetails/editownerdetails.component';
 import { ViewratingsComponent } from './driver/viewratings/viewratings.component';
 import { RecentRatingsComponent } from './driver/recent-ratings/recent-ratings.component';
+import { ViewpaymentsParentComponent } from './driver/viewpayments-parent/viewpayments-parent.component';
 
 
 @NgModule({
@@ -123,6 +124,7 @@ import { RecentRatingsComponent } from './driver/recent-ratings/recent-ratings.c
     EditownerdetailsComponent,
     ViewratingsComponent,
     RecentRatingsComponent,
+    ViewpaymentsParentComponent,
 
 
   ],  

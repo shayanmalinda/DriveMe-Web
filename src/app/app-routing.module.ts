@@ -48,7 +48,7 @@ import { RegisterownerComponent } from './admin/owner/registerowner/registerowne
 import { EditownerdetailsComponent } from './admin/owner/editownerdetails/editownerdetails.component';
 import { ViewratingsComponent } from './driver/viewratings/viewratings.component';
 import { RecentRatingsComponent } from './driver/recent-ratings/recent-ratings.component';
-
+import { ViewpaymentsParentComponent} from './driver/viewpayments-parent/viewpayments-parent.component'
 
 
 
@@ -90,6 +90,7 @@ const routes: Routes = [
       { path: 'payment-history', outlet: 'drivernavbar',component: PaymentHistoryComponent},
       {path: 'view-ratings',outlet:'drivernavbar',component: ViewratingsComponent},
       {path: 'recent-ratings',outlet:'drivernavbar',component:RecentRatingsComponent},
+      {path: 'driver-viewparentpayments',outlet:'drivernavbar',component:ViewpaymentsParentComponent},
     ]
   },
 

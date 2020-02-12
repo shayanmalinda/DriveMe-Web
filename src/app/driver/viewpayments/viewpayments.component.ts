@@ -27,8 +27,6 @@ export interface passenger{ //Interface for Passenger
   passengerId: string;
 }
  
-
-
 @Component({
   selector: 'app-viewpayments',
   templateUrl: './viewpayments.component.html',
@@ -37,8 +35,8 @@ export interface passenger{ //Interface for Passenger
 
 export class ViewpaymentsComponent implements OnInit {
 
+//For Passenger [interface-passenger]
   passengerId : string;
-
   passengerObservable: Observable<passenger[]>; //an observable array of passengers
   allPassengerList: passenger[]; //full set is assigned to this
   filteredPassengerList: passenger[] = [] as passenger[]; //driver's passengers
@@ -71,7 +69,6 @@ export class ViewpaymentsComponent implements OnInit {
       //console.log(this.passengerId);
 
     });
-
   }
 
   viewpaymenthistory(passengerId: string , passenger:passenger) //function for passing values to viewpaymenthistory page
@@ -81,6 +78,5 @@ export class ViewpaymentsComponent implements OnInit {
   //  console.log("passsengerId: "+passengerId);
   //  console.log("passenger: "+passenger.name);
   }
-
 
 }
