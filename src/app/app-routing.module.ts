@@ -28,6 +28,7 @@ import { AdminprofileComponent } from './admin/adminprofile/adminprofile.compone
 import { RegisterpassengerComponent } from './passenger/registerpassenger/registerpassenger.component';
 
 import { RegisterComponent } from './register/register.component';
+import { PassengerprofileComponent } from './passenger/passengerprofile/passengerprofile.component';
 import { ChangeUserPasswordComponent } from './shared/change-user-password/change-user-password.component';
 import { from } from 'rxjs';
 import { OwnerprofileComponent } from './owner/ownerprofile/ownerprofile.component';
@@ -41,9 +42,13 @@ import { RatingsComponent } from './owner/ratings/ratings.component';
 import { MyvehiclesComponent } from './owner/ownvehicles/myvehicles/myvehicles.component';
 import { RegisterVehicleComponent } from './owner/ownvehicles/register-vehicle/register-vehicle.component';
 import { AdminhomeComponent } from './admin/adminhome/adminhome.component';
+import { ViewpaymentsComponent} from './driver/viewpayments/viewpayments.component';
+import { PaymentHistoryComponent } from './driver/payment-history/payment-history.component';
 import { ViewownersComponent } from './admin/owner/viewowners/viewowners.component';
 import { RegisterownerComponent } from './admin/owner/registerowner/registerowner.component';
 import { EditownerdetailsComponent } from './admin/owner/editownerdetails/editownerdetails.component';
+import { ViewratingsComponent } from './driver/viewratings/viewratings.component';
+import { RecentRatingsComponent } from './driver/recent-ratings/recent-ratings.component';
 
 
 
@@ -76,19 +81,25 @@ const routes: Routes = [
   { path: 'driver', component: DriverComponent,
     children:[
       { path: 'driver-payments',outlet: 'drivernavbar', component: PaymentsComponent},
+      { path: 'driver-viewpayments', outlet:'drivernavbar',component: ViewpaymentsComponent},
       { path: 'driver-profile', outlet: 'drivernavbar', component: ProfileComponent},
       { path: 'driver-ratepassengers', outlet: 'drivernavbar', component: RatePassengersComponent},
       //{ path: 'driver-sharelocation', outlet: 'drivernavbar',component: ShareLocationComponent},
       { path: 'driver-vehicleroute', outlet: 'drivernavbar',component: VehicleRouteComponent},
       { path: 'driver-passengerlist', outlet: 'drivernavbar',component: PassengerListComponent},
       { path: 'changeuserpassword',outlet: 'drivernavbar', component: ChangeUserPasswordComponent},
+      { path: 'payment-history', outlet: 'drivernavbar',component: PaymentHistoryComponent},
+      {path: 'view-ratings',outlet:'drivernavbar',component: ViewratingsComponent},
+      {path: 'recent-ratings',outlet:'drivernavbar',component:RecentRatingsComponent},
     ]
   },
+
 
   { path: 'parent', component: ParentComponent},
   { path: 'passenger', component: PassengerComponent,  
     children: [
       { path: 'passengerregister',outlet: 'passengernavbar', component: RegisterpassengerComponent},
+      { path: 'passengerprofile',outlet: 'passengernavbar', component: PassengerprofileComponent},
     ]
 
   },
