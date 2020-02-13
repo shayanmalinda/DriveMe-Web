@@ -73,6 +73,8 @@ import { RecentRatingsComponent } from './driver/recent-ratings/recent-ratings.c
 import { ViewpaymentsParentComponent } from './driver/viewpayments-parent/viewpayments-parent.component';
 import { PaymentHistoryParentComponent } from './driver/payment-history-parent/payment-history-parent.component';
 import { PassengerProfileComponent } from './passenger/passenger-profile/passenger-profile.component';
+import { ViewdriverdetailsComponent } from './passenger/viewdriverdetails/viewdriverdetails.component';
+import { PassengerhomeComponent } from './passenger/passengerhome/passengerhome.component';
 
 
 @NgModule({
@@ -135,6 +137,8 @@ import { PassengerProfileComponent } from './passenger/passenger-profile/passeng
     ViewpaymentsParentComponent,
     PaymentHistoryParentComponent,
     PassengerProfileComponent,
+    ViewdriverdetailsComponent,
+    PassengerhomeComponent,
 
 
   ],  

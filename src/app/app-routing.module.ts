@@ -29,6 +29,7 @@ import { RegisterpassengerComponent } from './passenger/registerpassenger/regist
 
 import { RegisterComponent } from './register/register.component';
 import { PassengerProfileComponent } from './passenger/passenger-profile/passenger-profile.component';
+import { PassengerhomeComponent } from './passenger/passengerhome/passengerhome.component';
 import { ChangeUserPasswordComponent } from './shared/change-user-password/change-user-password.component';
 import { from } from 'rxjs';
 import { OwnerprofileComponent } from './owner/ownerprofile/ownerprofile.component';
@@ -98,13 +99,15 @@ const routes: Routes = [
 
 
   { path: 'parent', component: ParentComponent},
-  { path: 'passenger', component: PassengerComponent,  
-    children: [
-      { path: 'passengerregister',outlet: 'passengernavbar', component: RegisterpassengerComponent},
-      { path: 'passengerprofile',outlet: 'passengernavbar', component: PassengerProfileComponent},
-    ]
 
+
+  { path: 'passenger', component: PassengerComponent,
+    children: [
+      { path: 'passengerprofile',outlet: 'passengernavbar', component: PassengerProfileComponent},
+      { path: 'passengerhome',outlet: 'passengernavbar', component: PassengerhomeComponent},
+    ]
   },
+
   { path: 'owner', component: OwnerComponent,
     children:[
       { path: 'ownerprofile',outlet: 'ownernavbar', component: OwnerprofileComponent},
