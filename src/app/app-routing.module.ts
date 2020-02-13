@@ -51,7 +51,10 @@ import { ViewratingsComponent } from './driver/viewratings/viewratings.component
 import { RecentRatingsComponent } from './driver/recent-ratings/recent-ratings.component';
 import { ViewpaymentsParentComponent} from './driver/viewpayments-parent/viewpayments-parent.component'
 import {PaymentHistoryParentComponent} from './driver/payment-history-parent/payment-history-parent.component';
-
+import { PaymentsParentComponent } from './driver/payments-parent/payments-parent.component';
+import { ViewratingsChildComponent } from './driver/viewratings-child/viewratings-child.component';
+import { RecentRatingsChildComponent } from './driver/recent-ratings-child/recent-ratings-child.component';
+import { RateChildComponent } from './driver/rate-child/rate-child.component';
 
 // import { AdminprofileComponent } from './admin/adminprofile/adminprofile.component';
 
@@ -93,6 +96,11 @@ const routes: Routes = [
       {path: 'recent-ratings',outlet:'drivernavbar',component:RecentRatingsComponent},
       {path: 'driver-viewparentpayments',outlet:'drivernavbar',component:ViewpaymentsParentComponent},
       {path: 'payment-history-parent',outlet: 'drivernavbar',component: PaymentHistoryParentComponent},
+      {path: 'driver-payments-parent',outlet: 'drivernavbar',component:PaymentsParentComponent},
+      {path: 'view-ratings-child',outlet: 'drivernavbar',component:ViewratingsChildComponent},
+      {path: 'recent-ratings-child',outlet: 'drivernavbar',component:RecentRatingsChildComponent},
+      {path: 'driver-ratechild',outlet:'drivernavbar',component:RateChildComponent},
+      
     ]
   },
 

@@ -10,27 +10,18 @@
         <form [formGroup]="ratingForm">
 
             <mat-form-field class="form-field-full-width">
-                <mat-label>Passenger</mat-label>
-                <mat-select formControlName="passengerId" [(ngModel)]="selectedPassengerId" name="passenger">
-                    <mat-option *ngFor="let item of showingPassengerList" [value]=item.id>
-                        {{item.name}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-
-            <mat-form-field class="form-field-full-width">
                 <mat-label>Choose Number of Stars</mat-label>
-                <mat-select formControlName="stars">
-                    <mat-option value="1">1 Star</mat-option>
-                    <mat-option value="2">2 Stars</mat-option>
-                    <mat-option value="3">3 Stars</mat-option>
-                    <mat-option value="4">4 Stars</mat-option>
-                    <mat-option value="5">5 Stars</mat-option>
+                <mat-select type="number" formControlName="stars">
+                    <mat-option value=1>1 Star</mat-option>
+                    <mat-option value=2>2 Stars</mat-option>
+                    <mat-option value=3>3 Stars</mat-option>
+                    <mat-option value=4>4 Stars</mat-option>
+                    <mat-option value=5>5 Stars</mat-option>
                 </mat-select>
             </mat-form-field>
 
             <mat-form-field class="form-field-full-width">
-                <input matInput class="form-control" type="text" placeholder="Your Comments" formControlName="ratings" required>
+                <input matInput class="form-control" type="text" placeholder="Your Comments" formControlName="rating" required>
             </mat-form-field>
 
             <mat-form-field class="form-field-full-width">

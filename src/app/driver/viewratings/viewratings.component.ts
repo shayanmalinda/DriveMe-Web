@@ -34,7 +34,7 @@ export class ViewratingsComponent implements OnInit {
   passengerId : string;
 
   passengerObservable: Observable<passenger[]>; //an observable array of passengers
-  allPassengerList: passenger[]; //full set is assigned to this
+  allPassengerList: passenger[]; //full set 
   filteredPassengerList: passenger[] = [] as passenger[]; //driver's passengers
 
 
@@ -69,8 +69,11 @@ export class ViewratingsComponent implements OnInit {
   {
    this.router.navigate(['/driver', {outlets: {'drivernavbar': ['recent-ratings']}}],{queryParams: {passengerId: passengerId}})
    
-  //  console.log("passsengerId: "+passengerId);
-  //  console.log("passenger: "+passenger.name);
+  }
+
+  addrating(passengerId: string, passenger: passenger)//function for passing Values to Adding rates
+  {
+    this.router.navigate(['/driver',{outlets:{'drivernavbar':['driver-ratepassengers']}}],{queryParams:{passengerId:passengerId}})
   }
 
 
