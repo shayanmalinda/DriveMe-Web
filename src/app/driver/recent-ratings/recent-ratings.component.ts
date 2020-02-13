@@ -9,7 +9,7 @@ import { MatSnackBar } from '@angular/material';
 export interface rating{//Interface Ratings
   date: string;
   stars: number;
-  ratings: string;
+  rating: string;
 }
 
 export interface passenger{ //Interface for Passenger
@@ -33,7 +33,6 @@ export class RecentRatingsComponent implements OnInit {
 
   //passenger
   passengerObservable: Observable<passenger[]>;
-  allPassengerList: passenger[]; //full array of passengers
   passengerId : string;
 
   //ratings

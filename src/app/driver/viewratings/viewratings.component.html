@@ -14,11 +14,20 @@
                 <p>Telephone : {{item.phone}}</p>
             </div>
             <div class="col-md-4">
+                <button mat-raised-button color="accent" style="
+                    height: 40px;
+                    width: 70%;
+                    position: absolute;
+                    top: 20%;
+                    -ms-transform: translateY(-50%);
+                    transform: translateY(-50%);" routerLinkActive="active" (click)="addrating(item.id,item)"> <!--Rate Function Here-->
+                    <mat-icon>comment</mat-icon> Rate Now</button>
+
                 <button mat-raised-button color="primary" style="
                     height: 35px;
-                    width: 60%;
+                    width: 70%;
                     position: absolute;
-                    top: 45%;
+                    top: 65%;
                     -ms-transform: translateY(-50%);
                     transform: translateY(-50%);" routerLinkActive="active" (click)="viewratings(item.id,item)">
                     <mat-icon>history</mat-icon> View Recent Ratings</button>

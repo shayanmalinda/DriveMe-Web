@@ -80,7 +80,7 @@ export class ViewpaymentsParentComponent implements OnInit {
 
   addpayment(parentId: string , parent:parent) //function for passing values to addpayments page
   {
-   this.router.navigate(['/driver', {outlets: {'drivernavbar': ['driver-payments']}}],{queryParams: {parentId: parentId}})
+   this.router.navigate(['/driver', {outlets: {'drivernavbar': ['driver-payments-parent']}}],{queryParams: {parentId: parentId}})
    
   }
 

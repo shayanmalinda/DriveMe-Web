@@ -52,9 +52,6 @@ export class PaymentsComponent implements OnInit {
     amount: ['']
   });
 
-  allPassengerList: passenger[]; //full array of passengers
-  showingPassengerList: passenger[] = [] as passenger[] ; //display array
-
   waiting = false;
 
   payment: payment;
