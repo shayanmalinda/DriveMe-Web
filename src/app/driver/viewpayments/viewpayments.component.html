@@ -18,7 +18,18 @@
                     height: 35px;
                     width: 60%;
                     position: absolute;
-                    top: 45%;
+                    top: 20%;
+                    -ms-transform: translateY(-50%);
+                    transform: translateY(-50%);" routerLinkActive="active" (click)="addpayment(item.id,item)"> <!--Payment Function Here-->
+                    <mat-icon>payment</mat-icon> Add Payment</button>
+
+
+
+                <button mat-raised-button color="primary" style="
+                    height: 35px;
+                    width: 60%;
+                    position: absolute;
+                    top: 65%;
                     -ms-transform: translateY(-50%);
                     transform: translateY(-50%);" routerLinkActive="active" (click)="viewpaymenthistory(item.id,item)">
                     <mat-icon>history</mat-icon> View Payment History</button>

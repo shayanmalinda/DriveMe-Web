@@ -18,6 +18,13 @@ export interface payment{ //Interface for payments
   value: string;
 }
 
+export interface payment2{ //Interface for payments
+  //name: string;
+  date: string;
+  isAccepted: boolean;
+  value: string;
+}
+
 export interface passenger{ //Interface for Passenger
   address: string;
   driverId: string;
@@ -30,6 +37,8 @@ export interface passenger{ //Interface for Passenger
   isDeleted: boolean;
 }
 
+
+
 @Component({
   selector: 'app-payments',
   templateUrl: './payments.component.html',
@@ -38,7 +47,7 @@ export interface passenger{ //Interface for Passenger
 export class PaymentsComponent implements OnInit {
 
   paymentForm = this.formBuilder.group({
-    passengerId: [''],
+   // passengerId: [''],
     date: [''],
     amount: ['']
   });
@@ -46,15 +55,15 @@ export class PaymentsComponent implements OnInit {
   allPassengerList: passenger[]; //full array of passengers
   showingPassengerList: passenger[] = [] as passenger[] ; //display array
 
-  
   waiting = false;
 
   payment: payment;
+  payment2: payment2;
 
   //temps
   tempid: string;
 
-  //passenger Parts
+  //passenger 
   passengerId : string;
   passenger: Observable<passenger>;
   passengerList: passenger []; 
@@ -77,24 +86,11 @@ export class PaymentsComponent implements OnInit {
 
   ngOnInit() 
   {
-    
-    this.afs.collection('users/user/passenger').snapshotChanges().subscribe( array =>
-      {
 
-      this.allPassengerList = array.map( item =>{ //adding passenger's data and Id to one
-      const data = item.payload.doc.data() as passenger;
-      const id= item.payload.doc.id;  
-      return {id,...data } ;
-      });
-      
-      this.allPassengerList.forEach(element =>{ //filtering passengers for logged in driver
-        if(element.driverId == localStorage.getItem('driverId')){
-          this.showingPassengerList.push(element);
-        }
-      })
-      
-
+    this.route.queryParams.subscribe(params => {
+      this.passengerId = params['passengerId'];  
     });
+    
 
   }
 
@@ -104,6 +100,7 @@ export class PaymentsComponent implements OnInit {
     
      this.tempid=this.afs.createId();//create a id for driverPaymentId
 
+     let driverId = localStorage.getItem("driverId");
 
     this.payment={
       date: formData.date,
@@ -113,10 +110,20 @@ export class PaymentsComponent implements OnInit {
       isAccepted: false
     }
 
-    this.afs.collection('users/user/passenger/'+formData.passengerId+'/payments/').add(this.payment).then(_=>{
-      this.openSnackBar("Payment Details Added", "Done");
-      this.waiting=false;
+    this.payment2={
+      date: formData.date,
+      value: formData.amount,
+      isAccepted: false
+    }
+
+    this.afs.doc('users/user/driver/'+driverId+'/payments/'+this.passengerId+'/payments/'+this.tempid).set(this.payment2).then(_=>{
+      this.afs.collection('users/user/passenger/'+this.passengerId+'/payments/').add(this.payment).then(_=>{
+        this.openSnackBar("Payment Details Added", "Done");
+        this.waiting=false;
+      })
     })
+
+
 
   }
   openSnackBar(message: string, action: string) {
