@@ -61,6 +61,7 @@ import { AdminhomeComponent } from './admin/adminhome/adminhome.component';
 import { ViewownersComponent } from './admin/owner/viewowners/viewowners.component';
 import { RegisterownerComponent } from './admin/owner/registerowner/registerowner.component';
 import { EditownerdetailsComponent } from './admin/owner/editownerdetails/editownerdetails.component';
+import { TrialComponent } from './owner/trial/trial.component';
 
 
 @NgModule({
@@ -114,6 +115,7 @@ import { EditownerdetailsComponent } from './admin/owner/editownerdetails/editow
     ViewownersComponent,
     RegisterownerComponent,
     EditownerdetailsComponent,
+    TrialComponent,
 
 
   ],  
