@@ -35,6 +35,7 @@ import { OwnerprofileComponent } from './owner/ownerprofile/ownerprofile.compone
 import { EditdetailsComponent } from './owner/editdetails/editdetails.component';
 import { DriverdetailsComponent } from './owner/driverdetails/driverdetails.component';
 import { PassengerdetailsComponent } from './owner/passengerdetails/passengerdetails.component';
+import { PassengersComponent } from './owner/driverdetails/passengers/passengers.component';
 import { AdminhomeComponent } from './admin/adminhome/adminhome.component';
 import { ViewownersComponent } from './admin/owner/viewowners/viewowners.component';
 import { RegisterownerComponent } from './admin/owner/registerowner/registerowner.component';
@@ -96,6 +97,8 @@ const routes: Routes = [
       { path: 'owner-passengerdetails', outlet: 'ownernavbar', component: PassengerdetailsComponent},
       { path: 'owner-payments',outlet: 'ownernavbar', component: PaymentsComponent},
       { path: 'owner-editdetails',outlet:'ownernavbar',component:EditdetailsComponent},
+      { path: 'owner-passenger',outlet: 'ownernavbar', component:PassengersComponent},
+      
       // Define Route Here .................... 
       
 
