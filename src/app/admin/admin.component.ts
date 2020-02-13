@@ -37,6 +37,7 @@ export class AdminComponent implements OnInit {
         this.multipleCharacter=true;
         this.ownerAvailable = true;
       }
+      // this.router.navigate(['/admin', {outlets: {'adminnavbar': ['adminhome']}}])
     }  
 
     else{
@@ -71,5 +72,9 @@ export class AdminComponent implements OnInit {
     localStorage.clear();
     this.router.navigate([''], { replaceUrl: true });
     // setTimeout
+  }
+
+  homepage(){
+    this.router.navigateByUrl('/admin');
   }
 }

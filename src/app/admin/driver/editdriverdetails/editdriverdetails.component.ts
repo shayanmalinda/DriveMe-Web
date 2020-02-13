@@ -18,7 +18,7 @@ export interface Driver {
   driverAddress: string;
   driverNIC: string;
   driverLicense: string;
-  password: string;
+  // password: string;
   vehicleNumber: string;
   vehicleChassis: string;
   availableSeets: string;
@@ -99,8 +99,8 @@ export class EditdriverdetailsComponent implements OnInit {
           this.driverAddress = a.driverAddress;
           this.driverNIC = a.driverNIC;
           this.driverLicense = a.driverLicense;
-          this.pass1 = a.password;
-          this.pass2 = a.password;
+          // this.pass1 = a.password;
+          // this.pass2 = a.password;
           this.vehicleNumber = a.vehicleNumber;
           this.vehicleChassis = a.vehicleChassis;
           this.availableSeets = a.availableSeets;
@@ -164,7 +164,7 @@ export class EditdriverdetailsComponent implements OnInit {
       vehicleChassis : this.vehicleChassis,
       vehicleNumber : this.vehicleNumber,
       vehicleType : this.vehicleType,
-      password : this.pass1
+      // password : this.pass1
     }
 
 

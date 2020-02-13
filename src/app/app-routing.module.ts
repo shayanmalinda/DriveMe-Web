@@ -11,7 +11,7 @@ import { RegisterdriverComponent  } from './admin/driver/registerdriver/register
 import { PaymentsComponent } from './driver/payments/payments.component';
 import { ProfileComponent } from './driver/profile/profile.component';
 import { RatePassengersComponent } from './driver/rate-passengers/rate-passengers.component';
-import { ShareLocationComponent } from './driver/share-location/share-location.component';
+
 import { VehicleRouteComponent } from './driver/vehicle-route/vehicle-route.component';
 import { PassengerListComponent } from './driver/passenger-list/passenger-list.component';
 import { ViewdriversComponent } from './admin/driver/viewdrivers/viewdrivers.component';
@@ -29,6 +29,24 @@ import { RegisterpassengerComponent } from './passenger/registerpassenger/regist
 
 import { RegisterComponent } from './register/register.component';
 import { PassengerprofileComponent } from './passenger/passengerprofile/passengerprofile.component';
+import { ChangeUserPasswordComponent } from './shared/change-user-password/change-user-password.component';
+import { from } from 'rxjs';
+import { OwnerprofileComponent } from './owner/ownerprofile/ownerprofile.component';
+import { DriverdetailsComponent } from './owner/driverdetails/driverdetails.component';
+import { PassengerdetailsComponent } from './owner/passengerdetails/passengerdetails.component';
+import { OwnvehiclesComponent } from './owner/ownvehicles/ownvehicles.component';
+import { DriverpaymentsComponent } from './owner/payments/driverpayments/driverpayments.component';
+import { PassengerpaymentsComponent } from './owner/payments/passengerpayments/passengerpayments.component';
+import { RatingsComponent } from './owner/ratings/ratings.component';
+import { MyvehiclesComponent } from './owner/ownvehicles/myvehicles/myvehicles.component';
+import { RegisterVehicleComponent } from './owner/ownvehicles/register-vehicle/register-vehicle.component';
+import { AdminhomeComponent } from './admin/adminhome/adminhome.component';
+import { ViewownersComponent } from './admin/owner/viewowners/viewowners.component';
+import { RegisterownerComponent } from './admin/owner/registerowner/registerowner.component';
+import { EditownerdetailsComponent } from './admin/owner/editownerdetails/editownerdetails.component';
+
+
+
 
 // import { AdminprofileComponent } from './admin/adminprofile/adminprofile.component';
 
@@ -47,6 +65,12 @@ const routes: Routes = [
       { path: 'viewadmins',outlet: 'adminnavbar', component: ViewadminsComponent},
       { path: 'editadmindetails',outlet: 'adminnavbar', component: EditadmindetailsComponent},
       { path: 'adminprofile',outlet: 'adminnavbar', component: AdminprofileComponent},
+      { path: 'changeuserpassword',outlet: 'adminnavbar', component: ChangeUserPasswordComponent},
+      { path: 'adminhome',outlet: 'adminnavbar', component: AdminhomeComponent},
+      { path: 'viewowners',outlet: 'adminnavbar', component: ViewownersComponent },
+      { path: 'ownerregister',outlet: 'adminnavbar', component: RegisterownerComponent },
+      { path: 'editownerdetails',outlet: 'adminnavbar', component: EditownerdetailsComponent },
+
     ]
   },
   { path: 'driver', component: DriverComponent,
@@ -54,9 +78,10 @@ const routes: Routes = [
       { path: 'driver-payments',outlet: 'drivernavbar', component: PaymentsComponent},
       { path: 'driver-profile', outlet: 'drivernavbar', component: ProfileComponent},
       { path: 'driver-ratepassengers', outlet: 'drivernavbar', component: RatePassengersComponent},
-      { path: 'driver-sharelocation', outlet: 'drivernavbar',component: ShareLocationComponent},
+      //{ path: 'driver-sharelocation', outlet: 'drivernavbar',component: ShareLocationComponent},
       { path: 'driver-vehicleroute', outlet: 'drivernavbar',component: VehicleRouteComponent},
       { path: 'driver-passengerlist', outlet: 'drivernavbar',component: PassengerListComponent},
+      { path: 'changeuserpassword',outlet: 'drivernavbar', component: ChangeUserPasswordComponent},
     ]
   },
 
@@ -69,21 +94,32 @@ const routes: Routes = [
     ]
 
   },
-  { path: 'owner', component: OwnerComponent},
+  { path: 'owner', component: OwnerComponent,
+    children:[
+      { path: 'ownerprofile',outlet: 'ownernavbar', component: OwnerprofileComponent},
+      { path: 'owner-driverdetails',outlet: 'ownernavbar', component: DriverdetailsComponent},
+      { path: 'owner-passengerdetails', outlet: 'ownernavbar', component: PassengerdetailsComponent},
+      { path: 'owner-ownvehicles',outlet: 'ownernavbar', component: OwnvehiclesComponent },
+      { path: 'owner-driverpayments',outlet: 'ownernavbar', component: DriverpaymentsComponent},
+      { path: 'owner-passengerpayments',outlet: 'ownernavbar', component: PassengerpaymentsComponent},
+      { path: 'owner-ratings',outlet: 'ownernavbar', component: RatingsComponent},
+      { path: 'owner-myvehicles',outlet: 'ownernavbar', component: MyvehiclesComponent},
+      { path: 'owner-registervehicles',outlet: 'ownernavbar', component: RegisterVehicleComponent},
+      { path: 'owner-payments',outlet: 'ownernavbar', component: PaymentsComponent},
+      // Define Route Here .................... 
+      
+
+    ]
+  },
   { path: 'register', component: RegisterComponent},
   
-  /**{ path: 'driver-payments', component: PaymentsComponent},
-  { path: 'driver-profile', component: ProfileComponent},
-  { path: 'driver-ratepassengers', component: RatePassengersComponent},
-  { path: 'driver-sharelocation', component: ShareLocationComponent},
-  { path: 'driver-vehicleroute', component: VehicleRouteComponent},
-  { path: 'driver-passengerlist',component: PassengerListComponent}**/
+ 
 ];
 
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes,{ enableTracing: true })],
-  // imports: [RouterModule.forRoot(routes)],
+  // imports: [RouterModule.forRoot(routes,{ enableTracing: true })],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { MatSnackBar } from '@angular/material';
+import * as firebase from 'firebase';
 
 export interface Admin{
   name: string;
@@ -13,6 +14,7 @@ export interface Admin{
   telephone: string;
   nic: string;
   isDeleted: Boolean;
+  imgURL: string;
 }
 
 export interface userCredential{
@@ -31,6 +33,7 @@ export class AdminprofileComponent implements OnInit {
   telephone: string;
   nic: string;
   adminId: string;
+  imgURL : string ;
 
   private adminDoc: AngularFirestoreCollection<Admin>;
   admins: Observable<Admin[]>;
@@ -45,7 +48,8 @@ export class AdminprofileComponent implements OnInit {
       this.spinner.show();
       userID = localStorage.getItem('adminId');
       this.adminId = userID;
-      console.log("adminId",this.adminId)
+
+      //Get admin profile details
       this.afs.doc<Admin>('users/user/admin/'+this.adminId).valueChanges().subscribe(
         res=>{
           this.name = res.name;
@@ -53,6 +57,7 @@ export class AdminprofileComponent implements OnInit {
           this.address = res.address;
           this.nic = res.nic;
           this.telephone = res.telephone;
+          this.imgURL = res.imgURL
           this.afs.doc<userCredential>('userCredentials/'+localStorage.getItem("userCredentialId")).valueChanges().subscribe(
             res=>{
               this.email = res.email;
@@ -69,9 +74,15 @@ export class AdminprofileComponent implements OnInit {
     
   }
 
+
   changeAdminDetails(){
     this.router.navigate(['/admin', {outlets: {'adminnavbar': ['editadmindetails']}}],{queryParams: {adminId: this.adminId}})
 
+  }
+
+  changePassword(){
+    this.router.navigate(['/admin', {outlets: {'adminnavbar': ['changeuserpassword']}}],{queryParams: {userId: this.adminId,userType:"admin"}})
+    
   }
 
   // removeAdmin(adminId: string){

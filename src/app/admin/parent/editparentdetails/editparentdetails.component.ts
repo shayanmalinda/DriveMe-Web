@@ -8,13 +8,13 @@ import { Observable } from 'rxjs';
 import { NgxSpinnerService } from 'ngx-spinner';
 
 export interface Parent{
-  parentemail: string;
-  parentaddress: string;
-  parentphone: string;
-  childname: string;
-  childage: string;
-  childschool: string;
-  childschoolphone: string;
+  parentEmail: string;
+  parentAddress: string;
+  parentPhone: string;
+  childName: string;
+  childAge: string;
+  childSchool: string;
+  childSchoolPhone: string;
 }
 
 export interface userCredentials{
@@ -78,13 +78,13 @@ export class EditparentdetailsComponent implements OnInit {
     this.parents = this.parentDoc.valueChanges();
     
     this.parents.forEach(a=>{
-        this.parentEmail = a.parentemail;
-        this.parentAddress = a.parentaddress;
-        this.parentPhone = a.parentphone;
-        this.childName = a.childname;
-        this.childAge = a.childage;
-        this.childSchool = a.childschool;
-        this.childSchoolPhone = a.childschoolphone;
+        this.parentEmail = a.parentEmail;
+        this.parentAddress = a.parentAddress;
+        this.parentPhone = a.parentPhone;
+        this.childName = a.childName;
+        this.childAge = a.childAge;
+        this.childSchool = a.childSchool;
+        this.childSchoolPhone = a.childSchoolPhone;
         this.cdRef.detectChanges();
         
         this.spinner.hide();
@@ -128,13 +128,13 @@ export class EditparentdetailsComponent implements OnInit {
     this.waiting = true;
     this.parent={
       
-      parentemail : this.parentEmail,
-      parentaddress: this.parentAddress,
-      parentphone: this.parentPhone,
-      childname: this.childName,
-      childage: this.childAge,
-      childschool: this.childSchool,
-      childschoolphone: this.childSchoolPhone
+      parentEmail : this.parentEmail,
+      parentAddress: this.parentAddress,
+      parentPhone: this.parentPhone,
+      childName: this.childName,
+      childAge: this.childAge,
+      childSchool: this.childSchool,
+      childSchoolPhone: this.childSchoolPhone
       
     }
 

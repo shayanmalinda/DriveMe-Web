@@ -14,7 +14,7 @@ export class PassengerComponent  implements OnInit {
   address: string;
   private geoCoder;
 
-  @ViewChild('search')
+  // @ViewChild('search')
   public searchElementRef: ElementRef;
  
  

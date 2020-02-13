@@ -20,6 +20,7 @@ export interface Driver{
   vehicleType: Selection;
   isAC: Boolean;
   isDeleted: Boolean;
+  imgURL: string;
 }
 
 export interface userCredential{
@@ -108,6 +109,11 @@ export class ViewdriversComponent implements OnInit {
     this._snackBar.open(message, action, {
       duration: 2000,
     });
+  }
+
+  changePassword(driverId: string){
+    this.router.navigate(['/admin', {outlets: {'adminnavbar': ['changeuserpassword']}}],{queryParams: {userId: driverId,userType:"driver"}})
+    
   }
 
 }

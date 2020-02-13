@@ -13,29 +13,40 @@
                     <mat-form-field class="form-field-full-width">
                         <input [(ngModel)]="driverName" matInput placeholder="Name" formControlName="ctrl1" required>
                     </mat-form-field><br>
+
+                    
                     <mat-form-field class="form-field-full-width">
                         <input [(ngModel)]="driverEmail" matInput placeholder="Email" [formControl]="emailFormControl" required>
-                        <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-                          Please enter a valid email address
+                        <mat-error *ngIf="emailFormControl.invalid">
+                          Please enter a valid Email Address
                         </mat-error>
                     </mat-form-field><br>
                     <mat-form-field class="form-field-full-width">
-                        <input [(ngModel)]="driverTelephone" matInput placeholder="Telephone" formControlName="ctrl2" required>
+                        <input [(ngModel)]="driverTelephone" matInput placeholder="Telephone" [formControl]="ctrl2" required>
+                        <mat-error *ngIf="ctrl2.invalid">
+                          Please enter a valid Telephone Number
+                        </mat-error>
                     </mat-form-field><br>
                     <mat-form-field class="form-field-full-width">
                         <input [(ngModel)]="driverAddress" matInput placeholder="Address" formControlName="ctrl3" required>
                     </mat-form-field><br>
                     <mat-form-field class="form-field-full-width">
-                        <input [(ngModel)]="driverNIC" matInput placeholder="NIC/Passport Number" formControlName="ctrl4" required>
+                        <input [(ngModel)]="driverNIC" matInput placeholder="NIC Number" [formControl]="ctrl4" required>
+                        <mat-error *ngIf="ctrl4.invalid">
+                          Please enter a valid NIC Number
+                        </mat-error>
                     </mat-form-field><br>
                     <mat-form-field class="form-field-full-width">
                         <input [(ngModel)]="driverLicense" matInput placeholder="Driver License Card Number" formControlName="ctrl5" required>
                     </mat-form-field><br>
                     <mat-form-field class="form-field-full-width">
-                        <input [(ngModel)]="pass1" matInput placeholder="Login Password" [type]="hide ? 'password' : 'text'" formControlName="ctrl6" required>
-                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                        <mat-icon color="accent">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                        </button>
+                        <input [(ngModel)]="pass1" matInput placeholder="Login Password" [type]="hide1 ? 'password' : 'text'" [formControl]="ctrl6" required>
+                        <button mat-icon-button matSuffix (click)="hide1 = !hide1" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide1">
+                        <mat-icon color="accent">{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>                        
+                        <mat-error *ngIf="ctrl6.invalid">
+                            Password should have at least 6 Characters
+                        </mat-error>
                     </mat-form-field>
                     <mat-form-field class="form-field-full-width pb-0">
                         <input [(ngModel)]="pass2" matInput placeholder="Re-Enter Password" [type]="hide2 ? 'password' : 'text'" formControlName="ctrl7" required>
@@ -51,6 +62,9 @@
                             </section>
                         </div><br>
                     </div>
+                    <label for="files" class="btn btn-primary btn-block btn-primary" style="width: 30%;">Upload Driver's Image</label><br>
+                    <input id="files" type="file" accept="image/*" (change)="photoUpload($event)" style="margin-top: 5px;margin-bottom: 5px;" style="display: none">
+                    
                     <!-- <mat-form-field class="form-field-full-width pb-0"> -->
                     <!-- <label for="file" class="mr-4">Image :</label>
                     <input type="file" (change)="upload($event)" accept=".png,.jpg" required/> -->
