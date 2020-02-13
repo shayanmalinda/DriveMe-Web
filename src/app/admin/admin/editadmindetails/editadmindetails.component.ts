@@ -6,6 +6,7 @@ import { MatSnackBar, MatStepper } from '@angular/material';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Router } from '@angular/router';
 
 
 export interface Admin {
@@ -15,10 +16,10 @@ export interface Admin {
   nic: string;
 }
 
-export interface userCredentials{
-  email: string;
-  password: string;
-}
+// export interface userCredentials{
+//   email: string;
+//   password: string;
+// }
 
 @Component({
   selector: 'app-editadmindetails',
@@ -43,20 +44,21 @@ export class EditadmindetailsComponent implements OnInit {
   pass2: string;
 
   admin: Admin;
-  user: userCredentials;
+  // user: userCredentials;
   adminId: string;
 
   adminDoc: AngularFirestoreDocument<Admin>;
   admins: Observable<Admin>;
   
-  userCredentialDoc: AngularFirestoreDocument<userCredentials>;
-  userCredentials: Observable<userCredentials>;
+  // userCredentialDoc: AngularFirestoreDocument<userCredentials>;
+  // userCredentials: Observable<userCredentials>;
 
   constructor(private _formBuilder: FormBuilder,
               private afs: AngularFirestore,
               private _snackBar: MatSnackBar,
               private afStorage: AngularFireStorage,
               private route: ActivatedRoute,
+              private route2: Router,
               private cdRef: ChangeDetectorRef,
               private spinner: NgxSpinnerService
   ) {
@@ -72,8 +74,8 @@ export class EditadmindetailsComponent implements OnInit {
       this.admins = this.adminDoc.valueChanges();
 
       
-      this.userCredentialDoc = this.afs.doc<userCredentials>('userCredentials/'+localStorage.getItem('userCredentialId'));
-      this.userCredentials = this.userCredentialDoc.valueChanges();
+      // this.userCredentialDoc = this.afs.doc<userCredentials>('userCredentials/'+localStorage.getItem('userCredentialId'));
+      // this.userCredentials = this.userCredentialDoc.valueChanges();
 
       this.admins.forEach(a=>{
         
@@ -81,14 +83,14 @@ export class EditadmindetailsComponent implements OnInit {
           this.adminTelephone = a.telephone;
           this.adminAddress = a.address;
           this.adminNIC = a.nic;
+          this.spinner.hide();
           
-          this.userCredentials.forEach(b=>{
-            this.adminEmail = b.email
-            this.pass1 = b.password
-            this.pass2 = b.password
+          // this.userCredentials.forEach(b=>{
+          //   this.adminEmail = b.email
+          //   this.pass1 = b.password
+          //   this.pass2 = b.password
             
-            this.spinner.hide();
-          });
+          // });
       });
 
       
@@ -104,8 +106,8 @@ export class EditadmindetailsComponent implements OnInit {
       ctrl3: ['', Validators.required],
       ctrl4: ['', Validators.required],
       ctrl5: ['', Validators.required],
-      ctrl6: ['', Validators.required],
-      ctrl7: ['', Validators.required],
+      // ctrl6: ['', Validators.required],
+      // ctrl7: ['', Validators.required],
     });
   }
 
@@ -116,13 +118,14 @@ export class EditadmindetailsComponent implements OnInit {
   }
 
   stepperNext(stepper : MatStepper){
-    if(this.pass1==this.pass2){
-      stepper.next();
-      this.passwordDiv = false;
-    }
-    else{
-      this.passwordDiv = true;
-    }
+    stepper.next()
+    // if(this.pass1==this.pass2){
+    //   stepper.next();
+    //   this.passwordDiv = false;
+    // }
+    // else{
+    //   this.passwordDiv = true;
+    // }
   }
 
   registerAdmin(){   
@@ -134,17 +137,18 @@ export class EditadmindetailsComponent implements OnInit {
       nic : this.adminNIC,
     }
 
-    this.user={
-      email: this.adminEmail,
-      password: this.pass1
-    }
+    // this.user={
+    //   email: this.adminEmail,
+    //   password: this.pass1
+    // }
 
     this.afs.doc('users/user/admin/'+this.adminId).update(this.admin).then(_ => {
         
-      this.afs.doc('userCredentials/'+localStorage.getItem("userCredentialId")).update(this.user).then(_ => {
-        this.openSnackBar("Admin Details Updated","Done");
-        this.waiting = false;
-      });
+      this.openSnackBar("Admin Details Updated","Done");
+      this.route2.navigate(['/admin', {outlets: {'adminnavbar': ['adminprofile']}}])
+      this.waiting = false;
+      // this.afs.doc('userCredentials/'+localStorage.getItem("userCredentialId")).update(this.user).then(_ => {
+      // });
     });
     
   }

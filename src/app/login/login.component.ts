@@ -8,6 +8,7 @@ import { Router } from '@angular/router'
 import { map } from 'rxjs/operators';
 import { User } from 'firebase';
 import { NgxSpinnerService } from 'ngx-spinner';
+import {Md5} from 'ts-md5/dist/md5';
 
 
 export interface DialogData {
@@ -62,13 +63,19 @@ export interface Owner {
 export class LoginComponent implements OnInit {
 
   public name: string
+  userId : string;
+  checked = false;
 
-  constructor(public dialog: MatDialog,db: AngularFirestore) {
-    localStorage.removeItem("driverId")
-    localStorage.removeItem("ownerId")
-    localStorage.removeItem("adminId")
-    localStorage.removeItem("passengerId")
-    localStorage.removeItem("parentId")
+  constructor(public dialog: MatDialog,
+    db: AngularFirestore,
+    private router: Router,
+    private afs: AngularFirestore,
+    private spinner: NgxSpinnerService) {
+      localStorage.removeItem("driverId")
+      localStorage.removeItem("ownerId")
+      localStorage.removeItem("adminId")
+      localStorage.removeItem("passengerId")
+      localStorage.removeItem("parentId")
 
   }
 
@@ -89,16 +96,87 @@ export class LoginComponent implements OnInit {
 
   loginpopup(character): void {
 
-    this.name = character;
+    if(localStorage.getItem('rememberme')){
+      this.spinner.show()
+      if(localStorage.getItem('rememberme')!=null){
 
-    const dialogRef = this.dialog.open(OverviewDialog2, {
-      width: '400px',
-      data: {characterName: this.name},
-      backdropClass: 'backdropBackground' 
-    });
+        // this.waiting2 = true;
+        this.userId = localStorage.getItem("rememberme");
+        let userDoc: AngularFirestoreCollection<userCredentials>
+        userDoc = this.afs.collection('userCredentials');
+        userDoc.snapshotChanges().pipe(
+          map(actions => actions.map(y=>{
+            if(y.payload.doc.id==this.userId){
+              // set user Id's
+              if(y.payload.doc.get('adminId')){
+                localStorage.setItem('adminId',y.payload.doc.get('adminId'))
+              }
+              if(y.payload.doc.get('driverId')){
+                localStorage.setItem('driverId',y.payload.doc.get('driverId'))
+              }
+              if(y.payload.doc.get('passengerId')){
+                localStorage.setItem('passengerId',y.payload.doc.get('passengerId'))
+              }
+              if(y.payload.doc.get('parentId')){
+                localStorage.setItem('parentId',y.payload.doc.get('parentId'))
+              }
+              if(y.payload.doc.get('ownerId')){       
+                localStorage.setItem('ownerId',y.payload.doc.get('ownerId'))
+              }
+    
+              //navigate to correspoding Component  
+              if(y.payload.doc.get('adminId')){
+                console.log("admin exist") 
+                this.router.navigate(['/admin', {outlets: {'adminnavbar': ['adminhome']}}])
+                this.spinner.hide()
 
-    dialogRef.afterClosed().subscribe(result => {
-    });
+              }
+              else if(y.payload.doc.get('driverId')){
+                console.log("driver exist")
+                this.router.navigateByUrl('/driver')
+                this.spinner.hide()
+              }
+              else if(y.payload.doc.get('passengerId')){
+                console.log("passenger exist")
+                this.router.navigateByUrl('/passenger')
+                this.spinner.hide()
+              }
+              else if(y.payload.doc.get('parentId')){
+                console.log("parent exist")
+                this.router.navigateByUrl('/parent')
+                this.spinner.hide()
+              }
+              else if(y.payload.doc.get('ownerId')){       
+                console.log("owner exist")     
+                this.router.navigateByUrl('/owner')
+                this.spinner.hide()
+              }
+              else{
+                console.log("Not Registered to any user")
+                this.router.navigateByUrl('/register')
+                this.spinner.hide()
+              }
+            }
+            // this.waiting2 = false;
+          }
+          ))
+        ).subscribe();
+        this.checked = true;
+      }
+    }
+    else{
+
+      this.name = character;
+
+      const dialogRef = this.dialog.open(OverviewDialog2, {
+        width: '400px',
+        data: {characterName: this.name},
+        backdropClass: 'backdropBackground' 
+      });
+  
+      dialogRef.afterClosed().subscribe(result => {
+      });
+    }
   }
   ngOnInit() {
   }
@@ -162,11 +240,13 @@ export class OverviewDialog {
 
     if(this.inputEmail && this.inputPassword && this.inputPassword2){
 
-      if(this.inputPassword==this.inputPassword2 && !this.myControl1.hasError('email')){
+      if(this.inputPassword==this.inputPassword2 && !this.myControl1.hasError('email')){    
+        var hashedPassword = Md5.hashStr(this.inputPassword).toString();
+
         this.waiting = true;
         this.user={
           email: this.inputEmail,
-          password: this.inputPassword,
+          password: hashedPassword,
         }
 
         let userFlag:boolean = false;
@@ -278,38 +358,46 @@ export class OverviewDialog2 {
       private router: Router,
       public snackbar: MatSnackBar,
   ) { 
-    if(localStorage.getItem('rememberme')!=null){
-      this.waiting2 = true;
-      this.userId = localStorage.getItem("rememberme");
-      let userDoc: AngularFirestoreCollection<userCredentials>
-      userDoc = this.afs.collection('userCredentials');
-      userDoc.snapshotChanges().pipe(
-        map(actions => actions.map(y=>{
-          if(y.payload.doc.id==this.userId){
-            this.inputEmail = y.payload.doc.data().email;
-            this.inputPassword = y.payload.doc.data().password;
-            this.waiting2 = false;
-          }
-          this.waiting2 = false;
-        }
-        ))
-      ).subscribe();
-      this.checked = true;
-    }
+      
+      // this.waiting2 = true;
+      // this.userId = localStorage.getItem("rememberme");
+      // let userDoc: AngularFirestoreCollection<userCredentials>
+      // userDoc = this.afs.collection('userCredentials');
+      // userDoc.snapshotChanges().pipe(
+      //   map(actions => actions.map(y=>{
+      //     if(y.payload.doc.id==this.userId){
+      //       // var hashedPassword = Md5.hashStr(this.inputPassword);
+      //       this.inputEmail = y.payload.doc.data().email;
+      //       this.inputPassword = y.payload.doc.data().password;
+      //       this.waiting2 = false;
+      //     }
+      //     this.waiting2 = false;
+      //   }
+      //   ))
+      // ).subscribe();
+      // this.checked = true;
+    
   }
 
 
   onNoClick(): void {
     this.dialogRef.close();
   }
+
+  remembermelogin():void{
+
+  }
+
   login():void {
     console.log("login nowww")
+
     this.loginerror = false;
     var email = this.emailFormControl.value;
     var password = this.myControl2.value;
+    var hashedPassword = Md5.hashStr(password).toString();
 
     
-    if(email && password && !this.emailFormControl.invalid){
+    if(email && hashedPassword && !this.emailFormControl.invalid){
       this.emptyinputs = false;
       this.waiting = true;
 
@@ -319,8 +407,10 @@ export class OverviewDialog2 {
   
       this.loginDoc.snapshotChanges().pipe(
         map(actions => actions.map(y=>{
-          const id = y.payload.doc.id;
-          if(email==y.payload.doc.data().email && password==y.payload.doc.data().password){
+          const id = y.payload.doc.id;    
+          var md5 = new Md5();
+
+          if(email==y.payload.doc.data().email && hashedPassword==y.payload.doc.data().password){
             this.userId = id;
             localStorage.setItem('userCredentialId',id);
           }
@@ -330,7 +420,7 @@ export class OverviewDialog2 {
   
       this.users.forEach(x=>{
         x.forEach(y=>{
-          if(email==y.email && password==y.password && !y.isDeleted){
+          if(email==y.email && hashedPassword==y.password && !y.isDeleted){
             if(this.checked){
               localStorage.setItem('rememberme',this.userId);
             }

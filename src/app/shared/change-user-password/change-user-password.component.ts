@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import {Md5} from 'ts-md5/dist/md5';
 
 
 export interface password{
@@ -98,8 +99,9 @@ export class ChangeUserPasswordComponent implements OnInit {
   changePassword(){
     console.log("function call")
     this.waiting = true;
+
     this.password={
-      password: this.pass1
+      password: Md5.hashStr(this.pass1).toString()
     }
 
     this.userDoc = this.afs.collection('userCredentials');
@@ -111,9 +113,12 @@ export class ChangeUserPasswordComponent implements OnInit {
         const id = y.payload.doc.id;
         // console.log(id)
         const data = y.payload.doc.data();
+        var hashedPassword = Md5.hashStr(this.prevPass).toString();
+
         if(this.userType=="admin" && data.adminId==this.userId){ //changing password for admin
           // console.log(data.password+" "+this.prevPass)  
-          if(data.password==this.prevPass){ //if previous password is correct                        
+
+          if(data.password==hashedPassword){ //if previous password is correct                        
             this.afs.doc('userCredentials/'+id).update(this.password).then(_ => {
               flag= true;
             });
@@ -122,7 +127,7 @@ export class ChangeUserPasswordComponent implements OnInit {
         
         if(this.userType=="parent" && data.parentId==this.userId){ //changing password for parent
           // console.log(data.password+" "+this.prevPass)  
-          if(data.password==this.prevPass){ //if previous password is correct                        
+          if(data.password==hashedPassword){ //if previous password is correct                        
             this.afs.doc('userCredentials/'+id).update(this.password).then(_ => {
               flag= true;
             });
@@ -132,7 +137,7 @@ export class ChangeUserPasswordComponent implements OnInit {
         
         if(this.userType=="passenger" && data.passengerId==this.userId){ //changing password for passenger
           // console.log(data.password+" "+this.prevPass)  
-          if(data.password==this.prevPass){ //if previous password is correct                        
+          if(data.password==hashedPassword){ //if previous password is correct                        
             this.afs.doc('userCredentials/'+id).update(this.password).then(_ => {
               flag= true;
             });
@@ -141,7 +146,7 @@ export class ChangeUserPasswordComponent implements OnInit {
 
         if(this.userType=="driver" && data.driverId==this.userId){ //changing password for driver
           // console.log(data.driverId+" "+data.password+" "+this.prevPass)  
-          if(data.password==this.prevPass){ //if previous password is correct                        
+          if(data.password==hashedPassword){ //if previous password is correct                        
             this.afs.doc('userCredentials/'+id).update(this.password).then(_ => {
               flag= true;
             });
@@ -150,7 +155,7 @@ export class ChangeUserPasswordComponent implements OnInit {
         
         if(this.userType=="owner" && data.ownerId==this.userId){ //changing password for owner
           // console.log(data.password+" "+this.prevPass)  
-          if(data.password==this.prevPass){ //if previous password is correct                        
+          if(data.password==hashedPassword){ //if previous password is correct                        
             this.afs.doc('userCredentials/'+id).update(this.password).then(_ => {
               flag= true;
             });
