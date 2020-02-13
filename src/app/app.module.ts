@@ -48,7 +48,6 @@ import { AdminprofileComponent } from './admin/adminprofile/adminprofile.compone
 import { RegisterpassengerComponent } from './passenger/registerpassenger/registerpassenger.component';
 
 import { RegisterComponent } from './register/register.component';
-import { PassengerprofileComponent } from './passenger/passengerprofile/passengerprofile.component';
 import { AgmCoreModule } from '@agm/core';
 import { OwnvehiclesComponent } from './owner/ownvehicles/ownvehicles.component';
 import { OwnerprofileComponent } from './owner/ownerprofile/ownerprofile.component';
@@ -73,6 +72,7 @@ import { ViewratingsComponent } from './driver/viewratings/viewratings.component
 import { RecentRatingsComponent } from './driver/recent-ratings/recent-ratings.component';
 import { ViewpaymentsParentComponent } from './driver/viewpayments-parent/viewpayments-parent.component';
 import { PaymentHistoryParentComponent } from './driver/payment-history-parent/payment-history-parent.component';
+import { PassengerProfileComponent } from './passenger/passenger-profile/passenger-profile.component';
 
 
 @NgModule({
@@ -109,7 +109,6 @@ import { PaymentHistoryParentComponent } from './driver/payment-history-parent/p
     RegisterpassengerComponent,
 
     RegisterComponent,
-    PassengerprofileComponent,
     OwnvehiclesComponent,
     DriverdetailsComponent,
     PassengerdetailsComponent,
@@ -135,6 +134,7 @@ import { PaymentHistoryParentComponent } from './driver/payment-history-parent/p
     RecentRatingsComponent,
     ViewpaymentsParentComponent,
     PaymentHistoryParentComponent,
+    PassengerProfileComponent,
 
 
   ],  

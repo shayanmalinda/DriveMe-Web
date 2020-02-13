@@ -28,7 +28,7 @@ import { AdminprofileComponent } from './admin/adminprofile/adminprofile.compone
 import { RegisterpassengerComponent } from './passenger/registerpassenger/registerpassenger.component';
 
 import { RegisterComponent } from './register/register.component';
-import { PassengerprofileComponent } from './passenger/passengerprofile/passengerprofile.component';
+import { PassengerProfileComponent } from './passenger/passenger-profile/passenger-profile.component';
 import { ChangeUserPasswordComponent } from './shared/change-user-password/change-user-password.component';
 import { from } from 'rxjs';
 import { OwnerprofileComponent } from './owner/ownerprofile/ownerprofile.component';
@@ -101,7 +101,7 @@ const routes: Routes = [
   { path: 'passenger', component: PassengerComponent,  
     children: [
       { path: 'passengerregister',outlet: 'passengernavbar', component: RegisterpassengerComponent},
-      { path: 'passengerprofile',outlet: 'passengernavbar', component: PassengerprofileComponent},
+      { path: 'passengerprofile',outlet: 'passengernavbar', component: PassengerProfileComponent},
     ]
 
   },
@@ -130,8 +130,8 @@ const routes: Routes = [
 
 
 @NgModule({
-  // imports: [RouterModule.forRoot(routes,{ enableTracing: true })],
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,{ enableTracing: true })],
+  // imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
