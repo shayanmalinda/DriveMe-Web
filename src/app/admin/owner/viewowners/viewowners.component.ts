@@ -91,7 +91,7 @@ export class ViewownersComponent implements OnInit {
   }
 
   changePassword(ownerId: string){
-    this.router.navigate(['/admin', {outlets: {'adminnavbar': ['changeuserpassword']}}],{queryParams: {userId: ownerId,userType:"owner"}})
+    this.router.navigate(['/admin', {outlets: {'adminnavbar': ['resetuserpassword']}}],{queryParams: {userId: ownerId,userType:"owner"}})
     
   }
 

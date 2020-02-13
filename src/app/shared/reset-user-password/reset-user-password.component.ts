@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import {Md5} from 'ts-md5/dist/md5';
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 
 export interface password{
@@ -25,20 +26,18 @@ export interface userCredentials{
 }
 
 @Component({
-  selector: 'app-change-user-password',
-  templateUrl: './change-user-password.component.html',
-  styleUrls: ['./change-user-password.component.scss']
+  selector: 'app-reset-user-password',
+  templateUrl: './reset-user-password.component.html',
+  styleUrls: ['./reset-user-password.component.scss']
 })
+export class ResetUserPasswordComponent implements OnInit {
 
-
-export class ChangeUserPasswordComponent implements OnInit {
   
   waiting = false;
   passwordDiv=false;
   hide = true;
   isLinear = true;
   firstFormGroup: FormGroup;
-  prevPass: string;
   pass1: string;
   pass2: string;
 
@@ -63,12 +62,12 @@ export class ChangeUserPasswordComponent implements OnInit {
     private route: ActivatedRoute,
     private cdRef: ChangeDetectorRef,
     private spinner: NgxSpinnerService,
-    private location: Location) { }
+    private location: Location,
+    private router: Router,) { }
 
   ngOnInit() {
     
     this.firstFormGroup = this._formBuilder.group({
-      ctrl1: ['', Validators.required],
       ctrl2: ['', Validators.required],
       ctrl3: ['', Validators.required],
     });
@@ -99,9 +98,8 @@ export class ChangeUserPasswordComponent implements OnInit {
   }
 
   changePassword(){
-    console.log("function call")
     this.waiting = true;
-    let count = 0;
+
     var hashpass =  Md5.hashStr(this.pass1).toString()
 
     this.password={
@@ -115,88 +113,79 @@ export class ChangeUserPasswordComponent implements OnInit {
     this.userDoc.snapshotChanges().pipe(
       map(actions => actions.map(y=>{
         const id = y.payload.doc.id;
-        console.log("inside api"+" "+count)
-        count++
+        // console.log(id)
         const data = y.payload.doc.data();
-        var hashedPassword = Md5.hashStr(this.prevPass).toString();
+        var hashedPassword = Md5.hashStr(this.pass1).toString();
 
         if(!flag){
 
 
           if(this.userType=="admin" && data.adminId==this.userId){ //changing password for admin
             // console.log(data.password+" "+this.prevPass)  
-  
-            if(data.password==hashedPassword){ //if previous password is correct                        
-              this.afs.doc('userCredentials/'+id).update(this.password).then(_ => {
-                flag= true;
-                this.location.back();
-                this.openSnackBar("Password Changed","Done")
-              });
-            } 
+                        
+            this.afs.doc('userCredentials/'+id).update(this.password).then(_ => {
+              flag= true;
+              this.router.navigate(['/admin', {outlets: {'adminnavbar': ['viewadmins']}}])
+              this.openSnackBar("Password Changed","Done")
+            });
           }
           
           if(this.userType=="parent" && data.parentId==this.userId){ //changing password for parent
-            // console.log(data.password+" "+this.prevPass)  
-            if(data.password==hashedPassword){ //if previous password is correct                        
-              this.afs.doc('userCredentials/'+id).update(this.password).then(_ => {
-                flag= true;
-                this.location.back();
-                this.openSnackBar("Password Changed","Done")
-              });
-            } 
+            // console.log(data.password+" "+this.prevPass)
+            this.afs.doc('userCredentials/'+id).update(this.password).then(_ => {
+              flag= true;
+              this.openSnackBar("Password Changed","Done")
+              this.router.navigate(['/admin', {outlets: {'adminnavbar': ['viewparents']}}])
+
+            });
           }
   
           
           if(this.userType=="passenger" && data.passengerId==this.userId){ //changing password for passenger
             // console.log(data.password+" "+this.prevPass)  
-            if(data.password==hashedPassword){ //if previous password is correct                        
-              this.afs.doc('userCredentials/'+id).update(this.password).then(_ => {
-                flag= true;
-                this.location.back();
-                this.openSnackBar("Password Changed","Done")
-              });
-            } 
+            this.afs.doc('userCredentials/'+id).update(this.password).then(_ => {
+              flag= true;
+              this.openSnackBar("Password Changed","Done")
+              this.router.navigate(['/admin', {outlets: {'adminnavbar': ['viewpassengers']}}])
+
+            });
           }
   
           if(this.userType=="driver" && data.driverId==this.userId){ //changing password for driver
             // console.log(data.driverId+" "+data.password+" "+this.prevPass)  
-            if(data.password==hashedPassword){ //if previous password is correct                        
-              this.afs.doc('userCredentials/'+id).update(this.password).then(_ => {
-                flag= true;
-                this.location.back();
-                this.openSnackBar("Password Changed","Done")
-              });
-            } 
+            this.afs.doc('userCredentials/'+id).update(this.password).then(_ => {
+              flag= true;
+              this.openSnackBar("Password Changed","Done")              
+              this.router.navigate(['/admin', {outlets: {'adminnavbar': ['viewdrivers']}}])
+
+            });
           }
           
           if(this.userType=="owner" && data.ownerId==this.userId){ //changing password for owner
             // console.log(data.password+" "+this.prevPass)  
-            if(data.password==hashedPassword){ //if previous password is correct                        
-              this.afs.doc('userCredentials/'+id).update(this.password).then(_ => {
-                flag= true;
-                this.location.back();
-                this.openSnackBar("Password Changed","Done")
-              });
-            } 
+            this.afs.doc('userCredentials/'+id).update(this.password).then(_ => {
+              flag= true;
+              this.openSnackBar("Password Changed","Done")
+              this.router.navigate(['/admin', {outlets: {'adminnavbar': ['viewowners']}}])
+
+            });
           }
         }
         
       }))
-    )
-    .subscribe(changes => {
+    ).subscribe(changes => {
       setTimeout(() => {
         if(!msgDisplayed){
           if(flag){
             console.log("success")
             msgDisplayed = true;
             this.waiting = false;
-
           }
           else{
             console.log("failed")
             msgDisplayed = true;
             this.waiting = false;
-            this.openSnackBar("Incorrect Previous Password","Done")
+            this.openSnackBar("Password Reset Failed","Done")
           }
 
         }
