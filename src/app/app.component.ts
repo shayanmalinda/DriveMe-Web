@@ -10,6 +10,7 @@ export class AppComponent {
   title = 'DriveMe';
 
   constructor(){
+    // localStorage.clear()
     // localStorage.removeItem("driverId")
     // localStorage.removeItem("adminId")
     // localStorage.removeItem("ownerId")

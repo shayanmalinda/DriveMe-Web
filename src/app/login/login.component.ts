@@ -419,8 +419,11 @@ export class OverviewDialog2 {
       ).subscribe();
   
       this.users.forEach(x=>{
-        x.forEach(y=>{
-          if(email==y.email && hashedPassword==y.password && !y.isDeleted){
+        x.forEach(y=>{            
+
+          if(email==y.email && hashedPassword==y.password && !y.isDeleted){          
+            console.log(email+" "+y.email+" "+" "+y.password+ " "+ hashedPassword)
+
             if(this.checked){
               localStorage.setItem('rememberme',this.userId);
             }
@@ -483,7 +486,7 @@ export class OverviewDialog2 {
             this.waiting = false;
             this.loginerror = true;
           }
-        },3000);
+        },6000);
       });
     }
     else{
