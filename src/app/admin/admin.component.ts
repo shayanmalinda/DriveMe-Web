@@ -75,6 +75,6 @@ export class AdminComponent implements OnInit {
   }
 
   homepage(){
-    this.router.navigateByUrl('/admin');
+    this.router.navigate(['/admin', {outlets: {'adminnavbar': ['adminhome']}}])
   }
 }

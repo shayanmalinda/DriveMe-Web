@@ -5,6 +5,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AgmCoreModule } from '@agm/core';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +18,7 @@ import { DriverComponent } from './driver/driver.component';
 import { PassengerComponent } from './passenger/passenger.component';
 import { ParentComponent } from './parent/parent.component';
 import { OwnerComponent } from './owner/owner.component';
+import { EditdetailsComponent } from './owner/editdetails/editdetails.component';
 import { environment } from 'src/environments/environment';
 import { ProfileComponent } from './driver/profile/profile.component';
 import { VehicleRouteComponent } from './driver/vehicle-route/vehicle-route.component';
@@ -58,9 +62,18 @@ import { PassengerpaymentsComponent } from './owner/payments/passengerpayments/p
 import { MyvehiclesComponent } from './owner/ownvehicles/myvehicles/myvehicles.component';
 import { RegisterVehicleComponent } from './owner/ownvehicles/register-vehicle/register-vehicle.component';
 import { AdminhomeComponent } from './admin/adminhome/adminhome.component';
+import { ViewpaymentsComponent } from './driver/viewpayments/viewpayments.component';
+import { PaymentHistoryComponent } from './driver/payment-history/payment-history.component';
+
+
+
 import { ViewownersComponent } from './admin/owner/viewowners/viewowners.component';
 import { RegisterownerComponent } from './admin/owner/registerowner/registerowner.component';
 import { EditownerdetailsComponent } from './admin/owner/editownerdetails/editownerdetails.component';
+import { ViewratingsComponent } from './driver/viewratings/viewratings.component';
+import { RecentRatingsComponent } from './driver/recent-ratings/recent-ratings.component';
+import { ViewpaymentsParentComponent } from './driver/viewpayments-parent/viewpayments-parent.component';
+import { PaymentHistoryParentComponent } from './driver/payment-history-parent/payment-history-parent.component';
 
 
 @NgModule({
@@ -109,9 +122,20 @@ import { EditownerdetailsComponent } from './admin/owner/editownerdetails/editow
     MyvehiclesComponent,
     RegisterVehicleComponent,
     AdminhomeComponent,
+    EditdetailsComponent,
     ViewownersComponent,
     RegisterownerComponent,
     EditownerdetailsComponent,
+    ViewpaymentsComponent,
+    PaymentHistoryComponent,
+    
+    ViewownersComponent,
+    RegisterownerComponent,
+    EditownerdetailsComponent,
+    ViewratingsComponent,
+    RecentRatingsComponent,
+    ViewpaymentsParentComponent,
+    PaymentHistoryParentComponent,
 
 
   ],  
@@ -128,9 +152,10 @@ import { EditownerdetailsComponent } from './admin/owner/editownerdetails/editow
     NgxSpinnerModule,
     HttpClientModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyCEwsWLe6soyNWGG0JTqJVKk4KnGFx_Ax8',
-      libraries: ['places']
-    })
+      apiKey : 'AIzaSyCEwsWLe6soyNWGG0JTqJVKk4KnGFx_Ax8'
+    }),
+    AngularFireDatabaseModule
+
   ], 
   entryComponents: [LoginComponent, OverviewDialog, OverviewDialog2],
   providers: [],

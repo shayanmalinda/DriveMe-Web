@@ -1,16 +1,17 @@
 <app-ngxspinner></app-ngxspinner>
-<div class="container navbar-margin"></div>
-<div *ngFor="let item of showingPassengerList" class="container navbar-margin">
+<div class="container top-margin"></div>
+<!-- Normal Passengers -->
+<div *ngFor="let item of showingPassengerList" class="container">
     <mat-list role="list">
         <div class=" row pt-4 pb-3 mb-4 " style="border: 1.5px solid #FF5722; border-radius: 20px;" *ngIf="!item.isDeleted">
             <div class="col-md-3 " style="vertical-align: middle;text-align: center; ">
                 <div class="row " style="vertical-align: middle; display: flex; justify-content: center; ">
-                    <img src="../../../../assets/passengeravatar.png " alt="passenger Icon " style="width: 180px; position: absolute; top: 45%; -ms-transform: translateY(-50%); transform: translateY(-50%); ">
+                    <img src="../../../../assets/passengeravatar.png " alt="passenger Icon " style="width: 120px; position: absolute; top: 45%; -ms-transform: translateY(-50%); transform: translateY(-50%); ">
                 </div>
             </div>
             <div class="col-md-5 " style="padding-left: 30px; ">
                 <p>Name : {{item.name}}</p>
-                <p>Email : {{item.email}}</p>
+                <p>Pickup Location : {{item.pickupLocation}}</p>
                 <p>Address : {{item.address}}</p>
                 <p>Telephone : {{item.phone}}</p>
             </div>
@@ -23,6 +24,36 @@
                     -ms-transform: translateY(-50%);
                     transform: translateY(-50%);" routerLinkActive="active" (click)="removePassenger(item.id)">
                     <mat-icon>delete</mat-icon>Remove Passenger</button>
+            </div>
+        </div>
+    </mat-list>
+</div>
+
+
+<!-- Child's Details -->
+<div *ngFor="let item of showingParentList" class="container">
+    <mat-list role="list">
+        <div class=" row pt-4 pb-3 mb-4 " style="border: 1.5px solid rgb(38, 111, 207); border-radius: 20px;">
+            <div class="col-md-3 " style="vertical-align: middle;text-align: center; ">
+                <div class="row " style="vertical-align: middle; display: flex; justify-content: center; ">
+                    <img src="../../../../assets/passengeravatar.png " alt="passenger Icon " style="width: 120px; position: absolute; top: 45%; -ms-transform: translateY(-50%); transform: translateY(-50%); ">
+                </div>
+            </div>
+            <div class="col-md-5 " style="padding-left: 30px; ">
+                <p>Name : {{item.childName}}</p>
+                <p>Child School: {{item.childSchool}}</p>
+                <p>Pickup Location : {{item.pickupLocation}}</p>
+                <p>Parent Phone : {{item.parentPhone}}</p>
+            </div>
+            <div class="col-md-4">
+                <button mat-raised-button color="warn" style="
+                    height: 45px;
+                    width: 80%;
+                    position: absolute;
+                    top: 65%;
+                    -ms-transform: translateY(-50%);
+                    transform: translateY(-50%);" routerLinkActive="active" (click)="removeChild(item.id)">
+                    <mat-icon>delete</mat-icon>Remove Child</button>
             </div>
         </div>
     </mat-list>
