@@ -71,6 +71,7 @@ import { RegisterownerComponent } from './admin/owner/registerowner/registerowne
 import { EditownerdetailsComponent } from './admin/owner/editownerdetails/editownerdetails.component';
 import { ViewratingsComponent } from './driver/viewratings/viewratings.component';
 import { RecentRatingsComponent } from './driver/recent-ratings/recent-ratings.component';
+import { ResetUserPasswordComponent } from './shared/reset-user-password/reset-user-password.component';
 import { ViewpaymentsParentComponent } from './driver/viewpayments-parent/viewpayments-parent.component';
 import { PaymentHistoryParentComponent } from './driver/payment-history-parent/payment-history-parent.component';
 
@@ -133,6 +134,7 @@ import { PaymentHistoryParentComponent } from './driver/payment-history-parent/p
     EditownerdetailsComponent,
     ViewratingsComponent,
     RecentRatingsComponent,
+    ResetUserPasswordComponent,
     ViewpaymentsParentComponent,
     PaymentHistoryParentComponent,
 

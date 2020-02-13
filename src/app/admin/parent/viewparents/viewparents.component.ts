@@ -66,7 +66,7 @@ export class ViewparentsComponent implements OnInit {
   }
 
   changePassword(parentId: string){
-    this.router.navigate(['/admin', {outlets: {'adminnavbar': ['changeuserpassword']}}],{queryParams: {userId: parentId,userType:"parent"}})
+    this.router.navigate(['/admin', {outlets: {'adminnavbar': ['resetuserpassword']}}],{queryParams: {userId: parentId,userType:"parent"}})
     
   }
   removeParent(parentId: string){

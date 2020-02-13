@@ -30,6 +30,7 @@ import { RegisterpassengerComponent } from './passenger/registerpassenger/regist
 import { RegisterComponent } from './register/register.component';
 import { PassengerprofileComponent } from './passenger/passengerprofile/passengerprofile.component';
 import { ChangeUserPasswordComponent } from './shared/change-user-password/change-user-password.component';
+import { ResetUserPasswordComponent } from './shared/reset-user-password/reset-user-password.component';
 import { from } from 'rxjs';
 import { OwnerprofileComponent } from './owner/ownerprofile/ownerprofile.component';
 import { EditdetailsComponent } from './owner/editdetails/editdetails.component';
@@ -71,6 +72,7 @@ const routes: Routes = [
       { path: 'editadmindetails',outlet: 'adminnavbar', component: EditadmindetailsComponent},
       { path: 'adminprofile',outlet: 'adminnavbar', component: AdminprofileComponent},
       { path: 'changeuserpassword',outlet: 'adminnavbar', component: ChangeUserPasswordComponent},
+      { path: 'resetuserpassword',outlet: 'adminnavbar', component: ResetUserPasswordComponent},
       { path: 'adminhome',outlet: 'adminnavbar', component: AdminhomeComponent},
       { path: 'viewowners',outlet: 'adminnavbar', component: ViewownersComponent },
       { path: 'ownerregister',outlet: 'adminnavbar', component: RegisterownerComponent },

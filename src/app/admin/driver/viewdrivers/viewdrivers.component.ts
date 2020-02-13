@@ -112,7 +112,7 @@ export class ViewdriversComponent implements OnInit {
   }
 
   changePassword(driverId: string){
-    this.router.navigate(['/admin', {outlets: {'adminnavbar': ['changeuserpassword']}}],{queryParams: {userId: driverId,userType:"driver"}})
+    this.router.navigate(['/admin', {outlets: {'adminnavbar': ['resetuserpassword']}}],{queryParams: {userId: driverId,userType:"driver"}})
     
   }
 
