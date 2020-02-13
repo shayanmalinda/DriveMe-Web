@@ -62,6 +62,7 @@ import { ViewownersComponent } from './admin/owner/viewowners/viewowners.compone
 import { RegisterownerComponent } from './admin/owner/registerowner/registerowner.component';
 import { EditownerdetailsComponent } from './admin/owner/editownerdetails/editownerdetails.component';
 import { TrialComponent } from './owner/trial/trial.component';
+import { PassengersComponent } from './owner/driverdetails/passengers/passengers.component';
 
 
 @NgModule({
@@ -116,6 +117,7 @@ import { TrialComponent } from './owner/trial/trial.component';
     RegisterownerComponent,
     EditownerdetailsComponent,
     TrialComponent,
+    PassengersComponent,
 
 
   ],  
