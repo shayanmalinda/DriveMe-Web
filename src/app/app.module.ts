@@ -47,21 +47,14 @@ import { RegisterpassengerComponent } from './passenger/registerpassenger/regist
 
 import { RegisterComponent } from './register/register.component';
 import { PassengerprofileComponent } from './passenger/passengerprofile/passengerprofile.component';
-import { OwnvehiclesComponent } from './owner/ownvehicles/ownvehicles.component';
 import { OwnerprofileComponent } from './owner/ownerprofile/ownerprofile.component';
 import { DriverdetailsComponent } from './owner/driverdetails/driverdetails.component';
 import { PassengerdetailsComponent } from './owner/passengerdetails/passengerdetails.component';
-import { RatingsComponent } from './owner/ratings/ratings.component';
 import { ChangeUserPasswordComponent } from './shared/change-user-password/change-user-password.component';
-import { DriverpaymentsComponent } from './owner/payments/driverpayments/driverpayments.component';
-import { PassengerpaymentsComponent } from './owner/payments/passengerpayments/passengerpayments.component';
-import { MyvehiclesComponent } from './owner/ownvehicles/myvehicles/myvehicles.component';
-import { RegisterVehicleComponent } from './owner/ownvehicles/register-vehicle/register-vehicle.component';
 import { AdminhomeComponent } from './admin/adminhome/adminhome.component';
 import { ViewownersComponent } from './admin/owner/viewowners/viewowners.component';
 import { RegisterownerComponent } from './admin/owner/registerowner/registerowner.component';
 import { EditownerdetailsComponent } from './admin/owner/editownerdetails/editownerdetails.component';
-import { TrialComponent } from './owner/trial/trial.component';
 import { PassengersComponent } from './owner/driverdetails/passengers/passengers.component';
 
 
@@ -100,23 +93,19 @@ import { PassengersComponent } from './owner/driverdetails/passengers/passengers
 
     RegisterComponent,
     PassengerprofileComponent,
-    OwnvehiclesComponent,
+  
     DriverdetailsComponent,
     PassengerdetailsComponent,
-    RatingsComponent,
+    
     ChangeUserPasswordComponent,
     OwnerprofileComponent,
-    DriverpaymentsComponent,
-    PassengerpaymentsComponent,
-    MyvehiclesComponent,
-    RegisterVehicleComponent,
+    
     AdminhomeComponent,
     EditdetailsComponent,
 
     ViewownersComponent,
     RegisterownerComponent,
     EditownerdetailsComponent,
-    TrialComponent,
     PassengersComponent,
 
 
