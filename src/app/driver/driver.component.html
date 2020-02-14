@@ -18,17 +18,13 @@
 
                 </div>
             </li> -->
-            <!--edit from here like above-->
+
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle navbarDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Passenger List
           </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" [routerLink]="[{outlets: {'drivernavbar': 'driver-passengerlist'}}]" routerLinkActive="active" style="color: #ddd">My Passenger List</a>
-                    <!--
-                         <a class="dropdown-item" href="#" style="color: #ddd">Another</a>
-                        <a class="dropdown-item" href="#" style="color: #ddd">Something</a>
-                   -->
 
                 </div>
             </li>
@@ -53,11 +49,12 @@
 
 
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle navbarDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Vehicle Route
+                <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Passenger Availability
             </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" [routerLink]="[{outlets: {'drivernavbar': 'driver-vehicleroute'}}]" style="color: #ddd">My Route</a>
+                    <a class="dropdown-item" [routerLink]="[{outlets: {'drivernavbar': 'driver-vehicleroute'}}]" style="color: #ddd">Passenger Availability</a>
+                    <!-- <a class="dropdown-item" [routerLink]="[{outlets: {'drivernavbar': 'driver-vehicleroute'}}]" style="color: #ddd">Child Availability</a> -->
                     <!--
                         <a class="dropdown-item" href="#" style="color: #ddd">Another</a>
                         <a class="dropdown-item" href="#" style="color: #ddd">Something</a>

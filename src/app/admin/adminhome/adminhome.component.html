@@ -5,17 +5,13 @@
 
 <!-- *ngFor="let location of locations" -->
 
-<agm-map [latitude] = "latitude" [longitude] = "longitude" [fitBounds]="true">  
-    <agm-marker  *ngFor="let location of locations" 
-        [latitude]="location.lat" 
-        [longitude]="location.lng" 
-        [agmFitBounds]="true" 
-        [iconUrl] = "{
+<agm-map [latitude]="latitude" [longitude]="longitude" [fitBounds]="true">
+    <agm-marker *ngFor="let location of locations" [latitude]="location.lat" [longitude]="location.lng" [agmFitBounds]="true" [iconUrl]="{
             url: '../../../../assets/icons/logo.svg',
             scaledSize: {
                 width: 40,
                 height: 65
             }
-        }" >
+        }">
     </agm-marker>
 </agm-map>
