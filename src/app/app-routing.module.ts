@@ -115,6 +115,7 @@ const routes: Routes = [
     children: [
       { path: 'passengerprofile',outlet: 'passengernavbar', component: PassengerProfileComponent},
       { path: 'passengerhome',outlet: 'passengernavbar', component: PassengerhomeComponent},
+      { path: 'changeuserpassword',outlet: 'passengernavbar', component: ChangeUserPasswordComponent},
     ]
   },
 
