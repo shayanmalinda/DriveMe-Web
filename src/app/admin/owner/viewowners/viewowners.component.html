@@ -6,8 +6,11 @@
                 <div class="row" style="vertical-align: middle;
                 display: flex;
                 justify-content: center;">
-                        <img [src]=owner.imgURL alt="Owner Icon" style="width: 180px;
+                        <img [src]=owner.imgURL alt="Owner Icon" style="height: 100%;
                         position: absolute;
+                        margin: auto;
+                        left: 0;
+                        right: 0;
                         top: 45%;
                         -ms-transform: translateY(-50%);
                         transform: translateY(-50%);">
@@ -37,7 +40,7 @@
                     -ms-transform: translateY(-50%);
                     transform: translateY(-50%);"  
                     routerLinkActive="active" (click)="changePassword(owner.id)">
-                    <mat-icon>lock_open</mat-icon>Change Password</button>  
+                    <mat-icon>lock_open</mat-icon>Reset Password</button>  
                          
                 <button mat-raised-button color="warn" style="
                     height: 45px;

@@ -5,6 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -46,16 +48,40 @@ import { AdminprofileComponent } from './admin/adminprofile/adminprofile.compone
 import { RegisterpassengerComponent } from './passenger/registerpassenger/registerpassenger.component';
 
 import { RegisterComponent } from './register/register.component';
-import { PassengerprofileComponent } from './passenger/passengerprofile/passengerprofile.component';
+
+//import { PassengerprofileComponent } from './passenger/passengerprofile/passengerprofile.component';
+
+//import { AgmCoreModule } from '@agm/core';
+
+
 import { OwnerprofileComponent } from './owner/ownerprofile/ownerprofile.component';
 import { DriverdetailsComponent } from './owner/driverdetails/driverdetails.component';
 import { PassengerdetailsComponent } from './owner/passengerdetails/passengerdetails.component';
 import { ChangeUserPasswordComponent } from './shared/change-user-password/change-user-password.component';
 import { AdminhomeComponent } from './admin/adminhome/adminhome.component';
+import { ViewpaymentsComponent } from './driver/viewpayments/viewpayments.component';
+import { PaymentHistoryComponent } from './driver/payment-history/payment-history.component';
+
+
+
 import { ViewownersComponent } from './admin/owner/viewowners/viewowners.component';
 import { RegisterownerComponent } from './admin/owner/registerowner/registerowner.component';
 import { EditownerdetailsComponent } from './admin/owner/editownerdetails/editownerdetails.component';
+
 import { PassengersComponent } from './owner/driverdetails/passengers/passengers.component';
+
+import { ViewratingsComponent } from './driver/viewratings/viewratings.component';
+import { RecentRatingsComponent } from './driver/recent-ratings/recent-ratings.component';
+import { ResetUserPasswordComponent } from './shared/reset-user-password/reset-user-password.component';
+import { ViewpaymentsParentComponent } from './driver/viewpayments-parent/viewpayments-parent.component';
+import { PaymentHistoryParentComponent } from './driver/payment-history-parent/payment-history-parent.component';
+import { PaymentsParentComponent } from './driver/payments-parent/payments-parent.component';
+import { ViewratingsChildComponent } from './driver/viewratings-child/viewratings-child.component';
+import { RecentRatingsChildComponent } from './driver/recent-ratings-child/recent-ratings-child.component';
+import { RateChildComponent } from './driver/rate-child/rate-child.component';
+import { PassengerProfileComponent } from './passenger/passenger-profile/passenger-profile.component';
+import { ViewdriverdetailsComponent } from './passenger/viewdriverdetails/viewdriverdetails.component';
+import { PassengerhomeComponent } from './passenger/passengerhome/passengerhome.component';
 
 
 @NgModule({
@@ -92,8 +118,8 @@ import { PassengersComponent } from './owner/driverdetails/passengers/passengers
     RegisterpassengerComponent,
 
     RegisterComponent,
-    PassengerprofileComponent,
-  
+
+    //PassengerprofileComponent,
     DriverdetailsComponent,
     PassengerdetailsComponent,
     
@@ -107,6 +133,28 @@ import { PassengersComponent } from './owner/driverdetails/passengers/passengers
     RegisterownerComponent,
     EditownerdetailsComponent,
     PassengersComponent,
+    ViewownersComponent,
+    RegisterownerComponent,
+    EditownerdetailsComponent,
+    ViewpaymentsComponent,
+    PaymentHistoryComponent,
+    
+    ViewownersComponent,
+    RegisterownerComponent,
+    EditownerdetailsComponent,
+    ViewratingsComponent,
+    RecentRatingsComponent,
+    ResetUserPasswordComponent,
+    ViewpaymentsParentComponent,
+    PaymentHistoryParentComponent,
+    PaymentsParentComponent,
+    ViewratingsChildComponent,
+    RecentRatingsChildComponent,
+    RateChildComponent,
+    PassengerProfileComponent,
+    ViewdriverdetailsComponent,
+    PassengerhomeComponent,
+
 
 
   ],  
@@ -121,7 +169,12 @@ import { PassengersComponent } from './owner/driverdetails/passengers/passengers
     AngularFireStorageModule,
     MatModule,
     NgxSpinnerModule,
-    HttpClientModule
+    HttpClientModule,
+    /*AgmCoreModule.forRoot({
+      apiKey : 'AIzaSyCEwsWLe6soyNWGG0JTqJVKk4KnGFx_Ax8'
+    }),*/
+    AngularFireDatabaseModule
+
   ], 
   entryComponents: [LoginComponent, OverviewDialog, OverviewDialog2],
   providers: [],
