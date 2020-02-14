@@ -459,7 +459,7 @@ export class OverviewDialog2 {
             }
             else if(y.driverId){
               console.log("driver exist")
-              this.router.navigateByUrl('/driver')
+              this.router.navigate(['/driver', {outlets: {'drivernavbar': ['driver-vehicleroute']}}])
             }
             else if(y.passengerId){
               console.log("passenger exist")
