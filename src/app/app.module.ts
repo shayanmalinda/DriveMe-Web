@@ -149,11 +149,8 @@ import { PassengerAvailabilityComponent } from './driver/passenger-availability/
     RateChildComponent,
     ViewdriverdetailsComponent,
     PassengerhomeComponent,
-<<<<<<< HEAD
     DriverviewpassengerdetailsComponent,
-=======
     PassengerAvailabilityComponent,
->>>>>>> cd6239b72d0f1dfc8f486f0595b4cee71b895a69
 
 
   ],  
