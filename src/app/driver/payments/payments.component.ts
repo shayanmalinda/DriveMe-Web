@@ -52,9 +52,6 @@ export class PaymentsComponent implements OnInit {
     amount: ['']
   });
 
-  allPassengerList: passenger[]; //full array of passengers
-  showingPassengerList: passenger[] = [] as passenger[] ; //display array
-
   waiting = false;
 
   payment: payment;
@@ -123,9 +120,9 @@ export class PaymentsComponent implements OnInit {
       })
     })
 
-
-
   }
+ 
+
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action, {
       duration: 2000,

@@ -28,7 +28,8 @@ import { AdminprofileComponent } from './admin/adminprofile/adminprofile.compone
 import { RegisterpassengerComponent } from './passenger/registerpassenger/registerpassenger.component';
 
 import { RegisterComponent } from './register/register.component';
-import { PassengerprofileComponent } from './passenger/passengerprofile/passengerprofile.component';
+import { PassengerProfileComponent } from './passenger/passenger-profile/passenger-profile.component';
+import { PassengerhomeComponent } from './passenger/passengerhome/passengerhome.component';
 import { ChangeUserPasswordComponent } from './shared/change-user-password/change-user-password.component';
 import { ResetUserPasswordComponent } from './shared/reset-user-password/reset-user-password.component';
 import { from } from 'rxjs';
@@ -52,7 +53,10 @@ import { ViewratingsComponent } from './driver/viewratings/viewratings.component
 import { RecentRatingsComponent } from './driver/recent-ratings/recent-ratings.component';
 import { ViewpaymentsParentComponent} from './driver/viewpayments-parent/viewpayments-parent.component'
 import {PaymentHistoryParentComponent} from './driver/payment-history-parent/payment-history-parent.component';
-
+import { PaymentsParentComponent } from './driver/payments-parent/payments-parent.component';
+import { ViewratingsChildComponent } from './driver/viewratings-child/viewratings-child.component';
+import { RecentRatingsChildComponent } from './driver/recent-ratings-child/recent-ratings-child.component';
+import { RateChildComponent } from './driver/rate-child/rate-child.component';
 
 // import { AdminprofileComponent } from './admin/adminprofile/adminprofile.component';
 
@@ -96,18 +100,26 @@ const routes: Routes = [
       {path: 'recent-ratings',outlet:'drivernavbar',component:RecentRatingsComponent},
       {path: 'driver-viewparentpayments',outlet:'drivernavbar',component:ViewpaymentsParentComponent},
       {path: 'payment-history-parent',outlet: 'drivernavbar',component: PaymentHistoryParentComponent},
+      {path: 'driver-payments-parent',outlet: 'drivernavbar',component:PaymentsParentComponent},
+      {path: 'view-ratings-child',outlet: 'drivernavbar',component:ViewratingsChildComponent},
+      {path: 'recent-ratings-child',outlet: 'drivernavbar',component:RecentRatingsChildComponent},
+      {path: 'driver-ratechild',outlet:'drivernavbar',component:RateChildComponent},
+      
     ]
   },
 
 
   { path: 'parent', component: ParentComponent},
-  { path: 'passenger', component: PassengerComponent,  
-    children: [
-      { path: 'passengerregister',outlet: 'passengernavbar', component: RegisterpassengerComponent},
-      { path: 'passengerprofile',outlet: 'passengernavbar', component: PassengerprofileComponent},
-    ]
 
+
+  { path: 'passenger', component: PassengerComponent,
+    children: [
+      { path: 'passengerprofile',outlet: 'passengernavbar', component: PassengerProfileComponent},
+      { path: 'passengerhome',outlet: 'passengernavbar', component: PassengerhomeComponent},
+      { path: 'changeuserpassword',outlet: 'passengernavbar', component: ChangeUserPasswordComponent},
+    ]
   },
+
   { path: 'owner', component: OwnerComponent,
     children:[
       { path: 'ownerprofile',outlet: 'ownernavbar', component: OwnerprofileComponent},
@@ -133,8 +145,8 @@ const routes: Routes = [
 
 
 @NgModule({
-  // imports: [RouterModule.forRoot(routes,{ enableTracing: true })],
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,{ enableTracing: true })],
+  // imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

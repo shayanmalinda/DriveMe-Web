@@ -5,7 +5,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
-import { AgmCoreModule } from '@agm/core';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 
 
@@ -49,7 +48,7 @@ import { AdminprofileComponent } from './admin/adminprofile/adminprofile.compone
 import { RegisterpassengerComponent } from './passenger/registerpassenger/registerpassenger.component';
 
 import { RegisterComponent } from './register/register.component';
-import { PassengerprofileComponent } from './passenger/passengerprofile/passengerprofile.component';
+import { AgmCoreModule } from '@agm/core';
 import { OwnvehiclesComponent } from './owner/ownvehicles/ownvehicles.component';
 import { OwnerprofileComponent } from './owner/ownerprofile/ownerprofile.component';
 import { DriverdetailsComponent } from './owner/driverdetails/driverdetails.component';
@@ -74,6 +73,13 @@ import { RecentRatingsComponent } from './driver/recent-ratings/recent-ratings.c
 import { ResetUserPasswordComponent } from './shared/reset-user-password/reset-user-password.component';
 import { ViewpaymentsParentComponent } from './driver/viewpayments-parent/viewpayments-parent.component';
 import { PaymentHistoryParentComponent } from './driver/payment-history-parent/payment-history-parent.component';
+import { PaymentsParentComponent } from './driver/payments-parent/payments-parent.component';
+import { ViewratingsChildComponent } from './driver/viewratings-child/viewratings-child.component';
+import { RecentRatingsChildComponent } from './driver/recent-ratings-child/recent-ratings-child.component';
+import { RateChildComponent } from './driver/rate-child/rate-child.component';
+import { PassengerProfileComponent } from './passenger/passenger-profile/passenger-profile.component';
+import { ViewdriverdetailsComponent } from './passenger/viewdriverdetails/viewdriverdetails.component';
+import { PassengerhomeComponent } from './passenger/passengerhome/passengerhome.component';
 
 
 @NgModule({
@@ -110,7 +116,6 @@ import { PaymentHistoryParentComponent } from './driver/payment-history-parent/p
     RegisterpassengerComponent,
 
     RegisterComponent,
-    PassengerprofileComponent,
     OwnvehiclesComponent,
     DriverdetailsComponent,
     PassengerdetailsComponent,
@@ -137,6 +142,13 @@ import { PaymentHistoryParentComponent } from './driver/payment-history-parent/p
     ResetUserPasswordComponent,
     ViewpaymentsParentComponent,
     PaymentHistoryParentComponent,
+    PaymentsParentComponent,
+    ViewratingsChildComponent,
+    RecentRatingsChildComponent,
+    RateChildComponent,
+    PassengerProfileComponent,
+    ViewdriverdetailsComponent,
+    PassengerhomeComponent,
 
 
   ],  

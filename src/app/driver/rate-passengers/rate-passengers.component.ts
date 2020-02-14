@@ -9,7 +9,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 
 export interface rating{//Interface for ratings
   date: string;
-  ratings: string;
+  rating: string;
   stars: number;
 }
 
@@ -34,15 +34,15 @@ export class RatePassengersComponent implements OnInit {
 
   ratingForm=this.formBuilder.group({
     date: [''],
-    passengerId: [''],
-    stars:[''],
-    ratings:['']
+    //passengerId: [''],
+    stars: [''],
+    rating:['']
   });
 
-  allPassengerList: passenger[];//full array of passengers
-  showingPassengerList: passenger[] = [] as passenger[]; //display array of passengers
+  // allPassengerList: passenger[];//full array of passengers
+  // showingPassengerList: passenger[] = [] as passenger[]; //display array of passengers
 
-  selectedPassengerId :Selection;
+  //selectedPassengerId :Selection;
   waiting= false;
 
   rating: rating;
@@ -65,40 +65,30 @@ export class RatePassengersComponent implements OnInit {
 
   ngOnInit() 
   {
-    this.afs.collection('users/user/passenger').snapshotChanges().subscribe(array=>
-      {
-        this.allPassengerList=array.map(item=>{//adding passenger's data
-          const data = item.payload.doc.data() as passenger;
-          const id = item.payload.doc.id;
-          return{id,...data};
-        });
-
-        this.allPassengerList.forEach(element=>{//filtering passengers
-          if(element.driverId==localStorage.getItem('driverId')){
-            this.showingPassengerList.push(element);
-          }
-        })
-      });
+      this.route.queryParams.subscribe(params => {
+      this.passengerId = params['passengerId'];  
+    });
   }
 
-  registerrating(formData: { date: any; stars: any; ratings: any; passengerId: string; })
+  registerrating(formData)
   {
     this.waiting=true;
     //this.tempid=this.afs.createId(); 
 
     this.rating={ //Obtaining Form data for Rating...
       date: formData.date,
-      stars: formData.stars,
-      ratings: formData.ratings
+      stars:+formData.stars,//type casting
+      rating: formData.rating
     }
 
+   // console.log(this.passengerId)
 
-    this.afs.collection('users/user/passenger/'+formData.passengerId+ '/ratings/').add(this.rating).then(_=>{
+    this.afs.collection('users/user/passenger/'+this.passengerId+ '/ratings/').add(this.rating).then(_=>{
       this.openSnackBar("Rating Details Added", "Done");
       this.waiting=false;
     })
   }
-  openSnackBar(message: string, action: string)
+  openSnackBar(message: string, action: string)//snack bar
 {
   this._snackBar.open(message, action, {
     duration: 2000,
