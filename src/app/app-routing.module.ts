@@ -24,6 +24,7 @@ import { RegisteradminComponent } from './admin/admin/registeradmin/registeradmi
 import { ViewadminsComponent } from './admin/admin/viewadmins/viewadmins.component';
 import { EditadmindetailsComponent } from './admin/admin/editadmindetails/editadmindetails.component';
 import { AdminprofileComponent } from './admin/adminprofile/adminprofile.component';
+import { ViewcheckpointsComponent } from './admin/driver/viewcheckpoints/viewcheckpoints.component';
 
 import { RegisterpassengerComponent } from './passenger/registerpassenger/registerpassenger.component';
 
@@ -84,6 +85,7 @@ const routes: Routes = [
       { path: 'editownerdetails',outlet: 'adminnavbar', component: EditownerdetailsComponent },
       { path: 'driver-profile', outlet: 'adminnavbar', component: ProfileComponent},
       { path: 'driverviewdriverdetails', outlet: 'adminnavbar', component: DriverviewpassengerdetailsComponent},
+      { path: 'viewcheckpoints', outlet: 'adminnavbar', component: ViewcheckpointsComponent},
 
     ]
   },

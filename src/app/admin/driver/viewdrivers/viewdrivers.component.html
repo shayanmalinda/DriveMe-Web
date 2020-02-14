@@ -25,11 +25,21 @@
                 <p>Vehicle Type : {{driver.vehicleType}}</p>
             </div>
             <div class="col-md-4">                
+
+                <button mat-flat-button color="accent" style="
+                    height: 45px;
+                    width: 80%;
+                    position: absolute;
+                    top: 20%;
+                    -ms-transform: translateY(-50%);
+                    transform: translateY(-50%);" (click)="viewcheckpoints(driver.id)" 
+                    routerLinkActive="active" ><mat-icon>location_on</mat-icon>View Checkpoints</button> 
+
                 <button mat-raised-button color="primary" style="
                     height: 45px;
                     width: 80%;
                     position: absolute;
-                    top: 25%;
+                    top: 40%;
                     -ms-transform: translateY(-50%);
                     transform: translateY(-50%);" (click)="changedriverDetails(driver.id,driver)" 
                     routerLinkActive="active" ><mat-icon>edit</mat-icon>Change Details</button> 
@@ -38,7 +48,7 @@
                     height: 45px;
                     width: 80%;
                     position: absolute;
-                    top: 45%;
+                    top: 60%;
                     -ms-transform: translateY(-50%);
                     transform: translateY(-50%);"  
                     routerLinkActive="active" (click)="changePassword(driver.id)">
@@ -48,7 +58,7 @@
                     height: 45px;
                     width: 80%;
                     position: absolute;
-                    top: 65%;
+                    top: 80%;
                     -ms-transform: translateY(-50%);
                     transform: translateY(-50%);"  
                     routerLinkActive="active" (click)="removeDriver(driver.id)">

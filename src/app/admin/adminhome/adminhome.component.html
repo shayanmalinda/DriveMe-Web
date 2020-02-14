@@ -4,8 +4,10 @@
 
 
 <!-- *ngFor="let location of locations" -->
+<h1 style="position:absolute;z-index:1; padding-top: 70px;padding-left: 25px;font-size: 30px;text-shadow: 2px 2px #ffffff;
+font-weight: 700;  ">Driver Locations</h1>
 
-<agm-map [latitude] = "latitude" [longitude] = "longitude" [fitBounds]="true" [zoom]="zoom">  
+<agm-map [latitude] = "latitude" [longitude] = "longitude" [fitBounds]="true" [zoom]="zoom" style="z-index:2">  
     <agm-marker  *ngFor="let location of locations" 
         [latitude]="location.lat" 
         [longitude]="location.lng" 

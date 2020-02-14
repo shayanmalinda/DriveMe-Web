@@ -1,0 +1,7 @@
+<!-- Display map -->
+<h1 style="position:absolute;z-index:1; padding-top: 70px;padding-left: 25px;
+font-size: 30px;font-weight: 700;  text-shadow: 2px 2px #ffffff;">Driver Checkpoints</h1>
+<agm-map [latitude]="latitude" [longitude]="longitude" [fitBounds]="true" style="z-index:2">
+    <agm-marker *ngFor="let item of showingLocationList" [latitude]="item.placeLat" [longitude]="item.placeLng" [agmFitBounds]="true" >
+    </agm-marker>
+</agm-map>
