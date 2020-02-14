@@ -148,7 +148,8 @@ export class LoginComponent implements OnInit {
               }
               else if(y.payload.doc.get('ownerId')){       
                 console.log("owner exist")     
-                this.router.navigateByUrl('/owner')
+                this.router.navigate(['/owner', {outlets: {'ownernavbar': ['ownerhome']}}])
+
                 this.spinner.hide()
               }
               else{
@@ -471,7 +472,7 @@ export class OverviewDialog2 {
             }
             else if(y.ownerId){       
               console.log("owner exist")     
-              this.router.navigateByUrl('/owner')
+              this.router.navigate(['/owner', {outlets: {'ownernavbar': ['ownerhome']}}])
             }
             else{
               console.log("Not Registered to any user")
