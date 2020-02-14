@@ -80,6 +80,7 @@ import { RateChildComponent } from './driver/rate-child/rate-child.component';
 import { PassengerProfileComponent } from './passenger/passenger-profile/passenger-profile.component';
 import { ViewdriverdetailsComponent } from './passenger/viewdriverdetails/viewdriverdetails.component';
 import { PassengerhomeComponent } from './passenger/passengerhome/passengerhome.component';
+import { PassengerAvailabilityComponent } from './driver/passenger-availability/passenger-availability.component';
 
 
 @NgModule({
@@ -149,6 +150,7 @@ import { PassengerhomeComponent } from './passenger/passengerhome/passengerhome.
     PassengerProfileComponent,
     ViewdriverdetailsComponent,
     PassengerhomeComponent,
+    PassengerAvailabilityComponent,
 
 
   ],  

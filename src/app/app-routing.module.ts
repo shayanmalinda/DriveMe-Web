@@ -57,6 +57,7 @@ import { PaymentsParentComponent } from './driver/payments-parent/payments-paren
 import { ViewratingsChildComponent } from './driver/viewratings-child/viewratings-child.component';
 import { RecentRatingsChildComponent } from './driver/recent-ratings-child/recent-ratings-child.component';
 import { RateChildComponent } from './driver/rate-child/rate-child.component';
+import { PassengerAvailabilityComponent } from './driver/passenger-availability/passenger-availability.component';
 
 // import { AdminprofileComponent } from './admin/adminprofile/adminprofile.component';
 
@@ -103,6 +104,7 @@ const routes: Routes = [
       {path: 'view-ratings-child',outlet: 'drivernavbar',component:ViewratingsChildComponent},
       {path: 'recent-ratings-child',outlet: 'drivernavbar',component:RecentRatingsChildComponent},
       {path: 'driver-ratechild',outlet:'drivernavbar',component:RateChildComponent},
+      {path: 'driver-passengeravailability',outlet:'drivernavbar',component:PassengerAvailabilityComponent},
       
     ]
   },
@@ -143,8 +145,8 @@ const routes: Routes = [
 
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes,{ enableTracing: true })],
-  // imports: [RouterModule.forRoot(routes)],
+  // imports: [RouterModule.forRoot(routes,{ enableTracing: true })],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
