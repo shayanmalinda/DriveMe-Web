@@ -28,6 +28,7 @@ export interface passenger{ //Interface for Passenger
   isDeleted: boolean;
 }
 
+
 @Component({
   selector: 'app-payment-history',
   templateUrl: './payment-history.component.html',
@@ -41,12 +42,10 @@ export class PaymentHistoryComponent implements OnInit {
   allPassengerList: passenger[]; //full array of passengers
   passengerId : string;
 
-  //payments
-  paymentsObservable: Observable<payments[]>; //observable passenger array
-  allPaymentList: payments[]; //full set
-  filteredPaymentList: payments[] = [] as payments[]; //passenger's payments
-  passpayId: string;
-
+  //payments for  Normal Passengers
+  paymentsObservable: Observable<payments[]>; //observable payments array
+  allPaymentListPassenger: payments[]; //full set
+  
 
   constructor(//constructor
     private afs: AngularFirestore,
@@ -60,14 +59,14 @@ export class PaymentHistoryComponent implements OnInit {
   {
     
     this.route.queryParams.subscribe(params => {
-      this.passengerId = params['passengerId'];    
+      this.passengerId = params['passengerId'];  
     });
 
     //console.log('id',this.passengerId);
 
     this.afs.collection('users/user/passenger/'+this.passengerId+'/payments').snapshotChanges().subscribe(array =>
       {
-        this.allPaymentList = array.map( item=>{
+        this.allPaymentListPassenger = array.map( item=>{
           const data=item.payload.doc.data() as payments;
           const id = item.payload.doc.id;
           return {id,...data};
@@ -75,6 +74,7 @@ export class PaymentHistoryComponent implements OnInit {
        // console.log(this.allPaymentList);
         
       } );
+
       
   }
 

@@ -1,0 +1,22 @@
+<app-ngxspinner></app-ngxspinner>
+<br>
+<div class="container top-margin"></div>
+<div>
+    <p style="margin:0px;font-size: 30px; text-align:center; font-weight: 400;font-family: Georgia, 'Times New Roman', Times, serif">Payment History - Parents</p>
+</div>
+<!-- Parents Payments -->
+<div *ngFor="let item of allPaymentsParent" class="container">
+    <mat-list role="list" class="form-field-full-width">
+        <div class=" row pt-4 pb-3 mb-4 " style="border: 1.5px solid #FF5722; border-radius: 20px; padding-left: 25px;">
+
+            <div class="col-md-12" style="padding-left: 25px; ">
+                <p>Date : {{item.date}}</p>
+                <p>Value : {{item.value}}</p>
+                <div *ngIf="item.isAcceped; then accepted else rejected"></div>
+                <ng-template #accepted>Status : Parent Accepted</ng-template>
+                <ng-template #rejected>Status : Parent Rejected</ng-template>
+            </div>
+
+        </div>
+    </mat-list>
+</div>

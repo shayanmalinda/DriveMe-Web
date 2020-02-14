@@ -72,6 +72,8 @@ import { EditownerdetailsComponent } from './admin/owner/editownerdetails/editow
 import { ViewratingsComponent } from './driver/viewratings/viewratings.component';
 import { RecentRatingsComponent } from './driver/recent-ratings/recent-ratings.component';
 import { ResetUserPasswordComponent } from './shared/reset-user-password/reset-user-password.component';
+import { ViewpaymentsParentComponent } from './driver/viewpayments-parent/viewpayments-parent.component';
+import { PaymentHistoryParentComponent } from './driver/payment-history-parent/payment-history-parent.component';
 
 
 @NgModule({
@@ -133,6 +135,8 @@ import { ResetUserPasswordComponent } from './shared/reset-user-password/reset-u
     ViewratingsComponent,
     RecentRatingsComponent,
     ResetUserPasswordComponent,
+    ViewpaymentsParentComponent,
+    PaymentHistoryParentComponent,
 
 
   ],  
