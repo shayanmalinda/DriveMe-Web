@@ -5,7 +5,7 @@
 
 <!-- *ngFor="let location of locations" -->
 
-<agm-map [latitude] = "latitude" [longitude] = "longitude" [fitBounds]="true">  
+<agm-map [latitude] = "latitude" [longitude] = "longitude" [fitBounds]="true" [zoom]="zoom">  
     <agm-marker  *ngFor="let location of locations" 
         [latitude]="location.lat" 
         [longitude]="location.lng" 
@@ -17,5 +17,12 @@
                 height: 65
             }
         }" >
+        <agm-info-window>
+            Latitude : {{location.lat}}<br>
+            Longitude : {{location.lng}}<br>  
+            <button mat-button routerLinkActive="active" color="warn" (click)="viewDriverDetails(location.key)" style="font-size: smaller;">View Driver Details
+            </button>
+        </agm-info-window>
+
     </agm-marker>
 </agm-map>

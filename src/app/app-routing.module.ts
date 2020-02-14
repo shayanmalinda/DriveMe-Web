@@ -77,6 +77,7 @@ const routes: Routes = [
       { path: 'viewowners',outlet: 'adminnavbar', component: ViewownersComponent },
       { path: 'ownerregister',outlet: 'adminnavbar', component: RegisterownerComponent },
       { path: 'editownerdetails',outlet: 'adminnavbar', component: EditownerdetailsComponent },
+      { path: 'driver-profile', outlet: 'adminnavbar', component: ProfileComponent},
 
     ]
   },

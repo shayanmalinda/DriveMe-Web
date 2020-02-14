@@ -49,4 +49,8 @@ export class AdminhomeComponent implements OnInit {
   ngOnInit() {
   }
 
+  viewDriverDetails(driverId:string){
+    
+  }
+
 }
