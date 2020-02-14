@@ -80,6 +80,7 @@ import { RateChildComponent } from './driver/rate-child/rate-child.component';
 import { ViewdriverdetailsComponent } from './passenger/viewdriverdetails/viewdriverdetails.component';
 import { PassengerhomeComponent } from './passenger/passengerhome/passengerhome.component';
 import { DriverviewpassengerdetailsComponent } from './admin/driver/driverviewpassengerdetails/driverviewpassengerdetails.component';
+import { PassengerAvailabilityComponent } from './driver/passenger-availability/passenger-availability.component';
 
 
 @NgModule({
@@ -148,7 +149,11 @@ import { DriverviewpassengerdetailsComponent } from './admin/driver/driverviewpa
     RateChildComponent,
     ViewdriverdetailsComponent,
     PassengerhomeComponent,
+<<<<<<< HEAD
     DriverviewpassengerdetailsComponent,
+=======
+    PassengerAvailabilityComponent,
+>>>>>>> cd6239b72d0f1dfc8f486f0595b4cee71b895a69
 
 
   ],  
