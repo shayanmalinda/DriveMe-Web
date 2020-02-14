@@ -83,6 +83,7 @@ import { PassengerProfileComponent } from './passenger/passenger-profile/passeng
 import { ViewdriverdetailsComponent } from './passenger/viewdriverdetails/viewdriverdetails.component';
 import { PassengerhomeComponent } from './passenger/passengerhome/passengerhome.component';
 import { RatingsComponent } from './owner/driverdetails/ratings/ratings.component';
+import { OwnerhomeComponent } from './owner/ownerhome/ownerhome.component';
 
 
 @NgModule({
@@ -156,6 +157,7 @@ import { RatingsComponent } from './owner/driverdetails/ratings/ratings.componen
     ViewdriverdetailsComponent,
     PassengerhomeComponent,
     RatingsComponent,
+    OwnerhomeComponent,
 
 
 

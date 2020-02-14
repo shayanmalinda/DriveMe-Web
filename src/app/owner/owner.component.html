@@ -1,94 +1,21 @@
-<!-- <base href='/'> -->
+<app-ngxspinner></app-ngxspinner>
 
-<!-- change routerLink of buttons as [routerLink]="[{outlets: {'ownernavbar': 'routing-path'}}] -->
-<!-- Navigation -->
-<body>
-<div class="image">
-  
-
-
-<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #222">
-    <a class="navbar-brand" style="color: white" href="#">DriveMe</a>
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background-color: #222">
+    <a class="logoname" class="navbar-brand" style="color: white" (click)="homepage()">DriveMe</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-
+  
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <!-- <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle navbarDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            My Profile
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle navbarDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Drivers
           </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" [routerLink]="[{outlets: {'drivernavbar': 'driver-profile'}}]" routerLinkActive="active" style="color: rgb(19, 187, 55)">My Profile</a>
-
-                </div>
-            </li> -->
-            <!--edit from here like above-->
-
-            <!--<li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle navbarDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Passenger Details
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" [routerLink]="[{outlets: {'ownernavbar': 'owner-passengerdetails'}}]" routerLinkActive="active" style="color: #ddd">My Passenger Details</a>
-                    
-
-                </div>
-            </li>-->
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle navbarDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Driver Details
-                </a>
-            
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" [routerLink]="[{outlets: {'ownernavbar': 'owner-driverdetails'}}]" routerLinkActive="active" style="color: #ddd">My Drivers</a>
-                    <!--
-                        <a class="dropdown-item" href="#" style="color: #ddd">Another</a>
-                        <a class="dropdown-item" href="#" style="color: #ddd">Something</a>
-                    -->
-                </div>
-            </li>
-           <!-- <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle navbarDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Own Vehicles
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" [routerLink]="[{outlets: {'ownernavbar': 'owner-myvehicles'}}]" routerLinkActive="active" style="color: #ddd">My vehicles</a>
-                    <a class="dropdown-item" [routerLink]="[{outlets: {'ownernavbar': 'owner-registervehicles'}}]" routerLinkActive="active" style="color: #ddd">Register vehicles</a>
-                    
-                        <a class="dropdown-item" href="#" style="color: #ddd">Another</a>
-                        <a class="dropdown-item" href="#" style="color: #ddd">Something</a>
-                    
-                </div>
-            </li>-->
-            <!--<li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle navbarDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Payments
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" [routerLink]="[{outlets: {'ownernavbar': 'owner-driverpayments'}}]" routerLinkActive="active" style="color: #ddd">Driver Payments</a>
-                    <a class="dropdown-item" [routerLink]="[{outlets: {'ownernavbar': 'owner-passengerpayments'}}]" routerLinkActive="active" style="color: #ddd">Passenger Payments</a>
-                    
-                        <a class="dropdown-item" href="#" style="color: #ddd">Another</a>
-                        <a class="dropdown-item" href="#" style="color: #ddd">Something</a>
-                    
-                </div>
-            </li>-->
-            
-            <!--<li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle navbarDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Ratings
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" [routerLink]="[{outlets: {'ownernavbar': 'owner-ratings'}}]" routerLinkActive="active" style="color: #ddd">My Ratings</a>
-                    
-                        <a class="dropdown-item" href="#" style="color: #ddd">Another</a>
-                       <a class="dropdown-item" href="#" style="color: #ddd">Something</a>
-                    
-
-                </div>
-            </li>-->
+          <div class="dropdown-menu"  aria-labelledby="navbarDropdown"  style="background-color: #333">
+            <a class="dropdown-item" [routerLink]="[{outlets: {'ownernavbar': 'driverdetails'}}]" routerLinkActive="active" style="color: #ddd">View Drivers</a>
+          </div>
+        </li>
         </ul>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown" style="padding-right: 30px" >
@@ -96,32 +23,22 @@
                 <div class="dropdown-menu"  aria-labelledby="navbarDropdown" style="background-color: #333">
                   <a class="dropdown-item" [routerLink]="[{outlets: {'ownernavbar': 'ownerprofile'}}]" routerLinkActive="active" style="color: #ddd">My Profile</a>
                   <div style="border-color:#666;" class="dropdown-divider" *ngIf="multipleCharacter"></div>
-                  <a class="dropdown-item" *ngIf="adminAvailable" [routerLink]="" (click)="switchToAdmin()" routerLinkActive="active" style="color: #ddd">Switch to Admin</a>                  
+                  <a class="dropdown-item" *ngIf="driverAvailable" [routerLink]="" (click)="switchToDriver()" routerLinkActive="active" style="color: #ddd">Switch to Driver</a>                  
                   <a class="dropdown-item" *ngIf="passengerAvailable" [routerLink]="" (click)="switchToPassenger()" routerLinkActive="active" style="color: #ddd">Switch to Passenger</a>
                   <a class="dropdown-item" *ngIf="parentAvailable" [routerLink]="" (click)="switchToParent()" routerLinkActive="active" style="color: #ddd">Switch to Parent</a>
-                  <a class="dropdown-item" *ngIf="ownerAvailable" [routerLink]="" (click)="switchToOwner()" routerLinkActive="active" style="color: #ddd">Switch to Owner</a>
+                  
 
                 </div>
             </li>
+            <!-- <li class="nav-item" style="padding-right: 30px">
+                <a [routerLink]="[{outlets: {'adminnavbar': 'adminprofile'}}]"><img src="../../assets/icons/user-solid.svg " style="color: #ddd;height:20px; padding: 0px"></a>
+            </li> -->
             <li class="nav-item" style="padding-right: 10px">
-                <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../../assets/icons/sign-out-alt-solid.svg " (click)="logout()" style="color: #ddd;height:20px; padding: 0px"></a></li>
-        </ul>
-
-        <!--
-                 <ul class="navbar-nav ml-auto">
-            <li class="nav-item" style="padding-right: 30px">
-                <a href="#"><img src="../../assets/icons/user-solid.svg " style="color: #ddd;height:20px; padding: 0px"></a>
-            </li>
-            <li class="nav-item" style="padding-right: 10px">
-                <a href="#"><img src="../../assets/icons/sign-out-alt-solid.svg " (click)="logout()" style="color: #ddd;height:20px; padding: 0px"></a>
+                <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../../assets/icons/sign-out-alt-solid.svg " (click)="logout()" style="color: #ddd;height:20px; padding: 0px"></a> 
             </li>
         </ul>
-        -->
-
     </div>
 </nav>
 
 <router-outlet name="ownernavbar"></router-outlet>
-</div>
-</body>
 
