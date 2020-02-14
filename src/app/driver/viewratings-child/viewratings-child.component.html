@@ -1,0 +1,38 @@
+<app-ngxspinner></app-ngxspinner>
+<div class="container top-margin"></div>
+<div *ngFor="let item of filteredParentList" class="container">
+    <mat-list role="list">
+        <div class=" row pt-4 pb-3 mb-4 " style="border: 1.5px solid #FF5722; border-radius: 20px;">
+            <div class="col-md-3 " style="vertical-align: middle;text-align: center; ">
+                <div class="row " style="vertical-align: middle; display: flex; justify-content: center; ">
+                    <img src="../../../../assets/passengeravatar.png " alt="passenger Icon " style="width: 100px; position: absolute; top: 45%; -ms-transform: translateY(-50%); transform: translateY(-50%); ">
+                </div>
+            </div>
+            <div class="col-md-5 " style="padding-left: 10px; ">
+                <p>Child Name : {{item.childName}}</p>
+                <p>Child School: {{item.childSchool}}</p>
+                <p>Pickup Location : {{item.pickupLocation}}</p>
+                <p>Parent : {{item.parentPhone}}</p>
+            </div>
+            <div class="col-md-4">
+                <button mat-raised-button color="accent" style="
+                    height: 40px;
+                    width: 70%;
+                    position: absolute;
+                    top: 20%;
+                    -ms-transform: translateY(-50%);
+                    transform: translateY(-50%);" routerLinkActive="active" (click)="addrating(item.id,item)"> <!--Rate Function Here-->
+                    <mat-icon>comment</mat-icon> Rate Now</button>
+
+                <button mat-raised-button color="primary" style="
+                    height: 40px;
+                    width: 70%;
+                    position: absolute;
+                    top: 60%;
+                    -ms-transform: translateY(-50%);
+                    transform: translateY(-50%);" routerLinkActive="active" (click)="viewratings(item.id,item)">
+                    <mat-icon>history</mat-icon> View Recent Ratings</button>
+            </div>
+        </div>
+    </mat-list>
+</div>

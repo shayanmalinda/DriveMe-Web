@@ -6,7 +6,7 @@
   
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item dropdown">
+        <!-- <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle navbarDropdown" [routerLink]="[{outlets: {'passengernavbar': 'passengerregister'}}]" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Register a Passenger
           </a>
@@ -30,7 +30,7 @@
             <div class="dropdown-menu"  aria-labelledby="navbarDropdown">
               <a class="dropdown-item" [routerLink]="[{outlets: {'adminnavbar': 'viewparents'}}]" routerLinkActive="active" style="color: #ddd">View Parents</a>
             </div>
-          </li>
+          </li> -->
           
         <!-- <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle navbarDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -43,7 +43,7 @@
             </div>
           </li> -->
           
-        <li class="nav-item dropdown">
+       <!-- <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle navbarDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Admin
             </a>
@@ -52,100 +52,30 @@
               <a class="dropdown-item" [routerLink]="[{outlets: {'adminnavbar': 'adminregister'}}]" routerLinkActive="active" style="color: #ddd">Register a Admin</a>
             </div>
         </li>
+      -->
         </ul>
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item" style="padding-right: 30px">
-                <a [routerLink]="[{outlets: {'adminnavbar': 'adminprofile'}}]"><img src="../../assets/icons/user-solid.svg " style="color: #ddd;height:20px; padding: 0px"></a>
-            </li>
-            <li class="nav-item" style="padding-right: 10px">
-                <a href="#"><img src="../../assets/icons/sign-out-alt-solid.svg " (click)="logout()" style="color: #ddd;height:20px; padding: 0px"></a>
-            </li>
-        </ul>
+            <li class="nav-item dropdown" style="padding-right: 30px" >
+                <a class="nav-link navbarDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: #222"><img src="../../assets/icons/user-solid.svg " style="color: #ddd;height:20px; padding: 0px"></a>
+                <div class="dropdown-menu"  aria-labelledby="navbarDropdown" style="background-color: #333">
+                  <a class="dropdown-item" [routerLink]="[{outlets: {'passengernavbar': 'passengerprofile'}}]" routerLinkActive="active" style="color: #ddd">My Profile</a>
+                  <div style="border-color:#666;" class="dropdown-divider" *ngIf="multipleCharacter"></div>
+                <a class="dropdown-item" *ngIf="driverAvailable" [routerLink]="" (click)="switchToDriver()" routerLinkActive="active" style="color: #ddd">Switch to Driver</a>                  
+                <a class="dropdown-item" *ngIf="adminAvailable" [routerLink]="" (click)="switchToAdmin()" routerLinkActive="active" style="color: #ddd">Switch to Admin</a>
+                <a class="dropdown-item" *ngIf="parentAvailable" [routerLink]="" (click)="switchToParent()" routerLinkActive="active" style="color: #ddd">Switch to Parent</a>
+                <a class="dropdown-item" *ngIf="ownerAvailable" [routerLink]="" (click)="switchToOwner()" routerLinkActive="active" style="color: #ddd">Switch to Owner</a>
+
+              </div>
+          </li>
+          <li class="nav-item" style="padding-right: 10px">
+              <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../../assets/icons/sign-out-alt-solid.svg " (click)="logout()" style="color: #ddd;height:20px; padding: 0px"></a>            </li>
+      </ul>
     </div>
 </nav>
 
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<router-outlet name="passengernavbar"></router-outlet>
 
-<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
-<div class="container">
-	<div class="row">
-		<div class="col-md-offset-2 col-md-8 col-lg-offset-3 col-lg-6">
-    	 <div class="well profile">
-            <div class="col-sm-12">
-                <div class="col-xs-12 col-sm-8">
-                    <h2>Passenger 123</h2>
-                    <p><strong>Location origin: </strong> <i>location 1</i> </p>
-                    <p><strong>Destination: </strong> <i>location 2</i> </p>
-                    <p><strong>Estimated pickup time: </strong> <i>00.00</i> </p>
-                    <p><strong>Estimated Dropoff time: </strong> <i>00.00</i> </p>
-                    <p><strong>Contact Number: </strong> <i>0712345678</i>
-                        <!--<span class="tags">html5</span> 
-                        <span class="tags">css3</span>
-                        <span class="tags">jquery</span>
-                        <span class="tags">bootstrap3</span>-->
-                    </p>
-                </div>             
-                <div class="col-xs-12 col-sm-4 text-center">
-                    <figure>
-                        <img src="http://www.localcrimenews.com/wp-content/uploads/2013/07/default-user-icon-profile.png" alt="" class="img-circle img-responsive">
-                        <figcaption class="ratings">
-                            <p>Ratings
-                            <a href="#">
-                                <span class="fa fa-star"></span>
-                            </a>
-                            <a href="#">
-                                <span class="fa fa-star"></span>
-                            </a>
-                            <a href="#">
-                                <span class="fa fa-star"></span>
-                            </a>
-                            <a href="#">
-                                <span class="fa fa-star"></span>
-                            </a>
-                            <a href="#">
-                                 <span class="fa fa-star-o"></span>
-                            </a> 
-                            </p>
-                        </figcaption>
-                    </figure>
-                </div>
-            </div>            
-            <div class="col-xs-12 divider text-center">
-                <div class="col-xs-12 col-sm-4 emphasis">
-                    <h2><strong> 20 </strong></h2>                    
-                    <p><small>Rides Completed</small></p>
-                    <button class="btn btn-success btn-block"><span class="fa fa-plus-circle"></span> Follow </button>
-                </div>
-                <div class="col-xs-12 col-sm-4 emphasis">
-                    <h2><strong>245</strong></h2>                    
-                    <p><small>Following</small></p>
-                    <button class="btn btn-info btn-block"><span class="fa fa-user"></span> View Profile </button>
-                </div>
-                <div class="col-xs-12 col-sm-4 emphasis">
-                    <h2><strong>43</strong></h2>                    
-                    <p><small>Snippets</small></p>
-                    <div class="btn-group dropup btn-block">
-                      <button type="button" class="btn btn-primary"><span class="fa fa-gear"></span> Options </button>
-                      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                        <span class="caret"></span>
-                        <span class="sr-only">Toggle Dropdown</span>
-                      </button>
-                      <ul class="dropdown-menu text-left" role="menu">
-                        <li><a href="#"><span class="fa fa-envelope pull-right"></span> Send an email </a></li>
-                        <li><a href="#"><span class="fa fa-list pull-right"></span> Add or remove from a list  </a></li>
-                        <li class="divider"></li>
-                        <li><a href="#"><span class="fa fa-warning pull-right"></span>Report this user for spam</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#" class="btn disabled" role="button"> Unfollow </a></li>
-                      </ul>
-                    </div>
-                </div>
-            </div>
-    	 </div>                 
-		</div>
-	</div>
-</div>
 
-<router-outlet name="adminnavbar"></router-outlet>
+
+
+

@@ -22,3 +22,16 @@ INFO  shutting down Metals
 INFO  time: initialize in 0.83s
 WARN  no build tool detected in workspace 'C:\Users\Cyber Park\Desktop\Drive-Me\DriveMe-Web'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
 INFO  shutting down Metals
+INFO  time: initialize in 1.73s
+WARN  no build tool detected in workspace 'C:\Users\Cyber Park\Desktop\Drive-Me\DriveMe-Web'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+INFO  time: initialize in 0.85s
+WARN  no build tool detected in workspace 'C:\Users\Cyber Park\Desktop\Drive-Me\DriveMe-Web'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+INFO  shutting down Metals
+INFO  started: Metals version 0.8.0 in workspace 'C:\Users\Cyber Park\Desktop\Drive-Me\DriveMe-Web'
+INFO  time: initialize in 5.28s
+WARN  resetting database: C:\Users\Cyber Park\Desktop\Drive-Me\DriveMe-Web\.metals\metals.h2.db
+WARN  no build tool detected in workspace 'C:\Users\Cyber Park\Desktop\Drive-Me\DriveMe-Web'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+INFO  shutting down Metals
+INFO  started: Metals version 0.8.0 in workspace 'C:\Users\Cyber Park\Desktop\Drive-Me\DriveMe-Web'
+INFO  time: initialize in 0.86s
+WARN  no build tool detected in workspace 'C:\Users\Cyber Park\Desktop\Drive-Me\DriveMe-Web'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 

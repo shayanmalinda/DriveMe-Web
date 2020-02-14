@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, FormGroupDirective, NgForm } from '@angular/forms';
 import { MatCheckbox, MatSnackBar, MatStepperPrevious, MatStepper } from '@angular/material';
-import { AngularFirestore } from '@angular/fire/firestore';
 import { MatSpinner } from '@angular/material';
 import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from '@angular/fire/storage';
 import * as firebase from 'firebase';
 import {ErrorStateMatcher} from '@angular/material/core';
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { map } from 'rxjs/operators';
+import { NgxSpinnerService } from 'ngx-spinner';
+
 
 export interface Vehicle {
   value: string;
@@ -26,12 +29,18 @@ export interface Driver {
   vehicleType: Selection;
   isAC: Boolean;
   imgURL: string;
+  ownerId: Selection;
 }
 
 export interface UserCredentials{
   email: string;
   password: string;
   driverId: string;
+}
+
+export interface Owner{
+  name: string;
+  isDeleted: boolean;
 }
 
 @Component({
@@ -68,6 +77,10 @@ export class RegisterdriverComponent implements OnInit {
    Validators.minLength(6),
  ]);
   
+
+  private ownerDoc: AngularFirestoreCollection<Owner>;
+  owners: Observable<Owner[]>;
+
   matcher = new MyErrorStateMatcher();
 
   waiting = false;
@@ -92,6 +105,7 @@ export class RegisterdriverComponent implements OnInit {
   vehicleChassis: string;
   availableSeets: string;
   vehicleType: Selection;
+  ownedOwner: Selection;
   airConditioned: Boolean = false;
   file: File;
   
@@ -109,7 +123,21 @@ export class RegisterdriverComponent implements OnInit {
   constructor(private _formBuilder: FormBuilder,
     private afs: AngularFirestore,
     private _snackBar: MatSnackBar,
-    private afStorage: AngularFireStorage) {
+    private afStorage: AngularFireStorage,
+    private spinner: NgxSpinnerService) {
+      // this.spinner.show();
+      this.ownerDoc = this.afs.collection<Owner>('users/user/owner');
+      
+      
+      this.owners = this.ownerDoc.snapshotChanges().pipe(
+        map(actions => actions.map(a=>{
+          var data = a.payload.doc.data() as Owner;
+          const id = a.payload.doc.id;    
+          this.spinner.hide();
+          return {id,...data};
+        }))
+      );
+
     }
 
   ngOnInit() {   
@@ -120,6 +148,7 @@ export class RegisterdriverComponent implements OnInit {
       ctrl3: ['', Validators.required],
       ctrl5: ['', Validators.required],
       ctrl7: ['', Validators.required],
+      ctrl13: ['', Validators.required],
     });
     this.secondFormGroup = this._formBuilder.group({
       ctrl8: ['', Validators.required],
@@ -136,8 +165,9 @@ export class RegisterdriverComponent implements OnInit {
     });
   }
 
-  stepperNext(stepper : MatStepper){
-    
+  stepperNext(stepper : MatStepper,formGroup){
+
+
     if(this.file){
       if(this.pass1==this.pass2 && !this.emailFormControl.hasError('email') && !this.ctrl2.invalid && !this.ctrl4.invalid && !this.ctrl6.invalid){
         stepper.next();
@@ -158,6 +188,7 @@ export class RegisterdriverComponent implements OnInit {
 
   photoUpload(event: any){
     this.file = event.target.files[0];
+    
   }
 
 
@@ -175,11 +206,11 @@ export class RegisterdriverComponent implements OnInit {
     this.ref = this.afStorage.ref("driverImages/"+id);
     this.task = this.ref.put(this.file);
     this.uploadProgress = this.task.percentageChanges();
+    let OwnerID: string;
     this.task.snapshotChanges().pipe(
       finalize(() => {
         this.downloadURL = this.ref.getDownloadURL()
-        this.downloadURL.subscribe(url => (      
-
+        this.downloadURL.subscribe(url => (           
           this.driver={
             name : this.driverName,
             email : this.driverEmail,
@@ -193,8 +224,9 @@ export class RegisterdriverComponent implements OnInit {
             vehicleNumber : this.vehicleNumber,
             vehicleType : this.vehicleType,
             imgURL: url,
-          },
-    
+            ownerId: this.ownedOwner,
+          }, 
+          
           this.afs.doc('users/user/driver/'+id).set(this.driver).then(_ => {
             this.afs.collection('userCredentials').add(this.userCredentials).then(_ => {
               this.openSnackBar("Driver Registered","Done");

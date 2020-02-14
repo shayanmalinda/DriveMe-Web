@@ -17,6 +17,7 @@ export class AdminComponent implements OnInit {
   constructor(
     private router: Router,
     private spinner: NgxSpinnerService,) {
+      // this.router.navigate(['/admin', {outlets: {'adminnavbar': ['adminhome']}}])
 
     if(localStorage.getItem("adminId")){
 
@@ -72,5 +73,9 @@ export class AdminComponent implements OnInit {
     localStorage.clear();
     this.router.navigate([''], { replaceUrl: true });
     // setTimeout
+  }
+
+  homepage(){
+    this.router.navigate(['/admin', {outlets: {'adminnavbar': ['adminhome']}}])
   }
 }
