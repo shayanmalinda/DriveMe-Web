@@ -73,13 +73,13 @@ export class DriverdetailsComponent implements OnInit {
     
   }
 
-  //changedriverDetails(driverId: string , driver:Driver){
-   // this.router.navigate(['/admin', {outlets: {'ownernavbar': ['editdriverdetails']}}],{queryParams: {driverId: driverId}})
+  changedriverDetails(driverId: string , driver:Driver){
+   this.router.navigate(['/admin', {outlets: {'ownernavbar': ['editdriverdetails']}}],{queryParams: {driverId: driverId}})
 
-    // this.router.navigate(['/admin', {outlets: {'adminnavbar': ['editdriverdetails']}}],{queryParams: {driver: JSON.stringify(driver)}})
-    // this.router.navigateByUrl('/admin/(adminnavbar:editdriverdetails)',{queryParams:driver});
-    // console.log("passing value==="+driver.driverNIC);
-  //}
+    this.router.navigate(['/admin', {outlets: {'adminnavbar': ['editdriverdetails']}}],{queryParams: {driver: JSON.stringify(driver)}})
+    this.router.navigateByUrl('/admin/(adminnavbar:editdriverdetails)',{queryParams:driver});
+    console.log("passing value==="+driver.driverNIC);
+  }
 
   removeDriver(driverId: string){
     this.spinner.show();

@@ -121,6 +121,7 @@ const routes: Routes = [
       { path: 'owner-payments',outlet: 'ownernavbar', component: PaymentsComponent},
       { path: 'owner-editdetails',outlet:'ownernavbar',component:EditdetailsComponent},
       { path: 'owner-passenger',outlet: 'ownernavbar', component:PassengersComponent},
+      { path: 'changeuserpassword',outlet: 'ownernavbar', component: ChangeUserPasswordComponent},
       
       // Define Route Here .................... 
       
@@ -134,8 +135,8 @@ const routes: Routes = [
 
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes,{ enableTracing: true })],
-  // imports: [RouterModule.forRoot(routes)],
+  // imports: [RouterModule.forRoot(routes,{ enableTracing: true })],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

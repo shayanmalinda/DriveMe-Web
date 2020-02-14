@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-owner',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OwnerComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+  }
+
+
+  
+
+  logout(){
+    // this.spinner.show()
+    // setTimeout(function(){
+    //   this.spinner.hide()
+    // },2000)
+    localStorage.clear();
+    this.router.navigate([''], { replaceUrl: true });
+    // setTimeout
   }
 
 }

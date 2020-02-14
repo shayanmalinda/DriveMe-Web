@@ -51,7 +51,7 @@ import { RegisterComponent } from './register/register.component';
 
 //import { PassengerprofileComponent } from './passenger/passengerprofile/passengerprofile.component';
 
-//import { AgmCoreModule } from '@agm/core';
+import { AgmCoreModule } from '@agm/core';
 
 
 import { OwnerprofileComponent } from './owner/ownerprofile/ownerprofile.component';
@@ -82,6 +82,7 @@ import { RateChildComponent } from './driver/rate-child/rate-child.component';
 import { PassengerProfileComponent } from './passenger/passenger-profile/passenger-profile.component';
 import { ViewdriverdetailsComponent } from './passenger/viewdriverdetails/viewdriverdetails.component';
 import { PassengerhomeComponent } from './passenger/passengerhome/passengerhome.component';
+import { RatingsComponent } from './owner/driverdetails/ratings/ratings.component';
 
 
 @NgModule({
@@ -154,6 +155,7 @@ import { PassengerhomeComponent } from './passenger/passengerhome/passengerhome.
     PassengerProfileComponent,
     ViewdriverdetailsComponent,
     PassengerhomeComponent,
+    RatingsComponent,
 
 
 
@@ -170,9 +172,9 @@ import { PassengerhomeComponent } from './passenger/passengerhome/passengerhome.
     MatModule,
     NgxSpinnerModule,
     HttpClientModule,
-    /*AgmCoreModule.forRoot({
+    AgmCoreModule.forRoot({
       apiKey : 'AIzaSyCEwsWLe6soyNWGG0JTqJVKk4KnGFx_Ax8'
-    }),*/
+    }),
     AngularFireDatabaseModule
 
   ], 
