@@ -30,7 +30,7 @@
 
             <p style="margin:0px;font-size: 15px; font-weight: 400;font-family: Georgia, 'Times New Roman', Times, serif">Confirm Ratings?</p>
             <div class="pt-4">
-                <button class="button" mat-raised-button color="accent">Cancel</button>
+                <button class="button" mat-raised-button color="accent" (click)="ratingForm.reset()">Clear</button>
                 <button class="button" mat-raised-button color="primary" (click)="registerrating(ratingForm.value)">Confirm</button>
             </div>
         </form>

@@ -133,7 +133,7 @@ export class LoginComponent implements OnInit {
               }
               else if(y.payload.doc.get('driverId')){
                 console.log("driver exist")
-                this.router.navigateByUrl('/driver')
+                this.router.navigate(['/driver', {outlets: {'drivernavbar': ['driver-vehicleroute']}}])
                 this.spinner.hide()
               }
               else if(y.payload.doc.get('passengerId')){
