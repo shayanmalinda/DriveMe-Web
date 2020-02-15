@@ -2,7 +2,7 @@
 <br>
 <div class="container top-margin"></div>
 <div>
-    <p style="margin:0px;font-size: 30px; text-align:center; font-weight: 400;font-family: Georgia, 'Times New Roman', Times, serif">Payment History - Parents</p>
+    <p style="margin:0px;font-size: 30px; text-align:center; font-weight: 400;font-family: Georgia, 'Times New Roman', Times, serif">Payment History</p>
 </div>
 <!-- Parents Payments -->
 <div *ngFor="let item of allPaymentsParent" class="container">
@@ -13,8 +13,8 @@
                 <p>Date : {{item.date}}</p>
                 <p>Value : {{item.value}}</p>
                 <div *ngIf="item.isAcceped; then accepted else rejected"></div>
-                <ng-template #accepted>Status : Parent Accepted</ng-template>
-                <ng-template #rejected>Status : Parent Rejected</ng-template>
+                <ng-template #accepted>Status : Payment Accepted</ng-template>
+                <ng-template #rejected>Status : Payment Pending</ng-template>
             </div>
 
         </div>

@@ -6,7 +6,7 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { NgxSpinnerService } from 'ngx-spinner';
-
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 
 export interface payment{ //Interface for payments
@@ -44,6 +44,8 @@ export interface passenger{ //Interface for Passenger
   templateUrl: './payments.component.html',
   styleUrls: ['./payments.component.scss']
 })
+
+
 export class PaymentsComponent implements OnInit {
 
   paymentForm = this.formBuilder.group({
