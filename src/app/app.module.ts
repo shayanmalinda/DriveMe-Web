@@ -84,6 +84,10 @@ import { ViewdriverdetailsComponent } from './passenger/viewdriverdetails/viewdr
 import { PassengerhomeComponent } from './passenger/passengerhome/passengerhome.component';
 import { RatingsComponent } from './owner/driverdetails/ratings/ratings.component';
 import { OwnerhomeComponent } from './owner/ownerhome/ownerhome.component';
+import { OwnerDriverdetailsComponent } from './owner/driverdetails/owner-driverdetails/owner-driverdetails.component';
+import { OwnerPassengersComponent } from './owner/driverdetails/owner-passengers/owner-passengers.component';
+import { OwnerPaymentsComponent } from './owner/driverdetails/owner-payments/owner-payments.component';
+import { OwnerRatingsComponent } from './owner/driverdetails/owner-ratings/owner-ratings.component';
 
 
 @NgModule({
@@ -158,6 +162,10 @@ import { OwnerhomeComponent } from './owner/ownerhome/ownerhome.component';
     PassengerhomeComponent,
     RatingsComponent,
     OwnerhomeComponent,
+    OwnerDriverdetailsComponent,
+    OwnerPassengersComponent,
+    OwnerPaymentsComponent,
+    OwnerRatingsComponent,
 
 
 
