@@ -90,8 +90,6 @@ import { OwnerhomeComponent } from './owner/ownerhome/ownerhome.component';
 import { OwnerPassengersComponent } from './owner/driverdetails/owner-passengers/owner-passengers.component';
 import { OwnerPaymentsComponent } from './owner/driverdetails/owner-payments/owner-payments.component';
 import { OwnerRatingsComponent } from './owner/driverdetails/owner-ratings/owner-ratings.component';
-
-import { PassengerAvailabilityComponent } from './driver/passenger-availability/passenger-availability.component';
 import { DriverMyratingsComponent } from './driver/driver-myratings/driver-myratings.component';
 
 
