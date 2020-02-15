@@ -55,5 +55,14 @@ export class PassengerComponent  implements OnInit {
  
   ngOnInit() {
   }
-
+  
+  logout(){
+    // this.spinner.show()
+    // setTimeout(function(){
+    //   this.spinner.hide()
+    // },2000)
+    localStorage.clear();
+    this.router.navigate([''], { replaceUrl: true });
+    // setTimeout
+  }
 }

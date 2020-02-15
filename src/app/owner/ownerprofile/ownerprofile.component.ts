@@ -71,7 +71,7 @@ export class OwnerprofileComponent implements OnInit {
   }
 
   changeOwnerDetails(){
-    this.router.navigate(['/owner', {outlets: {'ownernavbar': ['editownerdetails']}}],{queryParams: {ownerId: this.ownerId}})
+    this.router.navigate(['/owner', {outlets: {'ownernavbar': ['owner-editdetails']}}],{queryParams: {ownerId: this.ownerId}})
 
   }
 

@@ -48,17 +48,16 @@ import { AdminprofileComponent } from './admin/adminprofile/adminprofile.compone
 import { RegisterpassengerComponent } from './passenger/registerpassenger/registerpassenger.component';
 
 import { RegisterComponent } from './register/register.component';
+
+//import { PassengerprofileComponent } from './passenger/passengerprofile/passengerprofile.component';
+
 import { AgmCoreModule } from '@agm/core';
-import { OwnvehiclesComponent } from './owner/ownvehicles/ownvehicles.component';
+
+
 import { OwnerprofileComponent } from './owner/ownerprofile/ownerprofile.component';
 import { DriverdetailsComponent } from './owner/driverdetails/driverdetails.component';
 import { PassengerdetailsComponent } from './owner/passengerdetails/passengerdetails.component';
-import { RatingsComponent } from './owner/ratings/ratings.component';
 import { ChangeUserPasswordComponent } from './shared/change-user-password/change-user-password.component';
-import { DriverpaymentsComponent } from './owner/payments/driverpayments/driverpayments.component';
-import { PassengerpaymentsComponent } from './owner/payments/passengerpayments/passengerpayments.component';
-import { MyvehiclesComponent } from './owner/ownvehicles/myvehicles/myvehicles.component';
-import { RegisterVehicleComponent } from './owner/ownvehicles/register-vehicle/register-vehicle.component';
 import { AdminhomeComponent } from './admin/adminhome/adminhome.component';
 import { ViewpaymentsComponent } from './driver/viewpayments/viewpayments.component';
 import { PaymentHistoryComponent } from './driver/payment-history/payment-history.component';
@@ -68,6 +67,9 @@ import { PaymentHistoryComponent } from './driver/payment-history/payment-histor
 import { ViewownersComponent } from './admin/owner/viewowners/viewowners.component';
 import { RegisterownerComponent } from './admin/owner/registerowner/registerowner.component';
 import { EditownerdetailsComponent } from './admin/owner/editownerdetails/editownerdetails.component';
+
+import { PassengersComponent } from './owner/driverdetails/passengers/passengers.component';
+
 import { ViewratingsComponent } from './driver/viewratings/viewratings.component';
 import { RecentRatingsComponent } from './driver/recent-ratings/recent-ratings.component';
 import { ResetUserPasswordComponent } from './shared/reset-user-password/reset-user-password.component';
@@ -79,9 +81,17 @@ import { RecentRatingsChildComponent } from './driver/recent-ratings-child/recen
 import { RateChildComponent } from './driver/rate-child/rate-child.component';
 import { ViewdriverdetailsComponent } from './passenger/viewdriverdetails/viewdriverdetails.component';
 import { PassengerhomeComponent } from './passenger/passengerhome/passengerhome.component';
+
 import { DriverviewpassengerdetailsComponent } from './admin/driver/driverviewpassengerdetails/driverviewpassengerdetails.component';
 import { PassengerAvailabilityComponent } from './driver/passenger-availability/passenger-availability.component';
 import { ViewcheckpointsComponent } from './admin/driver/viewcheckpoints/viewcheckpoints.component';
+
+
+import { PassengerProfComponent } from './passenger/passengerprof/passengerprof.component';
+import { RatingsComponent } from './owner/driverdetails/ratings/ratings.component';
+import { OwnerhomeComponent } from './owner/ownerhome/ownerhome.component';
+import { PassengerAvailabilityComponent } from './driver/passenger-availability/passenger-availability.component';
+import { DriverMyratingsComponent } from './driver/driver-myratings/driver-myratings.component';
 
 
 @NgModule({
@@ -118,18 +128,21 @@ import { ViewcheckpointsComponent } from './admin/driver/viewcheckpoints/viewche
     RegisterpassengerComponent,
 
     RegisterComponent,
-    OwnvehiclesComponent,
+
+    //PassengerprofileComponent,
     DriverdetailsComponent,
     PassengerdetailsComponent,
-    RatingsComponent,
+    
     ChangeUserPasswordComponent,
     OwnerprofileComponent,
-    DriverpaymentsComponent,
-    PassengerpaymentsComponent,
-    MyvehiclesComponent,
-    RegisterVehicleComponent,
+    
     AdminhomeComponent,
     EditdetailsComponent,
+
+    ViewownersComponent,
+    RegisterownerComponent,
+    EditownerdetailsComponent,
+    PassengersComponent,
     ViewownersComponent,
     RegisterownerComponent,
     EditownerdetailsComponent,
@@ -150,9 +163,17 @@ import { ViewcheckpointsComponent } from './admin/driver/viewcheckpoints/viewche
     RateChildComponent,
     ViewdriverdetailsComponent,
     PassengerhomeComponent,
+
     DriverviewpassengerdetailsComponent,
     PassengerAvailabilityComponent,
     ViewcheckpointsComponent,
+    PassengerProfComponent,
+    RatingsComponent,
+    OwnerhomeComponent,
+
+    PassengerAvailabilityComponent,
+    DriverMyratingsComponent,
+
 
 
   ],  

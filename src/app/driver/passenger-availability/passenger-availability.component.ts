@@ -94,7 +94,12 @@ export class PassengerAvailabilityComponent implements OnInit {
                       temptostring= "0"+temptostring;
                     }
               
-                    const temp2tostring=temp2.toString();
+                    var temp2tostring=temp2.toString();
+
+                    if(temp2<10)
+                    {
+                      temp2tostring= "0"+temp2tostring;
+                    }
 
                     //console.log(temptostring);
                     //  console.log(temp1tostring);

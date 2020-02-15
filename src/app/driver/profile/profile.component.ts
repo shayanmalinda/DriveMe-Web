@@ -20,6 +20,7 @@ export interface Driver{
   vehicleType: Selection;
   isAC: Boolean;
   isDeleted: Boolean;
+  imgURL: string;
 }
 
 
@@ -42,6 +43,7 @@ export class ProfileComponent implements OnInit {
   vehicleType: Selection;
   isAC: Boolean;
   isDeleted: Boolean;
+  imgURL: string;
 
 
  private driverDoc: AngularFirestoreCollection<Driver>;
@@ -65,31 +67,32 @@ export class ProfileComponent implements OnInit {
          this.driverLicense=dri_obj.driverLicense;
          this.vehicleNumber=dri_obj.vehicleNumber;
          this.vehicleType=dri_obj.vehicleType;
+         this.imgURL = dri_obj.imgURL;
          spinner.hide();
        }
      );  
    }
 
  ngOnInit() {
-   // this.drivers.forEach(x=>{
-   //     x.forEach(y=>{
-   //       y.payload.id;
-   //     });
-   // });
+
  }
 
-
+//change driver password function 
 
  changeDriverPassword(){
   this.router.navigate(['/driver', {outlets: {'drivernavbar': ['changeuserpassword']}}],
   {queryParams: {userId:this.driverId, userType:"driver"}})
 
 }
-
-
-
-//change driver password fuction 
  
+//driver ratings view function
+
+viewMyRatings(){
+  this.router.navigate(['/driver',{outlets:{'drivernavbar':['driver-viewmyratings']}}],
+  {queryParams: {userId:this.driverId}})
+}
+
+
  openSnackBar(message: string, action: string) {
    this._snackBar.open(message, action, {
      duration: 2000,
