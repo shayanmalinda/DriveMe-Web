@@ -26,26 +26,34 @@
                 <p>Vehicle Chassis : {{driver.vehicleChassis}}</p>
                 <p>Vehicle Type : {{driver.vehicleType}}</p>
             </div>
-            <div class="col-md-4">                
-                <!--button mat-raised-button color="primary" style="
+            <div class="col-md-4">  
+                <button mat-raised-button color="primary" style="
                     height: 45px;
                     width: 80%;
                     position: absolute;
                     top: 25%;
                     -ms-transform: translateY(-50%);
-                    transform: translateY(-50%);" (click)="changedriverDetails(driver.id,driver)" 
-                    routerLinkActive="active" ><mat-icon>edit</mat-icon>Change Details</button--> 
+                    transform: translateY(-50%);" (click)="viewratings(driver.id,driver)" 
+                    routerLinkActive="active" >Ratings</button> 
+                          
+                <button mat-raised-button color="primary" style="
+                    height: 45px;
+                    width: 80%;
+                    position: absolute;
+                    top: 25%;
+                    -ms-transform: translateY(-50%);
+                    transform: translateY(-50%);" (click)="viewpassengers(passenger.id,passenger)" 
+                    routerLinkActive="active" >View Passengers</button> 
                          
-                <!--button mat-raised-button color="primary" style="
+                <button mat-raised-button color="primary" style="
                     height: 45px;
                     width: 80%;
                     position: absolute;
                     top: 45%;
                     -ms-transform: translateY(-50%);
-                    transform: translateY(-50%);"  
-                    routerLinkActive="active" (click)="changePassword(driver.id)">
-                    <mat-icon>lock_open</mat-icon>Change Password</button-->  
-                         
+                    transform: translateY(-50%);" (click)="Payments(driver.id)"
+                    routerLinkActive="active" >Payments</button> 
+
                 <button mat-raised-button color="warn" style="
                     height: 45px;
                     width: 80%;
