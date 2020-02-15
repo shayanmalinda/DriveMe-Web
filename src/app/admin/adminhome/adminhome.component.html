@@ -4,14 +4,27 @@
 
 
 <!-- *ngFor="let location of locations" -->
+<h1 style="position:absolute;z-index:1; padding-top: 70px;padding-left: 25px;font-size: 30px;text-shadow: 2px 2px #ffffff;
+font-weight: 700;  ">Driver Locations</h1>
 
-<agm-map [latitude]="latitude" [longitude]="longitude" [fitBounds]="true">
-    <agm-marker *ngFor="let location of locations" [latitude]="location.lat" [longitude]="location.lng" [agmFitBounds]="true" [iconUrl]="{
+<agm-map [latitude] = "latitude" [longitude] = "longitude" [fitBounds]="true" [zoom]="zoom" style="z-index:2">  
+    <agm-marker  *ngFor="let location of locations" 
+        [latitude]="location.lat" 
+        [longitude]="location.lng" 
+        [agmFitBounds]="true" 
+        [iconUrl] = "{
             url: '../../../../assets/icons/logo.svg',
             scaledSize: {
                 width: 40,
                 height: 65
             }
-        }">
+        }" >
+        <agm-info-window>
+            Latitude : {{location.lat}}<br>
+            Longitude : {{location.lng}}<br>  
+            <button mat-button routerLinkActive="active" color="warn" (click)="viewDriverDetails(location.key)" style="font-size: smaller;">View Driver Details
+            </button>
+        </agm-info-window>
+
     </agm-marker>
 </agm-map>

@@ -1,0 +1,33 @@
+<app-ngxspinner></app-ngxspinner>
+<div class="container-fluid navbar-margin">
+
+    <div class="row" style="padding-top: 30px;">
+        <div class="col-md-5 col-sm-4 col-xs-12" style="padding: 20px;">
+            
+                <div class="row" style="justify-content: center ;margin:0px; position: relative;">
+                        <img src={{imgURL}} alt="Driver Icon" style="width: 60%">
+                </div>
+        </div>
+
+        <div class="col-md-7 col-sm-6 col-xs-12" style="padding-right: 10%">
+            <div class="pl-5 pr-5"  style="border: 1.5px solid #FF5722; border-radius: 20px; padding-top:30px;">
+                <p style="font-size: 17px; margin-bottom: 0xp; padding-bottom: 0px"><span class="mr-3" style="font-weight: bold;"> Name  :</span> {{name}}</p><br>
+                <p style="font-size: 17px;"><span class="mr-3" style="font-weight: bold;"> Email  :</span>{{email}}</p><br>
+                <p style="font-size: 17px;"><span class="mr-3" style="font-weight: bold;"> Telephone  :</span>{{driverTelephone}}</p><br>
+                <p style="font-size: 17px;"><span class="mr-3" style="font-weight: bold;"> License No  :</span>{{driverLicense}}</p><br>
+                <p style="font-size: 17px;"><span class="mr-3" style="font-weight: bold;"> Vehicle No  :</span>{{vehicleNumber}}</p><br>
+                <p style="font-size: 17px;"><span class="mr-3" style="font-weight: bold;"> Vehicle Type :</span>{{vehicleType}}</p><br>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row" style="text-align: center; padding-top:50px;vertical-align: middle">
+        <div class="col-md-12" style="text-align: center">
+            <button mat-raised-button color="primary" style="
+                height: 45px;
+                width: 50%;" (click)="goback()" routerLinkActive="active">Go Back
+            </button>
+        </div>
+    </div>
+</div>

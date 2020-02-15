@@ -24,11 +24,14 @@ import { RegisteradminComponent } from './admin/admin/registeradmin/registeradmi
 import { ViewadminsComponent } from './admin/admin/viewadmins/viewadmins.component';
 import { EditadmindetailsComponent } from './admin/admin/editadmindetails/editadmindetails.component';
 import { AdminprofileComponent } from './admin/adminprofile/adminprofile.component';
+import { ViewcheckpointsComponent } from './admin/driver/viewcheckpoints/viewcheckpoints.component';
 
 import { RegisterpassengerComponent } from './passenger/registerpassenger/registerpassenger.component';
 
 import { RegisterComponent } from './register/register.component';
+
 import { PassengerProfComponent } from './passenger/passengerprof/passengerprof.component';
+
 import { PassengerhomeComponent } from './passenger/passengerhome/passengerhome.component';
 import { ChangeUserPasswordComponent } from './shared/change-user-password/change-user-password.component';
 import { ResetUserPasswordComponent } from './shared/reset-user-password/reset-user-password.component';
@@ -52,6 +55,9 @@ import { PaymentsParentComponent } from './driver/payments-parent/payments-paren
 import { ViewratingsChildComponent } from './driver/viewratings-child/viewratings-child.component';
 import { RecentRatingsChildComponent } from './driver/recent-ratings-child/recent-ratings-child.component';
 import { RateChildComponent } from './driver/rate-child/rate-child.component';
+
+import { DriverviewpassengerdetailsComponent } from './admin/driver/driverviewpassengerdetails/driverviewpassengerdetails.component';
+
 import { OwnerhomeComponent } from './owner/ownerhome/ownerhome.component';
 import { PassengerAvailabilityComponent } from './driver/passenger-availability/passenger-availability.component';
 import { DriverMyratingsComponent } from './driver/driver-myratings/driver-myratings.component';
@@ -79,6 +85,9 @@ const routes: Routes = [
       { path: 'viewowners',outlet: 'adminnavbar', component: ViewownersComponent },
       { path: 'ownerregister',outlet: 'adminnavbar', component: RegisterownerComponent },
       { path: 'editownerdetails',outlet: 'adminnavbar', component: EditownerdetailsComponent },
+      { path: 'driver-profile', outlet: 'adminnavbar', component: ProfileComponent},
+      { path: 'driverviewdriverdetails', outlet: 'adminnavbar', component: DriverviewpassengerdetailsComponent},
+      { path: 'viewcheckpoints', outlet: 'adminnavbar', component: ViewcheckpointsComponent},
 
     ]
   },
@@ -113,7 +122,11 @@ const routes: Routes = [
 
   { path: 'passenger', component: PassengerComponent,
     children: [
+
+      // { path: 'passengerprofile',outlet: 'passengernavbar', component: PassengerProfileComponent},
+
       { path: 'passengerprofile',outlet: 'passengernavbar', component: PassengerProfComponent},
+
       { path: 'passengerhome',outlet: 'passengernavbar', component: PassengerhomeComponent},
       { path: 'changeuserpassword',outlet: 'passengernavbar', component: ChangeUserPasswordComponent},
       { path: 'editpassengerdetails',outlet: 'passengernavbar', component: EditpassengerdetailsComponent},

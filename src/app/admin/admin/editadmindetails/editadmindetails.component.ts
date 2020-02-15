@@ -98,9 +98,7 @@ export class EditadmindetailsComponent implements OnInit {
     
   ngOnInit() {
 
-    
-
-    this.firstFormGroup = this._formBuilder.group({
+        this.firstFormGroup = this._formBuilder.group({
       ctrl1: ['', Validators.required],
       // ctrl2: ['', Validators.required],
       ctrl3: ['', Validators.required],

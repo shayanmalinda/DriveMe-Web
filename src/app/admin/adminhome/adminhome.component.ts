@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 export class location {
   key: string;
@@ -31,7 +32,7 @@ export class AdminhomeComponent implements OnInit {
   locationList: Observable<any[]>
   locations: any;
 
-  constructor(private db: AngularFireDatabase) {
+  constructor(private db: AngularFireDatabase,private router: Router) {
     db.list('Driver').snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
@@ -47,6 +48,10 @@ export class AdminhomeComponent implements OnInit {
    }
 
   ngOnInit() {
+  }
+
+  viewDriverDetails(driverId:string){
+    this.router.navigate(['/admin', {outlets: {'adminnavbar': ['driverviewdriverdetails']}}],{queryParams: {driverId: driverId}})
   }
 
 }
