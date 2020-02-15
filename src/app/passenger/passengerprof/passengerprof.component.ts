@@ -68,7 +68,7 @@ export class PassengerProfComponent implements OnInit {
 
 
 changePassengerDetails(){
-  this.router.navigate(['/passenger', {outlets: {'passengernavbar': ['edituserdetails']}}],{queryParams: {adminId: this.passengerId}})
+  this.router.navigate(['/passenger', {outlets: {'passengernavbar': ['editpassengerdetails']}}],{queryParams: {passengerId: this.passengerId}})
 
 }
 
