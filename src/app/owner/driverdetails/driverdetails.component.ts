@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { MatSnackBar } from '@angular/material';
+import { Passenger } from 'src/app/login/login.component';
 
 export interface Driver{
   name: string;
@@ -103,9 +104,40 @@ export class DriverdetailsComponent implements OnInit {
     });
   }
 
+  viewpayments(driverId: string , driver:Driver){
+    this.router.navigate(['/owner', {outlets: {'ownernavbar': ['ratings']}}],{queryParams: {driverId: driverId}})
+
+    // this.router.navigate(['/admin', {outlets: {'adminnavbar': ['editdriverdetails']}}],{queryParams: {driver: JSON.stringify(driver)}})
+    // this.router.navigateByUrl('/admin/(adminnavbar:editdriverdetails)',{queryParams:driver});
+    // console.log("passing value==="+driver.driverNIC);
+  }
+  /*viewpassengers(driverId: string,passengerId: string){
+    this.spinner.show();
+    
+    this.afs.doc('users/user/passengers/'+passengerId).({isDeleted:true}).then(_ => {
+        
+      this.usersDoc = this.afs.collection('userCredentials');
+      this.usersDoc.snapshotChanges().pipe(
+        map(actions => actions.map(y=>{
+          const id = y.payload.doc.id;
+          let userCredentialDriverId = y.payload.doc.data().driverId
+          if(userCredentialDriverId== driverId){
+            this.afs.doc('userCredentials/'+id).update({isDeleted:true}).then(_ => {
+              this.openSnackBar("Driver Removed","Done");
+              this.spinner.hide()
+            }
+          );
+          }
+          
+        }
+        ))
+      ).subscribe();
+    });
+
   //changePassword(driverId: string){
     //this.router.navigate(['/owner', {outlets: {'ownernavbar': ['changeuserpassword']}}],{queryParams: {userId: driverId,userType:"driver"}})
     
   //}
 
+  }*/
 }
