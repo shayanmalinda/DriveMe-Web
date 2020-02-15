@@ -72,9 +72,9 @@ export class ViewpaymentsParentComponent implements OnInit {
     });
   }
 
-  viewpaymenthistory(parentId: string , passenger:parent) //function for passing values to viewpaymenthistory page
+  viewpaymenthistory(parentId: string , childName:string) //function for passing values to viewpaymenthistory page
   {
-   this.router.navigate(['/driver', {outlets: {'drivernavbar': ['payment-history-parent']}}],{queryParams: {passengerId: parentId}})
+   this.router.navigate(['/driver', {outlets: {'drivernavbar': ['payment-history-parent']}}],{queryParams: {parentId: parentId,childName: childName }})
 
   }
 

@@ -43,6 +43,7 @@ export class PaymentHistoryParentComponent implements OnInit {
   paymentsObservable: Observable<payments[]>;
   allPaymentsParent: payments[];
   parentId: string;
+  childName: string;
 
   constructor(//constructor
     private afs: AngularFirestore,
@@ -56,8 +57,10 @@ export class PaymentHistoryParentComponent implements OnInit {
   ngOnInit() 
   {
     this.route.queryParams.subscribe(params => {
-      this.parentId = params['passengerId'];  
+      this.parentId = params['parentId'];
+      this.childName=params['childName'];  
     });
+
 
     //console.log('id',this.passengerId);
 
@@ -68,7 +71,7 @@ export class PaymentHistoryParentComponent implements OnInit {
           const id = item.payload.doc.id;
           return {id,...data};
         })
-       // console.log(this.allPaymentList);
+       console.log(this.allPaymentsParent);
         
       } );
   }
