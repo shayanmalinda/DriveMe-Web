@@ -104,7 +104,7 @@ export class DriverdetailsComponent implements OnInit {
     });
   }
 
-  viewpayments(driverId: string , driver:Driver){
+  viewratings(driverId: string , driver:Driver){
     this.router.navigate(['/owner', {outlets: {'ownernavbar': ['ratings']}}],{queryParams: {driverId: driverId}})
 
     // this.router.navigate(['/admin', {outlets: {'adminnavbar': ['editdriverdetails']}}],{queryParams: {driver: JSON.stringify(driver)}})
