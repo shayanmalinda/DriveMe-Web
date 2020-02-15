@@ -71,13 +71,13 @@ export class ViewpaymentsComponent implements OnInit {
     });
   }
 
-  viewpaymenthistory(passengerId: string , passenger:passenger) //function for passing values to viewpaymenthistory page
+  viewpaymenthistory(passengerId: string , name:string) //function for passing values to viewpaymenthistory page
   {
-   this.router.navigate(['/driver', {outlets: {'drivernavbar': ['payment-history']}}],{queryParams: {passengerId: passengerId}})
+   this.router.navigate(['/driver', {outlets: {'drivernavbar': ['payment-history']}}],{queryParams: {passengerId: passengerId,passengerName:name}})
    
   }
 
-  addpayment(passengerId: string , passenger:passenger) //function for passing values to addpayments page
+  addpayment(passengerId: string , name:passenger) //function for passing values to addpayments page
   {
    this.router.navigate(['/driver', {outlets: {'drivernavbar': ['driver-payments']}}],{queryParams: {passengerId: passengerId}})
    

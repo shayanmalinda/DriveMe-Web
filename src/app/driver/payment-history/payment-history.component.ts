@@ -47,6 +47,9 @@ export class PaymentHistoryComponent implements OnInit {
   allPaymentListPassenger: payments[]; //full set
   
 
+  //pass name case
+  passengerName: string;
+
   constructor(//constructor
     private afs: AngularFirestore,
     private route: ActivatedRoute,
@@ -59,10 +62,12 @@ export class PaymentHistoryComponent implements OnInit {
   {
     
     this.route.queryParams.subscribe(params => {
-      this.passengerId = params['passengerId'];  
+      this.passengerId = params['passengerId']; 
+      this.passengerName=params['passengerName'] ;
     });
 
-    //console.log('id',this.passengerId);
+    console.log('id',this.passengerId);
+    console.log('name',this.passengerName);
 
     this.afs.collection('users/user/passenger/'+this.passengerId+'/payments').snapshotChanges().subscribe(array =>
       {
@@ -71,10 +76,11 @@ export class PaymentHistoryComponent implements OnInit {
           const id = item.payload.doc.id;
           return {id,...data};
         })
-       // console.log(this.allPaymentList);
+      // console.log(this.passenger);
+         } );
+         
         
-      } );
-
+      
       
   }
 
