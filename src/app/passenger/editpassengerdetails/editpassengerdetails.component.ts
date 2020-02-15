@@ -13,7 +13,7 @@ export interface Passenger {
   name: string;
   phone: string;
   address: string;
-  //nic: string;
+  pickupLocation: string;
 }
 
 // export interface userCredentials{
@@ -39,7 +39,7 @@ export class EditpassengerdetailsComponent implements OnInit {
   passengerEmail: string;
   passengerPhone: string;
   passengerAddress: string;
-  //adminNIC: string;
+  passengerPickupLocation: string;
   pass1: string;
   pass2: string;
 
@@ -82,7 +82,7 @@ export class EditpassengerdetailsComponent implements OnInit {
           this.passengerName = a.name;
           this.passengerPhone = a.phone;
           this.passengerAddress = a.address;
-          //this.adminNIC = a.nic;
+          this.passengerPickupLocation = a.pickupLocation;
           this.spinner.hide();
           
           // this.userCredentials.forEach(b=>{
@@ -105,7 +105,7 @@ export class EditpassengerdetailsComponent implements OnInit {
       ctrl2: ['', Validators.required],
       ctrl3: ['', Validators.required],
       ctrl4: ['', Validators.required],
-      //ctrl5: ['', Validators.required],
+      ctrl5: ['', Validators.required],
       // ctrl6: ['', Validators.required],
       // ctrl7: ['', Validators.required],
     });
@@ -134,7 +134,7 @@ export class EditpassengerdetailsComponent implements OnInit {
       name : this.passengerName,
       phone : this.passengerPhone,
       address : this.passengerAddress,
-      //nic : this.adminNIC,
+      pickupLocation : this.passengerPickupLocation,
     }
 
     // this.user={

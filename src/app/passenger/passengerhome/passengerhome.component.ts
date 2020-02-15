@@ -2,6 +2,31 @@ import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core'
 import { MapsAPILoader, MouseEvent } from '@agm/core';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { AngularFirestore, AngularFirestoreCollection,AngularFirestoreDocument } from '@angular/fire/firestore';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+
+
+export interface Passenger{
+  driverId: string;
+}
+
+export class location {
+  key: string;
+  long: string;
+  lat: string;
+}
+
+
+export interface Driver {
+  name: string;
+  vehicleNumber: string;
+  vehicleType: string;
+  // pickupLocation: string;
+}
+
 
 @Component({
   selector: 'app-passengerhome',
@@ -13,17 +38,89 @@ export class PassengerhomeComponent implements OnInit {
   title: string = 'AGM project';
   latitude: number;
   longitude: number;
-  zoom:number;
+  driverId : string;
+  zoom:number = 15;
   address: string;
   private geoCoder;
   public searchElementRef: ElementRef;
+  driverName: string;
+  vehicleNumber: string;
+  vehicleType: string;
 
+  
+  locationChosen = true;
+  locationList: Observable<any[]>
+  locations: any;
+
+  icon = {
+    url: './assets/images/user-solid.svg',
+    scaledSize: {
+        width: 40,
+        height: 60
+    }
+}
+
+
+  driverDoc: AngularFirestoreDocument<Driver>;
+  drivers: Observable<Driver>;
   
   constructor(
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
     private router: Router,
-    private spinner: NgxSpinnerService,) { }
+    private spinner: NgxSpinnerService,
+    private afs: AngularFirestore,
+    private db: AngularFireDatabase) {
+      let userID: string;
+      this.spinner.show();
+      userID = localStorage.getItem('passengerId');
+      this.driverId = userID;
+
+      this.afs.doc<Passenger>('users/user/passenger/'+this.driverId).valueChanges().subscribe(
+        res=>{
+          this.driverId = res.driverId;
+
+          db.list('Driver/'+this.driverId).snapshotChanges().pipe(
+            map(changes =>
+              changes.map(c =>
+                ({key: c.payload.key, lng:c.payload.child('1').val(),lat: c.payload.child('0').val()})
+              )
+            )
+          ).subscribe(c => {
+            console.log(c)
+            this.locations = c;
+            this.zoom = 17;
+          });
+      
+         
+
+
+          this.driverDoc = this.afs.doc<Driver>('users/user/driver/'+this.driverId);
+          this.drivers = this.driverDoc.valueChanges();
+    
+          
+          // this.userCredentialDoc = this.afs.doc<userCredentials>('userCredentials/'+localStorage.getItem('userCredentialId'));
+          // this.userCredentials = this.userCredentialDoc.valueChanges();
+    
+          this.drivers.forEach(a=>{
+            
+              this.driverName = a.name;
+              this.vehicleNumber = a.vehicleNumber;
+              this.vehicleType = a.vehicleType;
+              this.spinner.hide();
+              
+              // this.userCredentials.forEach(b=>{
+              //   this.adminEmail = b.email
+              //   this.pass1 = b.password
+              //   this.pass2 = b.password
+                
+              // });
+          });
+
+        }
+      );
+
+     }
 
   ngOnInit() {this.mapsAPILoader.load().then(() => {
     this.setCurrentLocation();
@@ -46,7 +143,7 @@ export class PassengerhomeComponent implements OnInit {
         //set latitude, longitude and zoom
         this.latitude = place.geometry.location.lat();
         this.longitude = place.geometry.location.lng();
-        this.zoom = 12;
+        this.zoom = 50;
       });
     });
   });

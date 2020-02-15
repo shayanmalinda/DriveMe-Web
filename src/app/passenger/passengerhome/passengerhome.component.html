@@ -5,6 +5,14 @@
   <agm-marker 
   [latitude]="latitude" 
   [longitude]="longitude"></agm-marker>
+  <agm-marker *ngFor="let location of locations" [latitude]="location.lat" [longitude]="location.lng" [agmFitBounds]="true" [iconUrl]="{
+    url: '../../../../assets/icons/car.svg',
+    scaledSize: {
+        width: 50,
+        height: 55
+    }
+}">
+</agm-marker>
 </agm-map> 
 
 <div class="container">
@@ -21,7 +29,12 @@
       (dragEnd)="markerDragEnd($event)"></agm-marker>
   </agm-map> -->
  
-  <h5>Address: {{address}}</h5>
+  <h5><b>Current Location:</b> {{address}}</h5>
   <div>Latitude: {{latitude}}</div>
-  <div>Longitude: {{longitude}}</div>
+  <div>Longitude: {{longitude}}</div><br>
+  <div class="col-md-7 col-sm-6 col-xs-12" style="padding-right: 10%">
+    <p style="font-size: 17px;"><span class="mr-3" style="font-weight: bold;"> Driver Name  :</span>{{driverName}}</p><br>
+    <p style="font-size: 17px;"><span class="mr-3" style="font-weight: bold;"> Vehicle Number  :</span>{{vehicleNumber}}</p><br>
+    <p style="font-size: 17px;"><span class="mr-3" style="font-weight: bold;"> Vehicle Type  :</span>{{vehicleType}}</p><br>
+  </div>
 </div>
