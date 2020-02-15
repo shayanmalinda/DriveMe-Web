@@ -20,14 +20,23 @@
             </li> -->
 
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle navbarDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Passenger List
-          </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="nav-link" [routerLink]="[{outlets: {'drivernavbar': 'driver-passengerlist'}}]" routerLinkActive="active" style="color: #ddd">My Passenger List</a>
+                <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" [routerLink]="[{outlets: {'drivernavbar': 'driver-passengerlist'}}]" routerLinkActive="active" style="color: #ddd">My Passenger List</a>
 
-                </div>
+                </div> -->
             </li>
+
+
+            <li class="nav-item dropdown">
+                <a class="nav-link" [routerLink]="[{outlets: {'drivernavbar': 'driver-passengeravailability'}}]" style="color: #ddd">Passenger Availability</a>
+                <!--                 
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" [routerLink]="[{outlets: {'drivernavbar': 'driver-vehicleroute'}}]" style="color: #ddd">Passenger Availability</a> -->
+                <!-- <a class="dropdown-item" [routerLink]="[{outlets: {'drivernavbar': 'driver-vehicleroute'}}]" style="color: #ddd">Child Availability</a> -->
+                <!-- </div> -->
+            </li>
+
 
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle navbarDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -42,23 +51,6 @@
                     <!--
                         <a class="dropdown-item" href="#" style="color: #ddd">Something</a>
                     -->
-
-                </div>
-            </li>
-
-
-
-            <li class="nav-item dropdown">
-                <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Passenger Availability
-            </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" [routerLink]="[{outlets: {'drivernavbar': 'driver-vehicleroute'}}]" style="color: #ddd">Passenger Availability</a>
-                    <!-- <a class="dropdown-item" [routerLink]="[{outlets: {'drivernavbar': 'driver-vehicleroute'}}]" style="color: #ddd">Child Availability</a> -->
-                    <!--
-                        <a class="dropdown-item" href="#" style="color: #ddd">Another</a>
-                        <a class="dropdown-item" href="#" style="color: #ddd">Something</a>
-                   -->
 
                 </div>
             </li>

@@ -37,12 +37,7 @@ import { OwnerprofileComponent } from './owner/ownerprofile/ownerprofile.compone
 import { EditdetailsComponent } from './owner/editdetails/editdetails.component';
 import { DriverdetailsComponent } from './owner/driverdetails/driverdetails.component';
 import { PassengerdetailsComponent } from './owner/passengerdetails/passengerdetails.component';
-import { OwnvehiclesComponent } from './owner/ownvehicles/ownvehicles.component';
-import { DriverpaymentsComponent } from './owner/payments/driverpayments/driverpayments.component';
-import { PassengerpaymentsComponent } from './owner/payments/passengerpayments/passengerpayments.component';
-import { RatingsComponent } from './owner/ratings/ratings.component';
-import { MyvehiclesComponent } from './owner/ownvehicles/myvehicles/myvehicles.component';
-import { RegisterVehicleComponent } from './owner/ownvehicles/register-vehicle/register-vehicle.component';
+import { PassengersComponent } from './owner/driverdetails/passengers/passengers.component';
 import { AdminhomeComponent } from './admin/adminhome/adminhome.component';
 import { ViewpaymentsComponent} from './driver/viewpayments/viewpayments.component';
 import { PaymentHistoryComponent } from './driver/payment-history/payment-history.component';
@@ -57,6 +52,10 @@ import { PaymentsParentComponent } from './driver/payments-parent/payments-paren
 import { ViewratingsChildComponent } from './driver/viewratings-child/viewratings-child.component';
 import { RecentRatingsChildComponent } from './driver/recent-ratings-child/recent-ratings-child.component';
 import { RateChildComponent } from './driver/rate-child/rate-child.component';
+import { OwnerhomeComponent } from './owner/ownerhome/ownerhome.component';
+import { RatingsComponent } from './owner/driverdetails/ratings/ratings.component';
+import { PassengerAvailabilityComponent } from './driver/passenger-availability/passenger-availability.component';
+import { DriverMyratingsComponent } from './driver/driver-myratings/driver-myratings.component';
 
 // import { AdminprofileComponent } from './admin/adminprofile/adminprofile.component';
 
@@ -103,6 +102,8 @@ const routes: Routes = [
       {path: 'view-ratings-child',outlet: 'drivernavbar',component:ViewratingsChildComponent},
       {path: 'recent-ratings-child',outlet: 'drivernavbar',component:RecentRatingsChildComponent},
       {path: 'driver-ratechild',outlet:'drivernavbar',component:RateChildComponent},
+      {path: 'driver-passengeravailability',outlet:'drivernavbar',component:PassengerAvailabilityComponent},
+      {path: 'driver-viewmyratings',outlet:'drivernavbar',component:DriverMyratingsComponent},
       
     ]
   },
@@ -126,14 +127,13 @@ const routes: Routes = [
       { path: 'ownerprofile',outlet: 'ownernavbar', component: OwnerprofileComponent},
       { path: 'owner-driverdetails',outlet: 'ownernavbar', component: DriverdetailsComponent},
       { path: 'owner-passengerdetails', outlet: 'ownernavbar', component: PassengerdetailsComponent},
-      { path: 'owner-ownvehicles',outlet: 'ownernavbar', component: OwnvehiclesComponent },
-      { path: 'owner-driverpayments',outlet: 'ownernavbar', component: DriverpaymentsComponent},
-      { path: 'owner-passengerpayments',outlet: 'ownernavbar', component: PassengerpaymentsComponent},
-      { path: 'owner-ratings',outlet: 'ownernavbar', component: RatingsComponent},
-      { path: 'owner-myvehicles',outlet: 'ownernavbar', component: MyvehiclesComponent},
-      { path: 'owner-registervehicles',outlet: 'ownernavbar', component: RegisterVehicleComponent},
       { path: 'owner-payments',outlet: 'ownernavbar', component: PaymentsComponent},
       { path: 'owner-editdetails',outlet:'ownernavbar',component:EditdetailsComponent},
+      { path: 'owner-passenger',outlet: 'ownernavbar', component:PassengersComponent},
+      { path: 'changeuserpassword',outlet: 'ownernavbar', component: ChangeUserPasswordComponent},
+      { path: 'ownerhome', outlet:'ownernavbar', component:OwnerhomeComponent},
+      { path: 'ratings',outlet: 'ownernavbar', component:RatingsComponent}
+      
       // Define Route Here .................... 
       
 
@@ -146,8 +146,8 @@ const routes: Routes = [
 
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes,{ enableTracing: true })],
-  // imports: [RouterModule.forRoot(routes)],
+  // imports: [RouterModule.forRoot(routes,{ enableTracing: true })],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

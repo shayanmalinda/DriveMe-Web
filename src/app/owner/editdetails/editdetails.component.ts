@@ -14,10 +14,6 @@ export interface owner {
   nic: string;
 }
 
-export interface userCredentials{
-  email: string;
-  password: string;
-}
 
 @Component({
   selector: 'app-editdetails',
@@ -42,14 +38,11 @@ export class EditdetailsComponent implements OnInit {
   pass2: string;
 
   owner: owner;
-  user: userCredentials;
   ownerId: string;
 
   ownerDoc: AngularFirestoreDocument<owner>;
   owners: Observable<owner>;
   
-  userCredentialDoc: AngularFirestoreDocument<userCredentials>;
-  userCredentials: Observable<userCredentials>;
 
   constructor(private _formBuilder: FormBuilder,
               private afs: AngularFirestore,
@@ -71,8 +64,6 @@ export class EditdetailsComponent implements OnInit {
       this.owners = this.ownerDoc.valueChanges();
 
       
-      this.userCredentialDoc = this.afs.doc<userCredentials>('userCredentials/'+localStorage.getItem('userCredentialId'));
-      this.userCredentials = this.userCredentialDoc.valueChanges();
 
       this.owners.forEach(a=>{
         
@@ -80,15 +71,10 @@ export class EditdetailsComponent implements OnInit {
           this.ownerTelephone = a.telephone;
           this.ownerAddress = a.address;
           this.ownerNIC = a.nic;
-          
-          this.userCredentials.forEach(b=>{
-            this.ownerEmail = b.email
-            this.pass1 = b.password
-            this.pass2 = b.password
-            
-            this.spinner.hide();
-          });
+
       });
+
+      this.spinner.hide();
 
       
     }
@@ -99,12 +85,9 @@ export class EditdetailsComponent implements OnInit {
 
     this.firstFormGroup = this._formBuilder.group({
       ctrl1: ['', Validators.required],
-      // ctrl2: ['', Validators.required],
       ctrl3: ['', Validators.required],
       ctrl4: ['', Validators.required],
       ctrl5: ['', Validators.required],
-      ctrl6: ['', Validators.required],
-      ctrl7: ['', Validators.required],
     });
   }
 
@@ -115,13 +98,8 @@ export class EditdetailsComponent implements OnInit {
   }
 
   stepperNext(stepper : MatStepper){
-    if(this.pass1==this.pass2){
-      stepper.next();
-      this.passwordDiv = false;
-    }
-    else{
-      this.passwordDiv = true;
-    }
+    console.log("stepper next")
+    stepper.next();
   }
 
   registerAdmin(){   
@@ -132,18 +110,10 @@ export class EditdetailsComponent implements OnInit {
       address : this.ownerAddress,
       nic : this.ownerNIC,
     }
-
-    this.user={
-      email: this.ownerEmail,
-      password: this.pass1
-    }
-
     this.afs.doc('users/user/owner/'+this.ownerId).update(this.owner).then(_ => {
         
-      this.afs.doc('userCredentials/'+localStorage.getItem("userCredentialId")).update(this.user).then(_ => {
-        this.openSnackBar("Details Updated","Done");
-        this.waiting = false;
-      });
+      this.openSnackBar("Details Updated","Done");
+      this.waiting = false;
     });
     
   }
