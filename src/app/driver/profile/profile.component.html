@@ -2,14 +2,14 @@
 <div class="container-fluid navbar-margin">
 
     <div class="row" style="padding-top: 1px; padding-left: 60px;">
-        <div class="col-md-5 col-sm-4 col-xs-12" style="padding: 1px; vertical-align: center;">
+        <div class="col-md-6 col-sm-4 col-xs-12" style="padding: 1px; vertical-align: center;">
             <div class="row" style="justify-content: center ;margin:0px;vertical-align: center;">
 
                 <img src={{imgURL}} alt="Driver Icon" style="width: 250px ">
             </div>
         </div>
 
-        <div class="col-md-5 col-sm-6 pl-5 pb-0 col-xs-12" style="border: 1.5px solid #FF5722; border-radius: 10px; padding-top:15px; padding-right:10px; max-width:400px; max-height:400px ;">
+        <div class="col-md-6 col-sm-6 pl-5 pb-0 col-xs-12" style="border: 1.5px solid #FF5722; border-radius: 10px; padding-top:15px; padding-right:10px; max-width:400px; max-height:400px ;">
             <p style="font-size: 17px;"><span class="mr-3" style="font-weight: bold;"> Name  :</span> {{name}}</p>
             <p style="font-size: 17px;"><span class="mr-3" style="font-weight: bold;"> Email  :</span>{{email}}</p>
             <p style="font-size: 17px;"><span class="mr-3" style="font-weight: bold;"> Telephone  :</span>{{driverTelephone}}</p>
@@ -22,17 +22,19 @@
     </div>
 
     <div class="row" style="text-align: left; padding-top:90px">
-        <div class="col-md-6" style="text-align: center">
+        <div class="col-md-1"></div>
+        <div class="col-md-5" style="text-align: center">
             <button mat-raised-button color="primary" style="
                 height: 45px;
-                width: 40%;" (click)="changeDriverPassword()" routerLinkActive="active"><mat-icon>edit</mat-icon>Change Password
+                width: 80%;" (click)="changeDriverPassword()" routerLinkActive="active"><mat-icon>edit</mat-icon>Change Password
             </button>
         </div>
-        <div class="col-md-6" style="text-align: center">
+        <div class="col-md-5" style="text-align: center">
             <button mat-raised-button color="accent" style="
                 height: 45px;
-                width: 40%;" (click)="viewMyRatings()" routerLinkActive="active"><mat-icon>comment</mat-icon>My Ratings
-     </button>
+                width: 80%;" (click)="viewMyRatings()" routerLinkActive="active"><mat-icon>comment</mat-icon>My Ratings
+        </button>
             <div class="col-md-2"></div>
         </div>
+        <div class="col-md-1"></div>
     </div>
