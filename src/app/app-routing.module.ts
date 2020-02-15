@@ -58,6 +58,7 @@ import { ViewratingsChildComponent } from './driver/viewratings-child/viewrating
 import { RecentRatingsChildComponent } from './driver/recent-ratings-child/recent-ratings-child.component';
 import { RateChildComponent } from './driver/rate-child/rate-child.component';
 import { PassengerAvailabilityComponent } from './driver/passenger-availability/passenger-availability.component';
+import { DriverMyratingsComponent } from './driver/driver-myratings/driver-myratings.component';
 
 // import { AdminprofileComponent } from './admin/adminprofile/adminprofile.component';
 
@@ -105,6 +106,7 @@ const routes: Routes = [
       {path: 'recent-ratings-child',outlet: 'drivernavbar',component:RecentRatingsChildComponent},
       {path: 'driver-ratechild',outlet:'drivernavbar',component:RateChildComponent},
       {path: 'driver-passengeravailability',outlet:'drivernavbar',component:PassengerAvailabilityComponent},
+      {path: 'driver-viewmyratings',outlet:'drivernavbar',component:DriverMyratingsComponent},
       
     ]
   },

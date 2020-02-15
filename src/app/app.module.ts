@@ -81,6 +81,7 @@ import { PassengerProfileComponent } from './passenger/passenger-profile/passeng
 import { ViewdriverdetailsComponent } from './passenger/viewdriverdetails/viewdriverdetails.component';
 import { PassengerhomeComponent } from './passenger/passengerhome/passengerhome.component';
 import { PassengerAvailabilityComponent } from './driver/passenger-availability/passenger-availability.component';
+import { DriverMyratingsComponent } from './driver/driver-myratings/driver-myratings.component';
 
 
 @NgModule({
@@ -151,6 +152,7 @@ import { PassengerAvailabilityComponent } from './driver/passenger-availability/
     ViewdriverdetailsComponent,
     PassengerhomeComponent,
     PassengerAvailabilityComponent,
+    DriverMyratingsComponent,
 
 
   ],  

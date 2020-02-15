@@ -59,7 +59,7 @@ export class RecentRatingsComponent implements OnInit {
         const id = item.payload.doc.id;
         return {id,...data};
       })
-     // console.log(this.allPaymentList);
+     // console.log(this.allRatingsList);
       
     } );
 
