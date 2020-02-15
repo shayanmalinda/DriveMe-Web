@@ -54,6 +54,8 @@ import { RecentRatingsChildComponent } from './driver/recent-ratings-child/recen
 import { RateChildComponent } from './driver/rate-child/rate-child.component';
 import { OwnerhomeComponent } from './owner/ownerhome/ownerhome.component';
 import { RatingsComponent } from './owner/driverdetails/ratings/ratings.component';
+import { PassengerAvailabilityComponent } from './driver/passenger-availability/passenger-availability.component';
+import { DriverMyratingsComponent } from './driver/driver-myratings/driver-myratings.component';
 
 // import { AdminprofileComponent } from './admin/adminprofile/adminprofile.component';
 
@@ -100,6 +102,8 @@ const routes: Routes = [
       {path: 'view-ratings-child',outlet: 'drivernavbar',component:ViewratingsChildComponent},
       {path: 'recent-ratings-child',outlet: 'drivernavbar',component:RecentRatingsChildComponent},
       {path: 'driver-ratechild',outlet:'drivernavbar',component:RateChildComponent},
+      {path: 'driver-passengeravailability',outlet:'drivernavbar',component:PassengerAvailabilityComponent},
+      {path: 'driver-viewmyratings',outlet:'drivernavbar',component:DriverMyratingsComponent},
       
     ]
   },
@@ -112,6 +116,7 @@ const routes: Routes = [
     children: [
       { path: 'passengerprofile',outlet: 'passengernavbar', component: PassengerProfileComponent},
       { path: 'passengerhome',outlet: 'passengernavbar', component: PassengerhomeComponent},
+      { path: 'changeuserpassword',outlet: 'passengernavbar', component: ChangeUserPasswordComponent},
     ]
   },
 
