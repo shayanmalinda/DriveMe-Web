@@ -116,7 +116,8 @@ const routes: Routes = [
       { path: 'passengerprofile',outlet: 'passengernavbar', component: PassengerProfComponent},
       { path: 'passengerhome',outlet: 'passengernavbar', component: PassengerhomeComponent},
       { path: 'changeuserpassword',outlet: 'passengernavbar', component: ChangeUserPasswordComponent},
-      { path: 'editpassengerdetails',outlet: 'passengernavbar', component: EditpassengerdetailsComponent}
+      { path: 'editpassengerdetails',outlet: 'passengernavbar', component: EditpassengerdetailsComponent},
+      { path: 'changeuserpassword',outlet: 'passengernavbar', component: ChangeUserPasswordComponent},
     ]
   },
 
