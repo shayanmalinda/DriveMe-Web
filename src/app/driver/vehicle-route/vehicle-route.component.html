@@ -1,12 +1,6 @@
 <!-- Display map -->
 
 <agm-map [latitude]="latitude" [longitude]="longitude" [fitBounds]="true">
-    <agm-marker *ngFor="let item of showingLocationList" [latitude]="item.placeLat" [longitude]="item.placeLng" [agmFitBounds]="true" [iconUrl]="{
-            url: '../../../../assets/icons/logo.svg',
-            scaledSize: {
-                width: 40,
-                height: 65
-            }
-        }">
+    <agm-marker *ngFor="let item of showingLocationList" [latitude]="item.placeLat" [longitude]="item.placeLng" [agmFitBounds]="true" >
     </agm-marker>
 </agm-map>

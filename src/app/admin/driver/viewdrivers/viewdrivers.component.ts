@@ -23,6 +23,18 @@ export interface Driver{
   imgURL: string;
 }
 
+export interface location{
+  isActive: Boolean;
+  isEnd: Boolean;
+  isStart: Boolean;
+  order: number;
+  placeId: string;
+  placeLat: string;
+  placeLng: string;
+  placeName: string;
+  time: string;
+}
+
 export interface userCredential{
   email: string;
   password: string;
@@ -41,6 +53,9 @@ export class ViewdriversComponent implements OnInit {
   private driverDoc: AngularFirestoreCollection<Driver>;
   drivers: Observable<Driver[]>;
   usersDoc: AngularFirestoreCollection<userCredential>; 
+  locationList: location[];
+
+
   constructor(
     private afs: AngularFirestore,private router : Router,private spinner: NgxSpinnerService,
     private _snackBar: MatSnackBar,) { 
@@ -109,6 +124,13 @@ export class ViewdriversComponent implements OnInit {
     this._snackBar.open(message, action, {
       duration: 2000,
     });
+  }
+
+  viewcheckpoints(driverId: string){
+      
+
+    this.router.navigate(['/admin', {outlets: {'adminnavbar': ['viewcheckpoints']}}],{queryParams: {driverId: driverId}})
+
   }
 
   changePassword(driverId: string){
