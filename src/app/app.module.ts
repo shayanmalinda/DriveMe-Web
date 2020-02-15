@@ -68,8 +68,6 @@ import { ViewownersComponent } from './admin/owner/viewowners/viewowners.compone
 import { RegisterownerComponent } from './admin/owner/registerowner/registerowner.component';
 import { EditownerdetailsComponent } from './admin/owner/editownerdetails/editownerdetails.component';
 
-import { PassengersComponent } from './owner/driverdetails/passengers/passengers.component';
-
 import { ViewratingsComponent } from './driver/viewratings/viewratings.component';
 import { RecentRatingsComponent } from './driver/recent-ratings/recent-ratings.component';
 import { ResetUserPasswordComponent } from './shared/reset-user-password/reset-user-password.component';
@@ -79,15 +77,16 @@ import { PaymentsParentComponent } from './driver/payments-parent/payments-paren
 import { ViewratingsChildComponent } from './driver/viewratings-child/viewratings-child.component';
 import { RecentRatingsChildComponent } from './driver/recent-ratings-child/recent-ratings-child.component';
 import { RateChildComponent } from './driver/rate-child/rate-child.component';
-import { PassengerProfileComponent } from './passenger/passenger-profile/passenger-profile.component';
 import { ViewdriverdetailsComponent } from './passenger/viewdriverdetails/viewdriverdetails.component';
 import { PassengerhomeComponent } from './passenger/passengerhome/passengerhome.component';
-import { RatingsComponent } from './owner/driverdetails/ratings/ratings.component';
+import { PassengerProfComponent } from './passenger/passengerprof/passengerprof.component';
 import { OwnerhomeComponent } from './owner/ownerhome/ownerhome.component';
-import { OwnerDriverdetailsComponent } from './owner/driverdetails/owner-driverdetails/owner-driverdetails.component';
 import { OwnerPassengersComponent } from './owner/driverdetails/owner-passengers/owner-passengers.component';
 import { OwnerPaymentsComponent } from './owner/driverdetails/owner-payments/owner-payments.component';
 import { OwnerRatingsComponent } from './owner/driverdetails/owner-ratings/owner-ratings.component';
+
+import { PassengerAvailabilityComponent } from './driver/passenger-availability/passenger-availability.component';
+import { DriverMyratingsComponent } from './driver/driver-myratings/driver-myratings.component';
 
 
 @NgModule({
@@ -138,7 +137,6 @@ import { OwnerRatingsComponent } from './owner/driverdetails/owner-ratings/owner
     ViewownersComponent,
     RegisterownerComponent,
     EditownerdetailsComponent,
-    PassengersComponent,
     ViewownersComponent,
     RegisterownerComponent,
     EditownerdetailsComponent,
@@ -157,16 +155,17 @@ import { OwnerRatingsComponent } from './owner/driverdetails/owner-ratings/owner
     ViewratingsChildComponent,
     RecentRatingsChildComponent,
     RateChildComponent,
-    PassengerProfileComponent,
     ViewdriverdetailsComponent,
     PassengerhomeComponent,
-    RatingsComponent,
+    PassengerProfComponent,
     OwnerhomeComponent,
-    OwnerDriverdetailsComponent,
     OwnerPassengersComponent,
     OwnerPaymentsComponent,
     OwnerRatingsComponent,
 
+    PassengerAvailabilityComponent,
+    DriverMyratingsComponent,
+    
 
 
   ],  

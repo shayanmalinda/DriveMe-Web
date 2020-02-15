@@ -11,6 +11,7 @@ export interface rating{//Interface Ratings
   stars: number;
   rating: string;
 }
+
 export interface Driver{ //Interface Driver
   name: string;
   email: string;
@@ -28,12 +29,15 @@ export interface Driver{ //Interface Driver
   imgURL: string;
 }
 
+
 @Component({
-  selector: 'app-owner-ratingsComponent',
-  templateUrl: './owner-ratings.component.html',
-  styleUrls: ['./owner-ratings.component.scss']
+  selector: 'app-driver-myratings',
+  templateUrl: './driver-myratings.component.html',
+  styleUrls: ['./driver-myratings.component.scss']
 })
-export class OwnerRatingsComponent implements OnInit {
+
+export class DriverMyratingsComponent implements OnInit {
+
   allRatingList: rating[];
   driverId: string;
 
@@ -45,27 +49,22 @@ export class OwnerRatingsComponent implements OnInit {
     )
      { }
 
-     ngAfterViewInit(){
-      this.route.queryParams.subscribe(params => {
-        this.driverId = params['driverId'];
-      });
-  
-      this.afs.collection('users/user/driver/'+this.driverId+'/ratings').snapshotChanges().subscribe(array=>
-        {
-          this.allRatingList=array.map(item=>{
-            const data=item.payload.doc.data() as rating;
-            const id=item.payload.doc.id;
-            return {id,...data};
-          })
-        });
-      
-    
-    }
   ngOnInit() 
   {
     // this.route.queryParams.subscribe(params=>{
     //   this.driverId=params['driverId'];
     // });
+
+    this.driverId=localStorage.getItem('driverId');
+
+    this.afs.collection('users/user/driver/'+this.driverId+'/ratings').snapshotChanges().subscribe(array=>
+      {
+        this.allRatingList=array.map(item=>{
+          const data=item.payload.doc.data() as rating;
+          const id=item.payload.doc.id;
+          return {id,...data};
+        })
+      });
   }
 
 }

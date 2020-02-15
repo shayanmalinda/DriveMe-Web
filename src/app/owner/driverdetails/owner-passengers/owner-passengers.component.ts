@@ -21,11 +21,11 @@ export interface userCredential{
 }
 
 @Component({
-  selector: 'app-passengers',
-  templateUrl: './passengers.component.html',
-  styleUrls: ['./passengers.component.scss']
+  selector: 'app-owner-passengersComponent',
+  templateUrl: './owner-passengers.component.html',
+  styleUrls: ['./owner-passengers.component.scss']
 })
-export class PassengersComponent implements OnInit {
+export class OwnerPassengersComponent implements OnInit {
   private passengerDoc: AngularFirestoreCollection<Passenger>;
   passengers: Observable<Passenger[]>;
   usersDoc: AngularFirestoreCollection<userCredential>; 

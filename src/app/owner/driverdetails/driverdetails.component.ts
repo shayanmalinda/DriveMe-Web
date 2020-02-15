@@ -9,6 +9,7 @@ import { MatSnackBar } from '@angular/material';
 import { Passenger } from 'src/app/login/login.component';
 
 export interface Driver{
+  drivrrId: string;
   name: string;
   email: string;
   driverTelephone: string;
@@ -23,6 +24,7 @@ export interface Driver{
   isAC: Boolean;
   isDeleted: Boolean;
   imgURL: string;
+  ownerId: string;
 }
 
 export interface userCredential{
@@ -43,19 +45,36 @@ export class DriverdetailsComponent implements OnInit {
   private driverDoc: AngularFirestoreCollection<Driver>;
   drivers: Observable<Driver[]>;
   usersDoc: AngularFirestoreCollection<userCredential>; 
+
+  driversObservable: Observable<Driver[]>; //creating an observable array of passengers
+  alldriverList: Driver[]; //full array of passengers
+  showingdriverList: Driver[] = [] as Driver[] ; //display array
+  myOwnerId: string = localStorage.getItem('ownerId')
+  //private usersDoc: AngularFirestoreCollection<userCredentials>; 
+  private driverDriverId: string;
+
   constructor(
     private afs: AngularFirestore,private router : Router,private spinner: NgxSpinnerService,
     private _snackBar: MatSnackBar,) { 
       this.spinner.show();
-      this.driverDoc = this.afs.collection<Driver>('users/user/driver');
-      this.drivers = this.driverDoc.snapshotChanges().pipe(
-        map(actions => actions.map(a=>{
-          const data = a.payload.doc.data() as Driver;
-          const id = a.payload.doc.id;
-          spinner.hide();
+      this.afs.collection('users/user/driver').snapshotChanges().subscribe( array =>
+        {
+  
+        this.alldriverList = array.map( item =>{ //adding passenger's data and Id to one
+          const data = item.payload.doc.data() as Driver;
+          const id = item.payload.doc.id;      
+          this.spinner.hide();
+
           return {id,...data};
-        }))
-      )
+        });
+        // console.log
+        this.alldriverList.forEach(element =>{ //filtering passengers for logged in driver
+          if(element.ownerId == this.myOwnerId){
+            this.showingdriverList.push(element);
+          }
+        })
+        
+      });
     
       
       // this.drivers.forEach(a=>{
@@ -76,6 +95,23 @@ export class DriverdetailsComponent implements OnInit {
   }
   removeDriver(driverId: string){
     this.spinner.show();
+
+    // this.afs.collection('users/user/driver').snapshotChanges().subscribe( array =>
+    //   {
+
+    //   this.alldriverList = array.map( item =>{ //adding passenger's data and Id to one
+    //     const data = item.payload.doc.data() as Driver;
+    //     const id = item.payload.doc.id;
+    //     return {id,...data};
+    //   });
+      
+    //   this.alldriverList.forEach(element =>{ //filtering passengers for logged in driver
+    //     if(element.driverId == localStorage.getItem('driverId')){
+    //       this.showingdriverList.push(element);
+    //     }
+    //   })
+      
+    // });
     
     this.afs.doc('users/user/driver/'+driverId).update({isDeleted:true}).then(_ => {
         
@@ -105,7 +141,7 @@ export class DriverdetailsComponent implements OnInit {
   }
 
   viewratings(driverId: string , driver:Driver){
-    this.router.navigate(['/owner', {outlets: {'ownernavbar': ['ratings']}}],{queryParams: {driverId: driverId}})
+    this.router.navigate(['/owner', {outlets: {'ownernavbar': ['owner-ratings']}}],{queryParams: {driverId: driverId}})
 
     // this.router.navigate(['/admin', {outlets: {'adminnavbar': ['editdriverdetails']}}],{queryParams: {driver: JSON.stringify(driver)}})
     // this.router.navigateByUrl('/admin/(adminnavbar:editdriverdetails)',{queryParams:driver});

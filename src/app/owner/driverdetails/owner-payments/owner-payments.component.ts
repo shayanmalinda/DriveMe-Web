@@ -29,11 +29,11 @@ export interface passenger{ //Interface for Passenger
 }
 
 @Component({
-  selector: 'app-payments',
-  templateUrl: './payments.component.html',
-  styleUrls: ['./payments.component.scss']
+  selector: 'app-owner-paymentsComponent',
+  templateUrl: './owner-payments.component.html',
+  styleUrls: ['./owner-payments.component.scss']
 })
-export class PaymentsComponent implements OnInit {
+export class OwnerPaymentsComponent implements OnInit {
   //passenger
   passengerObservable: Observable<passenger[]>;
   allPassengerList: passenger[]; //full array of passengers

@@ -28,16 +28,16 @@ import { AdminprofileComponent } from './admin/adminprofile/adminprofile.compone
 import { RegisterpassengerComponent } from './passenger/registerpassenger/registerpassenger.component';
 
 import { RegisterComponent } from './register/register.component';
-import { PassengerProfileComponent } from './passenger/passenger-profile/passenger-profile.component';
+import { PassengerProfComponent } from './passenger/passengerprof/passengerprof.component';
 import { PassengerhomeComponent } from './passenger/passengerhome/passengerhome.component';
 import { ChangeUserPasswordComponent } from './shared/change-user-password/change-user-password.component';
 import { ResetUserPasswordComponent } from './shared/reset-user-password/reset-user-password.component';
 import { from } from 'rxjs';
 import { OwnerprofileComponent } from './owner/ownerprofile/ownerprofile.component';
+import { OwnerRatingsComponent } from './owner/driverdetails/owner-ratings/owner-ratings.component';
 import { EditdetailsComponent } from './owner/editdetails/editdetails.component';
 import { DriverdetailsComponent } from './owner/driverdetails/driverdetails.component';
 import { PassengerdetailsComponent } from './owner/passengerdetails/passengerdetails.component';
-import { PassengersComponent } from './owner/driverdetails/passengers/passengers.component';
 import { AdminhomeComponent } from './admin/adminhome/adminhome.component';
 import { ViewpaymentsComponent} from './driver/viewpayments/viewpayments.component';
 import { PaymentHistoryComponent } from './driver/payment-history/payment-history.component';
@@ -53,7 +53,8 @@ import { ViewratingsChildComponent } from './driver/viewratings-child/viewrating
 import { RecentRatingsChildComponent } from './driver/recent-ratings-child/recent-ratings-child.component';
 import { RateChildComponent } from './driver/rate-child/rate-child.component';
 import { OwnerhomeComponent } from './owner/ownerhome/ownerhome.component';
-import { RatingsComponent } from './owner/driverdetails/ratings/ratings.component';
+import { PassengerAvailabilityComponent } from './driver/passenger-availability/passenger-availability.component';
+import { DriverMyratingsComponent } from './driver/driver-myratings/driver-myratings.component';
 
 // import { AdminprofileComponent } from './admin/adminprofile/adminprofile.component';
 
@@ -100,6 +101,8 @@ const routes: Routes = [
       {path: 'view-ratings-child',outlet: 'drivernavbar',component:ViewratingsChildComponent},
       {path: 'recent-ratings-child',outlet: 'drivernavbar',component:RecentRatingsChildComponent},
       {path: 'driver-ratechild',outlet:'drivernavbar',component:RateChildComponent},
+      {path: 'driver-passengeravailability',outlet:'drivernavbar',component:PassengerAvailabilityComponent},
+      {path: 'driver-viewmyratings',outlet:'drivernavbar',component:DriverMyratingsComponent},
       
     ]
   },
@@ -110,8 +113,11 @@ const routes: Routes = [
 
   { path: 'passenger', component: PassengerComponent,
     children: [
-      { path: 'passengerprofile',outlet: 'passengernavbar', component: PassengerProfileComponent},
+      { path: 'passengerprofile',outlet: 'passengernavbar', component: PassengerProfComponent},
       { path: 'passengerhome',outlet: 'passengernavbar', component: PassengerhomeComponent},
+      { path: 'changeuserpassword',outlet: 'passengernavbar', component: ChangeUserPasswordComponent},
+      { path: 'editpassengerdetails',outlet: 'passengernavbar', component: EditpassengerdetailsComponent},
+      { path: 'changeuserpassword',outlet: 'passengernavbar', component: ChangeUserPasswordComponent},
     ]
   },
 
@@ -122,10 +128,9 @@ const routes: Routes = [
       { path: 'owner-passengerdetails', outlet: 'ownernavbar', component: PassengerdetailsComponent},
       { path: 'owner-payments',outlet: 'ownernavbar', component: PaymentsComponent},
       { path: 'owner-editdetails',outlet:'ownernavbar',component:EditdetailsComponent},
-      { path: 'owner-passenger',outlet: 'ownernavbar', component:PassengersComponent},
       { path: 'changeuserpassword',outlet: 'ownernavbar', component: ChangeUserPasswordComponent},
       { path: 'ownerhome', outlet:'ownernavbar', component:OwnerhomeComponent},
-      { path: 'ratings',outlet: 'ownernavbar', component:RatingsComponent}
+      { path: 'owner-ratings', outlet:'ownernavbar', component:OwnerRatingsComponent},
       
       // Define Route Here .................... 
       

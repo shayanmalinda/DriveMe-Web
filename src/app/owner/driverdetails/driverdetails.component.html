@@ -2,7 +2,7 @@
 <h1>
 <app-ngxspinner></app-ngxspinner>
 <div class="container navbar-margin">
-    <mat-list role="list"  *ngFor="let driver of drivers | async; let last = last">
+    <mat-list role="list"  *ngFor="let driver of showingdriverList; let last = last">
         <div class="row pt-4 pb-3 mb-4" style="border: 1.5px solid black; border-radius: 20px; background-color: grey;" *ngIf="!driver.isDeleted">
             <div class="col-md-3" style="vertical-align: middle;text-align: center;"> 
                 <div class="row" style="vertical-align: middle;
