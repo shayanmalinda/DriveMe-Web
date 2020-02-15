@@ -79,9 +79,9 @@ import { PaymentsParentComponent } from './driver/payments-parent/payments-paren
 import { ViewratingsChildComponent } from './driver/viewratings-child/viewratings-child.component';
 import { RecentRatingsChildComponent } from './driver/recent-ratings-child/recent-ratings-child.component';
 import { RateChildComponent } from './driver/rate-child/rate-child.component';
-import { PassengerProfileComponent } from './passenger/passenger-profile/passenger-profile.component';
 import { ViewdriverdetailsComponent } from './passenger/viewdriverdetails/viewdriverdetails.component';
 import { PassengerhomeComponent } from './passenger/passengerhome/passengerhome.component';
+import { PassengerProfComponent } from './passenger/passengerprof/passengerprof.component';
 import { RatingsComponent } from './owner/driverdetails/ratings/ratings.component';
 import { OwnerhomeComponent } from './owner/ownerhome/ownerhome.component';
 import { PassengerAvailabilityComponent } from './driver/passenger-availability/passenger-availability.component';
@@ -154,9 +154,9 @@ import { DriverMyratingsComponent } from './driver/driver-myratings/driver-myrat
     ViewratingsChildComponent,
     RecentRatingsChildComponent,
     RateChildComponent,
-    PassengerProfileComponent,
     ViewdriverdetailsComponent,
     PassengerhomeComponent,
+    PassengerProfComponent,
     RatingsComponent,
     OwnerhomeComponent,
 

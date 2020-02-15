@@ -28,7 +28,7 @@ import { AdminprofileComponent } from './admin/adminprofile/adminprofile.compone
 import { RegisterpassengerComponent } from './passenger/registerpassenger/registerpassenger.component';
 
 import { RegisterComponent } from './register/register.component';
-import { PassengerProfileComponent } from './passenger/passenger-profile/passenger-profile.component';
+import { PassengerProfComponent } from './passenger/passengerprof/passengerprof.component';
 import { PassengerhomeComponent } from './passenger/passengerhome/passengerhome.component';
 import { ChangeUserPasswordComponent } from './shared/change-user-password/change-user-password.component';
 import { ResetUserPasswordComponent } from './shared/reset-user-password/reset-user-password.component';
@@ -114,8 +114,10 @@ const routes: Routes = [
 
   { path: 'passenger', component: PassengerComponent,
     children: [
-      { path: 'passengerprofile',outlet: 'passengernavbar', component: PassengerProfileComponent},
+      { path: 'passengerprofile',outlet: 'passengernavbar', component: PassengerProfComponent},
       { path: 'passengerhome',outlet: 'passengernavbar', component: PassengerhomeComponent},
+      { path: 'changeuserpassword',outlet: 'passengernavbar', component: ChangeUserPasswordComponent},
+      { path: 'editpassengerdetails',outlet: 'passengernavbar', component: EditpassengerdetailsComponent},
       { path: 'changeuserpassword',outlet: 'passengernavbar', component: ChangeUserPasswordComponent},
     ]
   },

@@ -13,27 +13,24 @@ export interface Passenger{
   imgURL: string;
 }
 
-
-Component({
-  selector: 'app-passenger-profile',
-  templateUrl: './passenger-profile.component.html',
-  styleUrls: ['./passenger-profile.component.scss']
-})
-
 export interface userCredential{
   email: string;
 }
 
-export class PassengerProfileComponent implements OnInit {
+@Component({
+  selector: 'app-passengerprof',
+  templateUrl: './passengerprof.component.html',
+  styleUrls: ['./passengerprof.component.scss']
+})
+export class PassengerProfComponent implements OnInit {
 
   passengerId: string;
   name: string;
   email: string;
   address: string;
-  telephone: string;
+  phone: string;
   nic: string;
   imgURL : string ;
-
 
   constructor(private afs: AngularFirestore, private router : Router, private spinner: NgxSpinnerService) { 
     let userID: string;
@@ -41,14 +38,14 @@ export class PassengerProfileComponent implements OnInit {
     userID = localStorage.getItem('passengerId');
     this.passengerId = userID;
 
-    //Get admin profile details
-    this.afs.doc<Passenger>('users/user/admin/'+this.passengerId).valueChanges().subscribe(
+    //Get passenger profile details
+    this.afs.doc<Passenger>('users/user/passenger/'+this.passengerId).valueChanges().subscribe(
       res=>{
         this.name = res.name;
         this.email = res.email;
         this.address = res.address;
-        this.nic = res.nic;
-        this.telephone = res.phone;
+        //this.nic = res.nic;
+        this.phone = res.phone;
         this.imgURL = res.imgURL
         this.afs.doc<userCredential>('userCredentials/'+localStorage.getItem("userCredentialId")).valueChanges().subscribe(
           res=>{
@@ -70,9 +67,19 @@ export class PassengerProfileComponent implements OnInit {
 }
 
 
-changeAdminDetails(){
-  this.router.navigate(['/passenger', {outlets: {'passengernavbar': ['editpassengerdetails']}}],{queryParams: {adminId: this.passengerId}})
+changePassengerDetails(){
+  this.router.navigate(['/passenger', {outlets: {'passengernavbar': ['editpassengerdetails']}}],{queryParams: {passengerId: this.passengerId}})
 
+}
+
+logout(){
+  // this.spinner.show()
+  // setTimeout(function(){
+  //   this.spinner.hide()
+  // },2000)
+  localStorage.clear();
+  this.router.navigate([''], { replaceUrl: true });
+  // setTimeout
 }
 
 }
