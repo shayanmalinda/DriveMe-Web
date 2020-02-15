@@ -79,7 +79,7 @@ import { RecentRatingsChildComponent } from './driver/recent-ratings-child/recen
 import { RateChildComponent } from './driver/rate-child/rate-child.component';
 import { ViewdriverdetailsComponent } from './passenger/viewdriverdetails/viewdriverdetails.component';
 import { PassengerhomeComponent } from './passenger/passengerhome/passengerhome.component';
-import { PassengerprofComponent } from './passenger/passengerprof/passengerprof.component';
+import { PassengerProfComponent } from './passenger/passengerprof/passengerprof.component';
 
 
 @NgModule({
@@ -148,7 +148,7 @@ import { PassengerprofComponent } from './passenger/passengerprof/passengerprof.
     RateChildComponent,
     ViewdriverdetailsComponent,
     PassengerhomeComponent,
-    PassengerprofComponent,
+    PassengerProfComponent,
 
 
   ],  
