@@ -133,6 +133,13 @@ export class ViewdriversComponent implements OnInit {
 
   }
 
+  ratingsandpayments(driverId: string){
+      
+
+    this.router.navigate(['/admin', {outlets: {'adminnavbar': ['ratingspayments']}}],{queryParams: {driverId: driverId}})
+
+  }
+
   changePassword(driverId: string){
     this.router.navigate(['/admin', {outlets: {'adminnavbar': ['resetuserpassword']}}],{queryParams: {userId: driverId,userType:"driver"}})
     

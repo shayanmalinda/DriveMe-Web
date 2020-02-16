@@ -27,7 +27,7 @@
                     height: 45px;
                     width: 70%;
                     position: absolute;
-                    top: 25%;
+                    top: 20%;
                     -ms-transform: translateY(-50%);
                     transform: translateY(-50%);" (click)="changeParentDetails(parent.id,parent)" 
                     routerLinkActive="active" ><mat-icon>edit</mat-icon>Change Details</button>
@@ -36,23 +36,34 @@
                     height: 45px;
                     width: 70%;
                     position: absolute;
-                    top: 50%;
+                    top: 40%;
                     -ms-transform: translateY(-50%);
                     transform: translateY(-50%);"  
                     routerLinkActive="active" (click)="changePassword(parent.id)">
                     <mat-icon>lock_open</mat-icon>Reset Password</button>  
                          
+                    <button mat-raised-button color="primary" style="
+                    height: 45px;
+                    width: 70%;
+                    position: absolute;
+                    top: 60%;
+                    -ms-transform: translateY(-50%);
+                    transform: translateY(-50%);"  
+                    routerLinkActive="active" (click)="ratingsandpayments(parent.id)">
+                    <mat-icon>assignment</mat-icon>Ratings & Payments</button> 
+                         
+    
                 <button mat-raised-button color="warn" style="
                     height: 45px;
                     width: 70%;
                     position: absolute;
-                    top: 75%;
+                    top: 80%;
                     -ms-transform: translateY(-50%);
                     transform: translateY(-50%);"  
                     routerLinkActive="active" (click)="removeParent(parent.id)">
-                    <mat-icon>delete</mat-icon>Remove Parent</button>        
-        <!-- [routerLink]="['/admin', {outlets: {'adminnavbar': ['editdriverdetails',id]}}]"     -->
-        </div>
-        </div>
-    </mat-list>
+                    <mat-icon>delete</mat-icon>Remove Passenger</button>        
+                <!-- [routerLink]="['/admin', {outlets: {'adminnavbar': ['editdriverdetails',id]}}]"     -->
+                </div>
+                </div>
+            </mat-list>
 </div>

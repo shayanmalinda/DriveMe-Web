@@ -10,6 +10,7 @@ import { finalize } from 'rxjs/operators';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { map } from 'rxjs/operators';
 import { NgxSpinnerService } from 'ngx-spinner';
+import {Md5} from 'ts-md5/dist/md5';
 
 
 export interface Vehicle {
@@ -197,9 +198,11 @@ export class RegisterdriverComponent implements OnInit {
 
     let id = this.afs.createId();
 
+    var hashedPassword = Md5.hashStr(this.pass1).toString();
+
     this.userCredentials={
       email: this.driverEmail,
-      password: this.pass1,
+      password: hashedPassword,
       driverId: id
     }
 
