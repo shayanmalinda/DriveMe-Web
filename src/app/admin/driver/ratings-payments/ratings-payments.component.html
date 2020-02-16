@@ -1,0 +1,71 @@
+<app-ngxspinner></app-ngxspinner>
+
+<div class="container  navbar-margin" style="align-items: center;text-align: center;">
+    <div class="btn-group btn-group-lg" role="group" style="width: 80%;">
+        
+        <button type="button" *ngIf="isRatings" class="btn btn-dark" (click)="viewRatings()" >Ratings</button>
+        <button type="button" *ngIf="isRatings" class="btn btn-secondary" (click)="viewPayments()" >Payments</button>
+        <button type="button" *ngIf="!isRatings" class="btn btn-secondary" (click)="viewRatings()" >Ratings</button>
+        <button type="button" *ngIf="!isRatings" class="btn btn-dark" (click)="viewPayments()" >Payments</button>
+    </div>
+
+    <div *ngIf="isRatings">
+        <div class="row" style="padding-top:20px;">
+            <div class="col-md-6" *ngFor="let item of allRatingsList">
+    
+                <mat-list style="margin-left: 40px;margin-right:40px">
+                    <div class="row pt-4 pb-3 mb-4 " style="border: 1.5px solid #FF5722; border-radius: 20px;">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-4" style="vertical-align: right; justify-content: center; ">
+                                    <img src="../../../../assets/star.png " alt="passenger Icon " style="width: 110px;margin-left: 20px;">
+                                </div>
+                                <div class="col-md-8">
+        
+                                    <div class="col-md-12">
+                                        <p>Stars : {{item.stars}} / 5</p>
+                                        <p>Comment : {{item.rating}}</p>
+                                        <p>Date: {{item.date}}</p>
+        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </mat-list>
+            </div>
+        </div>
+    
+    </div>
+
+    <div *ngIf="!isRatings">
+            
+        <div class="row" style="padding-top:20px;">
+            <div class="col-md-6" *ngFor="let item of allPayments">
+    
+                <mat-list style="margin-left: 40px;margin-right:40px">
+                    <div class="row pt-4 pb-3 mb-4 " style="border: 1.5px solid #FF5722; border-radius: 20px;">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-4" style="vertical-align: right; justify-content: center; ">
+                                    <img src="../../../../assets/cash-in-hand-png-7.png " alt="passenger Icon " style="width: 120px;margin-left: 20px;">
+                                </div>
+                                <div class="col-md-8">
+        
+                                    <div class="col-md-12">
+                                        <p>Date : {{item.date}}</p>
+                                        <p>Amount : Rs. {{item.value}} /=</p>
+                                        <div *ngIf="item.isAccepted; then accepted else rejected"></div>
+                                        <ng-template #accepted>Status : Payment Accepted</ng-template>
+                                        <ng-template #rejected>Status : Payment Pending</ng-template>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </mat-list>
+            </div>
+        </div>
+    </div>
+
+</div>

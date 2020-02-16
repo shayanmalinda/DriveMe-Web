@@ -62,6 +62,12 @@ export class ViewpassengersComponent implements OnInit {
     this.router.navigate(['/admin', {outlets: {'adminnavbar': ['resetuserpassword']}}],{queryParams: {userId: passengerId,userType:"passenger"}})
     
   }
+
+  ratingsandpayments(passengerId: string){
+    this.router.navigate(['/admin', {outlets: {'adminnavbar': ['passengerratingspayments']}}],{queryParams: {passengerId: passengerId}})
+
+  }
+
   removePassenger(passengerId: string){
     
     this.spinner.show();

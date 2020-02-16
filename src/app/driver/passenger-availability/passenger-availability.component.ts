@@ -105,7 +105,7 @@ export class PassengerAvailabilityComponent implements OnInit {
                     //  console.log(temp1tostring);
                     //  console.log(temp2tostring);
 
-                    const date=temp0tostring+"-"+temptostring+"-"+temp2tostring;
+                    const date=temp0tostring+"/"+temptostring+"/"+temp2tostring;
                     
                     return {id2:id2,date:date,...data2};
                   })

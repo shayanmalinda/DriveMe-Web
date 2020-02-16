@@ -13,12 +13,15 @@ export class OwnerComponent implements OnInit {
   passengerAvailable: boolean=false;
   parentAvailable: boolean=false;
   ownerAvailable: boolean=false;
+  searchValue: string = "";
+  items: Array<any>;
+  age_filtered_items: Array<any>;
+  name_filtered_items: Array<any>;
 
   constructor(
   private router: Router,
   private spinner: NgxSpinnerService,) {
-    // this.router.navigate(['/admin', {outlets: {'adminnavbar': ['adminhome']}}])
-
+  
   if(localStorage.getItem("ownerId")){
 
     if(localStorage.getItem("driverId")){
@@ -38,7 +41,6 @@ export class OwnerComponent implements OnInit {
       this.multipleCharacter=true;
       this.ownerAvailable = true;
     }
-    // this.router.navigate(['/admin', {outlets: {'adminnavbar': ['adminhome']}}])
   }  
 
 
@@ -47,7 +49,9 @@ export class OwnerComponent implements OnInit {
   }
 }
 ngOnInit() {
+  
 }
+
 switchToDriver(){
   this.router.navigateByUrl('/driver')
 }
@@ -63,14 +67,9 @@ switchToPassenger(){
 switchToOwner(){
   this.router.navigateByUrl('/owner')
 }
-  logout(){
-    // this.spinner.show()
-    // setTimeout(function(){
-    //   this.spinner.hide()
-    // },2000)
-    localStorage.clear();
-    this.router.navigate([''], { replaceUrl: true });
-    // setTimeout
+  logout(){  
+  localStorage.clear();
+    this.router.navigate([''], { replaceUrl: true }); 
   }
   homepage(){
     this.router.navigate(['/owner', {outlets: {'ownernavbar': ['ownerhome']}}])

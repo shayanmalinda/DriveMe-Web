@@ -56,7 +56,6 @@ import { AgmCoreModule } from '@agm/core';
 
 import { OwnerprofileComponent } from './owner/ownerprofile/ownerprofile.component';
 import { DriverdetailsComponent } from './owner/driverdetails/driverdetails.component';
-import { PassengerdetailsComponent } from './owner/passengerdetails/passengerdetails.component';
 import { ChangeUserPasswordComponent } from './shared/change-user-password/change-user-password.component';
 import { AdminhomeComponent } from './admin/adminhome/adminhome.component';
 import { ViewpaymentsComponent } from './driver/viewpayments/viewpayments.component';
@@ -67,8 +66,6 @@ import { PaymentHistoryComponent } from './driver/payment-history/payment-histor
 import { ViewownersComponent } from './admin/owner/viewowners/viewowners.component';
 import { RegisterownerComponent } from './admin/owner/registerowner/registerowner.component';
 import { EditownerdetailsComponent } from './admin/owner/editownerdetails/editownerdetails.component';
-
-import { PassengersComponent } from './owner/driverdetails/passengers/passengers.component';
 
 import { ViewratingsComponent } from './driver/viewratings/viewratings.component';
 import { RecentRatingsComponent } from './driver/recent-ratings/recent-ratings.component';
@@ -85,18 +82,24 @@ import { PassengerhomeComponent } from './passenger/passengerhome/passengerhome.
 import { DriverviewpassengerdetailsComponent } from './admin/driver/driverviewpassengerdetails/driverviewpassengerdetails.component';
 import { PassengerAvailabilityComponent } from './driver/passenger-availability/passenger-availability.component';
 import { ViewcheckpointsComponent } from './admin/driver/viewcheckpoints/viewcheckpoints.component';
+import { RatingsPaymentsComponent } from './admin/driver/ratings-payments/ratings-payments.component';
 
 
 import { PassengerProfComponent } from './passenger/passengerprof/passengerprof.component';
-import { RatingsComponent } from './owner/driverdetails/ratings/ratings.component';
 import { OwnerhomeComponent } from './owner/ownerhome/ownerhome.component';
+import { OwnerPassengersComponent } from './owner/driverdetails/owner-passengers/owner-passengers.component';
+import { OwnerPaymentsComponent } from './owner/driverdetails/owner-payments/owner-payments.component';
+import { OwnerRatingsComponent } from './owner/driverdetails/owner-ratings/owner-ratings.component';
 //import { PassengerAvailabilityComponent } from './driver/passenger-availability/passenger-availability.component';
 import { DriverMyratingsComponent } from './driver/driver-myratings/driver-myratings.component';
+
 import { ParentprofComponent } from './parent/parentprof/parentprof.component';
 import { ParenthomeComponent } from './parent/parenthome/parenthome.component';
 import { PassengerratingsComponent } from './passenger/passengerratings/passengerratings.component';
 import { PassengerpaymentsComponent } from './passenger/passengerpayments/passengerpayments.component';
 import { PassengerpendingpaymentsComponent } from './passenger/passengerpendingpayments/passengerpendingpayments.component';
+
+import { PassengerratingspaymentsComponent } from './admin/passenger/passengerratingspayments/passengerratingspayments.component';
 
 
 @NgModule({
@@ -136,7 +139,6 @@ import { PassengerpendingpaymentsComponent } from './passenger/passengerpendingp
 
     //PassengerprofileComponent,
     DriverdetailsComponent,
-    PassengerdetailsComponent,
     
     ChangeUserPasswordComponent,
     OwnerprofileComponent,
@@ -147,7 +149,6 @@ import { PassengerpendingpaymentsComponent } from './passenger/passengerpendingp
     ViewownersComponent,
     RegisterownerComponent,
     EditownerdetailsComponent,
-    PassengersComponent,
     ViewownersComponent,
     RegisterownerComponent,
     EditownerdetailsComponent,
@@ -173,11 +174,17 @@ import { PassengerpendingpaymentsComponent } from './passenger/passengerpendingp
     PassengerAvailabilityComponent,
     ViewcheckpointsComponent,
     PassengerProfComponent,
-    RatingsComponent,
     OwnerhomeComponent,
+    OwnerPassengersComponent,
+    OwnerPaymentsComponent,
+    OwnerRatingsComponent,
 
     //PassengerAvailabilityComponent,
     DriverMyratingsComponent,
+    
+
+    RatingsPaymentsComponent,
+    PassengerratingspaymentsComponent,
 
     ParentprofComponent,
 
