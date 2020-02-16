@@ -28,6 +28,7 @@ export interface passenger{ //Interface for Passenger
   isDeleted: boolean;
 }
 
+
 @Component({
   selector: 'app-owner-paymentsComponent',
   templateUrl: './owner-payments.component.html',

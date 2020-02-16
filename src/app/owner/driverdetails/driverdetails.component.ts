@@ -6,8 +6,30 @@ import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { MatSnackBar } from '@angular/material';
+import { ActivatedRoute } from '@angular/router';
 import { Passenger } from 'src/app/login/login.component';
 
+export interface payments{ //Interface Payments
+  date: string;
+  driverId: string;
+  driverPaymentId: string;
+  isAccepted: boolean;
+  value: string;
+  id: string;
+  paymentId: string;
+}
+
+export interface passenger{ //Interface for Passenger
+  address: string;
+  driverId: string;
+  email: string;
+  name: string;
+  phone: string;
+  pickupLocation: string;
+  tempDriverId:string;
+ // passengerId: string;
+  isDeleted: boolean;
+}
 export interface Driver{
   drivrrId: string;
   name: string;
@@ -41,7 +63,13 @@ export interface userCredential{
 })
 export class DriverdetailsComponent implements OnInit {
   // x: boolean = true;
+  passengerObservable: Observable<passenger[]>;
+  allPassengerList: passenger[]; //full array of passengers
+  passengerId : string;
 
+  //payments for  Normal Passengers
+  paymentsObservable: Observable<payments[]>; //observable payments array
+  allPaymentListPassenger: payments[]; //full set
   private driverDoc: AngularFirestoreCollection<Driver>;
   drivers: Observable<Driver[]>;
   usersDoc: AngularFirestoreCollection<userCredential>; 
@@ -54,7 +82,10 @@ export class DriverdetailsComponent implements OnInit {
   private driverDriverId: string;
 
   constructor(
-    private afs: AngularFirestore,private router : Router,private spinner: NgxSpinnerService,
+    private afs: AngularFirestore,
+    private router : Router,
+    private route: ActivatedRoute,
+    private spinner: NgxSpinnerService,
     private _snackBar: MatSnackBar,) { 
       this.spinner.show();
       this.afs.collection('users/user/driver').snapshotChanges().subscribe( array =>
@@ -90,7 +121,22 @@ export class DriverdetailsComponent implements OnInit {
     //       y.payload.id;
     //     });
     // });
+    this.route.queryParams.subscribe(params => {
+      this.passengerId = params['passengerId'];  
+    });
 
+    //console.log('id',this.passengerId);
+
+    this.afs.collection('users/user/passenger/'+this.passengerId+'/owner-payments').snapshotChanges().subscribe(array =>
+      {
+        this.allPaymentListPassenger = array.map( item=>{
+          const data=item.payload.doc.data() as payments;
+          const id = item.payload.doc.id;
+          return {id,...data};
+        })
+       // console.log(this.allPaymentList);
+        
+      } );
     
   }
   removeDriver(driverId: string){
@@ -147,33 +193,30 @@ export class DriverdetailsComponent implements OnInit {
     // this.router.navigateByUrl('/admin/(adminnavbar:editdriverdetails)',{queryParams:driver});
     // console.log("passing value==="+driver.driverNIC);
   }
-  /*viewpassengers(driverId: string,passengerId: string){
-    this.spinner.show();
-    
-    this.afs.doc('users/user/passengers/'+passengerId).({isDeleted:true}).then(_ => {
-        
-      this.usersDoc = this.afs.collection('userCredentials');
-      this.usersDoc.snapshotChanges().pipe(
-        map(actions => actions.map(y=>{
-          const id = y.payload.doc.id;
-          let userCredentialDriverId = y.payload.doc.data().driverId
-          if(userCredentialDriverId== driverId){
-            this.afs.doc('userCredentials/'+id).update({isDeleted:true}).then(_ => {
-              this.openSnackBar("Driver Removed","Done");
-              this.spinner.hide()
-            }
-          );
-          }
-          
-        }
-        ))
-      ).subscribe();
+  
+
+  viewpayments(driverId: string,passengerId: string){
+    this.route.queryParams.subscribe(params => {
+      this.passengerId = params['passengerId'];  
     });
+
+    //console.log('id',this.passengerId);
+
+    this.afs.collection('users/user/passenger/'+this.passengerId+'/owner-payments').snapshotChanges().subscribe(array =>
+      {
+        this.allPaymentListPassenger = array.map( item=>{
+          const data=item.payload.doc.data() as payments;
+          const id = item.payload.doc.id;
+          return {id,...data};
+        })
+       // console.log(this.allPaymentList);
+        
+      } );
 
   //changePassword(driverId: string){
     //this.router.navigate(['/owner', {outlets: {'ownernavbar': ['changeuserpassword']}}],{queryParams: {userId: driverId,userType:"driver"}})
     
   //}
 
-  }*/
+  }
 }
