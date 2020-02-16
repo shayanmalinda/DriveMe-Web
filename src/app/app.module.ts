@@ -92,6 +92,13 @@ import { OwnerPaymentsComponent } from './owner/driverdetails/owner-payments/own
 import { OwnerRatingsComponent } from './owner/driverdetails/owner-ratings/owner-ratings.component';
 //import { PassengerAvailabilityComponent } from './driver/passenger-availability/passenger-availability.component';
 import { DriverMyratingsComponent } from './driver/driver-myratings/driver-myratings.component';
+
+import { ParentprofComponent } from './parent/parentprof/parentprof.component';
+import { ParenthomeComponent } from './parent/parenthome/parenthome.component';
+import { PassengerratingsComponent } from './passenger/passengerratings/passengerratings.component';
+import { PassengerpaymentsComponent } from './passenger/passengerpayments/passengerpayments.component';
+import { PassengerpendingpaymentsComponent } from './passenger/passengerpendingpayments/passengerpendingpayments.component';
+
 import { PassengerratingspaymentsComponent } from './admin/passenger/passengerratingspayments/passengerratingspayments.component';
 
 
@@ -178,6 +185,14 @@ import { PassengerratingspaymentsComponent } from './admin/passenger/passengerra
 
     RatingsPaymentsComponent,
     PassengerratingspaymentsComponent,
+
+    ParentprofComponent,
+
+    ParenthomeComponent,
+
+    PassengerratingsComponent,
+    PassengerpaymentsComponent,
+    PassengerpendingpaymentsComponent,
 
 
 

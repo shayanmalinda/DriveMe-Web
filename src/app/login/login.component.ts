@@ -464,11 +464,11 @@ export class OverviewDialog2 {
             }
             else if(y.passengerId){
               console.log("passenger exist")
-              this.router.navigateByUrl('/passenger')
+              this.router.navigate(['/passenger', {outlets: {'passengernavbar': ['passengerhome']}}])
             }
             else if(y.parentId){
               console.log("parent exist")
-              this.router.navigateByUrl('/parent')
+              this.router.navigate(['/parent', {outlets: {'parentnavbar': ['parenthome']}}])
             }
             else if(y.ownerId){       
               console.log("owner exist")     

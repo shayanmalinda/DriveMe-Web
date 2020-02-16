@@ -31,9 +31,11 @@ import { ViewcheckpointsComponent } from './admin/driver/viewcheckpoints/viewche
 import { RegisterpassengerComponent } from './passenger/registerpassenger/registerpassenger.component';
 
 import { RegisterComponent } from './register/register.component';
-
+import { PassengerratingsComponent } from './passenger/passengerratings/passengerratings.component';
+import { PassengerpaymentsComponent } from './passenger/passengerpayments/passengerpayments.component';
+import { PassengerpendingpaymentsComponent } from './passenger/passengerpendingpayments/passengerpendingpayments.component';
 import { PassengerProfComponent } from './passenger/passengerprof/passengerprof.component';
-
+import { ParenthomeComponent } from './parent/parenthome/parenthome.component';
 import { PassengerhomeComponent } from './passenger/passengerhome/passengerhome.component';
 import { ChangeUserPasswordComponent } from './shared/change-user-password/change-user-password.component';
 import { ResetUserPasswordComponent } from './shared/reset-user-password/reset-user-password.component';
@@ -120,7 +122,13 @@ const routes: Routes = [
   },
 
 
-  { path: 'parent', component: ParentComponent},
+  { path: 'parent', component: ParentComponent,
+    children:[
+      { path: 'parenthome',outlet: 'parentnavbar', component: ParenthomeComponent},
+
+
+    ]
+  },
 
 
   { path: 'passenger', component: PassengerComponent,
@@ -129,7 +137,9 @@ const routes: Routes = [
       // { path: 'passengerprofile',outlet: 'passengernavbar', component: PassengerProfileComponent},
 
       { path: 'passengerprofile',outlet: 'passengernavbar', component: PassengerProfComponent},
-
+      { path: 'passengerratings',outlet: 'passengernavbar', component: PassengerratingsComponent},
+      { path: 'passengerpendingpayments',outlet: 'passengernavbar', component: PassengerpendingpaymentsComponent},
+      { path: 'passengerpayments',outlet: 'passengernavbar', component: PassengerpaymentsComponent},
       { path: 'passengerhome',outlet: 'passengernavbar', component: PassengerhomeComponent},
       { path: 'changeuserpassword',outlet: 'passengernavbar', component: ChangeUserPasswordComponent},
       { path: 'editpassengerdetails',outlet: 'passengernavbar', component: EditpassengerdetailsComponent},

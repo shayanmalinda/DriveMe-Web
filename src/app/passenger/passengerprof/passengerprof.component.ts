@@ -8,7 +8,7 @@ export interface Passenger{
   email: string;
   address: string;
   phone: string;
-  nic: string;
+  pickupLocation: string;
   isDeleted: Boolean;
   imgURL: string;
 }
@@ -29,7 +29,7 @@ export class PassengerProfComponent implements OnInit {
   email: string;
   address: string;
   phone: string;
-  nic: string;
+  pickupLocation: string;
   imgURL : string ;
 
   constructor(private afs: AngularFirestore, private router : Router, private spinner: NgxSpinnerService) { 
@@ -38,13 +38,13 @@ export class PassengerProfComponent implements OnInit {
     userID = localStorage.getItem('passengerId');
     this.passengerId = userID;
 
-    //Get passenger profile details
+    //Get passenger profile details     
     this.afs.doc<Passenger>('users/user/passenger/'+this.passengerId).valueChanges().subscribe(
       res=>{
         this.name = res.name;
         this.email = res.email;
         this.address = res.address;
-        //this.nic = res.nic;
+        this.pickupLocation = res.pickupLocation;
         this.phone = res.phone;
         this.imgURL = res.imgURL
         this.afs.doc<userCredential>('userCredentials/'+localStorage.getItem("userCredentialId")).valueChanges().subscribe(
