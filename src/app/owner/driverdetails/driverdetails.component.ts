@@ -139,6 +139,7 @@ export class DriverdetailsComponent implements OnInit {
    this.router.navigate(['/owner', {outlets: {'ownernavbar': ['owner-passengers']}}],{queryParams: {driverId: driverId}})
    
     }
+  
   }
 
 

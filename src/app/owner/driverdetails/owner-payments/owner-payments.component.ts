@@ -41,6 +41,7 @@ export interface Driver{ //Interface Driver
   styleUrls: ['./owner-payments.component.scss']
 })
 export class OwnerPaymentsComponent implements OnInit {
+  isRatings: boolean = true;
   //passenger
   driverObservable: Observable<Driver[]>;
   alldriverList: Driver[]; //full array of passengers
@@ -48,13 +49,13 @@ export class OwnerPaymentsComponent implements OnInit {
 
   //payments for  Normal Passengers
   paymentsObservable: Observable<payments[]>; //observable payments array
-  allPaymentListPassenger: payments[]; //full set
   
 
   //pass name case
   passengerName: string;
 
   allpaymentsList: payments[];
+  allPayments: payments[] = [] as payments[] ; //full array of Payments
  
 
   constructor(
@@ -71,17 +72,44 @@ export class OwnerPaymentsComponent implements OnInit {
       this.driverId = params['driverId']; 
     });
 
-    this.afs.collection('users/user/driver/'+this.driverId+'/owner-payments').snapshotChanges().subscribe(array =>
-      {
-        this.allpaymentsList = array.map( item=>{
-          const data=item.payload.doc.data() as payments;
-          const id = item.payload.doc.id;
-          return {id,...data};
-        })
-      
-         } );
-         
+    let userDoc: AngularFirestoreCollection<payments>;
+    console.log("driverId="+this.driverId)
+    userDoc = this.afs.collection('users/user/driver/'+this.driverId+'/payments');
+    userDoc.snapshotChanges().pipe(
+      map(actions => actions.map(y=>{
+        this.afs.collection('users/user/driver/'+this.driverId+'/payments/'+y.payload.doc.id+'/payments').snapshotChanges().subscribe(array =>
+          {
+    
+            this.allpaymentsList = array.map( item=>{
+              const data=item.payload.doc.data() as payments;
+              const id = item.payload.doc.id;
+              console.log("driverId="+id)
+              return {id,...data};
+            })
+
+                 
+            this.allpaymentsList.forEach(element =>{ //filtering passengers for logged in driver
+              console.log(this.allpaymentsList)
+              this.allPayments.push(element);
+            })
+                
+          // console.log(this.passenger);
+         } )
+      }))
+    ).subscribe();
+
   }
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
+  viewPayments(){
+    this.isRatings = false;
+    if(this.allPayments.length==0){
+      this.openSnackBar("No Payments","Ok");
+
+    }
+  }
+
 }
-
-
