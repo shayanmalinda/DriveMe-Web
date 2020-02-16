@@ -22,6 +22,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatListModule} from '@angular/material/list';
 import { from } from 'rxjs';
 import {MatDatepickerModule} from '@angular/material';// Date Picker
+import {MatNativeDateModule} from '@angular/material';
+// import { MatMomentDateModule } from "@angular/material-moment-adapter";
 
 @NgModule({
   imports: [
@@ -49,6 +51,7 @@ import {MatDatepickerModule} from '@angular/material';// Date Picker
     MatProgressBarModule,
     MatProgressSpinnerModule,
     MatListModule,
+    MatNativeDateModule,
     MatDatepickerModule//Date Picker
     
   ],
@@ -81,6 +84,7 @@ import {MatDatepickerModule} from '@angular/material';// Date Picker
     MatProgressBarModule,
     MatProgressSpinnerModule,
     MatListModule,
+    MatNativeDateModule,
     MatDatepickerModule,//Date Picker
   ]
 })

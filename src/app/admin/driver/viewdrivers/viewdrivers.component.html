@@ -31,7 +31,7 @@
                     height: 45px;
                     width: 80%;
                     position: absolute;
-                    top: 20%;
+                    top: 10%;
                     -ms-transform: translateY(-50%);
                     transform: translateY(-50%);" (click)="viewcheckpoints(driver.id)" 
                     routerLinkActive="active" ><mat-icon>location_on</mat-icon>View Checkpoints</button> 
@@ -40,7 +40,16 @@
                     height: 45px;
                     width: 80%;
                     position: absolute;
-                    top: 40%;
+                    top: 32%;
+                    -ms-transform: translateY(-50%);
+                    transform: translateY(-50%);" (click)="ratingsandpayments(driver.id,driver)" 
+                    routerLinkActive="active" ><mat-icon>assignment</mat-icon>Ratings & Payments</button> 
+
+                <button mat-raised-button color="primary" style="
+                    height: 45px;
+                    width: 80%;
+                    position: absolute;
+                    top: 47%;
                     -ms-transform: translateY(-50%);
                     transform: translateY(-50%);" (click)="changedriverDetails(driver.id,driver)" 
                     routerLinkActive="active" ><mat-icon>edit</mat-icon>Change Details</button> 
@@ -49,7 +58,7 @@
                     height: 45px;
                     width: 80%;
                     position: absolute;
-                    top: 60%;
+                    top: 62%;
                     -ms-transform: translateY(-50%);
                     transform: translateY(-50%);"  
                     routerLinkActive="active" (click)="changePassword(driver.id)">
@@ -59,7 +68,7 @@
                     height: 45px;
                     width: 80%;
                     position: absolute;
-                    top: 80%;
+                    top: 85%;
                     -ms-transform: translateY(-50%);
                     transform: translateY(-50%);"  
                     routerLinkActive="active" (click)="removeDriver(driver.id)">

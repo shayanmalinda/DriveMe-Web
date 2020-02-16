@@ -69,6 +69,12 @@ export class ViewparentsComponent implements OnInit {
     this.router.navigate(['/admin', {outlets: {'adminnavbar': ['resetuserpassword']}}],{queryParams: {userId: parentId,userType:"parent"}})
     
   }
+
+  ratingsandpayments(parentId: string){
+    this.router.navigate(['/admin', {outlets: {'adminnavbar': ['passengerratingspayments']}}],{queryParams: {parentId: parentId}})
+
+  }
+
   removeParent(parentId: string){
     
     this.spinner.show();

@@ -9,6 +9,8 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
 import { MatSpinner } from '@angular/material';
 import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
+import {Md5} from 'ts-md5/dist/md5';
+
 
 export interface Owner{
   name: string;
@@ -138,9 +140,10 @@ export class RegisterownerComponent implements OnInit {
  
     let id = this.afs.createId();
 
+    var hashedPassword = Md5.hashStr(this.pass1).toString();
     this.userCredentials={
       email: this.ownerEmail,
-      password: this.pass1,
+      password: hashedPassword,
       ownerId: id
     }
 
