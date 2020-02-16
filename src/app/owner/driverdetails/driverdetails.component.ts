@@ -6,8 +6,21 @@ import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { MatSnackBar } from '@angular/material';
+import { ActivatedRoute } from '@angular/router';
+import { Passenger } from 'src/app/login/login.component';
+
+export interface payments{ //Interface Payments
+  date: string;
+  driverId: string;
+  driverPaymentId: string;
+  isAccepted: boolean;
+  value: string;
+  id: string;
+  paymentId: string;
+}
 
 export interface Driver{
+  drivrrId: string;
   name: string;
   email: string;
   driverTelephone: string;
@@ -22,6 +35,7 @@ export interface Driver{
   isAC: Boolean;
   isDeleted: Boolean;
   imgURL: string;
+  ownerId: string;
 }
 
 export interface userCredential{
@@ -37,41 +51,50 @@ export interface userCredential{
   styleUrls: ['./driverdetails.component.scss']
 })
 export class DriverdetailsComponent implements OnInit {
-  // x: boolean = true;
-
+  
+  private usersDoc: AngularFirestoreCollection<userCredential>; 
+  private passengerDriverId: string;
+  //payments for  Normal Passengers
+  paymentsObservable: Observable<payments[]>; //observable payments array
+  allPaymentListPassenger: payments[]; //full set
   private driverDoc: AngularFirestoreCollection<Driver>;
   drivers: Observable<Driver[]>;
-  usersDoc: AngularFirestoreCollection<userCredential>; 
+  
+  driversObservable: Observable<Driver[]>; //creating an observable array of passengers
+  alldriverList: Driver[]; //full array of passengers
+  showingdriverList: Driver[] = [] as Driver[] ; //display array
+  myOwnerId: string = localStorage.getItem('ownerId')
+  
+  private driverDriverId: string;
+
   constructor(
-    private afs: AngularFirestore,private router : Router,private spinner: NgxSpinnerService,
+    private afs: AngularFirestore,
+    private router : Router,
+    private route: ActivatedRoute,
+    private spinner: NgxSpinnerService,
     private _snackBar: MatSnackBar,) { 
       this.spinner.show();
-      this.driverDoc = this.afs.collection<Driver>('users/user/driver');
-      this.drivers = this.driverDoc.snapshotChanges().pipe(
-        map(actions => actions.map(a=>{
-          const data = a.payload.doc.data() as Driver;
-          const id = a.payload.doc.id;
-          spinner.hide();
+      this.afs.collection('users/user/driver').snapshotChanges().subscribe( array =>
+        {
+  
+        this.alldriverList = array.map( item =>{ //adding passenger's data and Id to one
+          const data = item.payload.doc.data() as Driver;
+          const id = item.payload.doc.id;      
+          this.spinner.hide();
+
           return {id,...data};
-        }))
-      )
-    
-      
-      // this.drivers.forEach(a=>{
-      //   a.forEach(b=>{
-      //     console.log(b.name);
-      //   })
-      // })
+        });
+        // console.log
+        this.alldriverList.forEach(element =>{ //filtering passengers for logged in driver
+          if(element.ownerId == this.myOwnerId){
+            this.showingdriverList.push(element);
+          }
+        })
+        
+      });
     }
 
-  ngOnInit() {
-    // this.drivers.forEach(x=>{
-    //     x.forEach(y=>{
-    //       y.payload.id;
-    //     });
-    // });
-
-    
+  ngOnInit() {  
   }
   removeDriver(driverId: string){
     this.spinner.show();
@@ -103,9 +126,20 @@ export class DriverdetailsComponent implements OnInit {
     });
   }
 
-  //changePassword(driverId: string){
-    //this.router.navigate(['/owner', {outlets: {'ownernavbar': ['changeuserpassword']}}],{queryParams: {userId: driverId,userType:"driver"}})
-    
-  //}
+  viewratings(driverId: string , driver:Driver){
+    this.router.navigate(['/owner', {outlets: {'ownernavbar': ['owner-ratings']}}],{queryParams: {driverId: driverId}})
+  }
+  viewpayments(driverId: string , driver:Driver) //function for passing values to viewpaymenthistory page
+  {
+   this.router.navigate(['/owner', {outlets: {'ownernavbar': ['owner-payments']}}],{queryParams: {driverId: driverId}})
+   
+  }
+  viewpassengers(driverId: string , driver:Driver) //function for passing values to viewpaymenthistory page
+  {
+   this.router.navigate(['/owner', {outlets: {'ownernavbar': ['owner-passengers']}}],{queryParams: {driverId: driverId}})
+   
+    }
+  }
 
-}
+
+

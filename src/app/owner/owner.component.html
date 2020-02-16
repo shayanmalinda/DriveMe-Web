@@ -16,6 +16,7 @@
             <a class="dropdown-item" [routerLink]="[{outlets: {'ownernavbar': 'owner-driverdetails'}}]" routerLinkActive="active" style="color: #ddd">View Drivers</a>
           </div>
         </li>
+        
         </ul>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown" style="padding-right: 30px" >
@@ -39,6 +40,16 @@
         </ul>
     </div>
 </nav>
+<!--search driver by name-->
+<!--<div class="row">
+  <div class="col-md-4 offset-md-1">
+    <div class="input-group">
+      <input type="text" class="form-control" [(ngModel)]="searchValue" [ngModelOptions]="{standalone: true}" placeholder="Search by name..." (keyup)="searchByName()">
+      <div class="input-group-append">
+        <span class="input-group-text"><ion-icon class="icon" name="search"></ion-icon></span>
+      </div>
+    </div>
+  </div>-->
 
 <router-outlet name="ownernavbar"></router-outlet>
 
