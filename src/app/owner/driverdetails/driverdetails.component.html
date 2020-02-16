@@ -2,8 +2,8 @@
 <h1>
 <app-ngxspinner></app-ngxspinner>
 <div class="container navbar-margin">
-    <mat-list role="list"  *ngFor="let driver of showingdriverList; let last = last">
-        <div class="row pt-4 pb-3 mb-4" style="border: 1.5px solid black; border-radius: 20px; background-color: grey;" *ngIf="!driver.isDeleted">
+    <mat-list role="list"  *ngFor="let driver of showingdriverList | async; let last = last">
+        <div class="row pt-4 pb-3 mb-4" style="border: 3.5px solid #FF5722; border-radius: 20px;" *ngIf="!driver.isDeleted">
             <div class="col-md-3" style="vertical-align: middle;text-align: center;"> 
                 <div class="row" style="vertical-align: middle;
                 display: flex;
@@ -44,6 +44,7 @@
                     -ms-transform: translateY(-50%);
                     transform: translateY(-50%);" (click)="viewpassengers(driver.id,driver)" 
                     routerLinkActive="active" >View Passengers</button> 
+
                          
                 <button mat-raised-button color="primary" style="
                     height: 45px;

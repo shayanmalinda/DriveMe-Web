@@ -19,6 +19,8 @@ import { EditdriverdetailsComponent } from './admin/driver/editdriverdetails/edi
 import { ViewpassengersComponent } from './admin/passenger/viewpassengers/viewpassengers.component';
 import { EditpassengerdetailsComponent } from './admin/passenger/editpassengerdetails/editpassengerdetails.component';
 import { ViewparentsComponent } from './admin/parent/viewparents/viewparents.component';
+import { RatingsPaymentsComponent } from './admin/driver/ratings-payments/ratings-payments.component';
+import {  PassengerratingspaymentsComponent } from './admin/passenger/passengerratingspayments/passengerratingspayments.component';
 import { EditparentdetailsComponent } from './admin/parent/editparentdetails/editparentdetails.component';
 import { RegisteradminComponent } from './admin/admin/registeradmin/registeradmin.component';
 import { ViewadminsComponent } from './admin/admin/viewadmins/viewadmins.component';
@@ -87,6 +89,8 @@ const routes: Routes = [
       { path: 'driver-profile', outlet: 'adminnavbar', component: ProfileComponent},
       { path: 'driverviewdriverdetails', outlet: 'adminnavbar', component: DriverviewpassengerdetailsComponent},
       { path: 'viewcheckpoints', outlet: 'adminnavbar', component: ViewcheckpointsComponent},
+      { path: 'ratingspayments', outlet: 'adminnavbar', component: RatingsPaymentsComponent},
+      { path: 'passengerratingspayments', outlet: 'adminnavbar', component: PassengerratingspaymentsComponent},
 
     ]
   },
