@@ -31,6 +31,7 @@ import { RegisterpassengerComponent } from './passenger/registerpassenger/regist
 import { RegisterComponent } from './register/register.component';
 import { PassengerratingsComponent } from './passenger/passengerratings/passengerratings.component';
 import { PassengerpaymentsComponent } from './passenger/passengerpayments/passengerpayments.component';
+import { PassengerpendingpaymentsComponent } from './passenger/passengerpendingpayments/passengerpendingpayments.component';
 import { PassengerProfComponent } from './passenger/passengerprof/passengerprof.component';
 import { ParenthomeComponent } from './parent/parenthome/parenthome.component';
 import { PassengerhomeComponent } from './passenger/passengerhome/passengerhome.component';
@@ -136,8 +137,8 @@ const routes: Routes = [
 
       { path: 'passengerprofile',outlet: 'passengernavbar', component: PassengerProfComponent},
       { path: 'passengerratings',outlet: 'passengernavbar', component: PassengerratingsComponent},
+      { path: 'passengerpendingpayments',outlet: 'passengernavbar', component: PassengerpendingpaymentsComponent},
       { path: 'passengerpayments',outlet: 'passengernavbar', component: PassengerpaymentsComponent},
-
       { path: 'passengerhome',outlet: 'passengernavbar', component: PassengerhomeComponent},
       { path: 'changeuserpassword',outlet: 'passengernavbar', component: ChangeUserPasswordComponent},
       { path: 'editpassengerdetails',outlet: 'passengernavbar', component: EditpassengerdetailsComponent},
