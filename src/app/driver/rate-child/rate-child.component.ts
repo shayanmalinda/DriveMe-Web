@@ -42,6 +42,9 @@ export class RateChildComponent implements OnInit {
 
   waiting= false;
 
+  
+
+
   rating: rating;
 
   //temps
@@ -72,8 +75,78 @@ export class RateChildComponent implements OnInit {
     this.waiting=true;
     //this.tempid=this.afs.createId(); 
 
+     //Date changing format to 'YYYY/MM/DD'
+
+    //console.log(formData.date);
+
+    var stringdate=formData.date.toString();
+    //console.log(stringdate);
+
+    const datearray=stringdate.split(' ');
+   // console.log(datearray);
+
+    // Month conversion
+    var month :string;
+    if(datearray[1]=='Jan')
+    {
+      month='01';
+    }
+    else if(datearray[1]=='Feb')
+    {
+      month='02';
+    }
+    else if(datearray[1]=='Mar')
+    {
+      month='03';
+    }
+    else if(datearray[1]=='Apr')
+    {
+      month='04';
+    }
+    else if(datearray[1]=='May')
+    {
+      month='05';
+    }
+    else if(datearray[1]=='Jun')
+    {
+      month='06';
+    }
+    else if(datearray[1]=='Jul')
+    {
+      month='07';
+    }
+    else if(datearray[1]=='Aug')
+    {
+      month='08';
+    }
+    else if(datearray[1]=='Sep')
+    {
+      month='09';
+    }
+    else if(datearray[1]=='Oct')
+    {
+      month='10';
+    }
+    else if(datearray[1]=='Nov')
+    {
+      month='11';
+    }
+    else{
+      month='12';
+    }
+
+
+   // console.log("month",month);
+    const day=Number(datearray[2]);
+    console.log("day",datearray[2]);
+
+    const year=Number(datearray[3]);
+    //console.log("year",datearray[3]);
+
+    const dateConverted=year+" / "+month+" / "+day;
+
     this.rating={ //Obtaining Form data for Rating...
-      date: formData.date,
+      date: dateConverted,
       stars:+formData.stars,//type casting
       rating: formData.rating
     }

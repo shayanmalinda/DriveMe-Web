@@ -1,7 +1,7 @@
 <app-ngxspinner></app-ngxspinner>
 
 <div class="container container top-margin">
-    <div class="container-fluid pl-5 pr-5 pt-3 pb-2 fill-form">
+    <div class="container-fluid pl-5 pr-5 pt-3 pb-4 fill-form">
 
         <p style="margin:10px;font-size: 30px; font-weight: 400;font-family: Georgia, 'Times New Roman', Times, serif">Rating Details</p>
         <section *ngIf="waiting" style="display: flex; align-content: center; align-items: center;margin-top: 30px; margin-left: 20px; margin-right: 20px;">
@@ -25,8 +25,15 @@
             </mat-form-field>
 
             <mat-form-field class="form-field-full-width">
-                <input matInput class="form-control" type="text" placeholder="Date" formControlName="date" required>
+                <mat-label>Choose the date</mat-label>
+                <input matInput [matDatepicker]="picker" type="text" formControlName="date" required>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
+
+            <!-- <mat-form-field class="form-field-full-width">
+                <input matInput class="form-control" type="text" placeholder="Date" formControlName="date" required>
+            </mat-form-field> -->
 
             <p style="margin:0px;font-size: 15px; font-weight: 400;font-family: Georgia, 'Times New Roman', Times, serif">Confirm Ratings?</p>
             <div class="pt-4">

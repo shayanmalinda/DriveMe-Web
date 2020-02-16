@@ -1,24 +1,43 @@
 <app-ngxspinner></app-ngxspinner>
-<div class="container top-margin"></div>
+<div class="container-fluid top-margin: 10px">
+    <div>
+        <p style="margin:10px;font-size: 30px; text-align:center; font-weight: 400;font-family: Georgia, 'Times New Roman', Times, serif">My Passenger Availability</p>
+    </div>
 
-<div *ngFor="let item2 of showingavailabilityList" class="container">
-    <mat-list role="list">
-        <div class=" row pt-4 pb-3 mb-4 " style="border: 1.5px solid #FF5722; border-radius: 20px;">
-            <div class="col-md-3 " style="vertical-align: middle;text-align: center; ">
-                <div class="row " style="vertical-align: middle; display: flex; justify-content: center; ">
-                    <img src="../../../../assets/passengeravatar.png " alt="passenger Icon " style="width: 120px; position: absolute; top: 45%; -ms-transform: translateY(-50%); transform: translateY(-50%); ">
+
+    <!-- Passengers Ratings -->
+    <div class="row" style="padding-top:20px;">
+        <div class="col-md-6" *ngFor="let item2 of showingavailabilityList">
+
+            <mat-list style="margin-left: 40px;margin-right:40px">
+                <div class="row pt-4 pb-3 mb-4 " style="border: 1.5px solid #FF5722; border-radius: 20px;">
+                    <div class="row">
+                        <div class="col-md-4" style="vertical-align: right; justify-content: center; ">
+                            <img src="../../../../assets/passengeravatar.png " alt="passenger Icon " style="width: 120px;margin-left: 20px;">
+                        </div>
+                        <div class="col-md-8">
+
+                            <div class="col-md-12">
+                                <p>Passenger Name : {{item2.name}}</p>
+                                <p>Date: {{item2.date}}</p>
+                                <div *ngIf="item2.availability; then in else out"></div>
+                                <ng-template #in>Availability : Will Come</ng-template>
+                                <ng-template #out>Availability : Will not Come</ng-template>
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-5 " style="padding-left: 30px; ">
-                <p>Passenger Name : {{item2.name}}</p>
+            </mat-list>
+        </div>
+    </div>
+
+    <!-- let item2 of showingavailabilityList -->
+
+
+    <!-- <p>Passenger Name : {{item2.name}}</p>
                 <p>Date: {{item2.date}}</p>
                 <div *ngIf="item2.availability; then in else out"></div>
                 <ng-template #in>Availability : Will Come</ng-template>
                 <ng-template #out>Availability : Will not Come</ng-template>
-                <!-- <p>Availability: {{item2.availabilty}}</p> -->
-
-            </div>
-
-        </div>
-    </mat-list>
-</div>
+                 -->
