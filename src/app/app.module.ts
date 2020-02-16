@@ -91,6 +91,7 @@ import { OwnerPassengersComponent } from './owner/driverdetails/owner-passengers
 import { OwnerPaymentsComponent } from './owner/driverdetails/owner-payments/owner-payments.component';
 import { OwnerRatingsComponent } from './owner/driverdetails/owner-ratings/owner-ratings.component';
 import { DriverMyratingsComponent } from './driver/driver-myratings/driver-myratings.component';
+import { RateDriverComponent } from './owner/rate-driver/rate-driver.component';
 
 
 @NgModule({
@@ -173,6 +174,7 @@ import { DriverMyratingsComponent } from './driver/driver-myratings/driver-myrat
 
     PassengerAvailabilityComponent,
     DriverMyratingsComponent,
+    RateDriverComponent,
     
 
 

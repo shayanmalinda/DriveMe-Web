@@ -16,6 +16,15 @@
             <a class="dropdown-item" [routerLink]="[{outlets: {'ownernavbar': 'owner-driverdetails'}}]" routerLinkActive="active" style="color: #ddd">View Drivers</a>
           </div>
         </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle navbarDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Ratings
+          </a>
+          <div class="dropdown-menu"  aria-labelledby="navbarDropdown"  style="background-color: #333">
+            <a class="dropdown-item" [routerLink]="[{outlets: {'ownernavbar': 'rate-driver'}}]" routerLinkActive="active" style="color: #ddd">Rate Drivers</a>
+
+          </div>
+        </li>
         </ul>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown" style="padding-right: 30px" >

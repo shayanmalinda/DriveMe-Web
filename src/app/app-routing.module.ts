@@ -61,6 +61,7 @@ import { DriverviewpassengerdetailsComponent } from './admin/driver/driverviewpa
 import { OwnerhomeComponent } from './owner/ownerhome/ownerhome.component';
 import { PassengerAvailabilityComponent } from './driver/passenger-availability/passenger-availability.component';
 import { DriverMyratingsComponent } from './driver/driver-myratings/driver-myratings.component';
+import { RateDriverComponent } from './owner/rate-driver/rate-driver.component';
 
 // import { AdminprofileComponent } from './admin/adminprofile/adminprofile.component';
 
@@ -144,6 +145,7 @@ const routes: Routes = [
       { path: 'changeuserpassword',outlet: 'ownernavbar', component: ChangeUserPasswordComponent},
       { path: 'ownerhome', outlet:'ownernavbar', component:OwnerhomeComponent},
       { path: 'owner-ratings', outlet:'ownernavbar', component:OwnerRatingsComponent},
+      { path: 'rate-driver', outlet:'ownernavbar',component:RateDriverComponent},
       
       // Define Route Here .................... 
       

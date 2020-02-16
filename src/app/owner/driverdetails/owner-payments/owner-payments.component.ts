@@ -30,7 +30,7 @@ export interface passenger{ //Interface for Passenger
 
 
 @Component({
-  selector: 'app-owner-paymentsComponent',
+  selector: 'app-owner-payments',
   templateUrl: './owner-payments.component.html',
   styleUrls: ['./owner-payments.component.scss']
 })
@@ -39,6 +39,7 @@ export class OwnerPaymentsComponent implements OnInit {
   passengerObservable: Observable<passenger[]>;
   allPassengerList: passenger[]; //full array of passengers
   passengerId : string;
+  filteredPassengerList: passenger[] = [] as passenger[]; //driver's passengers
 
   //payments for  Normal Passengers
   paymentsObservable: Observable<payments[]>; //observable payments array
@@ -56,8 +57,42 @@ export class OwnerPaymentsComponent implements OnInit {
       this.passengerId = params['passengerId'];  
     });
 
+    this.afs.collection('users/user/passenger').snapshotChanges().subscribe( array =>
+      {
+
+      this.allPassengerList = array.map( item =>{ //adding passenger's data and Id to one
+      const data = item.payload.doc.data() as passenger;
+      const id = item.payload.doc.id;
+        return {id,...data        }  ;
+      });
+      //console.log(this.passengerId);
+
+      this.allPassengerList.forEach(element =>{ //filtering passengers for logged in driver
+        if(element.driverId == localStorage.getItem('driverId')){
+          this.filteredPassengerList.push(element);
+        }
+      })
+      //console.log(this.passengerId);
+
+    });
+
+    //console.log('id',this.passengerId);
+    this.route.queryParams.subscribe(params => {
+      this.passengerId = params['passengerId'];  
+    });
+
     //console.log('id',this.passengerId);
 
+    this.afs.collection('users/user/passenger/'+this.passengerId+'/payments').snapshotChanges().subscribe(array =>
+      {
+        this.allPaymentListPassenger = array.map( item=>{
+          const data=item.payload.doc.data() as payments;
+          const id = item.payload.doc.id;
+          return {id,...data};
+        })
+       // console.log(this.allPaymentList);
+        
+      } );
     this.afs.collection('users/user/passenger/'+this.passengerId+'/payments').snapshotChanges().subscribe(array =>
       {
         this.allPaymentListPassenger = array.map( item=>{
