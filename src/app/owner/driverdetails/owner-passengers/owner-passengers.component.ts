@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { MatSnackBar } from '@angular/material';
+import { ActivatedRoute } from '@angular/router';
 
 
 export interface passenger{
@@ -63,10 +64,27 @@ export class OwnerPassengersComponent implements OnInit {
    constructor(
      private afs: AngularFirestore,
      private router: Router,
+     private route: ActivatedRoute,
      private spinner: NgxSpinnerService,
      private _snackBar: MatSnackBar,)
      { }
- 
+
+     ngAfterViewInit(){
+      this.route.queryParams.subscribe(params => {
+        this.passengerDriverId = params['passengerId'];
+      });
+  
+      this.afs.collection('users/user/driver/'+this.passengerDriverId+'/passenger').snapshotChanges().subscribe(array=>
+        {
+          this.allPassengerList=array.map(item=>{
+            const data=item.payload.doc.data() as passenger;
+            const id=item.payload.doc.id;
+            return {id,...data};
+          })
+        });
+           
+    
+    }
    ngOnInit() 
    {
      // for showing normal passengers in users/user/passenger

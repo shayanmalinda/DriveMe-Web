@@ -52,6 +52,22 @@ export class OwnerPaymentsComponent implements OnInit {
     private _snackBar: MatSnackBar,
   ) { }
 
+  ngAfterViewInit(){
+    this.route.queryParams.subscribe(params => {
+      this.passengerId = params['passengerId'];
+    });
+
+    this.afs.collection('users/user/driver/'+this.passengerId+'/payments').snapshotChanges().subscribe(array=>
+      {
+        this.allPaymentListPassenger=array.map(item=>{
+          const data=item.payload.doc.data() as payments;
+          const id=item.payload.doc.id;
+          return {id,...data};
+        })
+      });
+         
+  
+  }
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       this.passengerId = params['passengerId'];  
