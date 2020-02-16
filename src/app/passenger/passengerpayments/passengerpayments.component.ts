@@ -75,4 +75,8 @@ export class PassengerpaymentsComponent implements OnInit {
        } );
 
   }
+  generatereport(){
+    window.print();
+  }
+
 }

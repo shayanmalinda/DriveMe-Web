@@ -13,18 +13,36 @@
 
             <mat-list style="margin-left: 40px;margin-right:40px" *ngIf="item.isAccepted">
                 <div class="row pt-4 pb-3 mb-4 " style="border: 1.5px solid #FF5722; border-radius: 20px;">
-                    <div class="row">
-                        <div class="col-md-4" style="vertical-align: right; justify-content: center; ">
-                            <img src="../../../../assets/cash-in-hand-png-7.png " alt="passenger Icon " style="width: 120px;margin-left: 20px;">
-                        </div>
-                        <div class="col-md-8">
+                    <div class="col-md-12">
 
-                            <div class="col-md-12">
+
+                        <div class="row">
+                            <div class="col-md-4" style="vertical-align: right; justify-content: center; ">
+                                <img src="../../../../assets/cash-in-hand-png-7.png " alt="passenger Icon " style="width: 120px;margin-left: 20px;">
+                            </div>
+    
+                            <div class="col-md-4">
                                 <p>Date : {{item.date}}</p>
                                 <p>Value : {{item.value}}</p>
                                 <div *ngIf="item.isAccepted; then accepted else rejected"></div>
                                 <ng-template #accepted>Status : Payment Accepted</ng-template>
                                 <ng-template #rejected>Status : Payment Pending</ng-template>
+                                
+                            </div>
+                            <div class="col-md-4">
+
+                                <button mat-raised-button color="primary" style="
+                                height: 40px;
+                                width: 70%;
+                                position: absolute;
+                                top: 50%;
+                                -ms-transform: translateY(-50%);
+                                transform: translateY(-50%);" 
+                                routerLinkActive="active" 
+                                (click)="generatereport(item.id)"> 
+                                <mat-icon>payment</mat-icon>Get a Report</button>
+
+                
                             </div>
                         </div>
                     </div>
