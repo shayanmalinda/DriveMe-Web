@@ -1,22 +1,35 @@
 <app-ngxspinner></app-ngxspinner>
-<br>
-<div class="container top-margin"></div>
-<div>
-    <p style="margin:0px;font-size: 30px; text-align:center; font-weight: 400;font-family: Georgia, 'Times New Roman', Times, serif">Payment History of {{childName}}</p>
-</div>
-<!-- Parents Payments -->
-<div *ngFor="let item of allPaymentsParent" class="container">
-    <mat-list role="list" class="form-field-full-width">
-        <div class=" row pt-4 pb-3 mb-4 " style="border: 1.5px solid #FF5722; border-radius: 20px; padding-left: 25px;">
+<div class="container-fluid top-margin">
+    <div>
+        <p style="margin:20px;font-size: 30px; text-align:center; font-weight: 400;font-family: Georgia, 'Times New Roman', Times, serif">Payment History of {{childName}}</p>
+    </div>
 
-            <div class="col-md-12" style="padding-left: 25px; ">
-                <p>Date : {{item.date}}</p>
-                <p>Value : {{item.value}}</p>
-                <div *ngIf="item.isAcceped; then accepted else rejected"></div>
-                <ng-template #accepted>Status : Payment Accepted</ng-template>
-                <ng-template #rejected>Status : Payment Pending</ng-template>
-            </div>
 
+    <!-- Passengers Payments -->
+    <div class="row" style="padding-top:20px;">
+        <div class="col-md-6" *ngFor="let item of allPaymentsParent">
+
+            <mat-list style="margin-left: 40px;margin-right:40px">
+                <div class="row pt-4 pb-3 mb-4 " style="border: 1.5px solid #FF5722; border-radius: 20px;">
+                    <div class="row">
+                        <div class="col-md-4" style="vertical-align: right; justify-content: center; ">
+                            <img src="../../../../assets/cash-in-hand-png-7.png " alt="passenger Icon " style="width: 120px;margin-left: 20px;">
+                        </div>
+                        <div class="col-md-8">
+
+                            <div class="col-md-12">
+                                <p>Date : {{item.date}}</p>
+                                <p>Value : {{item.value}}</p>
+                                <div *ngIf="item.isAcceped; then accepted else rejected"></div>
+                                <ng-template #accepted>Status : Payment Accepted</ng-template>
+                                <ng-template #rejected>Status : Payment Pending</ng-template>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </mat-list>
         </div>
-    </mat-list>
-</div>
+    </div>
+
+
+    <!-- //allPaymentsParent -->

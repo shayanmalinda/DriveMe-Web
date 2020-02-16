@@ -34,6 +34,7 @@ export class RecentRatingsComponent implements OnInit {
   //passenger
   passengerObservable: Observable<passenger[]>;
   passengerId : string;
+  passengerName : string;
 
   //ratings
   allRatingsList: rating[];
@@ -49,7 +50,8 @@ export class RecentRatingsComponent implements OnInit {
   ngOnInit()
  {
     this.route.queryParams.subscribe(params => {
-    this.passengerId = params['passengerId'];    
+    this.passengerId = params['passengerId']; 
+    this.passengerName=params['passengerName'];   
   });
 
   this.afs.collection('users/user/passenger/'+this.passengerId+'/ratings').snapshotChanges().subscribe(array =>

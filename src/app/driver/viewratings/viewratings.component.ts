@@ -65,9 +65,9 @@ export class ViewratingsComponent implements OnInit {
 
     });
   }
-  viewratings(passengerId: string , passenger:passenger) //function for passing values to recent-ratings page
+  viewratings(passengerId: string , passengerName:string) //function for passing values to recent-ratings page
   {
-   this.router.navigate(['/driver', {outlets: {'drivernavbar': ['recent-ratings']}}],{queryParams: {passengerId: passengerId}})
+   this.router.navigate(['/driver', {outlets: {'drivernavbar': ['recent-ratings']}}],{queryParams: {passengerId: passengerId, passengerName: passengerName}})
    
   }
 
