@@ -64,7 +64,7 @@ export class DriverdetailsComponent implements OnInit {
   alldriverList: Driver[]; //full array of passengers
   showingdriverList: Driver[] = [] as Driver[] ; //display array
   myOwnerId: string = localStorage.getItem('ownerId')
-  //private usersDoc: AngularFirestoreCollection<userCredentials>; 
+  
   private driverDriverId: string;
 
   constructor(
@@ -92,13 +92,6 @@ export class DriverdetailsComponent implements OnInit {
         })
         
       });
-    
-      
-      // this.drivers.forEach(a=>{
-      //   a.forEach(b=>{
-      //     console.log(b.name);
-      //   })
-      // })
     }
 
   ngOnInit() {  
@@ -135,10 +128,6 @@ export class DriverdetailsComponent implements OnInit {
 
   viewratings(driverId: string , driver:Driver){
     this.router.navigate(['/owner', {outlets: {'ownernavbar': ['owner-ratings']}}],{queryParams: {driverId: driverId}})
-
-    // this.router.navigate(['/admin', {outlets: {'adminnavbar': ['editdriverdetails']}}],{queryParams: {driver: JSON.stringify(driver)}})
-    // this.router.navigateByUrl('/admin/(adminnavbar:editdriverdetails)',{queryParams:driver});
-    // console.log("passing value==="+driver.driverNIC);
   }
   viewpayments(driverId: string , driver:Driver) //function for passing values to viewpaymenthistory page
   {

@@ -21,8 +21,7 @@ export class OwnerComponent implements OnInit {
   constructor(
   private router: Router,
   private spinner: NgxSpinnerService,) {
-    // this.router.navigate(['/admin', {outlets: {'adminnavbar': ['adminhome']}}])
-
+  
   if(localStorage.getItem("ownerId")){
 
     if(localStorage.getItem("driverId")){
@@ -42,7 +41,6 @@ export class OwnerComponent implements OnInit {
       this.multipleCharacter=true;
       this.ownerAvailable = true;
     }
-    // this.router.navigate(['/admin', {outlets: {'adminnavbar': ['adminhome']}}])
   }  
 
 
@@ -51,28 +49,8 @@ export class OwnerComponent implements OnInit {
   }
 }
 ngOnInit() {
-  //this.getData();
+  
 }
- /* getData(){
-    this.router.getUsers()
-    .subscribe(result => {
-      this.items = result;
-      this.age_filtered_items = result;
-      this.name_filtered_items = result;
-    })
-}*/
-/*searchUsers(searchValue){
-  return this.db.collection('users',ref => ref.where('nameToSearch', '>=', searchValue)
-    .where('nameToSearch', '<=', searchValue + '\uf8ff'))
-    .snapshotChanges()
-}
-getUsers(){
-  return this.db.collection('users').snapshotChanges();
-}
-getUser(userKey){
-  return this.db.collection('users').doc(userKey).snapshotChanges();
-}*/
-
 
 switchToDriver(){
   this.router.navigateByUrl('/driver')
@@ -89,44 +67,10 @@ switchToPassenger(){
 switchToOwner(){
   this.router.navigateByUrl('/owner')
 }
-  logout(){
-    // this.spinner.show()
-    // setTimeout(function(){
-    //   this.spinner.hide()
-    // },2000)
-    localStorage.clear();
-    this.router.navigate([''], { replaceUrl: true });
-    // setTimeout
+  logout(){  
+  localStorage.clear();
+    this.router.navigate([''], { replaceUrl: true }); 
   }
-  /*combineLists(a, b){
-    let result = [];
-
-    a.filter(x => {
-      return b.filter(x2 =>{
-        if(x2.payload.doc.id == x.payload.doc.id){
-          result.push(x2);
-        }
-      });
-    });
-    return result;
-  }
-
-  searchByName(){
-    let value = this.searchValue.toLowerCase();
-    this.router.searchUsers(value)
-    .subscribe(result => {
-      this.name_filtered_items = result;
-      this.items = this.combineLists(result, this.age_filtered_items);
-    })
-  }
-  getData(){
-    this.router.getUsers()
-    .subscribe(result => {
-      this.items = result;
-      this.age_filtered_items = result;
-      this.name_filtered_items = result;
-    })
-  }*/
   homepage(){
     this.router.navigate(['/owner', {outlets: {'ownernavbar': ['ownerhome']}}])
   }

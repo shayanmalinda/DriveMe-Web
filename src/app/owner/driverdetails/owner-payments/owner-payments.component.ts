@@ -41,8 +41,21 @@ export interface Driver{ //Interface Driver
   styleUrls: ['./owner-payments.component.scss']
 })
 export class OwnerPaymentsComponent implements OnInit {
+  //passenger
+  driverObservable: Observable<Driver[]>;
+  alldriverList: Driver[]; //full array of passengers
+  driverId : string;
+
+  //payments for  Normal Passengers
+  paymentsObservable: Observable<payments[]>; //observable payments array
+  allPaymentListPassenger: payments[]; //full set
+  
+
+  //pass name case
+  passengerName: string;
+
   allpaymentsList: payments[];
-  driverId: string;
+ 
 
   constructor(
     private afs: AngularFirestore,
@@ -50,24 +63,25 @@ export class OwnerPaymentsComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private _snackBar: MatSnackBar,
   ) { }
-
-  ngAfterViewInit(){
-    this.route.queryParams.subscribe(params => {
-      this.driverId = params['driverId'];
-    });
-
-    this.afs.collection('users/user/driver/'+this.driverId+'/owner-payments').snapshotChanges().subscribe(array=>
-      {
-        this.allpaymentsList=array.map(item=>{
-          const data=item.payload.doc.data() as payments;
-          const id=item.payload.doc.id;
-          return {id,...data};
-        })
-      });
          
   
-  }
+  
   ngOnInit() {
-  }
+    this.route.queryParams.subscribe(params => {
+      this.driverId = params['driverId']; 
+    });
 
+    this.afs.collection('users/user/driver/'+this.driverId+'/owner-payments').snapshotChanges().subscribe(array =>
+      {
+        this.allpaymentsList = array.map( item=>{
+          const data=item.payload.doc.data() as payments;
+          const id = item.payload.doc.id;
+          return {id,...data};
+        })
+      
+         } );
+         
+  }
 }
+
+

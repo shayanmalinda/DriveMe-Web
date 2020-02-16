@@ -1,6 +1,6 @@
 <app-ngxspinner></app-ngxspinner> 
 <div class="container navbar-margin">
-    <mat-list role="list"  *ngFor="let passenger of passengers | async; let last = last">
+    <mat-list role="list"  *ngFor="let passenger of showingPassengerList; let last = last">
         <div class="row pt-4 pb-3 mb-4" style="border: 3px solid #FF5722; border-radius: 20px;" *ngIf="!passenger.isDeleted">
             <div class="col-md-3" style="vertical-align: middle;text-align: center;"> 
                 <div class="row" style="vertical-align: middle;

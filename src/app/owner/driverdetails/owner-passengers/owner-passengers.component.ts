@@ -74,39 +74,32 @@ export class OwnerPassengersComponent implements OnInit {
         this.passengerDriverId = params['driverId'];
       });
   
-      this.afs.collection('users/user/driver/'+this.passengerDriverId+'/passenger').snapshotChanges().subscribe(array=>
+      this.afs.collection('users/user/passenger/').snapshotChanges().subscribe(array=>
         {
           this.allPassengerList=array.map(item=>{
-            const data=item.payload.doc.data() as passenger;
+            const data=item.payload.doc.data() as passenger;              
             const id=item.payload.doc.id;
+
             return {id,...data};
+          });
+
+          
+      
+          this.allPassengerList.forEach(element =>{ //filtering parents for logged in driver
+            if(element.driverId == this.passengerDriverId){
+              // console.log(element.driverId+" "+this.passengerDriverId)
+              console.log("a")
+              this.showingPassengerList.push(element);
+              console.log(this.showingPassengerList)
+            }
           })
+
         });
            
     
     }
    ngOnInit() 
    {
-     // for showing normal passengers in users/user/passenger
- 
-     this.afs.collection('users/user/passenger').snapshotChanges().subscribe( array =>
-       {
- 
-       this.allPassengerList = array.map( item =>{ //adding passenger's data and Id to one
-         const data = item.payload.doc.data() as passenger;
-         const id = item.payload.doc.id;
-         return {id,...data};
-       });
-       
-       this.allPassengerList.forEach(element =>{ //filtering passengers for logged in driver
-         if(element.driverId == localStorage.getItem('driverId')){
-           this.showingPassengerList.push(element);
-         }
-       })
-       
-     });
- 
-     //for showing child in users/user/parent 
  
      this.afs.collection('users/user/parent').snapshotChanges().subscribe( array =>
        {
