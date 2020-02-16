@@ -1,0 +1,36 @@
+<app-ngxspinner></app-ngxspinner>
+
+<div class="container  navbar-margin" style="align-items: center;text-align: center;">
+    <div class="btn-group btn-group-lg" role="group" style="width: 80%;">
+        
+        <button type="button" *ngIf="isRatings" class="btn btn-dark" (click)="viewRatings()" >Ratings</button>
+        <button type="button" *ngIf="isRatings" class="btn btn-secondary" (click)="viewPayments()" >Payments</button>
+        <button type="button" *ngIf="!isRatings" class="btn btn-secondary" (click)="viewRatings()" >Ratings</button>
+        <button type="button" *ngIf="!isRatings" class="btn btn-dark" (click)="viewPayments()" >Payments</button>
+    </div>
+
+    <div >
+        <div>
+            <p style="margin:0px;font-size: 30px; text-align:center; font-weight: 400;font-family: Georgia, 'Times New Roman', Times, serif">Driver Ratings</p>
+        </div>
+        <div *ngFor="let item of allRatingsList" class="container">
+            <mat-list role="list" class="form-field-full-width">
+                <div class=" row pt-4 pb-3 mb-4 " style="border: 1.5px solid #FF5722; border-radius: 20px;">
+        
+                    <div class="col-md-5 " style="padding-left: 5px; ">
+                        <p>Stars : {{item.stars}}</p>
+                        <p>Comments : {{item.rating}}</p>
+                        <p>Date: {{item.date}}</p>
+        
+                    </div>
+        
+                </div>
+            </mat-list>
+        </div>
+    </div>
+
+    <div *ngIf="!ratings">
+
+    </div>
+
+</div>

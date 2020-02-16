@@ -85,6 +85,7 @@ import { PassengerhomeComponent } from './passenger/passengerhome/passengerhome.
 import { DriverviewpassengerdetailsComponent } from './admin/driver/driverviewpassengerdetails/driverviewpassengerdetails.component';
 import { PassengerAvailabilityComponent } from './driver/passenger-availability/passenger-availability.component';
 import { ViewcheckpointsComponent } from './admin/driver/viewcheckpoints/viewcheckpoints.component';
+import { RatingsPaymentsComponent } from './admin/driver/ratings-payments/ratings-payments.component';
 
 
 import { PassengerProfComponent } from './passenger/passengerprof/passengerprof.component';
@@ -174,6 +175,7 @@ import { DriverMyratingsComponent } from './driver/driver-myratings/driver-myrat
     PassengerAvailabilityComponent,
     DriverMyratingsComponent,
 
+    RatingsPaymentsComponent,
 
 
   ],  
