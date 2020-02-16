@@ -1,7 +1,10 @@
+<h1 style="position:absolute;z-index:1; padding-top: 70px;padding-left: 25px;font-size: 30px;text-shadow: 2px 2px #ffffff;
+font-weight: 700;  "><i> DriveMe</i></h1>
+
 <agm-map 
 [latitude]="latitude" 
 [longitude]="longitude" 
-[zoom]="zoom" >
+[zoom]="zoom" style="z-index:2">
   <agm-marker 
   [latitude]="latitude" 
   [longitude]="longitude"></agm-marker>
@@ -17,10 +20,8 @@
 
 <div class="container">
  
-  <h1><i>DriveMe</i></h1>
- 
   <div class="form-group">
-    <label>Enter address</label>
+    <h5><label><b>Enter address</b></label></h5>
     <input type="text" class="form-control" (keydown.enter)="$event.preventDefault()" placeholder="Search Nearest Location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" #search>
   </div>
  
