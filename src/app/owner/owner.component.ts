@@ -74,4 +74,7 @@ switchToOwner(){
   homepage(){
     this.router.navigate(['/owner', {outlets: {'ownernavbar': ['ownerhome']}}])
   }
+  generatereport(){
+    window.print();
+  }
 }
