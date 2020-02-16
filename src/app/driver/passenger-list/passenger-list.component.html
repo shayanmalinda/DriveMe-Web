@@ -1,7 +1,12 @@
 <app-ngxspinner></app-ngxspinner>
 <div class="container top-margin"></div>
 <!-- Normal Passengers -->
+<!-- <div *ngif="showingPassengerList.lenght===0">
+    No Available Passengers
+</div> -->
+
 <div *ngFor="let item of showingPassengerList" class="container">
+
     <mat-list role="list">
         <div class=" row pt-4 pb-3 mb-4 " style="border: 1.5px solid #FF5722; border-radius: 20px;" *ngIf="!item.isDeleted">
             <div class="col-md-3 " style="vertical-align: middle;text-align: center; ">
