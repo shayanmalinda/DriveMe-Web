@@ -8,27 +8,54 @@
 
 
     <!-- Passengers Payments -->
-    <div class="row" style="padding-top:20px;">
-        <div class="col-md-6" *ngFor="let item of allPaymentListPassenger">
+    <div class="row" style="padding-top:20px;" >
+        <!-- <div > -->
 
-            <mat-list style="margin-left: 40px;margin-right:40px" *ngIf="!item.isAccepted">
-                <div class="row pt-4 pb-3 mb-4 " style="border: 1.5px solid #FF5722; border-radius: 20px;">
-                    <div class="row">
-                        <div class="col-md-4" style="vertical-align: right; justify-content: center; ">
-                            <img src="../../../../assets/cash-in-hand-png-7.png " alt="passenger Icon " style="width: 120px;margin-left: 20px;">
-                        </div>
-                        <div class="col-md-8">
+            <div class="col-md-6"  *ngFor="let item of allPayments">
 
-                            <div class="col-md-12">
-                                <p>Date : {{item.date}}</p>
-                                <p>Value : {{item.value}}</p>
-                                <div *ngIf="item.isAccepted; then accepted else rejected"></div>
-                                <ng-template #accepted>Status : Payment Accepted</ng-template>
-                                <ng-template #rejected>Status : Payment Pending</ng-template>
+                
+                <mat-list style="margin-left: 40px;margin-right:40px">
+                    <div class="row pt-4 pb-3 mb-4 " style="border: 1.5px solid #FF5722; border-radius: 20px;">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-3" style="vertical-align: right; justify-content: center; ">
+                                    <img src="../../../../assets/cash-in-hand-png-7.png " alt="passenger Icon " style="width: 120px;margin-left: 20px;">
+                                </div>
+                                <div class="col-md-5">
+    
+                                    <p>Date : {{item.date}}</p>
+                                    <p>Value : {{item.value}}</p>
+                                    <div *ngIf="item.isAccepted; then accepted else rejected"></div>
+                                    <ng-template #accepted>Status : Payment Accepted</ng-template>
+                                    <ng-template #rejected>Status : Payment Pending</ng-template>
+    
+                                </div>
+                                <div class="col-md-4">
+    
+                                    <button mat-raised-button color="primary" style="
+                                    height: 40px;
+                                    width: 70%;
+                                    position: absolute;
+                                    top: 20%;
+                                    -ms-transform: translateY(-50%);
+                                    transform: translateY(-50%);" routerLinkActive="active" (click)="acceptPayment(item.id)"> <!--Payment Function Here-->
+                                    <mat-icon>payment</mat-icon> Accept</button>
+            
+                
+                                    <button mat-raised-button color="warn" style="
+                                        height: 40px;
+                                        width: 70%;
+                                        position: absolute;
+                                        top: 70%;
+                                        -ms-transform: translateY(-50%);
+                                        transform: translateY(-50%);" routerLinkActive="active" (click)="viewpaymenthistory(item.id,item.name)">
+                                        <mat-icon>history</mat-icon>Decline</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </mat-list>
-        </div>
+                </mat-list>
+
+            </div>
+        <!-- </div> -->
     </div>

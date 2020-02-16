@@ -42,7 +42,7 @@ export class PassengerpendingpaymentsComponent implements OnInit {
   //payments for  Normal Passengers
   paymentsObservable: Observable<payments[]>; //observable payments array
   allPaymentListPassenger: payments[]; //full set
-  
+  allPayments: payments[] = [] as payments[]
 
   //pass name case
   passengerName: string;
@@ -70,8 +70,19 @@ export class PassengerpendingpaymentsComponent implements OnInit {
         console.log(id+" "+data.isAccepted)
         return {id,...data};
       })
+
+      this.allPaymentListPassenger.forEach(element=>{
+        if(!element.isAccepted){
+
+          this.allPayments.push(element);
+        }
+      })
     // console.log(this.passenger);
        } );
 
+  }
+
+  acceptPayment(paymentId: string){
+    
   }
 }
