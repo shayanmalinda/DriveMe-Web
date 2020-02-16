@@ -56,7 +56,6 @@ import { AgmCoreModule } from '@agm/core';
 
 import { OwnerprofileComponent } from './owner/ownerprofile/ownerprofile.component';
 import { DriverdetailsComponent } from './owner/driverdetails/driverdetails.component';
-import { PassengerdetailsComponent } from './owner/passengerdetails/passengerdetails.component';
 import { ChangeUserPasswordComponent } from './shared/change-user-password/change-user-password.component';
 import { AdminhomeComponent } from './admin/adminhome/adminhome.component';
 import { ViewpaymentsComponent } from './driver/viewpayments/viewpayments.component';
@@ -131,7 +130,6 @@ import { RateDriverComponent } from './owner/rate-driver/rate-driver.component';
 
     //PassengerprofileComponent,
     DriverdetailsComponent,
-    PassengerdetailsComponent,
     
     ChangeUserPasswordComponent,
     OwnerprofileComponent,

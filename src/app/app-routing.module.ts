@@ -40,7 +40,6 @@ import { OwnerprofileComponent } from './owner/ownerprofile/ownerprofile.compone
 import { OwnerRatingsComponent } from './owner/driverdetails/owner-ratings/owner-ratings.component';
 import { EditdetailsComponent } from './owner/editdetails/editdetails.component';
 import { DriverdetailsComponent } from './owner/driverdetails/driverdetails.component';
-import { PassengerdetailsComponent } from './owner/passengerdetails/passengerdetails.component';
 import { AdminhomeComponent } from './admin/adminhome/adminhome.component';
 import { ViewpaymentsComponent} from './driver/viewpayments/viewpayments.component';
 import { PaymentHistoryComponent } from './driver/payment-history/payment-history.component';
@@ -139,7 +138,6 @@ const routes: Routes = [
     children:[
       { path: 'ownerprofile',outlet: 'ownernavbar', component: OwnerprofileComponent},
       { path: 'owner-driverdetails',outlet: 'ownernavbar', component: DriverdetailsComponent},
-      { path: 'owner-passengerdetails', outlet: 'ownernavbar', component: PassengerdetailsComponent},
       { path: 'owner-payments',outlet: 'ownernavbar', component: PaymentsComponent},
       { path: 'owner-editdetails',outlet:'ownernavbar',component:EditdetailsComponent},
       { path: 'changeuserpassword',outlet: 'ownernavbar', component: ChangeUserPasswordComponent},
