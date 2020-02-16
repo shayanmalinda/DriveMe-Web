@@ -92,6 +92,10 @@ import { RatingsComponent } from './owner/driverdetails/ratings/ratings.componen
 import { OwnerhomeComponent } from './owner/ownerhome/ownerhome.component';
 //import { PassengerAvailabilityComponent } from './driver/passenger-availability/passenger-availability.component';
 import { DriverMyratingsComponent } from './driver/driver-myratings/driver-myratings.component';
+import { ParentprofComponent } from './parent/parentprof/parentprof.component';
+import { ParenthomeComponent } from './parent/parenthome/parenthome.component';
+import { PassengerratingsComponent } from './passenger/passengerratings/passengerratings.component';
+import { PassengerpaymentsComponent } from './passenger/passengerpayments/passengerpayments.component';
 
 
 @NgModule({
@@ -173,6 +177,13 @@ import { DriverMyratingsComponent } from './driver/driver-myratings/driver-myrat
 
     //PassengerAvailabilityComponent,
     DriverMyratingsComponent,
+
+    ParentprofComponent,
+
+    ParenthomeComponent,
+
+    PassengerratingsComponent,
+    PassengerpaymentsComponent,
 
 
 

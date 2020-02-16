@@ -59,6 +59,8 @@
                 <a class="nav-link navbarDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: #222"><img src="../../assets/icons/user-solid.svg " style="color: #ddd;height:20px; padding: 0px"></a>
                 <div class="dropdown-menu"  aria-labelledby="navbarDropdown" style="background-color: #333">
                   <a class="dropdown-item" [routerLink]="[{outlets: {'passengernavbar': 'passengerprofile'}}]" routerLinkActive="active" style="color: #ddd">My Profile</a>
+                  <a class="dropdown-item" [routerLink]="[{outlets: {'passengernavbar': 'passengerpayments'}}]" routerLinkActive="active" style="color: #ddd">My Payments</a>
+                  <a class="dropdown-item" [routerLink]="[{outlets: {'passengernavbar': 'passengerratings'}}]" routerLinkActive="active" style="color: #ddd">My Ratings</a>
                   <div style="border-color:#666;" class="dropdown-divider" *ngIf="multipleCharacter"></div>
                 <a class="dropdown-item" *ngIf="driverAvailable" [routerLink]="" (click)="switchToDriver()" routerLinkActive="active" style="color: #ddd">Switch to Driver</a>                  
                 <a class="dropdown-item" *ngIf="adminAvailable" [routerLink]="" (click)="switchToAdmin()" routerLinkActive="active" style="color: #ddd">Switch to Admin</a>
