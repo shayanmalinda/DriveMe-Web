@@ -90,7 +90,7 @@ import { ViewcheckpointsComponent } from './admin/driver/viewcheckpoints/viewche
 import { PassengerProfComponent } from './passenger/passengerprof/passengerprof.component';
 import { RatingsComponent } from './owner/driverdetails/ratings/ratings.component';
 import { OwnerhomeComponent } from './owner/ownerhome/ownerhome.component';
-import { PassengerAvailabilityComponent } from './driver/passenger-availability/passenger-availability.component';
+//import { PassengerAvailabilityComponent } from './driver/passenger-availability/passenger-availability.component';
 import { DriverMyratingsComponent } from './driver/driver-myratings/driver-myratings.component';
 
 
@@ -171,7 +171,7 @@ import { DriverMyratingsComponent } from './driver/driver-myratings/driver-myrat
     RatingsComponent,
     OwnerhomeComponent,
 
-    PassengerAvailabilityComponent,
+    //PassengerAvailabilityComponent,
     DriverMyratingsComponent,
 
 
