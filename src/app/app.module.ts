@@ -81,11 +81,18 @@ import { RecentRatingsChildComponent } from './driver/recent-ratings-child/recen
 import { RateChildComponent } from './driver/rate-child/rate-child.component';
 import { ViewdriverdetailsComponent } from './passenger/viewdriverdetails/viewdriverdetails.component';
 import { PassengerhomeComponent } from './passenger/passengerhome/passengerhome.component';
+
+import { DriverviewpassengerdetailsComponent } from './admin/driver/driverviewpassengerdetails/driverviewpassengerdetails.component';
+import { PassengerAvailabilityComponent } from './driver/passenger-availability/passenger-availability.component';
+import { ViewcheckpointsComponent } from './admin/driver/viewcheckpoints/viewcheckpoints.component';
+
+
 import { PassengerProfComponent } from './passenger/passengerprof/passengerprof.component';
 import { RatingsComponent } from './owner/driverdetails/ratings/ratings.component';
 import { OwnerhomeComponent } from './owner/ownerhome/ownerhome.component';
-import { PassengerAvailabilityComponent } from './driver/passenger-availability/passenger-availability.component';
+//import { PassengerAvailabilityComponent } from './driver/passenger-availability/passenger-availability.component';
 import { DriverMyratingsComponent } from './driver/driver-myratings/driver-myratings.component';
+
 
 @NgModule({
   declarations: [
@@ -156,12 +163,17 @@ import { DriverMyratingsComponent } from './driver/driver-myratings/driver-myrat
     RateChildComponent,
     ViewdriverdetailsComponent,
     PassengerhomeComponent,
+
+    DriverviewpassengerdetailsComponent,
+    PassengerAvailabilityComponent,
+    ViewcheckpointsComponent,
     PassengerProfComponent,
     RatingsComponent,
     OwnerhomeComponent,
 
-    PassengerAvailabilityComponent,
+    //PassengerAvailabilityComponent,
     DriverMyratingsComponent,
+
 
 
   ],  

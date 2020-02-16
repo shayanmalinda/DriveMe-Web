@@ -65,9 +65,9 @@ export class ViewratingsChildComponent implements OnInit {
 
     });
   }
-  viewratings(parentId: string , parent:parent) //function for passing values to recent-ratings page
+  viewratings(parentId: string , childName:string) //function for passing values to recent-ratings page
   {
-   this.router.navigate(['/driver', {outlets: {'drivernavbar': ['recent-ratings-child']}}],{queryParams: {parentId: parentId}})
+   this.router.navigate(['/driver', {outlets: {'drivernavbar': ['recent-ratings-child']}}],{queryParams: {parentId: parentId, childName: childName}})
    
   }
 
