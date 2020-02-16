@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { MatSnackBar } from '@angular/material';
+import { Router } from '@angular/router';
 
 export interface payments{ //Interface Payments
   date: string;
@@ -50,7 +51,11 @@ export class PassengerpendingpaymentsComponent implements OnInit {
   constructor(   private afs: AngularFirestore,
     private route: ActivatedRoute,
     private spinner: NgxSpinnerService,
-    private _snackBar: MatSnackBar,) { }
+    private _snackBar: MatSnackBar,
+    private router: Router) { 
+
+
+    }
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
@@ -64,10 +69,10 @@ export class PassengerpendingpaymentsComponent implements OnInit {
 
   this.afs.collection('users/user/passenger/'+this.passengerId+'/payments').snapshotChanges().subscribe(array =>
     {
+      this.allPayments = []
       this.allPaymentListPassenger = array.map( item=>{
         const data=item.payload.doc.data() as payments;
         const id = item.payload.doc.id;
-        console.log(id+" "+data.isAccepted)
         return {id,...data};
       })
 
@@ -83,6 +88,19 @@ export class PassengerpendingpaymentsComponent implements OnInit {
   }
 
   acceptPayment(paymentId: string){
-    
+
+    this.afs.doc<passenger>('users/user/passenger/'+this.passengerId).valueChanges().subscribe(
+      res=>{
+        let driverId = res.driverId;
+        console.log(driverId)
+        this.afs.doc('users/user/passenger/'+this.passengerId+'/payments/'+paymentId).update({isAccepted:true})
+        // this.router.navigate(['/passenger', {outlets: {'passengernavbar': [':passengerpendingpayments']}}])
+        // location.reload()
+      }
+    );
   }
+
+  
+    
+  
 }

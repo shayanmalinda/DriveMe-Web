@@ -38,7 +38,7 @@ export class PassengerProfComponent implements OnInit {
     userID = localStorage.getItem('passengerId');
     this.passengerId = userID;
 
-    //Get passenger profile details
+    //Get passenger profile details     
     this.afs.doc<Passenger>('users/user/passenger/'+this.passengerId).valueChanges().subscribe(
       res=>{
         this.name = res.name;

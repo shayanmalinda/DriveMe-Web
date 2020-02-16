@@ -49,11 +49,9 @@ export class PassengerratingsComponent implements OnInit {
 
   ngOnInit()
  {
-    this.route.queryParams.subscribe(params => {
-    this.passengerId = params['passengerId']; 
-    this.passengerName=params['passengerName'];   
-  });
+    
 
+  this.passengerId = localStorage.getItem('passengerId')
   this.afs.collection('users/user/passenger/'+this.passengerId+'/ratings').snapshotChanges().subscribe(array =>
     {
       this.allRatingsList = array.map( item=>{
