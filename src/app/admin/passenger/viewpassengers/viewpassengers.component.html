@@ -39,16 +39,24 @@
                     routerLinkActive="active" (click)="changePassword(passenger.id)">
                     <mat-icon>lock_open</mat-icon>Reset Password</button>  
                          
-                <button mat-raised-button color="warn" style="
+                <button mat-raised-button color="primary" style="
                     height: 45px;
                     width: 70%;
                     position: absolute;
                     top: 83%;
                     -ms-transform: translateY(-50%);
                     transform: translateY(-50%);"  
-                    routerLinkActive="active" (click)="removePassenger(passenger.id)">
-                    <mat-icon>delete</mat-icon>Remove Passenger</button>        
+                    routerLinkActive="active" (click)="ratingsandpayments(passenger.id)">
+                    <mat-icon>assignment</mat-icon>Ratings & Payments</button>        
         <!-- [routerLink]="['/admin', {outlets: {'adminnavbar': ['editdriverdetails',id]}}]"     -->
+        </div>
+        <div class="col-md-12" style="align-items: center;text-align: center;">
+            <button mat-raised-button color="warn" style="
+                    margin-top: 10px;
+                    height: 45px;
+                    width: 25%;"  
+                    routerLinkActive="active" (click)="removePassenger(passenger.id)">
+                    <mat-icon>delete</mat-icon>Remove Passenger</button>  
         </div>
         </div>
     </mat-list>
