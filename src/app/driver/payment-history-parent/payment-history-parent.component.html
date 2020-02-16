@@ -19,7 +19,7 @@
 
                             <div class="col-md-12">
                                 <p>Date : {{item.date}}</p>
-                                <p>Value : {{item.value}}</p>
+                                <p>Value : Rs. {{item.value}}</p>
                                 <div *ngIf="item.isAcceped; then accepted else rejected"></div>
                                 <ng-template #accepted>Status : Payment Accepted</ng-template>
                                 <ng-template #rejected>Status : Payment Pending</ng-template>
