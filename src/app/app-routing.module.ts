@@ -54,12 +54,12 @@ import { PaymentsParentComponent } from './driver/payments-parent/payments-paren
 import { ViewratingsChildComponent } from './driver/viewratings-child/viewratings-child.component';
 import { RecentRatingsChildComponent } from './driver/recent-ratings-child/recent-ratings-child.component';
 import { RateChildComponent } from './driver/rate-child/rate-child.component';
-
 import { DriverviewpassengerdetailsComponent } from './admin/driver/driverviewpassengerdetails/driverviewpassengerdetails.component';
-
+import { OwnerPaymentsComponent } from './owner/driverdetails/owner-payments/owner-payments.component';
 import { OwnerhomeComponent } from './owner/ownerhome/ownerhome.component';
 import { PassengerAvailabilityComponent } from './driver/passenger-availability/passenger-availability.component';
 import { DriverMyratingsComponent } from './driver/driver-myratings/driver-myratings.component';
+import { OwnerPassengersComponent } from './owner/driverdetails/owner-passengers/owner-passengers.component';
 
 // import { AdminprofileComponent } from './admin/adminprofile/adminprofile.component';
 
@@ -137,11 +137,13 @@ const routes: Routes = [
     children:[
       { path: 'ownerprofile',outlet: 'ownernavbar', component: OwnerprofileComponent},
       { path: 'owner-driverdetails',outlet: 'ownernavbar', component: DriverdetailsComponent},
-      { path: 'owner-payments',outlet: 'ownernavbar', component: PaymentsComponent},
+      { path: 'owner-payments',outlet: 'ownernavbar', component: OwnerPaymentsComponent},
       { path: 'owner-editdetails',outlet:'ownernavbar',component:EditdetailsComponent},
       { path: 'changeuserpassword',outlet: 'ownernavbar', component: ChangeUserPasswordComponent},
       { path: 'ownerhome', outlet:'ownernavbar', component:OwnerhomeComponent},
       { path: 'owner-ratings', outlet:'ownernavbar', component:OwnerRatingsComponent},
+      { path: 'owner-passengers', outlet: 'ownernavbar', component: OwnerPassengersComponent},
+      
       
       // Define Route Here .................... 
       

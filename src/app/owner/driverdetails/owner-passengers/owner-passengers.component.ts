@@ -71,7 +71,7 @@ export class OwnerPassengersComponent implements OnInit {
 
      ngAfterViewInit(){
       this.route.queryParams.subscribe(params => {
-        this.passengerDriverId = params['passengerId'];
+        this.passengerDriverId = params['driverId'];
       });
   
       this.afs.collection('users/user/driver/'+this.passengerDriverId+'/passenger').snapshotChanges().subscribe(array=>
