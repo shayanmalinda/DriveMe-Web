@@ -96,6 +96,7 @@ import { ParentprofComponent } from './parent/parentprof/parentprof.component';
 import { ParenthomeComponent } from './parent/parenthome/parenthome.component';
 import { PassengerratingsComponent } from './passenger/passengerratings/passengerratings.component';
 import { PassengerpaymentsComponent } from './passenger/passengerpayments/passengerpayments.component';
+import { PassengerpendingpaymentsComponent } from './passenger/passengerpendingpayments/passengerpendingpayments.component';
 
 
 @NgModule({
@@ -184,6 +185,7 @@ import { PassengerpaymentsComponent } from './passenger/passengerpayments/passen
 
     PassengerratingsComponent,
     PassengerpaymentsComponent,
+    PassengerpendingpaymentsComponent,
 
 
 
