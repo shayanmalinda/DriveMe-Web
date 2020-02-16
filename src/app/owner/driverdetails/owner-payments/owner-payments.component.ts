@@ -71,7 +71,7 @@ export class OwnerPaymentsComponent implements OnInit {
       this.driverId = params['driverId']; 
     });
 
-    this.afs.collection('users/user/driver/'+this.driverId+'/owner-payments').snapshotChanges().subscribe(array =>
+    this.afs.collection('users/user/driver/'+this.driverId+'/payments').snapshotChanges().subscribe(array =>
       {
         this.allpaymentsList = array.map( item=>{
           const data=item.payload.doc.data() as payments;
