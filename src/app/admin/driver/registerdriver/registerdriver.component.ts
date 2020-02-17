@@ -194,12 +194,12 @@ export class RegisterdriverComponent implements OnInit {
 
 
   registerDriver(){
+    var hashedPassword = Md5.hashStr(this.pass1).toString();
     this.waiting = true;
 
     let id = this.afs.createId();
 
-    var hashedPassword = Md5.hashStr(this.pass1).toString();
-
+    console.log("hashedpassword is=",hashedPassword)
     this.userCredentials={
       email: this.driverEmail,
       password: hashedPassword,
