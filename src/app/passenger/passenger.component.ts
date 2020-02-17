@@ -25,7 +25,6 @@ export class PassengerComponent  implements OnInit {
   ) { 
     if(localStorage.getItem("passengerId")){
 
-      this.router.navigate(['/passenger', {outlets: {'passengernavbar': ['passengerhome']}}])
 
 
       if(localStorage.getItem("driverId")){

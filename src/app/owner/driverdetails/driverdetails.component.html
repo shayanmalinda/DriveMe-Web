@@ -2,7 +2,7 @@
 <h1>
 <app-ngxspinner></app-ngxspinner>
 <div class="container navbar-margin">
-    <mat-list role="list"  *ngFor="let driver of drivers | async; let last = last">
+    <mat-list role="list"  *ngFor="let driver of showingdriverList; let last = last">
         <div class="row pt-4 pb-3 mb-4" style="border: 3.5px solid #FF5722; border-radius: 20px;" *ngIf="!driver.isDeleted">
             <div class="col-md-3" style="vertical-align: middle;text-align: center;"> 
                 <div class="row" style="vertical-align: middle;
@@ -31,7 +31,7 @@
                     height: 45px;
                     width: 80%;
                     position: absolute;
-                    top: 25%;
+                    top: 15%;
                     -ms-transform: translateY(-50%);
                     transform: translateY(-50%);" (click)="viewratings(driver.id,driver)" 
                     routerLinkActive="active" >Ratings</button> 
@@ -40,29 +40,32 @@
                     height: 45px;
                     width: 80%;
                     position: absolute;
-                    top: 25%;
+                    top: 35%;
                     -ms-transform: translateY(-50%);
-                    transform: translateY(-50%);" (click)="viewpassengers(passenger.id,passenger)" 
-                    routerLinkActive="active" ><mat-icon>list</mat-icon>View Passengers</button> 
+                    transform: translateY(-50%);" (click)="viewpassengers(driver.id,driver)" 
+                    routerLinkActive="active" >View Passengers</button> 
+
                          
                 <button mat-raised-button color="primary" style="
                     height: 45px;
                     width: 80%;
                     position: absolute;
-                    top: 45%;
+                    top: 55%;
                     -ms-transform: translateY(-50%);
-                    transform: translateY(-50%);" (click)="Payments(driver.id)"
-                    routerLinkActive="active" ><mat-icon>payment</mat-icon>Payments</button> 
+                    transform: translateY(-50%);" (click)="viewpayments(driver.id,driver)"
+                    routerLinkActive="active" >Payments</button> 
 
                 <button mat-raised-button color="warn" style="
                     height: 45px;
                     width: 80%;
                     position: absolute;
-                    top: 65%;
+                    top: 75%;
                     -ms-transform: translateY(-50%);
                     transform: translateY(-50%);"  
                     routerLinkActive="active" (click)="removeDriver(driver.id)">
-                    <mat-icon>delete</mat-icon>Remove Driver</button>          
+                    <mat-icon>delete</mat-icon>Remove Driver</button> 
+
+                                   
         <!-- [routerLink]="['/admin', {outlets: {'adminnavbar': ['editdriverdetails',id]}}]"     -->
         </div>
         </div>
