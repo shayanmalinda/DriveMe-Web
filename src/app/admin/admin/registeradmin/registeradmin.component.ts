@@ -9,6 +9,7 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
 import { MatSpinner } from '@angular/material';
 import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
+import {Md5} from 'ts-md5/dist/md5';
 
 export interface Admin{
   name: string;
@@ -135,14 +136,16 @@ export class RegisteradminComponent implements OnInit {
     this.file = event.target.files[0];
   }
   
-  registerAdmin(){
+  registerAdmin(){    
+    var hashedPassword = Md5.hashStr(this.pass1).toString();
+
     this.waiting = true;
  
     let id = this.afs.createId();
 
     this.userCredentials={
       email: this.adminEmail,
-      password: this.pass1,
+      password: hashedPassword,
       adminId: id
     }
 
