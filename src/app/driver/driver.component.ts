@@ -75,6 +75,13 @@ export class DriverComponent implements OnInit
     this.router.navigateByUrl('/owner')
   }
 
+  //Generate Printouts
+  generateReport()
+  {
+    window.print()
+  }
+
+
   logout() //function to logout from driver 
   {
     

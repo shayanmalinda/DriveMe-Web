@@ -64,7 +64,20 @@ export class DriverMyratingsComponent implements OnInit {
           const id=item.payload.doc.id;
           return {id,...data};
         })
+
+
+        if(this.allRatingList.length==0){ //SnackBar Meesage Box for Showing No Results-Children
+          //this.spinner.hide()
+  
+          this.openSnackBar("No Ratings added yet!"," Ok ");
+        }
       });
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 4000,
+    });
   }
 
 }
