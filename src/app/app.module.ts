@@ -100,6 +100,7 @@ import { PassengerpaymentsComponent } from './passenger/passengerpayments/passen
 import { PassengerpendingpaymentsComponent } from './passenger/passengerpendingpayments/passengerpendingpayments.component';
 
 import { PassengerratingspaymentsComponent } from './admin/passenger/passengerratingspayments/passengerratingspayments.component';
+import { DriverratingsComponent } from './passenger/driverratings/driverratings.component';
 
 
 @NgModule({
@@ -193,6 +194,7 @@ import { PassengerratingspaymentsComponent } from './admin/passenger/passengerra
     PassengerratingsComponent,
     PassengerpaymentsComponent,
     PassengerpendingpaymentsComponent,
+    DriverratingsComponent,
 
 
 
