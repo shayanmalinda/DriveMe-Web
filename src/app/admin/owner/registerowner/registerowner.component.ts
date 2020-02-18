@@ -90,8 +90,7 @@ export class RegisterownerComponent implements OnInit {
     private afStorage: AngularFireStorage,
     ) {
       this.ownerDoc = this.afs.collection<Owner>('users/user/owner');
-      
-      
+
       this.owners = this.ownerDoc.snapshotChanges().pipe(
         map(actions => actions.map(a=>{
           var data = a.payload.doc.data() as Owner;
@@ -102,7 +101,7 @@ export class RegisterownerComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+
     this.firstFormGroup = this._formBuilder.group({
       ctrl1: ['', Validators.required],
       ctrl6: ['', Validators.required],
@@ -136,11 +135,12 @@ export class RegisterownerComponent implements OnInit {
   }
   
   registerOwner(){
+    var hashedPassword = Md5.hashStr(this.pass1).toString();
     this.waiting = true;
  
     let id = this.afs.createId();
 
-    var hashedPassword = Md5.hashStr(this.pass1).toString();
+    console.log("hashed password is"+hashedPassword)
     this.userCredentials={
       email: this.ownerEmail,
       password: hashedPassword,

@@ -100,7 +100,12 @@ import { PassengerpaymentsComponent } from './passenger/passengerpayments/passen
 import { PassengerpendingpaymentsComponent } from './passenger/passengerpendingpayments/passengerpendingpayments.component';
 
 import { PassengerratingspaymentsComponent } from './admin/passenger/passengerratingspayments/passengerratingspayments.component';
+<<<<<<< HEAD
 import { DriverratingsComponent } from './passenger/driverratings/driverratings.component';
+=======
+import { ContactinfoDriverComponent } from './owner/contactinfo-driver/contactinfo-driver.component';
+import { ContactinfoAdminsComponent } from './owner/contactinfo-admins/contactinfo-admins.component';
+>>>>>>> 185d4b887a35b647c9d57cb818df1c87ee229892
 
 
 @NgModule({
@@ -194,7 +199,12 @@ import { DriverratingsComponent } from './passenger/driverratings/driverratings.
     PassengerratingsComponent,
     PassengerpaymentsComponent,
     PassengerpendingpaymentsComponent,
+<<<<<<< HEAD
     DriverratingsComponent,
+=======
+    ContactinfoDriverComponent,
+    ContactinfoAdminsComponent,
+>>>>>>> 185d4b887a35b647c9d57cb818df1c87ee229892
 
 
 
