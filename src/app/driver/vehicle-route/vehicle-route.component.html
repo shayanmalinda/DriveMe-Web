@@ -1,7 +1,9 @@
 <!-- Display map -->
 
+<h1 style="position:absolute;z-index:1; padding-top: 20px;padding-left: 25px;font-size: 30px;text-shadow: 2px 2px #ffffff;
+font-weight: 700;  ">My Route</h1>
 
 <agm-map [latitude]="latitude" [longitude]="longitude" [fitBounds]="true">
-    <agm-marker *ngFor="let item of showingLocationList" [latitude]="item.placeLat" [longitude]="item.placeLng" [agmFitBounds]="true" >
+    <agm-marker *ngFor="let item of showingLocationList" [latitude]="item.placeLat" [longitude]="item.placeLng" [agmFitBounds]="true">
     </agm-marker>
 </agm-map>

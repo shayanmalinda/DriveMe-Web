@@ -62,10 +62,17 @@ export class RecentRatingsComponent implements OnInit {
         return {id,...data};
       })
      // console.log(this.allRatingsList);
-      
-    } );
+    
+    });
 
  }
+
+ openSnackBar(message: string, action: string) {
+  this._snackBar.open(message, action, {
+    duration: 4000,
+  });
+}
+
  
 
 }

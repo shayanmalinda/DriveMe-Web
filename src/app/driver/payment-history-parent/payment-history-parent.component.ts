@@ -51,7 +51,10 @@ export class PaymentHistoryParentComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private _snackBar: MatSnackBar,
   )
-   { }
+   { 
+
+    console.log("cccc");
+   }
 
 
   ngOnInit() 
@@ -62,18 +65,33 @@ export class PaymentHistoryParentComponent implements OnInit {
     });
 
 
-    //console.log('id',this.passengerId);
+    console.log('id',this.parentId)
 
     this.afs.collection('users/user/parent/'+this.parentId+'/payments').snapshotChanges().subscribe(array =>
       {
+        //console.log("hii")
         this.allPaymentsParent = array.map( item=>{
           const data=item.payload.doc.data() as payments;
           const id = item.payload.doc.id;
           return {id,...data};
         })
-       console.log(this.allPaymentsParent);
-        
-      } );
+        //console.log("array="+this.allPaymentsParent.length)
+        if(this.allPaymentsParent.length==0){ //SnackBar Meesage Box for Showing No Results-Children
+          //this.spinner.hide()
+  
+          this.openSnackBar(" No Payments Available Currently"," Ok ");
+        }  
+  
+      });
+
+      
+  }
+
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 4000,
+    });
   }
 
 

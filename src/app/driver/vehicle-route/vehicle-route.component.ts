@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { MatSnackBar } from '@angular/material';
 
-export interface location{
+export interface location{ //Interface for Locations
   isActive: Boolean;
   isEnd: Boolean;
   isStart: Boolean;
@@ -60,13 +60,13 @@ export class VehicleRouteComponent implements OnInit {
 
     this.afs.collection('users/user/driver/'+this.driverId+'/checkpoints').snapshotChanges().subscribe(array=>
    {
-    this.allLocationList = array.map( item =>{ //adding passenger's data and Id to one
+    this.allLocationList = array.map( item =>{ //adding locations's data and Id to one
         const data = item.payload.doc.data() as location;
         const id = item.payload.doc.id;
         return {id,...data};
    });
 
-   this.allLocationList.forEach(element =>{ //filtering passengers for logged in driver
+   this.allLocationList.forEach(element =>{ //filtering locations where element.isActive==TRUE for logged in driver
     if(element.isActive == true){
       this.showingLocationList.push(element);
     }

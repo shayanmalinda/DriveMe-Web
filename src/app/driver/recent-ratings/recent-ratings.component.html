@@ -1,7 +1,8 @@
 <app-ngxspinner></app-ngxspinner>
-<div class="container-fluid top-margin">
+<br>
+<div class="container top-margin">
     <div>
-        <p style="margin:20px;font-size: 30px; text-align:center; font-weight: 400;font-family: Georgia, 'Times New Roman', Times, serif">Recent Ratings of {{passengerName}}</p>
+        <p style="margin:0px;font-size: 30px; text-align:center; font-weight: 400;font-family: Georgia, 'Times New Roman', Times, serif">Recent Ratings of {{passengerName}}</p>
     </div>
 
 
@@ -11,17 +12,19 @@
 
             <mat-list style="margin-left: 40px;margin-right:40px">
                 <div class="row pt-4 pb-3 mb-4 " style="border: 1.5px solid #FF5722; border-radius: 20px;">
-                    <div class="row">
-                        <div class="col-md-4" style="vertical-align: right; justify-content: center; ">
-                            <img src="../../../../assets/rating.png " alt="passenger Icon " style="width: 120px;margin-left: 20px;">
-                        </div>
-                        <div class="col-md-8">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-4" style="vertical-align: right; justify-content: center; ">
+                                <img src="../../../../assets/star.png " alt="passenger Icon " style="width: 110px;margin-left: 20px;">
+                            </div>
+                            <div class="col-md-8">
 
-                            <div class="col-md-12">
-                                <p>Stars : {{item.stars}} / 5</p>
-                                <p>Comments : {{item.rating}}</p>
-                                <p>Date: {{item.date}}</p>
+                                <div class="col-md-12">
+                                    <p>Stars : {{item.stars}} / 5</p>
+                                    <p>Comment : {{item.rating}}</p>
+                                    <p>Date: {{item.date}}</p>
 
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -29,9 +32,3 @@
             </mat-list>
         </div>
     </div>
-
-    <!-- allRatingsList
-
-    <p>Stars : {{item.stars}}</p>
-    <p>Comments : {{item.rating}}</p>
-    <p>Date: {{item.date}}</p> -->

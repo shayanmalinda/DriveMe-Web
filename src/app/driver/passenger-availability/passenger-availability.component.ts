@@ -103,15 +103,23 @@ export class PassengerAvailabilityComponent implements OnInit {
 
                     //console.log(temptostring);
                     //  console.log(temp1tostring);
-                    //  console.log(temp2tostring);
-
-                    const date=temp0tostring+"/"+temptostring+"/"+temp2tostring;
+                   
                     
+                    const date=temp0tostring+"/"+temptostring+"/"+temp2tostring; // Setting date type to Standard form used in database
+                   
                     return {id2:id2,date:date,...data2};
-                  })
-              })
-        });
 
+                  })
+
+                  if(this.showingavailabilityList.length==0){ //SnackBar Meesage Box for Showing No Availabilities for all Passengers
+                    //this.spinner.hide()
+            
+                    this.openSnackBar("No Availability Notes Currently Available"," Ok ");
+                  }
+          
+              })
+             
+        });
 
       })
 
@@ -119,7 +127,7 @@ export class PassengerAvailabilityComponent implements OnInit {
 
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action, {
-      duration: 2000,
+      duration: 4000,
     });
   }
 

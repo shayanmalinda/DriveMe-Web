@@ -87,6 +87,12 @@ export class PassengerListComponent implements OnInit {
           this.showingPassengerList.push(element);
         }
       })
+
+      if(this.showingPassengerList.length==0){ // Snack Bar Message Box for showing No Results-Passengers
+        //this.spinner.hide()
+
+        this.openSnackBar("No Passengers Currently Available"," Ok ");
+      }
       
     });
 
@@ -106,6 +112,12 @@ export class PassengerListComponent implements OnInit {
           this.showingParentList.push(element);
         }
       })
+
+      if(this.showingParentList.length==0){ //SnackBar Meesage Box for Showing No Results-Children
+        //this.spinner.hide()
+
+        this.openSnackBar("No Children Currently Available"," Ok ");
+      }
       
     });
     
@@ -114,7 +126,7 @@ export class PassengerListComponent implements OnInit {
  
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action, {
-      duration: 2000,
+      duration: 4000,
     });
   }
 

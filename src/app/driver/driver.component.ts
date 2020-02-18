@@ -75,11 +75,22 @@ export class DriverComponent implements OnInit
     this.router.navigateByUrl('/owner')
   }
 
+  //Generate Printouts
+  generateReport()
+  {
+    window.print()
+  }
+
+
   logout() //function to logout from driver 
   {
     
     localStorage.clear();
     this.router.navigate([''], { replaceUrl: true });
+  }
+
+  homepage(){
+    this.router.navigate(['/driver',{outlets: {'drivernavbar':['driver-vehicleroute']}}])
   }
 
 }

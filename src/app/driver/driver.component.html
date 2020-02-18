@@ -2,7 +2,7 @@
 
 
 <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #222">
-    <a class="navbar-brand" style="color: white" href="#">DriveMe</a>
+    <a class="navbar-brand" style="color: white" (click)="homepage()">DriveMe</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -72,7 +72,12 @@
             </li>
         </ul>
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item dropdown" style="padding-right: 30px">
+            <li class="nav-item" style="padding-right: 0px">
+                <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../../assets/icons/print-solid.svg" (click)="generateReport()" style="color: #ddd;height:20px; padding: 0px"></a>
+            </li>
+
+
+            <li class="nav-item dropdown" style="padding-right: 30px; padding-left: 30px;">
                 <a class="nav-link navbarDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: #222"><img src="../../assets/icons/user-solid.svg " style="color: #ddd;height:20px; padding: 0px"></a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: #333">
                     <a class="dropdown-item" [routerLink]="[{outlets: {'drivernavbar': 'driver-profile'}}]" routerLinkActive="active" style="color: #ddd">My Profile</a>

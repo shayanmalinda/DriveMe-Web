@@ -36,7 +36,7 @@ export class RecentRatingsChildComponent implements OnInit {
  //parent
  parentObservable: Observable<parent[]>;
  parentId : string;
-
+childName : string;
  //ratings
  allRatingsList: rating[];
 
@@ -52,8 +52,11 @@ export class RecentRatingsChildComponent implements OnInit {
   {
     this.route.queryParams.subscribe(params=> {
       this.parentId=params['parentId'];
+      this.childName=params['childName'];
     });
 
+    //console.log(this.childName);
+    
     this.afs.collection('users/user/parent/'+this.parentId+'/ratings').snapshotChanges().subscribe(array =>
       {
         this.allRatingsList = array.map( item=>{
