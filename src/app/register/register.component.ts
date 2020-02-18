@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -10,7 +11,8 @@ export class RegisterComponent implements OnInit {
   isParent = false;
   isOwner = false;
   isPassenger = false;
-  constructor() { 
+  constructor(
+    private router: Router,) { 
     if(localStorage.getItem("driverId")){
       this.isDriver = true;
     }
@@ -26,6 +28,12 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  visitDriveme(){
+    console.log("visit driveme")
+    this.router.navigateByUrl('/visitdriveme')
+
   }
 
 }

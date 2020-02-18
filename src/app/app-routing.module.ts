@@ -166,7 +166,7 @@ const routes: Routes = [
     ]
   },
   { path: 'register', component: RegisterComponent},
-  { path: 'visitDriveme', component: VisitdrivemeComponent},
+  { path: 'visitdriveme', component: VisitdrivemeComponent},
   
  
 ];
