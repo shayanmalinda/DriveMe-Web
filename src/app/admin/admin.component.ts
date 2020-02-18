@@ -66,6 +66,10 @@ export class AdminComponent implements OnInit {
     this.router.navigateByUrl('/owner')
   }
 
+  generateReport(){
+    window.print()
+  }
+
   logout(){
     // this.spinner.show()
     // setTimeout(function(){

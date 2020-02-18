@@ -100,6 +100,7 @@ import { PassengerpaymentsComponent } from './passenger/passengerpayments/passen
 import { PassengerpendingpaymentsComponent } from './passenger/passengerpendingpayments/passengerpendingpayments.component';
 
 import { PassengerratingspaymentsComponent } from './admin/passenger/passengerratingspayments/passengerratingspayments.component';
+import { VisitdrivemeComponent } from './shared/visitdriveme/visitdriveme.component';
 import { ContactinfoDriverComponent } from './owner/contactinfo-driver/contactinfo-driver.component';
 import { ContactinfoAdminsComponent } from './owner/contactinfo-admins/contactinfo-admins.component';
 
@@ -195,6 +196,7 @@ import { ContactinfoAdminsComponent } from './owner/contactinfo-admins/contactin
     PassengerratingsComponent,
     PassengerpaymentsComponent,
     PassengerpendingpaymentsComponent,
+    VisitdrivemeComponent,
     ContactinfoDriverComponent,
     ContactinfoAdminsComponent,
 
