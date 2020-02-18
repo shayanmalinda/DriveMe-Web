@@ -101,6 +101,8 @@ import { PassengerpendingpaymentsComponent } from './passenger/passengerpendingp
 
 import { PassengerratingspaymentsComponent } from './admin/passenger/passengerratingspayments/passengerratingspayments.component';
 import { VisitdrivemeComponent } from './shared/visitdriveme/visitdriveme.component';
+import { ContactinfoDriverComponent } from './owner/contactinfo-driver/contactinfo-driver.component';
+import { ContactinfoAdminsComponent } from './owner/contactinfo-admins/contactinfo-admins.component';
 
 
 @NgModule({
@@ -195,6 +197,8 @@ import { VisitdrivemeComponent } from './shared/visitdriveme/visitdriveme.compon
     PassengerpaymentsComponent,
     PassengerpendingpaymentsComponent,
     VisitdrivemeComponent,
+    ContactinfoDriverComponent,
+    ContactinfoAdminsComponent,
 
 
 
