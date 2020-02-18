@@ -82,4 +82,8 @@ export class DriverComponent implements OnInit
     this.router.navigate([''], { replaceUrl: true });
   }
 
+  homepage(){
+    this.router.navigate(['/driver',{outlets: {'drivernavbar':['driver-vehicleroute']}}])
+  }
+
 }

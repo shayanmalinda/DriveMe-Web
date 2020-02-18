@@ -50,8 +50,8 @@ export class PaymentsComponent implements OnInit {
 
   paymentForm = this.formBuilder.group({
    // passengerId: [''],
-    date: [''],
-    amount: ['']
+    date: ['',Validators.required],
+    amount: ['',Validators.required]
   });
 
   waiting = false;
@@ -92,6 +92,7 @@ export class PaymentsComponent implements OnInit {
     
 
   }
+  
 
   registerpayment(formData)
   {
@@ -164,7 +165,7 @@ export class PaymentsComponent implements OnInit {
 
    // console.log("month",month);
     const day=Number(datearray[2]);
-    console.log("day",datearray[2]);
+    //console.log("day",datearray[2]);
 
     const year=Number(datearray[3]);
     //console.log("year",datearray[3]);

@@ -9,10 +9,12 @@
 
         <form [formGroup]="paymentForm">
 
+            <div>
+                <mat-form-field class="form-field-full-width">
+                    <input matInput class="form-control" type="number" min="0" max="10000" placeholder="Amount(Rs.)" formControlName="amount" required>
+                </mat-form-field>
 
-            <mat-form-field class="form-field-full-width">
-                <input matInput class="form-control" type="text" placeholder="Amount(Rs.)" formControlName="amount" required>
-            </mat-form-field>
+            </div>
 
 
             <!-- <mat-form-field class="form-field-full-width">
