@@ -17,6 +17,7 @@ export class AdminComponent implements OnInit {
   constructor(
     private router: Router,
     private spinner: NgxSpinnerService,) {
+
       // this.router.navigate(['/admin', {outlets: {'adminnavbar': ['adminhome']}}])
 
     if(localStorage.getItem("adminId")){
@@ -63,6 +64,10 @@ export class AdminComponent implements OnInit {
 
   switchToOwner(){
     this.router.navigateByUrl('/owner')
+  }
+
+  generateReport(){
+    window.print()
   }
 
   logout(){

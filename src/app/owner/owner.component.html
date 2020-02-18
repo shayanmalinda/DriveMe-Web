@@ -16,6 +16,20 @@
             <a class="dropdown-item" [routerLink]="[{outlets: {'ownernavbar': 'owner-driverdetails'}}]" routerLinkActive="active" style="color: #ddd">View Drivers</a>
           </div>
         </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle navbarDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Contact info
+          </a>
+          <div class="dropdown-menu"  aria-labelledby="navbarDropdown"  style="background-color: #333">
+            <a class="dropdown-item" [routerLink]="[{outlets: {'ownernavbar': 'contactinfo-driver'}}]" routerLinkActive="active" style="color: #ddd">Contact your driver</a>
+            <a class="dropdown-item" [routerLink]="[{outlets: {'ownernavbar': 'contactinfo-admins'}}]" routerLinkActive="active" style="color: #ddd">Contact admins</a>
+          </div>
+          
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link" [routerLink]="" (click)="generatereport()" routerLinkActive="active" style="color: #ddd">Generate Report</a>
+      </li>
+        
         </ul>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown" style="padding-right: 30px" >
@@ -23,8 +37,7 @@
 
                 <div class="dropdown-menu"  aria-labelledby="navbarDropdown" style="background-color: #333">
                   <a class="dropdown-item" [routerLink]="[{outlets: {'ownernavbar': 'ownerprofile'}}]" routerLinkActive="active" style="color: #ddd">My Profile</a>
-                  <a class="dropdown-item" [routerLink]="" (click)="generatereport()" routerLinkActive="active" style="color: #ddd">Generate Report</a>
-                  
+                                    
                   <div style="border-color:#666;" class="dropdown-divider" *ngIf="multipleCharacter"></div>
                   <a class="dropdown-item" *ngIf="driverAvailable" [routerLink]="" (click)="switchToDriver()" routerLinkActive="active" style="color: #ddd">Switch to Driver</a>                  
                   <a class="dropdown-item" *ngIf="passengerAvailable" [routerLink]="" (click)="switchToPassenger()" routerLinkActive="active" style="color: #ddd">Switch to Passenger</a>

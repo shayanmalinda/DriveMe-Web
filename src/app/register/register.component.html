@@ -17,7 +17,7 @@
     <div class="row" class="btn-row">
         <div class="col-md-9" class="btn-div">
             <div class="row btn1" *ngIf="!isDriver">
-                <div class="col-md-12 single-button"><button mat-raised-button color="accent" class="character-button">Driver</button></div>
+                <div class="col-md-12 single-button"><button mat-raised-button color="accent" class="character-button" (click)="visitDriveme()">Driver</button></div>
             </div>  
             <div class="row btn1" *ngIf="!isPassenger">
                 <div class="col-md-12 single-button"><button mat-raised-button color="accent" class="character-button">Passenger</button></div>
@@ -26,7 +26,7 @@
                 <div class="col-md-12 single-button"><button mat-raised-button color="accent" class="character-button">Parent</button></div>
             </div>
             <div class="row btn1" *ngIf="!isOwner">
-                <div class="col-md-12 single-button"><button mat-raised-button color="accent" class="character-button">Owner</button></div>
+                <div class="col-md-12 single-button"><button mat-raised-button color="accent" class="character-button"  (click)="visitDriveme()">Owner</button></div>
             </div>
         </div>  
     </div>
