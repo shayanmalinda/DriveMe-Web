@@ -58,7 +58,7 @@ export class ViewpaymentsParentComponent implements OnInit {
       this.allParentList = array.map( item =>{ //adding parent's data and Id to one
       const data = item.payload.doc.data() as parent;
       const id = item.payload.doc.id;
-        return {id,...data        }  ;
+        return {id,...data}  ;
       });
       //console.log(this.passengerId);
 
@@ -67,6 +67,11 @@ export class ViewpaymentsParentComponent implements OnInit {
           this.filteredParentList.push(element);
         }
       })
+      if(this.filteredParentList.length==0){ //SnackBar Meesage Box for Showing No Availabilities for all parents
+        //this.spinner.hide()
+
+        this.openSnackBar("No Children Available in Your List"," Ok ");
+      }
       //console.log(this.passengerId);
 
     });
@@ -82,6 +87,12 @@ export class ViewpaymentsParentComponent implements OnInit {
   {
    this.router.navigate(['/driver', {outlets: {'drivernavbar': ['driver-payments-parent']}}],{queryParams: {parentId: parentId}})
    
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 4000,
+    });
   }
 
 
