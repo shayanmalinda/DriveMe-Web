@@ -62,6 +62,11 @@ export class PassengerListComponent implements OnInit {
   allParentList: parent[]; //full array of Parents
   showingParentList: parent[] = [] as parent[]; //display array
 
+  //For No Results
+  len1: number;
+  len2: number;
+  //totalPassengers: number;
+
   constructor(
     private afs: AngularFirestore,
     private router: Router,
@@ -88,6 +93,8 @@ export class PassengerListComponent implements OnInit {
         }
       })
 
+      this.len1=this.showingPassengerList.length;
+      //console.log("len1",this.len1);
       // if(this.showingPassengerList.length==0){ // Snack Bar Message Box for showing No Results-Passengers
       //   //this.spinner.hide()
 
@@ -113,15 +120,33 @@ export class PassengerListComponent implements OnInit {
         }
       })
 
+      this.len2=this.showingParentList.length;
+      //console.log("len2",this.len2);
+
       // if(this.showingParentList.length==0){ //SnackBar Meesage Box for Showing No Results-Children
       //   //this.spinner.hide()
 
       //   this.openSnackBar("No Children Currently Available"," Ok ");
       // }
+
+      var totalPassengers= this.len1+this.len2;
+      //console.log(totalPassengers);
+
+      if(totalPassengers==0)
+      {
+          this.openSnackBar("No Passengers Currently Available in Your List", " OK "); 
+      }
       
     });
-    
   }
+
+  removePassenger(passengerId: string) //Function for deleting Passengers
+{
+  console.log('passId',passengerId);
+  this.afs.doc('users/user/passenger/'+passengerId).update({driverId:''}).then(_=>{
+    this.openSnackBar("Passenger is Removed From Your List","Done");
+  })
+}
 
  
   openSnackBar(message: string, action: string) {
