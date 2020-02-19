@@ -1,5 +1,5 @@
 import { Component, OnInit , ChangeDetectorRef } from '@angular/core';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl, FormGroupDirective, NgForm } from '@angular/forms';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { MatSnackBar, MatStepper } from '@angular/material';
 import { AngularFireStorage } from '@angular/fire/storage';
@@ -21,6 +21,29 @@ export interface Passenger{
   styleUrls: ['./editpassengerdetails.component.scss']
 })
 export class EditpassengerdetailsComponent implements OnInit {
+
+  emailFormControl = new FormControl('', [
+    Validators.required,
+    Validators.email,
+  ]);
+
+   ctrl2 = new FormControl('', [
+    Validators.required,  
+    Validators.maxLength(10),
+    Validators.minLength(10),
+    Validators.pattern("^[0-9]*$"),
+  ]);
+
+  ctrl4 = new FormControl('', [
+    Validators.required,  
+    Validators.maxLength(12),
+    Validators.minLength(10),
+  ]);
+
+  ctrl5 = new FormControl('', [
+    Validators.required,  
+    Validators.minLength(6),
+  ]);
   
   passengerName: string;
   passengerEmail: string;
@@ -82,7 +105,7 @@ export class EditpassengerdetailsComponent implements OnInit {
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
       ctrl1: ['', Validators.required],
-      // ctrl2: ['', Validators.required],
+      ctrl2: ['', Validators.required],
       ctrl3: ['', Validators.required],
       ctrl4: ['', Validators.required],
       // ctrl5: ['', Validators.required],

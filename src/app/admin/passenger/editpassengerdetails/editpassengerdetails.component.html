@@ -14,9 +14,12 @@
                     <mat-form-field class="form-field-full-width">
                         <input [(ngModel)]="passengerName" matInput placeholder="Name"  formControlName="ctrl1" required>
                     </mat-form-field><br>
-                    <!-- <mat-form-field class="form-field-full-width">
+                    <mat-form-field class="form-field-full-width">
                         <input [(ngModel)]="passengerEmail" matInput placeholder="Email" formControlName="ctrl2" required>
-                    </mat-form-field><br> -->
+                        <mat-error *ngIf="emailFormControl.invalid">
+                            Please enter a valid Email Address
+                          </mat-error>
+                    </mat-form-field><br>
                     <mat-form-field class="form-field-full-width">
                         <input [(ngModel)]="passengerAddress" matInput placeholder="Address" formControlName="ctrl3" required>
                     </mat-form-field><br>

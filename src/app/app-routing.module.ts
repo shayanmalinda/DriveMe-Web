@@ -131,6 +131,8 @@ const routes: Routes = [
     children:[
       { path: 'parenthome',outlet: 'parentnavbar', component: ParenthomeComponent},
       { path: 'parentprof',outlet: 'parentnavbar', component: ParentprofComponent},
+      { path: 'parentprof',outlet: 'parentnavbar', component: ParentprofComponent},
+      { path: 'editparentdetails',outlet: 'parentnavbar', component: EditparentdetailsComponent},
 
 
     ]
