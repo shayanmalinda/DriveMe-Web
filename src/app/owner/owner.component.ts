@@ -2,12 +2,21 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 
+export interface Owner{
+  name: string;
+  // email: string;
+  address: string;
+  telephone: string;
+  nic: string;
+  isDeleted: Boolean;
+}
 @Component({
   selector: 'app-owner',
   templateUrl: './owner.component.html',
   styleUrls: ['./owner.component.scss']
 })
 export class OwnerComponent implements OnInit {
+  username: string;
   multipleCharacter: boolean=false;
   driverAvailable: boolean=false;
   passengerAvailable: boolean=false;
@@ -77,4 +86,5 @@ switchToOwner(){
   generatereport(){
     window.print();
   }
+
 }
