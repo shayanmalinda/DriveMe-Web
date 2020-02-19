@@ -12,6 +12,7 @@
             <div>
                 <mat-form-field class="form-field-full-width">
                     <input matInput class="form-control" type="number" min="0" max="10000" placeholder="Amount(Rs.)" formControlName="amount" required>
+                    <mat-error *ngIf="paymentForm.get('amount').invalid && paymentForm.get('amount').touched ">Amount is required</mat-error>
                 </mat-form-field>
 
             </div>
@@ -23,16 +24,17 @@
 
             <mat-form-field class="form-field-full-width">
                 <mat-label>Choose the date</mat-label>
-                <input matInput [matDatepicker]="picker" type="text" formControlName="date" required>
+                <input matInput [max]="minDate" [matDatepicker]="picker" type="text" formControlName="date" required>
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
+                <mat-error *ngIf="paymentForm.get('date').invalid && paymentForm.get('date').touched ">Date is required</mat-error>
             </mat-form-field>
 
 
             <p style="margin:0px;font-size: 15px; font-weight: 400;font-family: Georgia, 'Times New Roman', Times, serif">Confirm Payments?</p>
             <div class="pt-4 pb-3">
                 <button class="button" mat-raised-button color="accent" (click)="paymentForm.reset()">Clear</button>
-                <button class="button" mat-raised-button color="primary" (click)="registerpayment(paymentForm.value)">Confirm</button>
+                <button [disabled]="paymentForm.invalid" class="button" mat-raised-button color="primary" (click)="registerpayment(paymentForm.value)">Confirm</button>
             </div>
         </form>
 

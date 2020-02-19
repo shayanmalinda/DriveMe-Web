@@ -54,7 +54,7 @@ export class PassengerListComponent implements OnInit {
   allPassengerList: passenger[]; //full array of passengers
   showingPassengerList: passenger[] = [] as passenger[] ; //display array
 
-  private usersDoc: AngularFirestoreCollection<userCredentials>; 
+ // private usersDoc: AngularFirestoreCollection<userCredentials>; 
   private passengerDriverId: string;
  
   //For Childs [interface-parent]
@@ -142,7 +142,7 @@ export class PassengerListComponent implements OnInit {
 
   removePassenger(passengerId: string) //Function for deleting Passengers
 {
-  console.log('passId',passengerId);
+  //console.log('passId',passengerId);
   this.afs.doc('users/user/passenger/'+passengerId).update({driverId:''}).then(_=>{
     this.openSnackBar("Passenger is Removed From Your List","Done");
   })

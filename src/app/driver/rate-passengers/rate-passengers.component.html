@@ -22,13 +22,15 @@
 
             <mat-form-field class="form-field-full-width">
                 <input matInput class="form-control" type="text" placeholder="Your Comments" formControlName="rating" required>
+                <mat-error *ngIf="ratingForm.get('rating').invalid && ratingForm.get('rating').touched ">A Comment is required</mat-error>
             </mat-form-field>
 
             <mat-form-field class="form-field-full-width">
                 <mat-label>Choose the date</mat-label>
-                <input matInput [matDatepicker]="picker" type="text" formControlName="date" required>
+                <input matInput [max]="minDate" [matDatepicker]="picker" type="text" formControlName="date" required>
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
+                <mat-error *ngIf="ratingForm.get('date').invalid && ratingForm.get('date').touched ">Date is required</mat-error>
             </mat-form-field>
 
             <!-- <mat-form-field class="form-field-full-width">
@@ -38,7 +40,7 @@
             <p style="margin:0px;font-size: 15px; font-weight: 400;font-family: Georgia, 'Times New Roman', Times, serif">Confirm Ratings?</p>
             <div class="pt-4">
                 <button class="button" mat-raised-button color="accent" (click)="ratingForm.reset()">Clear</button>
-                <button class="button" mat-raised-button color="primary" (click)="registerrating(ratingForm.value)">Confirm</button>
+                <button [disabled]="ratingForm.invalid" mat-raised-button color="primary" (click)="registerrating(ratingForm.value)">Confirm</button>
             </div>
         </form>
 

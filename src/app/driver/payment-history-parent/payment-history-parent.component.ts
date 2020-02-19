@@ -53,7 +53,7 @@ export class PaymentHistoryParentComponent implements OnInit {
   )
    { 
 
-    console.log("cccc");
+    //console.log("cccc");
    }
 
 
@@ -65,7 +65,7 @@ export class PaymentHistoryParentComponent implements OnInit {
     });
 
 
-    console.log('id',this.parentId)
+    //console.log('id',this.parentId)
 
     this.afs.collection('users/user/parent/'+this.parentId+'/payments').snapshotChanges().subscribe(array =>
       {
@@ -76,6 +76,7 @@ export class PaymentHistoryParentComponent implements OnInit {
           return {id,...data};
         })
         //console.log("array="+this.allPaymentsParent.length)
+        
         if(this.allPaymentsParent.length==0){ //SnackBar Meesage Box for Showing No Results-Children
           //this.spinner.hide()
   

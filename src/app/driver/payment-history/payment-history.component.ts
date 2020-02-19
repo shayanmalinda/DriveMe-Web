@@ -67,13 +67,13 @@ export class PaymentHistoryComponent implements OnInit {
       this.passengerName=params['passengerName'] ;
     });
 
-    console.log('id',this.passengerId);
-    console.log('name',this.passengerName);
+    //console.log('id',this.passengerId);
+    //console.log('name',this.passengerName);
 
     this.afs.collection('users/user/passenger/'+this.passengerId+'/payments').snapshotChanges().subscribe(array =>
       {
         this.allPaymentListPassenger = array.map( item=>{
-          console.log("ppp")
+          //console.log("ppp")
           const data=item.payload.doc.data() as payments;
           const id = item.payload.doc.id;
           return {id,...data};

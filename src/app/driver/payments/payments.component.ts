@@ -1,5 +1,5 @@
 import { Component, OnInit , ChangeDetectorRef } from '@angular/core';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { FormBuilder, Validators,FormGroup } from '@angular/forms';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { MatSnackBar, MatStepper } from '@angular/material';
 import { AngularFireStorage } from '@angular/fire/storage';
@@ -203,6 +203,11 @@ export class PaymentsComponent implements OnInit {
       duration: 2000,
     });
   }
+
+  // public hasError(controlName: string, errorName: string)
+  // {
+  //   return this.paymentForm.controls[controlName].hasError(errorName);
+  // }
 
 }
 
