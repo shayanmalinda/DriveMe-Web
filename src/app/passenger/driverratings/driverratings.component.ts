@@ -1,78 +1,115 @@
-import { Component, OnInit } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { MatSnackBar } from '@angular/material';
+import { AngularFirestore, AngularFirestoreCollection,AngularFirestoreDocument } from '@angular/fire/firestore';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
+import { Observable } from 'rxjs';
 
-export interface rating{ //Interface Ratings
-  date: string;
-  stars: number;
-  rating: string;
-}
-
-export interface passenger{ //Interface for Passenger
-  address: string;
+export interface Passenger{
   driverId: string;
-  email: string;
-  name: string;
-  phone: string;
-  pickupLocation: string;
-  tempDriverId:string;
-  isDeleted: boolean;
-  passengerId: string;
 }
+
+export interface Driver {
+  name: string;
+  vehicleNumber: string;
+  vehicleType: string;
+  // pickupLocation: string;
+}
+
 
 @Component({
   selector: 'app-driverratings',
   templateUrl: './driverratings.component.html',
   styleUrls: ['./driverratings.component.scss']
 })
+
 export class DriverratingsComponent implements OnInit {
-  passengerId : string;
 
-  passengerObservable: Observable<passenger[]>; //an observable array of passengers
-  allPassengerList: passenger[]; //full set 
-  filteredPassengerList: passenger[] = [] as passenger[]; //driver's passengers
+  driverId : string;
+  address: string;
+  public searchElementRef: ElementRef;
+  driverName: string;
+  vehicleNumber: string;
+  vehicleType: string;
 
-
-  constructor( //constructor
-    private afs: AngularFirestore,
+  driverDoc: AngularFirestoreDocument<Driver>;
+  drivers: Observable<Driver>;
+  
+  constructor(
     private router: Router,
     private spinner: NgxSpinnerService,
-    private _snackBar: MatSnackBar,
-  )
-  { }
+    private afs: AngularFirestore,
+    private db: AngularFireDatabase) {
+      let userID: string;
+      this.spinner.show();
+      userID = localStorage.getItem('passengerId');
+      this.driverId = userID;
 
-  ngOnInit() 
-  {
-    this.afs.collection('users/user/passenger').snapshotChanges().subscribe( array =>
-      {
+      this.afs.doc<Passenger>('users/user/passenger/'+this.driverId).valueChanges().subscribe(
+        res=>{
+          this.driverId = res.driverId;
 
-      this.allPassengerList = array.map( item =>{ //adding passenger's data and Id to one
-      const data = item.payload.doc.data() as passenger;
-      const id = item.payload.doc.id;
-        return {id,...data}  ;
-      });
+          db.list('Driver/'+this.driverId).snapshotChanges().pipe(
+          ).subscribe(c => {
+     
+          });
+      
+         
 
-      this.allPassengerList.forEach(element =>{ //filtering passengers for logged in driver
-        if(element.driverId == localStorage.getItem('driverId')){
-          this.filteredPassengerList.push(element);
+
+          this.driverDoc = this.afs.doc<Driver>('users/user/driver/'+this.driverId);
+          this.drivers = this.driverDoc.valueChanges();
+    
+          
+          // this.userCredentialDoc = this.afs.doc<userCredentials>('userCredentials/'+localStorage.getItem('userCredentialId'));
+          // this.userCredentials = this.userCredentialDoc.valueChanges();
+    
+          this.drivers.forEach(a=>{
+            
+              this.driverName = a.name;
+              this.vehicleNumber = a.vehicleNumber;
+              this.vehicleType = a.vehicleType;
+              this.spinner.hide();
+              
+              // this.userCredentials.forEach(b=>{
+              //   this.adminEmail = b.email
+              //   this.pass1 = b.password
+              //   this.pass2 = b.password
+                
+              // });
+          });
+
         }
-      })
+      );
 
-    });
-  }
-  viewratings(passengerId: string , passengerName:string) //function for passing values to recent-ratings page
-  {
-   this.router.navigate(['/driver', {outlets: {'drivernavbar': ['recent-ratings']}}],{queryParams: {passengerId: passengerId, passengerName: passengerName}})
-   
-  }
+     }
 
-  addrating(passengerId: string, passenger: passenger)//function for passing Values to Adding rates
-  {
-    this.router.navigate(['/driver',{outlets:{'drivernavbar':['driver-ratepassengers']}}],{queryParams:{passengerId:passengerId}})
-  }
+switchToDriver(){
+  this.router.navigateByUrl('/driver')
+}
 
+switchToParent(){
+  this.router.navigateByUrl('/parent')
+}
+
+switchToAdmin(){
+  this.router.navigateByUrl('/admin')
+}
+
+switchToOwner(){
+  this.router.navigateByUrl('/owner')
+}
+
+logout(){
+  // this.spinner.show()
+  // setTimeout(function(){
+  //   this.spinner.hide()
+  // },2000)
+  localStorage.clear();
+  this.router.navigate([''], { replaceUrl: true });
+  // setTimeout
+}
+ngOnInit() {
+}
 }
