@@ -65,6 +65,7 @@ import { PassengerAvailabilityComponent } from './driver/passenger-availability/
 import { DriverMyratingsComponent } from './driver/driver-myratings/driver-myratings.component';
 import { OwnerPassengersComponent } from './owner/driverdetails/owner-passengers/owner-passengers.component';
 import { DriverratingsComponent } from './passenger/driverratings/driverratings.component';
+import { PassengerlistComponent } from './passenger/passengerlist/passengerlist.component';
 import { VisitdrivemeComponent } from './shared/visitdriveme/visitdriveme.component';
 import { ContactinfoDriverComponent } from './owner/contactinfo-driver/contactinfo-driver.component';
 import { ContactinfoAdminsComponent } from './owner/contactinfo-admins/contactinfo-admins.component';
@@ -147,6 +148,7 @@ const routes: Routes = [
       { path: 'editpassengerdetails',outlet: 'passengernavbar', component: EditpassengerdetailsComponent},
       { path: 'changeuserpassword',outlet: 'passengernavbar', component: ChangeUserPasswordComponent},
       { path: 'driverratings',outlet: 'passengernavbar', component: DriverratingsComponent},
+      { path: 'passengerlist',outlet: 'passengernavbar', component: PassengerlistComponent},
     ]
   },
 
