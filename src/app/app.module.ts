@@ -105,6 +105,7 @@ import { VisitdrivemeComponent } from './shared/visitdriveme/visitdriveme.compon
 import { ContactinfoDriverComponent } from './owner/contactinfo-driver/contactinfo-driver.component';
 import { ContactinfoAdminsComponent } from './owner/contactinfo-admins/contactinfo-admins.component';
 import { PassengerlistComponent } from './passenger/passengerlist/passengerlist.component';
+import { RatedriverComponent } from './passenger/ratedriver/ratedriver.component';
 
 
 @NgModule({
@@ -203,6 +204,7 @@ import { PassengerlistComponent } from './passenger/passengerlist/passengerlist.
     ContactinfoDriverComponent,
     ContactinfoAdminsComponent,
     PassengerlistComponent,
+    RatedriverComponent,
 
 
 

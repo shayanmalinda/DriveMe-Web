@@ -36,6 +36,7 @@ import { PassengerpaymentsComponent } from './passenger/passengerpayments/passen
 import { PassengerpendingpaymentsComponent } from './passenger/passengerpendingpayments/passengerpendingpayments.component';
 import { PassengerProfComponent } from './passenger/passengerprof/passengerprof.component';
 import { ParenthomeComponent } from './parent/parenthome/parenthome.component';
+import { ParentprofComponent } from './parent/parentprof/parentprof.component';
 import { PassengerhomeComponent } from './passenger/passengerhome/passengerhome.component';
 import { ChangeUserPasswordComponent } from './shared/change-user-password/change-user-password.component';
 import { ResetUserPasswordComponent } from './shared/reset-user-password/reset-user-password.component';
@@ -66,6 +67,7 @@ import { DriverMyratingsComponent } from './driver/driver-myratings/driver-myrat
 import { OwnerPassengersComponent } from './owner/driverdetails/owner-passengers/owner-passengers.component';
 import { DriverratingsComponent } from './passenger/driverratings/driverratings.component';
 import { PassengerlistComponent } from './passenger/passengerlist/passengerlist.component';
+import { RatedriverComponent } from './passenger/ratedriver/ratedriver.component';
 import { VisitdrivemeComponent } from './shared/visitdriveme/visitdriveme.component';
 import { ContactinfoDriverComponent } from './owner/contactinfo-driver/contactinfo-driver.component';
 import { ContactinfoAdminsComponent } from './owner/contactinfo-admins/contactinfo-admins.component';
@@ -128,6 +130,7 @@ const routes: Routes = [
   { path: 'parent', component: ParentComponent,
     children:[
       { path: 'parenthome',outlet: 'parentnavbar', component: ParenthomeComponent},
+      { path: 'parentprof',outlet: 'parentnavbar', component: ParentprofComponent},
 
 
     ]
@@ -149,6 +152,7 @@ const routes: Routes = [
       { path: 'changeuserpassword',outlet: 'passengernavbar', component: ChangeUserPasswordComponent},
       { path: 'driverratings',outlet: 'passengernavbar', component: DriverratingsComponent},
       { path: 'passengerlist',outlet: 'passengernavbar', component: PassengerlistComponent},
+      { path: 'ratedriver',outlet: 'passengernavbar', component: RatedriverComponent},
     ]
   },
 

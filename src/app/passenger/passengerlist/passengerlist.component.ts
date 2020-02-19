@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
@@ -7,7 +7,9 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { MatSnackBar } from '@angular/material';
 //import {} from 'src/app/login/login.component';
 
-
+export interface Passenger {
+  driverId: string;
+}
 export interface passenger{ //Interface for Passenger
   address: string;
   driverId: string;
@@ -48,6 +50,11 @@ export interface userCredentials { //Interface user Credentials
 export class PassengerlistComponent implements OnInit {
 // private passengerDoc: AngularFirestoreCollection<passenger>; //Firestore collection of Passengers
 
+passengerId : string;
+driverId :string;
+
+driverDoc: AngularFirestoreDocument<Passenger>;
+drivers: Observable<Passenger>;
  // For Normal Passengers [interface-passenger]
  passengersObservable: Observable<passenger[]>; //creating an observable array of passengers
  allPassengerList: passenger[]; //full array of passengers
@@ -70,43 +77,55 @@ export class PassengerlistComponent implements OnInit {
 
  ngOnInit() 
  {
+
+    this.passengerId  = localStorage.getItem('passengerId')
    // for showing normal passengers in users/user/passenger
+   this.afs.doc<Passenger>('users/user/passenger/'+this.passengerId).valueChanges().subscribe(
+    res=>{
+      this.driverId = res.driverId;
 
-   this.afs.collection('users/user/passenger').snapshotChanges().subscribe( array =>
-     {
+      this.afs.collection('users/user/passenger').snapshotChanges().subscribe( array =>
+        {
+   
+        this.allPassengerList = array.map( item =>{ //adding passenger's data and Id to one
+          const data = item.payload.doc.data() as passenger;
+          const id = item.payload.doc.id;
+          return {id,...data};
+        });
+        
+        this.allPassengerList.forEach(element =>{ //filtering passengers for logged in driver
+          if(element.driverId == this.driverId){
+            this.showingPassengerList.push(element);
+          }
+        })
 
-     this.allPassengerList = array.map( item =>{ //adding passenger's data and Id to one
-       const data = item.payload.doc.data() as passenger;
-       const id = item.payload.doc.id;
-       return {id,...data};
-     });
-     
-     this.allPassengerList.forEach(element =>{ //filtering passengers for logged in driver
-       if(element.driverId == localStorage.getItem('driverId')){
-         this.showingPassengerList.push(element);
-       }
-     })
-     
-   });
+          //for showing child in users/user/parent 
 
-   //for showing child in users/user/parent 
+        this.afs.collection('users/user/parent').snapshotChanges().subscribe( array =>
+          {
 
-   this.afs.collection('users/user/parent').snapshotChanges().subscribe( array =>
-     {
+          this.allParentList = array.map( item =>{ //adding passenger's data and Id to one
+            const data = item.payload.doc.data() as parent;
+            const id = item.payload.doc.id;
+            return {id,...data};
+          });
+          
+          this.allParentList.forEach(element =>{ //filtering parents for logged in driver
+            if(element.driverId == this.driverId){
+              this.showingParentList.push(element);
+            }
+          })
+          
+        });
+        
+      });
+    }
+    
+    )
 
-     this.allParentList = array.map( item =>{ //adding passenger's data and Id to one
-       const data = item.payload.doc.data() as parent;
-       const id = item.payload.doc.id;
-       return {id,...data};
-     });
-     
-     this.allParentList.forEach(element =>{ //filtering parents for logged in driver
-       if(element.driverId == localStorage.getItem('driverId')){
-         this.showingParentList.push(element);
-       }
-     })
-     
-   });
+
+
+ 
    
  }
 

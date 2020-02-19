@@ -5,9 +5,17 @@ import { AngularFirestore, AngularFirestoreCollection,AngularFirestoreDocument }
 import { AngularFireStorage } from '@angular/fire/storage';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { Observable } from 'rxjs';
+import { MatSnackBar } from '@angular/material';
+
 
 export interface Passenger{
   driverId: string;
+}
+
+export interface rating{ //Interface for Ratings
+  date: string;
+  stars: number;
+  rating: string;
 }
 
 export interface Driver {
@@ -26,13 +34,15 @@ export interface Driver {
 
 export class DriverratingsComponent implements OnInit {
 
-  driverId : string;
+  passengerId : string;
+  driverId: string
   address: string;
   public searchElementRef: ElementRef;
   driverName: string;
   vehicleNumber: string;
   vehicleType: string;
-
+  allRatingsList: rating[];
+  flag = 0;
   driverDoc: AngularFirestoreDocument<Driver>;
   drivers: Observable<Driver>;
   
@@ -40,23 +50,16 @@ export class DriverratingsComponent implements OnInit {
     private router: Router,
     private spinner: NgxSpinnerService,
     private afs: AngularFirestore,
-    private db: AngularFireDatabase) {
+    private db: AngularFireDatabase,
+    private _snackBar: MatSnackBar,) {
       let userID: string;
       this.spinner.show();
       userID = localStorage.getItem('passengerId');
-      this.driverId = userID;
+      this.passengerId = userID;
 
-      this.afs.doc<Passenger>('users/user/passenger/'+this.driverId).valueChanges().subscribe(
+      this.afs.doc<Passenger>('users/user/passenger/'+this.passengerId).valueChanges().subscribe(
         res=>{
           this.driverId = res.driverId;
-
-          db.list('Driver/'+this.driverId).snapshotChanges().pipe(
-          ).subscribe(c => {
-     
-          });
-      
-         
-
 
           this.driverDoc = this.afs.doc<Driver>('users/user/driver/'+this.driverId);
           this.drivers = this.driverDoc.valueChanges();
@@ -72,44 +75,40 @@ export class DriverratingsComponent implements OnInit {
               this.vehicleType = a.vehicleType;
               this.spinner.hide();
               
-              // this.userCredentials.forEach(b=>{
-              //   this.adminEmail = b.email
-              //   this.pass1 = b.password
-              //   this.pass2 = b.password
-                
-              // });
           });
+
+          //allRatingsList = []
+
+          this.afs.collection('users/user/driver/'+this.driverId+'/ratings').snapshotChanges().subscribe(array =>
+            {
+              this.allRatingsList = array.map( item=>{
+                const data=item.payload.doc.data() as rating;
+                const id = item.payload.doc.id;
+                this.spinner.hide()
+
+                return {id,...data};
+              })
+              if(this.allRatingsList.length==0){
+                this.spinner.hide()
+      
+                this.openSnackBar("No Ratings","Ok");
+              }
+            // console.log(this.allPaymentList);
+              
+          } );
+      
 
         }
       );
 
      }
 
-switchToDriver(){
-  this.router.navigateByUrl('/driver')
-}
-
-switchToParent(){
-  this.router.navigateByUrl('/parent')
-}
-
-switchToAdmin(){
-  this.router.navigateByUrl('/admin')
-}
-
-switchToOwner(){
-  this.router.navigateByUrl('/owner')
-}
-
-logout(){
-  // this.spinner.show()
-  // setTimeout(function(){
-  //   this.spinner.hide()
-  // },2000)
-  localStorage.clear();
-  this.router.navigate([''], { replaceUrl: true });
-  // setTimeout
-}
+     
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
 ngOnInit() {
 }
 }
