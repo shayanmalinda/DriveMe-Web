@@ -38,7 +38,8 @@ export class PassengerhomeComponent implements OnInit {
   title: string = 'AGM project';
   latitude: number;
   longitude: number;
-  driverId : string;
+  passengerId : string;
+  driverId :string;
   zoom:number = 15;
   address: string;
   private geoCoder;
@@ -74,9 +75,9 @@ export class PassengerhomeComponent implements OnInit {
       let userID: string;
       this.spinner.show();
       userID = localStorage.getItem('passengerId');
-      this.driverId = userID;
+      this.passengerId = userID;
 
-      this.afs.doc<Passenger>('users/user/passenger/'+this.driverId).valueChanges().subscribe(
+      this.afs.doc<Passenger>('users/user/passenger/'+this.passengerId).valueChanges().subscribe(
         res=>{
           this.driverId = res.driverId;
 

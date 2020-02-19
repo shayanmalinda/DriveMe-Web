@@ -104,6 +104,8 @@ import { DriverratingsComponent } from './passenger/driverratings/driverratings.
 import { VisitdrivemeComponent } from './shared/visitdriveme/visitdriveme.component';
 import { ContactinfoDriverComponent } from './owner/contactinfo-driver/contactinfo-driver.component';
 import { ContactinfoAdminsComponent } from './owner/contactinfo-admins/contactinfo-admins.component';
+import { PassengerlistComponent } from './passenger/passengerlist/passengerlist.component';
+import { RatedriverComponent } from './passenger/ratedriver/ratedriver.component';
 
 
 @NgModule({
@@ -201,6 +203,8 @@ import { ContactinfoAdminsComponent } from './owner/contactinfo-admins/contactin
     VisitdrivemeComponent,
     ContactinfoDriverComponent,
     ContactinfoAdminsComponent,
+    PassengerlistComponent,
+    RatedriverComponent,
 
 
 

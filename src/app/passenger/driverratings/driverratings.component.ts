@@ -1,78 +1,114 @@
-import { Component, OnInit } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { AngularFirestore, AngularFirestoreCollection,AngularFirestoreDocument } from '@angular/fire/firestore';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
+import { Observable } from 'rxjs';
 import { MatSnackBar } from '@angular/material';
 
-export interface rating{ //Interface Ratings
+
+export interface Passenger{
+  driverId: string;
+}
+
+export interface rating{ //Interface for Ratings
   date: string;
   stars: number;
   rating: string;
 }
 
-export interface passenger{ //Interface for Passenger
-  address: string;
-  driverId: string;
-  email: string;
+export interface Driver {
   name: string;
-  phone: string;
-  pickupLocation: string;
-  tempDriverId:string;
-  isDeleted: boolean;
-  passengerId: string;
+  vehicleNumber: string;
+  vehicleType: string;
+  // pickupLocation: string;
 }
+
 
 @Component({
   selector: 'app-driverratings',
   templateUrl: './driverratings.component.html',
   styleUrls: ['./driverratings.component.scss']
 })
+
 export class DriverratingsComponent implements OnInit {
+
   passengerId : string;
-
-  passengerObservable: Observable<passenger[]>; //an observable array of passengers
-  allPassengerList: passenger[]; //full set 
-  filteredPassengerList: passenger[] = [] as passenger[]; //driver's passengers
-
-
-  constructor( //constructor
-    private afs: AngularFirestore,
+  driverId: string
+  address: string;
+  public searchElementRef: ElementRef;
+  driverName: string;
+  vehicleNumber: string;
+  vehicleType: string;
+  allRatingsList: rating[];
+  flag = 0;
+  driverDoc: AngularFirestoreDocument<Driver>;
+  drivers: Observable<Driver>;
+  
+  constructor(
     private router: Router,
     private spinner: NgxSpinnerService,
-    private _snackBar: MatSnackBar,
-  )
-  { }
+    private afs: AngularFirestore,
+    private db: AngularFireDatabase,
+    private _snackBar: MatSnackBar,) {
+      let userID: string;
+      this.spinner.show();
+      userID = localStorage.getItem('passengerId');
+      this.passengerId = userID;
 
-  ngOnInit() 
-  {
-    this.afs.collection('users/user/passenger').snapshotChanges().subscribe( array =>
-      {
+      this.afs.doc<Passenger>('users/user/passenger/'+this.passengerId).valueChanges().subscribe(
+        res=>{
+          this.driverId = res.driverId;
 
-      this.allPassengerList = array.map( item =>{ //adding passenger's data and Id to one
-      const data = item.payload.doc.data() as passenger;
-      const id = item.payload.doc.id;
-        return {id,...data}  ;
-      });
+          this.driverDoc = this.afs.doc<Driver>('users/user/driver/'+this.driverId);
+          this.drivers = this.driverDoc.valueChanges();
+    
+          
+          // this.userCredentialDoc = this.afs.doc<userCredentials>('userCredentials/'+localStorage.getItem('userCredentialId'));
+          // this.userCredentials = this.userCredentialDoc.valueChanges();
+    
+          this.drivers.forEach(a=>{
+            
+              this.driverName = a.name;
+              this.vehicleNumber = a.vehicleNumber;
+              this.vehicleType = a.vehicleType;
+              this.spinner.hide();
+              
+          });
 
-      this.allPassengerList.forEach(element =>{ //filtering passengers for logged in driver
-        if(element.driverId == localStorage.getItem('driverId')){
-          this.filteredPassengerList.push(element);
+          //allRatingsList = []
+
+          this.afs.collection('users/user/driver/'+this.driverId+'/ratings').snapshotChanges().subscribe(array =>
+            {
+              this.allRatingsList = array.map( item=>{
+                const data=item.payload.doc.data() as rating;
+                const id = item.payload.doc.id;
+                this.spinner.hide()
+
+                return {id,...data};
+              })
+              if(this.allRatingsList.length==0){
+                this.spinner.hide()
+      
+                this.openSnackBar("No Ratings","Ok");
+              }
+            // console.log(this.allPaymentList);
+              
+          } );
+      
+
         }
-      })
+      );
 
+     }
+
+     
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
     });
   }
-  viewratings(passengerId: string , passengerName:string) //function for passing values to recent-ratings page
-  {
-   this.router.navigate(['/driver', {outlets: {'drivernavbar': ['recent-ratings']}}],{queryParams: {passengerId: passengerId, passengerName: passengerName}})
-   
-  }
-
-  addrating(passengerId: string, passenger: passenger)//function for passing Values to Adding rates
-  {
-    this.router.navigate(['/driver',{outlets:{'drivernavbar':['driver-ratepassengers']}}],{queryParams:{passengerId:passengerId}})
-  }
-
+ngOnInit() {
+}
 }

@@ -13,28 +13,32 @@ export interface rating{//Interface for ratings
   stars: number;
 }
 
-export interface passenger{//Interface for passengers
-  address: string;
-  driverId: string;
-  email: string;
-  name: string;
-  phone: string;
-  pickupLocation: string;
-  tempDriverId:string;
-  passengerId: string;
-  isDeleted: boolean;
-}
+ export interface Passenger{
+    driverId: string;
+ }
+
+// export interface passenger{//Interface for passengers
+//   address: string;
+//   driverId: string;
+//   email: string;
+//   name: string;
+//   phone: string;
+//   pickupLocation: string;
+//   tempDriverId:string;
+//   passengerId: string;
+//   isDeleted: boolean;
+// }
 
 @Component({
-  selector: 'app-rate-passengers',
-  templateUrl: './rate-passengers.component.html',
-  styleUrls: ['./rate-passengers.component.scss']
+  selector: 'app-ratedriver',
+  templateUrl: './ratedriver.component.html',
+  styleUrls: ['./ratedriver.component.scss']
 })
-export class RatePassengersComponent implements OnInit {
-
+export class RatedriverComponent implements OnInit {
+  
   ratingForm=this.formBuilder.group({
     date: [''],
-    //passengerId: [''],
+    driverId: [''],
     stars: [''],
     rating:['']
   });
@@ -49,9 +53,9 @@ export class RatePassengersComponent implements OnInit {
 
   //temps
   tempid: string;
-
+  driverId: string;
   passengerId: string;
-  passenger: Observable<passenger>;
+  passenger: Observable<Passenger>;
 
   ratings: Observable<rating>;
 
@@ -61,7 +65,18 @@ export class RatePassengersComponent implements OnInit {
     private _snackBar: MatSnackBar,
     private route: ActivatedRoute,
     private spinner:NgxSpinnerService)
-     {}
+    
+     {   
+      let userID: string;
+      userID = localStorage.getItem('passengerId');
+      this.passengerId = userID;
+      
+      this.afs.doc<Passenger>('users/user/passenger/'+this.passengerId).valueChanges().subscribe(
+         res=>{
+       this.driverId = res.driverId;
+      })
+
+     }
 
   ngOnInit() 
   {
@@ -154,7 +169,7 @@ export class RatePassengersComponent implements OnInit {
 
    // console.log(this.passengerId)
 
-    this.afs.collection('users/user/passenger/'+this.passengerId+ '/ratings/').add(this.rating).then(_=>{
+    this.afs.collection('users/user/driver/'+this.driverId+ '/ratings/').add(this.rating).then(_=>{
       this.openSnackBar("Rating Details Added", "Done");
       this.waiting=false;
     })
@@ -166,5 +181,8 @@ export class RatePassengersComponent implements OnInit {
   });
 }
 
-
 }
+
+
+
+
