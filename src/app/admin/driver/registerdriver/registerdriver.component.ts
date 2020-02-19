@@ -26,7 +26,8 @@ export interface Driver {
   driverLicense: string;
   vehicleNumber: string;
   vehicleChassis: string;
-  availableSeets: string;
+  allowedPassengers: string;
+  currentPassengers: string;
   vehicleType: Selection;
   isAC: Boolean;
   imgURL: string;
@@ -222,7 +223,8 @@ export class RegisterdriverComponent implements OnInit {
             driverNIC : this.driverNIC,
             driverLicense : this.driverLicense,
             isAC : this.airConditioned,
-            availableSeets : this.availableSeets,
+            allowedPassengers : this.availableSeets,
+            currentPassengers : "0",
             vehicleChassis : this.vehicleChassis,
             vehicleNumber : this.vehicleNumber,
             vehicleType : this.vehicleType,
