@@ -88,11 +88,11 @@ export class PassengerListComponent implements OnInit {
         }
       })
 
-      if(this.showingPassengerList.length==0){ // Snack Bar Message Box for showing No Results-Passengers
-        //this.spinner.hide()
+      // if(this.showingPassengerList.length==0){ // Snack Bar Message Box for showing No Results-Passengers
+      //   //this.spinner.hide()
 
-        this.openSnackBar("No Passengers Currently Available"," Ok ");
-      }
+      //   this.openSnackBar("No Passengers Currently Available"," Ok ");
+      // }
       
     });
 
@@ -113,11 +113,11 @@ export class PassengerListComponent implements OnInit {
         }
       })
 
-      if(this.showingParentList.length==0){ //SnackBar Meesage Box for Showing No Results-Children
-        //this.spinner.hide()
+      // if(this.showingParentList.length==0){ //SnackBar Meesage Box for Showing No Results-Children
+      //   //this.spinner.hide()
 
-        this.openSnackBar("No Children Currently Available"," Ok ");
-      }
+      //   this.openSnackBar("No Children Currently Available"," Ok ");
+      // }
       
     });
     

@@ -66,6 +66,12 @@ export class ViewpaymentsComponent implements OnInit {
           this.filteredPassengerList.push(element);
         }
       })
+      if(this.filteredPassengerList.length==0){ //SnackBar Meesage Box for Showing No Availabilities for all passengers
+        //this.spinner.hide()
+
+        this.openSnackBar("No Passengers Available in Your List"," Ok ");
+      }
+      //console.log(this.passengerId);
       //console.log(this.passengerId);
 
     });
@@ -82,6 +88,13 @@ export class ViewpaymentsComponent implements OnInit {
    this.router.navigate(['/driver', {outlets: {'drivernavbar': ['driver-payments']}}],{queryParams: {passengerId: passengerId}})
    
   }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 4000,
+    });
+  }
+
 
 
 }

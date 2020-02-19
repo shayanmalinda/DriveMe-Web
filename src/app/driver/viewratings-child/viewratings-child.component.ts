@@ -63,6 +63,12 @@ export class ViewratingsChildComponent implements OnInit {
         }
       })
 
+      if(this.filteredParentList.length==0){ //SnackBar Meesage Box for Showing No Available for all Children
+        //this.spinner.hide()
+
+        this.openSnackBar("No Children Available in Your List"," Ok ");
+      }
+
     });
   }
   viewratings(parentId: string , childName:string) //function for passing values to recent-ratings page
@@ -74,6 +80,13 @@ export class ViewratingsChildComponent implements OnInit {
   addrating(parentId: string, parent: parent)//function for passing Values to Adding rates
   {
     this.router.navigate(['/driver',{outlets:{'drivernavbar':['driver-ratechild']}}],{queryParams:{parentId:parentId}})
+  }
+
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 4000,
+    });
   }
 
 

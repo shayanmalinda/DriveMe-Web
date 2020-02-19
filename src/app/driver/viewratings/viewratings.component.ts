@@ -63,6 +63,12 @@ export class ViewratingsComponent implements OnInit {
         }
       })
 
+      if(this.filteredPassengerList.length==0){ //SnackBar Meesage Box for Showing No Available for all passengers
+        //this.spinner.hide()
+
+        this.openSnackBar("No Passengers Available in Your List"," Ok ");
+      }
+
     });
   }
   viewratings(passengerId: string , passengerName:string) //function for passing values to recent-ratings page
@@ -75,6 +81,14 @@ export class ViewratingsComponent implements OnInit {
   {
     this.router.navigate(['/driver',{outlets:{'drivernavbar':['driver-ratepassengers']}}],{queryParams:{passengerId:passengerId}})
   }
+
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 4000,
+    });
+  }
+
 
 
 }
