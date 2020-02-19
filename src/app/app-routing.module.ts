@@ -65,8 +65,8 @@ import { PassengerAvailabilityComponent } from './driver/passenger-availability/
 import { DriverMyratingsComponent } from './driver/driver-myratings/driver-myratings.component';
 import { OwnerPassengersComponent } from './owner/driverdetails/owner-passengers/owner-passengers.component';
 import { VisitdrivemeComponent } from './shared/visitdriveme/visitdriveme.component';
-
-// import { AdminprofileComponent } from './admin/adminprofile/adminprofile.component';
+import { ContactinfoDriverComponent } from './owner/contactinfo-driver/contactinfo-driver.component';
+import { ContactinfoAdminsComponent } from './owner/contactinfo-admins/contactinfo-admins.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent},
@@ -158,6 +158,8 @@ const routes: Routes = [
       { path: 'ownerhome', outlet:'ownernavbar', component:OwnerhomeComponent},
       { path: 'owner-ratings', outlet:'ownernavbar', component:OwnerRatingsComponent},
       { path: 'owner-passengers', outlet: 'ownernavbar', component: OwnerPassengersComponent},
+      { path: 'contactinfo-driver', outlet: 'ownernavbar', component: ContactinfoDriverComponent},
+      { path: 'contactinfo-admins', outlet: 'ownernavbar', component: ContactinfoAdminsComponent},
       
       
       // Define Route Here .................... 
